@@ -1588,6 +1588,50 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  // Clinical Syringe "Go to Top" Button with Rotating Dashed Ring
+  function initScrollToTopButton() {
+    if (document.getElementById('clinicalScrollToTop')) return;
+
+    const btn = document.createElement('button');
+    btn.id = 'clinicalScrollToTop';
+    btn.className = 'clinical-scroll-to-top';
+    btn.setAttribute('aria-label', 'Scroll to top of page');
+    btn.setAttribute('title', 'Go to top');
+    btn.innerHTML = `
+      <div class="scroll-top-dashed-ring"></div>
+      <div class="scroll-top-core">
+        <img src="assets/real_syringe_upright.png" onerror="this.onerror=null; this.src='../assets/real_syringe_upright.png'" alt="Real Clinical Syringe Up" class="scroll-top-syringe-icon">
+      </div>
+    `;
+
+    document.body.appendChild(btn);
+
+    function checkScroll() {
+      const scrollY = window.pageYOffset || document.documentElement.scrollTop || 0;
+      if (scrollY > 280) {
+        btn.classList.add('visible');
+      } else {
+        btn.classList.remove('visible');
+      }
+    }
+
+    window.addEventListener('scroll', checkScroll, { passive: true });
+    checkScroll();
+
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+      if (typeof playClinicalClick === 'function') {
+        playClinicalClick('click');
+      }
+    });
+  }
+
+  initScrollToTopButton();
+
   console.log('AI-DISPO® UltraFlow Full-Section Scroll-Docking Architecture Initialized.');
 });
 

@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Careers &amp; Opportunities — Goel Allied Industries | AI-DISPO®</title>
+  <meta name="description"
+    content="Explore clinical engineering, quality assurance, cleanroom manufacturing, and regulatory careers at Goel Allied Industries (AI-DISPO®). Join a global medical device manufacturer.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700;800&family=Plus+Jakarta+Sans:wght@600;700;800;900&display=swap"
+    rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="products.css">
+  <style>
+    .careers-hero {
+      padding: 140px 24px 70px;
+      background: radial-gradient(circle at 85% 20%, rgba(0, 168, 255, 0.12) 0%, rgba(244, 248, 251, 0) 60%),
+                  linear-gradient(180deg, #FFFFFF 0%, #F1F6FA 100%);
+      border-bottom: 1.5px solid rgba(1, 53, 114, 0.12);
+      text-align: center;
+    }
+
+    .careers-hero-inner {
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    .culture-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+      margin: 48px 0;
+    }
+
+    .culture-card {
+      background: #ffffff;
+      border: 1.5px solid rgba(1, 53, 114, 0.16);
+      border-radius: 12px;
+      padding: 28px 24px;
+      box-shadow: 4px 4px 0px rgba(10, 28, 48, 0.06);
+      transition: transform 0.2s, box-shadow 0.2s;
+      text-align: left;
+    }
+
+    .culture-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 6px 6px 0px #013572;
+      border-color: var(--logo-navy);
+    }
+
+    .culture-icon-box {
+      width: 48px;
+      height: 48px;
+      border-radius: 10px;
+      background: rgba(1, 53, 114, 0.08);
+      color: var(--logo-navy);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 18px;
+    }
+
+    .culture-card h3 {
+      font-family: var(--font-headline);
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--ink-black);
+      margin-bottom: 8px;
+    }
+
+    .culture-card p {
+      font-size: 13.5px;
+      color: var(--ink-muted);
+      line-height: 1.6;
+    }
+
+    /* Jobs Section */
+    .jobs-section {
+      padding: 60px 24px 100px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .jobs-header-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-bottom: 36px;
+    }
+
+    .dept-filter-pills {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .filter-pill {
+      padding: 7px 16px;
+      border-radius: 20px;
+      border: 1px solid rgba(1, 53, 114, 0.2);
+      background: #ffffff;
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--ink-muted);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .filter-pill:hover, .filter-pill.active {
+      background: var(--logo-navy);
+      color: #ffffff;
+      border-color: var(--logo-navy);
+    }
+
+    .jobs-list-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .job-card {
+      background: #ffffff;
+      border: 1.5px solid rgba(1, 53, 114, 0.16);
+      border-radius: 12px;
+      padding: 24px 28px;
+      box-shadow: 3px 3px 0px rgba(10, 28, 48, 0.05);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+      transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+    }
+
+    .job-card:hover {
+      border-color: var(--logo-navy);
+      box-shadow: 5px 5px 0px #013572;
+      transform: translateY(-2px);
+    }
+
+    .job-card-info h3 {
+      font-family: var(--font-headline);
+      font-size: 19px;
+      font-weight: 800;
+      color: var(--ink-black);
+      margin-bottom: 8px;
+    }
+
+    .job-meta-tags {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    .job-badge {
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 4px;
+      background: #eef4fb;
+      color: var(--logo-navy);
+      border: 1px solid rgba(1, 53, 114, 0.15);
+    }
+
+    .job-badge.type {
+      background: #ecfdf5;
+      color: #047857;
+      border-color: #a7f3d0;
+    }
+
+    .job-desc-snippet {
+      font-size: 13.5px;
+      color: var(--ink-muted);
+      line-height: 1.6;
+      max-width: 680px;
+    }
+
+    .job-action-wrap {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .btn-apply {
+      background: var(--logo-navy);
+      color: #ffffff;
+      padding: 10px 22px;
+      border-radius: 6px;
+      font-size: 13.5px;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: background 0.2s;
+    }
+
+    .btn-apply:hover {
+      background: #00234d;
+    }
+
+    /* Application Modal */
+    .apply-modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(10, 25, 45, 0.7);
+      backdrop-filter: blur(4px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      z-index: 9999;
+    }
+
+    .apply-modal-overlay.active {
+      display: flex;
+    }
+
+    .apply-modal-card {
+      background: #ffffff;
+      width: 100%;
+      max-width: 580px;
+      max-height: 90vh;
+      overflow-y: auto;
+      border-radius: 14px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+      padding: 32px;
+      position: relative;
+    }
+
+    .modal-close-btn {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: none;
+      border: none;
+      font-size: 24px;
+      color: #64748b;
+      cursor: pointer;
+      line-height: 1;
+    }
+
+    .modal-title {
+      font-family: var(--font-headline);
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--ink-black);
+      margin-bottom: 4px;
+    }
+
+    .modal-subtitle {
+      font-size: 13px;
+      color: var(--ink-muted);
+      margin-bottom: 24px;
+    }
+
+    .modal-form-group {
+      margin-bottom: 16px;
+    }
+
+    .modal-form-group label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--ink-black);
+      margin-bottom: 6px;
+    }
+
+    .modal-form-group input, .modal-form-group textarea, .modal-form-group select {
+      width: 100%;
+      padding: 9px 12px;
+      border: 1.5px solid #d1d5db;
+      border-radius: 6px;
+      font-size: 14px;
+      font-family: inherit;
+    }
+
+    .modal-form-group input:focus, .modal-form-group textarea:focus {
+      outline: none;
+      border-color: var(--logo-navy);
+    }
+
+    @media (max-width: 768px) {
+      .careers-hero {
+        padding: 110px 16px 44px;
+      }
+      .job-card {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .job-action-wrap {
+        width: 100%;
+      }
+      .btn-apply {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="blueprint-lines"></div>
+
+  <!-- SITE HEADER -->
+  <header class="site-header" id="mainHeader">
+    <div class="nav-left">
+      <a href="index.html#heroTrack" class="brand-logo-wrap">
+        <img src="assets/ChatGPT Image Sep 28, 2026, 04_42_50 PM.png" alt="GAI AI-DISPO Logo" class="brand-logo-img">
+        <span class="brand-logo">AI-DISPO<span class="accent-dot">.</span></span>
+      </a>
+    </div>
+
+    <nav class="nav-center" aria-label="Main Navigation">
+      <a href="index.html#heroTrack" class="nav-link">Home</a>
+      <a href="syringe.html" class="nav-link">Products</a>
+      <a href="about.html" class="nav-link">About Us</a>
+      <a href="gallery.html" class="nav-link">Gallery</a>
+      <a href="blog.html" class="nav-link">Blog</a>
+      <a href="oem.html" class="nav-link">OEM / ODM</a>
+      <a href="catalogue.html" class="nav-link">E-Catalogue</a>
+    </nav>
+
+    <div class="nav-right">
+      <a href="contact.html" class="btn-craft btn-craft-primary" id="topContactBtn">
+        CONTACT US
+      </a>
+      <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Open Mobile Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- MOBILE NAVIGATION DRAWER -->
+  <div class="mobile-nav-backdrop" id="mobileNavBackdrop"></div>
+  <div class="mobile-nav-drawer" id="mobileNavDrawer" aria-hidden="true">
+    <div class="mobile-nav-header">
+      <div class="brand-logo-wrap">
+        <img src="assets/ChatGPT Image Sep 28, 2026, 04_42_50 PM.png" alt="GAI AI-DISPO Logo" class="brand-logo-img">
+        <span class="brand-logo">AI-DISPO<span class="accent-dot">.</span></span>
+      </div>
+      <button class="mobile-nav-close" id="mobileNavClose" aria-label="Close Navigation Menu">&times;</button>
+    </div>
+
+    <div class="mobile-nav-links">
+      <a href="index.html" class="mobile-nav-link">Home</a>
+      <a href="syringe.html" class="mobile-nav-link">Products</a>
+      <a href="about.html" class="mobile-nav-link">About Us</a>
+      <a href="gallery.html" class="mobile-nav-link">Gallery</a>
+      <a href="blog.html" class="mobile-nav-link">Blog</a>
+      <a href="oem.html" class="mobile-nav-link">OEM / ODM</a>
+      <a href="catalogue.html" class="mobile-nav-link">E-Catalogue</a>
+      <a href="careers.html" class="mobile-nav-link active">Careers</a>
+    </div>
+
+    <div class="mobile-nav-footer">
+      <a href="contact.html" class="btn-craft btn-craft-primary" style="width: 100%;">
+        CONTACT US
+      </a>
+    </div>
+  </div>
+
+  <main id="mainContent">
+    <!-- CAREERS HERO -->
+    <section class="careers-hero">
+      <div class="careers-hero-inner">
+        <div class="hero-feature-tags-row" style="justify-content: center;">
+          <span class="hero-feature-tag">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <circle cx="12" cy="12" r="10"/>
+              <path d="M12 6v6l4 2"/>
+            </svg>
+            JOIN OUR TEAM
+          </span>
+          <span class="hero-feature-tag">WHO-GMP &amp; ISO 13485 CLEANROOM</span>
+          <span class="hero-feature-tag">GLOBAL HEALTHCARE IMPACT</span>
+        </div>
+
+        <h1 class="sim-title" style="margin-top: 14px; font-size: clamp(28px, 4vw, 44px); line-height: 1.15;">
+          Build the Future of <span class="highlight-cyan">Sterile Medical Technology</span>
+        </h1>
+        <p class="prod-hero-lead" style="max-width: 700px; margin: 16px auto 0;">
+          At Goel Allied Industries, we design and manufacture life-saving medical devices exported to 40+ countries. Join our world-class engineering, clinical research, and cleanroom production teams.
+        </p>
+
+        <!-- Culture Highlights -->
+        <div class="culture-grid">
+          <div class="culture-card">
+            <div class="culture-icon-box">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+              </svg>
+            </div>
+            <h3>Competitive Growth</h3>
+            <p>Industry-leading compensation, medical benefits, and fast-track career pathways for top performers.</p>
+          </div>
+
+          <div class="culture-card">
+            <div class="culture-icon-box">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+                <line x1="8" y1="21" x2="16" y2="21"/>
+                <line x1="12" y1="17" x2="12" y2="21"/>
+              </svg>
+            </div>
+            <h3>High-Tech Robotics</h3>
+            <p>Work with state-of-the-art automated Swiss/German injection moulding machines and laser optical QA inspection systems.</p>
+          </div>
+
+          <div class="culture-card">
+            <div class="culture-icon-box">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              </svg>
+            </div>
+            <h3>ISO Sterility Culture</h3>
+            <p>Operate in Class 100,000 cleanroom environments adhering to stringent international CE, FDA &amp; WHO regulations.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- OPEN POSITIONS SECTION -->
+    <section class="jobs-section">
+      <div class="jobs-header-row">
+        <div>
+          <h2 style="font-family: var(--font-headline); font-size: 26px; font-weight: 800; color: var(--ink-black);">
+            Current Open Positions
+          </h2>
+          <p style="font-size: 14px; color: var(--ink-muted); margin-top: 4px;">
+            Find your role and apply directly to our HR leadership.
+          </p>
+        </div>
+
+        <div class="dept-filter-pills" id="deptFilters">
+          <button class="filter-pill active" data-dept="ALL">All Departments</button>
+          <button class="filter-pill" data-dept="Quality Assurance">QA &amp; QC</button>
+          <button class="filter-pill" data-dept="Engineering">R&amp;D / Engineering</button>
+          <button class="filter-pill" data-dept="Production">Cleanroom Production</button>
+          <button class="filter-pill" data-dept="Regulatory">Regulatory Affairs</button>
+        </div>
+      </div>
+
+      <!-- Dynamic Jobs List -->
+      <div class="jobs-list-grid" id="jobsListContainer">
+        <div style="text-align: center; padding: 40px; color: #64748b;">
+          Loading open positions...
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- APPLICATION MODAL -->
+  <div class="apply-modal-overlay" id="applyModal">
+    <div class="apply-modal-card">
+      <button class="modal-close-btn" id="modalCloseBtn">&times;</button>
+      <h2 class="modal-title" id="modalJobTitle">Apply for Position</h2>
+      <p class="modal-subtitle" id="modalJobSubtitle">Please submit your application details below.</p>
+
+      <form id="applyJobForm">
+        <input type="hidden" id="applyJobId">
+        <input type="hidden" id="applyJobName">
+
+        <div class="modal-form-group">
+          <label for="applyFullName">Full Name *</label>
+          <input type="text" id="applyFullName" placeholder="e.g. Rahul Sharma" required autocomplete="name">
+        </div>
+
+        <div class="modal-form-group">
+          <label for="applyEmail">Email Address *</label>
+          <input type="email" id="applyEmail" placeholder="e.g. rahul@example.com" required autocomplete="email">
+        </div>
+
+        <div class="modal-form-group">
+          <label for="applyPhone">Phone / WhatsApp Number *</label>
+          <input type="tel" id="applyPhone" placeholder="+91 98765 43210" required autocomplete="tel">
+        </div>
+
+        <div class="modal-form-group">
+          <label for="applyExperience">Years of Relevant Experience</label>
+          <input type="text" id="applyExperience" placeholder="e.g. 3 Years in Medical QA">
+        </div>
+
+        <div class="modal-form-group">
+          <label for="applyResumeUrl">Resume / LinkedIn / Portfolio URL</label>
+          <input type="url" id="applyResumeUrl" placeholder="https://linkedin.com/in/yourprofile or Google Drive link">
+        </div>
+
+        <div class="modal-form-group">
+          <label for="applyCoverLetter">Short Bio / Cover Note</label>
+          <textarea id="applyCoverLetter" rows="3" placeholder="Tell us about your background, clinical expertise or technical skills..."></textarea>
+        </div>
+
+        <button type="submit" class="btn-apply" id="btnSubmitApplication" style="width: 100%; justify-content: center; padding: 12px; font-size: 15px;">
+          Submit Application
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- SITE FOOTER -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-top-grid">
+        <div class="footer-brand-col">
+          <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+            <img src="assets/ChatGPT Image Sep 28, 2026, 04_42_50 PM.png" alt="GAI AI-DISPO Logo"
+              style="height: 48px; width: auto; object-fit: contain;">
+            <div class="footer-logo">AI-DISPO<span style="color:var(--accent-blue)">.</span></div>
+          </div>
+          <p class="footer-brand-desc">
+            Goel Allied Industries — Manufacturer of AI-DISPO® sterile injection systems, IV cannulas, and infusion sets.
+          </p>
+          <div class="regulatory-stamp-row">
+            <span class="stamp-tag red">WHO-GMP</span>
+            <span class="stamp-tag dark">CDSCO</span>
+            <span class="stamp-tag red">CE CERTIFIED</span>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>EXPLORE PRODUCTS</h4>
+          <ul class="footer-links">
+            <li><a href="syringe.html">Disposable Hypodermic Syringes</a></li>
+            <li><a href="iv-cannula.html">Intravenous Cannulas</a></li>
+            <li><a href="infusion-sets.html">Infusion Sets</a></li>
+            <li><a href="needle.html">Hypodermic Needles</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>COMPANY &amp; RESOURCES</h4>
+          <ul class="footer-links">
+            <li><a href="about.html">About Goel Allied Industries</a></li>
+            <li><a href="careers.html">Careers &amp; Opportunities</a></li>
+            <li><a href="catalogue.html">E-Catalogue</a></li>
+            <li><a href="gallery.html">Facility Gallery</a></li>
+            <li><a href="blog.html">Clinical Insights &amp; Blog</a></li>
+            <li><a href="contact.html">Corporate Contact</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>HR &amp; CAREERS CONTACT</h4>
+          <p style="font-size: 13px; color: var(--ink-muted); line-height: 1.6; margin-bottom: 8px;">
+            For career inquiries and recruitment partnerships:<br>
+            <strong style="color: var(--logo-navy);">Email:</strong> <a href="mailto:export@aidispo.com" style="color: inherit;">export@aidispo.com</a><br>
+            <strong style="color: var(--logo-navy);">Phone:</strong> <a href="tel:+919120808855" style="color: inherit;">+91 91208 08855</a>
+          </p>
+        </div>
+      </div>
+
+      <div class="footer-bottom-bar">
+        <div>© 2026 Goel Allied Industries (AI-DISPO®). All Rights Reserved.</div>
+        <div class="footer-legal-links">
+          <a href="privacy-policy.html">Privacy Policy</a>
+          <span>•</span>
+          <a href="terms-conditions.html">Terms</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", async () => {
+      let jobs = [];
+      let currentDept = "ALL";
+
+      const jobsListContainer = document.getElementById("jobsListContainer");
+      const applyModal = document.getElementById("applyModal");
+      const modalCloseBtn = document.getElementById("modalCloseBtn");
+      const applyJobForm = document.getElementById("applyJobForm");
+      const modalJobTitle = document.getElementById("modalJobTitle");
+      const modalJobSubtitle = document.getElementById("modalJobSubtitle");
+      const applyJobId = document.getElementById("applyJobId");
+      const applyJobName = document.getElementById("applyJobName");
+
+      // 1. Fetch jobs
+      try {
+        let fetched = false;
+        try {
+          const res = await fetch("/api/jobs?status=Active");
+          if (res.ok) {
+            const data = await res.json();
+            if (data.jobs && data.jobs.length > 0) {
+              jobs = data.jobs;
+              fetched = true;
+            }
+          }
+        } catch (e) {}
+
+        if (!fetched) {
+          const local = localStorage.getItem("aidispo_jobs_db");
+          if (local) {
+            jobs = JSON.parse(local).filter(j => j.status !== "Closed");
+          } else {
+            // Seed Medical Device Jobs
+            jobs = [
+              {
+                id: 1,
+                title: "Quality Assurance (QA) Clinical Specialist",
+                department: "Quality Assurance",
+                location: "Facility HQ, India",
+                job_type: "Full-Time",
+                experience: "2-4 Years",
+                description: "Oversee ISO 13485:2016 compliance, bioburden validation, and batch release testing in our cleanroom facility.",
+                status: "Active"
+              },
+              {
+                id: 2,
+                title: "Precision Plastic Injection Moulding Engineer",
+                department: "Engineering",
+                location: "Cleanroom Plant, India",
+                job_type: "Full-Time",
+                experience: "3-6 Years",
+                description: "Lead tooling, multi-cavity hot-runner moulding parameter optimization for UltraFlow syringe barrels and cannula hubs.",
+                status: "Active"
+              },
+              {
+                id: 3,
+                title: "Regulatory Affairs & CE Compliance Executive",
+                department: "Regulatory",
+                location: "Corporate Office, India",
+                job_type: "Full-Time",
+                experience: "2-5 Years",
+                description: "Prepare and maintain CDSCO MDR 2017 & EU-MDR Technical Files, sterile barrier validation, and ISO audit documentation.",
+                status: "Active"
+              },
+              {
+                id: 4,
+                title: "Cleanroom Assembly & ETO Sterilization Supervisor",
+                department: "Production",
+                location: "Facility HQ, India",
+                job_type: "Full-Time",
+                experience: "1-3 Years",
+                description: "Supervise Class 100,000 cleanroom assembly lines, blister packaging machinery, and industrial ETO aeration cycles.",
+                status: "Active"
+              }
+            ];
+            localStorage.setItem("aidispo_jobs_db", JSON.stringify(jobs));
+          }
+        }
+
+        renderJobs();
+
+      } catch (err) {
+        console.error("Error loading jobs:", err);
+      }
+
+      function renderJobs() {
+        let filtered = jobs.filter(j => {
+          if (currentDept === "ALL") return true;
+          return j.department.toLowerCase().includes(currentDept.toLowerCase());
+        });
+
+        if (filtered.length === 0) {
+          jobsListContainer.innerHTML = `
+            <div style="text-align: center; padding: 48px; background: #ffffff; border-radius: 12px; border: 1.5px solid rgba(1, 53, 114, 0.1);">
+              <h3 style="font-size: 18px; color: var(--ink-black); margin-bottom: 8px;">No open positions in this department right now</h3>
+              <p style="font-size: 13.5px; color: var(--ink-muted);">You can submit a general application, and our HR team will reach out when a relevant opening arises.</p>
+              <button class="btn-apply" onclick="window.openApplyModal(null, 'General Application')" style="margin-top: 16px;">
+                Submit General Application
+              </button>
+            </div>
+          `;
+          return;
+        }
+
+        jobsListContainer.innerHTML = filtered.map(job => {
+          const cleanDesc = job.description ? job.description.replace(/<[^>]*>/g, '').substring(0, 170) + '...' : '';
+          return `
+            <div class="job-card">
+              <div class="job-card-info">
+                <div class="job-meta-tags">
+                  <span class="job-badge">${job.department}</span>
+                  <span class="job-badge type">${job.job_type || 'Full-Time'}</span>
+                  <span class="job-badge">📍 ${job.location || 'HQ, India'}</span>
+                  <span class="job-badge">⏳ ${job.experience || '2+ Yrs'}</span>
+                </div>
+                <h3>${escapeHtml(job.title)}</h3>
+                <p class="job-desc-snippet">${cleanDesc}</p>
+              </div>
+              <div class="job-action-wrap">
+                <button class="btn-apply" onclick="window.openApplyModal(${job.id}, '${escapeHtml(job.title)}')">
+                  Apply Now →
+                </button>
+              </div>
+            </div>
+          `;
+        }).join("");
+      }
+
+      // Department filter buttons
+      document.querySelectorAll(".filter-pill").forEach(btn => {
+        btn.addEventListener("click", () => {
+          document.querySelectorAll(".filter-pill").forEach(b => b.classList.remove("active"));
+          btn.classList.add("active");
+          currentDept = btn.dataset.dept;
+          renderJobs();
+        });
+      });
+
+      // Apply Modal logic
+      window.openApplyModal = (jobId, jobTitle) => {
+        applyJobId.value = jobId || "";
+        applyJobName.value = jobTitle || "General Application";
+        modalJobTitle.textContent = `Apply for: ${jobTitle}`;
+        modalJobSubtitle.textContent = `Submit your credentials to Goel Allied Industries HR department.`;
+        applyModal.classList.add("active");
+      };
+
+      modalCloseBtn.addEventListener("click", () => {
+        applyModal.classList.remove("active");
+      });
+
+      applyModal.addEventListener("click", (e) => {
+        if (e.target === applyModal) {
+          applyModal.classList.remove("active");
+        }
+      });
+
+      // Submit Application
+      applyJobForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const submitBtn = document.getElementById("btnSubmitApplication");
+        submitBtn.disabled = true;
+        submitBtn.textContent = "Submitting...";
+
+        const payload = {
+          job_id: applyJobId.value ? parseInt(applyJobId.value, 10) : null,
+          job_title: applyJobName.value,
+          full_name: document.getElementById("applyFullName").value.trim(),
+          email: document.getElementById("applyEmail").value.trim(),
+          phone: document.getElementById("applyPhone").value.trim(),
+          experience: document.getElementById("applyExperience").value.trim(),
+          resume_url: document.getElementById("applyResumeUrl").value.trim(),
+          cover_letter: document.getElementById("applyCoverLetter").value.trim()
+        };
+
+        try {
+          // 1. Try API
+          try {
+            await fetch("/api/applicants", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify(payload)
+            });
+          } catch (e) {}
+
+          // 2. Save locally for admin viewing
+          let applicantsList = [];
+          const localApps = localStorage.getItem("aidispo_applicants_db");
+          if (localApps) {
+            applicantsList = JSON.parse(localApps);
+          }
+          applicantsList.unshift({
+            id: Date.now(),
+            ...payload,
+            status: "Pending",
+            applied_at: new Date().toISOString()
+          });
+          localStorage.setItem("aidispo_applicants_db", JSON.stringify(applicantsList));
+
+          alert("Thank you! Your job application has been submitted successfully to AI-DISPO HR.");
+          applyJobForm.reset();
+          applyModal.classList.remove("active");
+
+        } catch (err) {
+          alert("Submission error: " + err.message);
+        } finally {
+          submitBtn.disabled = false;
+          submitBtn.textContent = "Submit Application";
+        }
+      });
+
+      function escapeHtml(str) {
+        if (!str) return "";
+        return String(str).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+      }
+    });
+  </script>
+</body>
+</html>

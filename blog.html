@@ -549,6 +549,7 @@
           <h4>COMPANY &amp; RESOURCES</h4>
           <ul class="footer-links">
             <li><a href="about.html">About Goel Allied Industries</a></li>
+            <li><a href="careers.html">Careers &amp; Opportunities</a></li>
             <li><a href="catalogue.html">E-Catalogue &amp; Company Profile</a></li>
             <li><a href="gallery.html">Facility &amp; Product Gallery</a></li>
             <li><a href="blog.html">Clinical Insights &amp; Blog</a></li>
@@ -589,6 +590,75 @@
   </footer>
 
   <script src="app.js"></script>
+  <script>
+    // Dynamically load blogs from D1 SQLite Database or local cache
+    document.addEventListener("DOMContentLoaded", async () => {
+      const grid = document.querySelector(".blog-grid");
+      if (!grid) return;
+
+      try {
+        let dynamicBlogs = [];
+        try {
+          const res = await fetch("/api/blogs");
+          if (res.ok) {
+            const data = await res.json();
+            if (data.blogs && data.blogs.length > 0) {
+              dynamicBlogs = data.blogs;
+            }
+          }
+        } catch (e) {}
+
+        if (dynamicBlogs.length === 0) {
+          const local = localStorage.getItem("aidispo_blogs_db");
+          if (local) {
+            dynamicBlogs = JSON.parse(local);
+          }
+        }
+
+        if (dynamicBlogs.length > 0) {
+          // Clear and render all current blogs with links
+          grid.innerHTML = dynamicBlogs.map(blog => {
+            const postUrl = `blog-post.html?id=${blog.id}&slug=${encodeURIComponent(blog.slug || '')}`;
+            const tag = blog.badge_tag || (blog.tags ? blog.tags.split(',')[0].trim().toUpperCase() : 'IV CANNULA');
+            const img = blog.image_url || 'assets/prod_syringe.jpg';
+            const cleanDesc = blog.meta_description || (blog.content ? blog.content.replace(/<[^>]*>/g, '').substring(0, 160) + '...' : '');
+
+            return `
+              <article class="blog-card">
+                <div class="blog-thumb-wrap">
+                  <a href="${postUrl}">
+                    <img src="${img}" alt="${blog.title}" class="blog-thumb-img">
+                  </a>
+                </div>
+                <div class="blog-content">
+                  <div>
+                    <div class="blog-meta-row">
+                      <span class="sim-pill-tag feature" style="font-size: 9.5px; padding: 3px 8px;">${tag}</span>
+                      <span>${blog.created_at ? blog.created_at.substring(0, 10) : '2026'} • ${blog.views || 0} VIEWS</span>
+                    </div>
+                    <h2 class="blog-title">
+                      <a href="${postUrl}" style="color: inherit; text-decoration: none;">
+                        ${blog.title}
+                      </a>
+                    </h2>
+                    <p class="blog-desc">${cleanDesc}</p>
+                  </div>
+                  <div class="blog-footer">
+                    <span>By ${blog.author || 'AI-DISPO Clinical Team'}</span>
+                    <a href="${postUrl}" style="color: var(--accent-blue); text-decoration: none; font-weight: 700;">
+                      READ WHITEPAPER →
+                    </a>
+                  </div>
+                </div>
+              </article>
+            `;
+          }).join('');
+        }
+      } catch (err) {
+        console.warn("Could not load dynamic blogs:", err);
+      }
+    });
+  </script>
 </body>
 
 </html>
