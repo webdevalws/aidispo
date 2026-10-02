@@ -5,4 +5,5 @@ pages_build_output_dir = "."
 [[d1_databases]]
 binding = "DB"
 database_name = "aidispo_db"
-database_id = "aidispo_db_id"
+database_id = "a51f2375-d570-40e2-870b-14c1bedaaa82"
+
