@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fluid Management & Accessories | AI-DISPO® Precision Engineering</title>
+  <meta name="description" content="Medical 3-Way Stopcocks, Pressure Extension Tubing, Needle-Free Connectors, and Multi-Gang Manifold Blocks. High-pressure lipid-resistant vascular access accessories.">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  
+  <link rel="icon" type="image/png" href="assets/ChatGPT Image Sep 28, 2026, 04_42_50 PM.png">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="products.css">
+</head>
+<body>
+
+  <!-- Clinical Reticle Cursor -->
+  <div class="clinical-cursor" id="clinicalCursor" aria-hidden="true">
+    <div class="cursor-crosshair"></div>
+    <div class="cursor-reticle"></div>
+    <div class="cursor-coords" id="cursorCoords">000.000</div>
+  </div>
+
+  <div class="grain-overlay" aria-hidden="true"></div>
+
+  <!-- FIXED VIEWPORT FRAME -->
+  <div class="viewport-frame" aria-hidden="true">
+    <div class="frame-corner top-left"></div>
+    <div class="frame-corner top-right"></div>
+    <div class="frame-corner bottom-left"></div>
+    <div class="frame-corner bottom-right"></div>
+  </div>
+
+  <!-- SITE HEADER -->
+  <header class="site-header" id="mainHeader">
+    <div class="nav-left">
+      <a href="index.html#heroTrack" class="brand-logo-wrap">
+        <img src="assets/ChatGPT Image Sep 28, 2026, 04_42_50 PM.png" alt="GAI AI-DISPO Logo" class="brand-logo-img">
+        <span class="brand-logo">AI-DISPO<span class="accent-dot">.</span></span>
+      </a>
+    </div>
+
+    <nav class="nav-center" aria-label="Main Navigation">
+      <a href="index.html" class="nav-link">Home</a>
+      
+      <div class="nav-item-dropdown" id="productDropdown">
+        <a href="other-products.html" class="nav-link nav-dropdown-trigger active" id="productDropdownBtn" aria-haspopup="true" aria-expanded="false">
+          Product
+          <svg class="dropdown-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </a>
+        <div class="nav-dropdown-menu" id="productMenu" role="menu">
+          <a href="syringe.html" class="dropdown-item" role="menuitem">
+            <div class="dropdown-item-thumb">
+              <img src="assets/prod_syringe.jpg" alt="Syringe" class="dropdown-thumb-img">
+            </div>
+            <div class="dropdown-item-info">
+              <span class="dropdown-item-title">Disposable Hypodermic Syringe</span>
+              <span class="dropdown-item-sub">UltraFlow 1mL – 10mL Clinical</span>
+            </div>
+          </a>
+
+          <a href="iv-cannula.html" class="dropdown-item" role="menuitem">
+            <div class="dropdown-item-thumb">
+              <img src="assets/prod_iv_cannula.jpg" alt="IV Cannula" class="dropdown-thumb-img">
+            </div>
+            <div class="dropdown-item-info">
+              <span class="dropdown-item-title">Intravenous Cannula</span>
+              <span class="dropdown-item-sub">Ported &amp; Winged Catheters</span>
+            </div>
+          </a>
+
+          <a href="infusion-sets.html" class="dropdown-item" role="menuitem">
+            <div class="dropdown-item-thumb">
+              <img src="assets/prod_iv_set.jpg" alt="Infusion sets / IV sets" class="dropdown-thumb-img">
+            </div>
+            <div class="dropdown-item-info">
+              <span class="dropdown-item-title">Intravenous Infusion Set</span>
+              <span class="dropdown-item-sub">Gravity &amp; Micro-Drip Infusion</span>
+            </div>
+          </a>
+
+          <a href="needle.html" class="dropdown-item" role="menuitem">
+            <div class="dropdown-item-thumb">
+              <img src="assets/prod_needle.jpg" alt="Needle" class="dropdown-thumb-img">
+            </div>
+            <div class="dropdown-item-info">
+              <span class="dropdown-item-title">Hypodermic Needle</span>
+              <span class="dropdown-item-sub">Tri-Bevel Hypodermic Cannulas</span>
+            </div>
+          </a>
+
+          <a href="other-products.html" class="dropdown-item active" role="menuitem">
+            <div class="dropdown-item-thumb">
+              <img src="assets/prod_other.jpg" alt="Other Product" class="dropdown-thumb-img">
+            </div>
+            <div class="dropdown-item-info">
+              <span class="dropdown-item-title">Other Product</span>
+              <span class="dropdown-item-sub">Gloves, Medical Tape &amp; Blood Transfusion</span>
+            </div>
+          </a>
+
+          <a href="upcoming-products.html" class="dropdown-item upcoming" role="menuitem">
+            <div class="dropdown-item-thumb">
+              <img src="assets/prod_upcoming.jpg" alt="Upcoming Product" class="dropdown-thumb-img">
+            </div>
+            <div class="dropdown-item-info">
+              <span class="dropdown-item-title">Upcoming Product</span>
+              <span class="dropdown-item-sub">Urine Bag, Ryle's Tube, Scalp Vein &amp; Diaper</span>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <a href="about.html" class="nav-link">About Us</a>
+      <a href="gallery.html" class="nav-link">Gallery</a>
+      <a href="blog.html" class="nav-link">Blog</a>
+      <a href="oem.html" class="nav-link">OEM / ODM</a>
+      <a href="catalogue.html" class="nav-link">E-Catalogue</a>
+    </nav>
+
+    <div class="nav-right">
+      <a href="contact.html" class="btn-craft btn-craft-primary" id="topContactBtn">
+        CONTACT US
+      </a>
+      <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Open Mobile Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- MOBILE NAVIGATION DRAWER -->
+  <div class="mobile-nav-backdrop" id="mobileNavBackdrop"></div>
+  <div class="mobile-nav-drawer" id="mobileNavDrawer" aria-hidden="true">
+    <div class="mobile-nav-header">
+      <div class="brand-logo-wrap">
+        <img src="assets/ChatGPT Image Sep 28, 2026, 04_42_50 PM.png" alt="GAI AI-DISPO Logo" class="brand-logo-img">
+        <span class="brand-logo">AI-DISPO<span class="accent-dot">.</span></span>
+      </div>
+      <button class="mobile-nav-close" id="mobileNavClose" aria-label="Close Navigation Menu">&times;</button>
+    </div>
+
+    <div class="mobile-nav-links">
+      <a href="index.html" class="mobile-nav-link">Home</a>
+      
+      <div class="mobile-nav-dropdown" id="mobileProductDropdown">
+        <button class="mobile-nav-dropdown-btn" id="mobileProductToggle" type="button">
+          <span>Product</span>
+          <svg class="dropdown-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </button>
+        <div class="mobile-dropdown-list" id="mobileProductList">
+          <a href="syringe.html" class="mobile-dropdown-item">
+            <img src="assets/prod_syringe.jpg" alt="Syringe" class="mobile-thumb">
+            <div>
+              <strong>Disposable Hypodermic Syringe</strong>
+              <small>UltraFlow 1mL – 10mL Clinical</small>
+            </div>
+          </a>
+          <a href="iv-cannula.html" class="mobile-dropdown-item">
+            <img src="assets/prod_iv_cannula.jpg" alt="IV Cannula" class="mobile-thumb">
+            <div>
+              <strong>Intravenous Cannula</strong>
+              <small>Ported &amp; Winged Catheters</small>
+            </div>
+          </a>
+          <a href="infusion-sets.html" class="mobile-dropdown-item">
+            <img src="assets/prod_iv_set.jpg" alt="Infusion sets / IV sets" class="mobile-thumb">
+            <div>
+              <strong>Intravenous Infusion Set</strong>
+              <small>Gravity &amp; Micro-Drip Infusion</small>
+            </div>
+          </a>
+          <a href="needle.html" class="mobile-dropdown-item">
+            <img src="assets/prod_needle.jpg" alt="Needle" class="mobile-thumb">
+            <div>
+              <strong>Hypodermic Needle</strong>
+              <small>Tri-Bevel Hypodermic Cannulas</small>
+            </div>
+          </a>
+          <a href="other-products.html" class="mobile-dropdown-item active">
+            <img src="assets/prod_other.jpg" alt="Other Product" class="mobile-thumb">
+            <div>
+              <strong>Other Product</strong>
+              <small>Gloves, Medical Tape &amp; Blood Transfusion</small>
+            </div>
+          </a>
+          <a href="upcoming-products.html" class="mobile-dropdown-item">
+            <img src="assets/prod_upcoming.jpg" alt="Upcoming Product" class="mobile-thumb">
+            <div>
+              <strong>Upcoming Product</strong>
+              <small>Urine Bag, Ryle's Tube, Scalp Vein &amp; Diaper</small>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <a href="about.html" class="mobile-nav-link">About Us</a>
+      <a href="gallery.html" class="mobile-nav-link">Gallery</a>
+      <a href="blog.html" class="mobile-nav-link">Blog</a>
+      <a href="oem.html" class="mobile-nav-link">OEM / ODM</a>
+      <a href="catalogue.html" class="mobile-nav-link">E-Catalogue</a>
+    </div>
+
+    <div class="mobile-nav-footer">
+      <a href="contact.html" class="btn-craft btn-craft-primary" style="width: 100%;">
+        CONTACT US
+      </a>
+    </div>
+  </div>
+
+  <main id="mainContent">
+    <!-- PRODUCT HERO -->
+    <section class="prod-page-hero">
+      <div class="prod-hero-container">
+        <div>
+          <div class="hero-feature-tags-row">
+            <span class="hero-feature-tag">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+              </svg>
+              ISO 13485 &amp; ASTM D6319 COMPLIANT
+            </span>
+            <span class="hero-feature-tag">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+              </svg>
+              HOSPITAL ESSENTIALS &amp; CONSUMABLES
+            </span>
+            <span class="hero-feature-tag">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <circle cx="12" cy="12" r="10" />
+                <polyline points="12 6 12 12 14 14" />
+              </svg>
+              CLASS 100K CLEANROOM
+            </span>
+          </div>
+          <h1 class="sim-title" style="margin-top: 14px; font-size: clamp(28px, 3.5vw, 42px); line-height: 1.15;">
+            Gloves, Medical Tape &amp; <span class="highlight-cyan">Clinical Consumables</span>
+          </h1>
+          <p class="prod-hero-lead">
+            Hospital-grade sterile examination gloves, hypoallergenic microporous surgical paper tape, and precision blood transfusion systems. Manufactured in Class 100k cleanrooms for uncompromising clinical safety.
+          </p>
+          <div style="display: flex; gap: 14px; flex-wrap: wrap;">
+            <a href="contact.html?product=Accessories" class="sim-enquire-btn">ENQUIRE CONSUMABLES CATALOGUE →</a>
+            <a href="#accessoriesCatalog" class="btn-craft btn-craft-outline">VIEW DEVICE SPECIFICATIONS</a>
+          </div>
+          <div class="hero-micro-metrics">
+            <div class="hero-micro-metric-item">
+              <span class="val">AQL 1.5</span>
+              <span class="lbl">Pin-Hole Barrier</span>
+            </div>
+            <div class="hero-micro-metric-item">
+              <span class="val">100% Free</span>
+              <span class="lbl">Powder &amp; Residue</span>
+            </div>
+            <div class="hero-micro-metric-item">
+              <span class="val">Hypoallergenic</span>
+              <span class="lbl">Acrylic Adhesive</span>
+            </div>
+            <div class="hero-micro-metric-item">
+              <span class="val">200 µm Mesh</span>
+              <span class="lbl">Clot Retention Filter</span>
+            </div>
+          </div>
+        </div>
+        <div class="prod-hero-img-wrap">
+          <img src="assets/prod_other.jpg" alt="AI-DISPO Medical Accessories" class="prod-hero-img" style="max-height: 280px; border-radius: 8px;">
+        </div>
+      </div>
+    </section>
+
+    <!-- ACCESSORIES CATALOGUE GRID -->
+    <section class="simulator-section" id="accessoriesCatalog">
+      <div class="simulator-container">
+        <div class="sim-header">
+          <span class="sim-pill-tag feature">
+            <span class="sim-engine-pulse-dot"></span>
+            CLINICAL CONSUMABLES &amp; VASCULAR ACCESS LINEUP
+          </span>
+          <h2 class="sim-title">Hospital Consumables &amp; Fluidics Architecture</h2>
+          <p class="sim-subtitle">Engineered for absolute infection control, patient comfort, and leak-free fluid administration across operating rooms, intensive care units, and clinical wards.</p>
+        </div>
+
+        <div class="sim-tabs-grid" style="gap: 24px; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
+          <!-- Medical Examination Gloves -->
+          <div class="sim-tab-card prod-feature-card">
+            <div class="prod-card-thumb-wrap">
+              <img src="assets/prod_gloves.jpg" alt="AI-DISPO Medical Examination Gloves" class="prod-card-thumb">
+            </div>
+            <span class="sim-tab-badge">ASTM D6319 • EN 455 CLASS I</span>
+            <div class="sim-tab-title">Sterile &amp; Examination Medical Gloves</div>
+            <div class="sim-tab-desc">High-tensile, ambidextrous medical-grade nitrile and latex examination gloves. Micro-textured fingertips ensure maximum tactile sensitivity and secure grip during delicate clinical procedures. 100% barrier protection against bloodborne pathogens and chemical agents.</div>
+            <div class="prod-card-spec-tags">
+              <span>Nitrile &amp; Latex</span>
+              <span>AQL 1.5</span>
+              <span>Powder-Free</span>
+              <span>XS – XL</span>
+            </div>
+          </div>
+
+          <!-- Medical Surgical Tape -->
+          <div class="sim-tab-card prod-feature-card">
+            <div class="prod-card-thumb-wrap">
+              <img src="assets/prod_tape.jpg" alt="AI-DISPO Medical Surgical Tape" class="prod-card-thumb">
+            </div>
+            <span class="sim-tab-badge">HYPOALLERGENIC • ISO 10993</span>
+            <div class="sim-tab-title">Microporous Surgical Medical Tape</div>
+            <div class="sim-tab-desc">Gentle, skin-friendly microporous paper tape coated with medical-grade hypoallergenic acrylic adhesive. Highly permeable to air and moisture, preventing skin maceration while securely anchoring IV lines, cannulas, tubing, and surgical dressings. Easy bi-directional hand tear.</div>
+            <div class="prod-card-spec-tags">
+              <span>Microporous Paper</span>
+              <span>Latex-Free</span>
+              <span>Gentle Removal</span>
+              <span>0.5" / 1" / 2" / 3"</span>
+            </div>
+          </div>
+
+          <!-- Blood Transfusion Set -->
+          <div class="sim-tab-card prod-feature-card">
+            <div class="prod-card-thumb-wrap">
+              <img src="assets/prod_blood_transfusion.jpg" alt="AI-DISPO Blood Transfusion Set" class="prod-card-thumb">
+            </div>
+            <span class="sim-tab-badge">ISO 1135-4 • 200µM CLOT FILTER</span>
+            <div class="sim-tab-title">Sterile Blood Transfusion Set</div>
+            <div class="sim-tab-desc">Precision blood and plasma administration set featuring a clear cylindrical dual drip chamber with an integrated 200 µm monofilament clot retention mesh filter. Kink-resistant large-bore DEHP-free tubing with precise roller clamp and rotating male luer lock.</div>
+            <div class="prod-card-spec-tags">
+              <span>Dual Chamber</span>
+              <span>200µm Mesh</span>
+              <span>20 Drops/mL</span>
+              <span>180 cm Line</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TECHNICAL SPECIFICATION MATRIX -->
+    <section class="prod-spec-table-section">
+      <div class="prod-table-wrap">
+        <div class="sim-header" style="margin-bottom: 18px;">
+          <span class="sim-pill-tag dark">FLUIDICS SPECIFICATION STANDARDS</span>
+          <h2 class="sim-title" style="font-size: 28px; margin-top: 8px;">Accessory Technical Parameters</h2>
+        </div>
+        <table class="prod-data-table">
+          <thead>
+            <tr>
+              <th>COMPONENT</th>
+              <th>MATERIAL</th>
+              <th>PRESSURE RATING</th>
+              <th>BARRIER / FILTER</th>
+              <th>CONNECTIVITY</th>
+              <th>PACKAGING</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Medical Examination Gloves</strong></td>
+              <td>Pure Nitrile / Natural Latex (Powder-Free)</td>
+              <td>Tensile ≥ 14 MPa (Elongation ≥ 500%)</td>
+              <td>AQL 1.5 Freedom from Holes</td>
+              <td>Beaded Cuff (Ambidextrous)</td>
+              <td>100 pcs/dispenser box • 1,000 pcs/carton</td>
+            </tr>
+            <tr>
+              <td><strong>Microporous Surgical Tape</strong></td>
+              <td>Non-Woven Rayon Paper + Acrylic Adhesive</td>
+              <td>Breathable Moisture Permeable</td>
+              <td>Hypoallergenic (Skin-Safe)</td>
+              <td>Self-Adhesive Bi-directional Tear</td>
+              <td>12 – 24 rolls/box • Standard Carton</td>
+            </tr>
+            <tr>
+              <td><strong>Blood Transfusion Set</strong></td>
+              <td>Medical DEHP-Free PVC + Nylon Filter</td>
+              <td>Gravity / Pressure Infusion (2 Bar)</td>
+              <td>200 µm Clot Retention Barrier</td>
+              <td>Rotating Male Luer Lock</td>
+              <td>25 pcs/box • 200 pcs/carton</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+    <!-- SITE FOOTER -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-top-grid">
+        <!-- Brand Summary -->
+        <div class="footer-brand-col">
+          <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+            <img src="assets/ChatGPT Image Sep 28, 2026, 04_42_50 PM.png" alt="GAI AI-DISPO Logo"
+              style="height: 48px; width: auto; object-fit: contain; filter: drop-shadow(0 2px 6px rgba(1, 53, 114, 0.16));">
+            <div class="footer-logo">AI-DISPO<span style="color:var(--accent-blue)">.</span></div>
+          </div>
+          <p class="footer-brand-desc">
+            Goel Allied Industries — Manufacturer of AI-DISPO® sterile injection systems, IV cannulas, and infusion sets.
+            Precision, safety, and reliability where every life counts.
+          </p>
+          <div class="regulatory-stamp-row">
+            <span class="stamp-tag red">WHO-GMP</span>
+            <span class="stamp-tag dark">CDSCO</span>
+            <span class="stamp-tag dark">ISO 9001:2015</span>
+            <span class="stamp-tag red">CE CERTIFIED</span>
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="footer-col">
+          <h4>EXPLORE PRODUCTS</h4>
+          <ul class="footer-links">
+            <li><a href="syringe.html">Disposable Hypodermic Syringes (1mL – 50mL)</a></li>
+            <li><a href="iv-cannula.html">Intravenous Cannulas (Ported &amp; Winged)</a></li>
+            <li><a href="infusion-sets.html">Intravenous Infusion Sets (Gravity &amp; Blood)</a></li>
+            <li><a href="needle.html">Hypodermic Needles (Tri-Bevel)</a></li>
+            <li><a href="other-products.html">Gloves, Medical Tape &amp; Blood Transfusion</a></li>
+            <li><a href="upcoming-products.html">Urine Bag, Ryle's Tube, Scalp Vein &amp; Diaper</a></li>
+            <li><a href="oem.html">OEM &amp; Contract Manufacturing</a></li>
+          </ul>
+        </div>
+
+        <!-- Corporate Navigation -->
+        <div class="footer-col">
+          <h4>COMPANY &amp; RESOURCES</h4>
+          <ul class="footer-links">
+            <li><a href="about.html">About Goel Allied Industries</a></li>
+            <li><a href="catalogue.html">E-Catalogue &amp; Company Profile</a></li>
+            <li><a href="gallery.html">Facility &amp; Product Gallery</a></li>
+            <li><a href="blog.html">Clinical Insights &amp; Blog</a></li>
+            <li><a href="faq.html">Frequently Asked Questions (FAQ)</a></li>
+            <li><a href="privacy-policy.html">Privacy Policy</a></li>
+            <li><a href="terms-conditions.html">Terms &amp; Conditions</a></li>
+            <li><a href="contact.html">Corporate Contact &amp; Inquiries</a></li>
+          </ul>
+        </div>
+
+        <!-- Contact Info -->
+        <div class="footer-col">
+          <h4>MANUFACTURING HEADQUARTERS</h4>
+          <p style="font-size: 13px; color: var(--ink-muted); line-height: 1.6; margin-bottom: 12px;">
+            Goel Allied Industries<br>
+            State-of-the-Art Cleanroom Facility<br>
+            India
+          </p>
+          <p style="font-size: 13px; color: var(--logo-navy); font-weight: 700; font-family: var(--font-mono); line-height: 1.7;">
+            Phone: <a href="tel:+919120808855" style="color: inherit; text-decoration: none;">+91 91208 08855</a><br>
+            Email: <a href="mailto:export@aidispo.com" style="color: inherit; text-decoration: none;">export@aidispo.com</a><br>
+            Email: <a href="mailto:goelsyringe@gmail.com" style="color: inherit; text-decoration: none;">goelsyringe@gmail.com</a>
+          </p>
+        </div>
+      </div>
+
+      <div class="footer-bottom-bar">
+        <div>© 2026 Goel Allied Industries (Brand: AI-DISPO®). All Rights Reserved. • Designed and Developed by <a href="https://alightwaysolutions.com/" target="_blank" rel="noopener noreferrer" style="color: var(--logo-navy); font-weight: 700; text-decoration: underline; text-underline-offset: 2px;">Alightway Solutions</a></div>
+        <div class="footer-legal-links" style="display: flex; gap: 16px; align-items: center; font-size: 12px;">
+          <a href="privacy-policy.html" style="color: var(--ink-muted); text-decoration: none;">Privacy Policy</a>
+          <span style="color: var(--ink-faint);">•</span>
+          <a href="terms-conditions.html" style="color: var(--ink-muted); text-decoration: none;">Terms &amp; Conditions</a>
+          <span style="color: var(--ink-faint);">•</span>
+          <a href="faq.html" style="color: var(--ink-muted); text-decoration: none;">FAQs</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

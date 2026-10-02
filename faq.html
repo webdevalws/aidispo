@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Frequently Asked Questions (FAQ) — Goel Allied Industries | AI-DISPO®</title>
+  <meta name="description"
+    content="Find answers to common questions about AI-DISPO sterile hypodermic syringes, IV sets, cannulas, blister vs ribbon packaging, ETO sterilization, export MOQs, and sample requests.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800;900&display=swap"
+    rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="products.css">
+
+  <style>
+    .prod-hero-section {
+      padding: 84px 24px 28px;
+      text-align: center;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+    @media (max-width: 768px) {
+      .prod-hero-section {
+        padding: 68px 16px 18px !important;
+      }
+    }
+    /* FAQ Custom Component Styles */
+    .faq-search-wrap {
+      position: relative;
+      max-width: 620px;
+      margin: 0 auto 32px;
+    }
+
+    .faq-search-input {
+      width: 100%;
+      padding: 16px 20px 16px 48px;
+      border-radius: 12px;
+      border: 1.5px solid rgba(1, 53, 114, 0.18);
+      background: #FFFFFF;
+      font-family: var(--font-body);
+      font-size: 14.5px;
+      color: var(--ink-black);
+      outline: none;
+      box-shadow: 0 4px 20px rgba(1, 53, 114, 0.05);
+      transition: all 0.2s ease;
+    }
+
+    .faq-search-input:focus {
+      border-color: var(--logo-navy);
+      box-shadow: 0 4px 24px rgba(0, 168, 255, 0.18);
+    }
+
+    .faq-search-icon {
+      position: absolute;
+      left: 18px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--ink-muted);
+      pointer-events: none;
+    }
+
+    .faq-category-pills {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 40px;
+    }
+
+    .faq-cat-btn {
+      padding: 8px 18px;
+      border-radius: 30px;
+      border: 1.5px solid rgba(1, 53, 114, 0.15);
+      background: #FFFFFF;
+      font-family: var(--font-headline);
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--ink-muted);
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .faq-cat-btn:hover {
+      border-color: var(--logo-navy);
+      color: var(--logo-navy);
+      background: #F4F8FB;
+    }
+
+    .faq-cat-btn.active {
+      background: var(--logo-navy);
+      color: #FFFFFF;
+      border-color: var(--logo-navy);
+      box-shadow: 0 4px 12px rgba(1, 53, 114, 0.2);
+    }
+
+    .faq-accordion-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    .faq-item {
+      background: #FFFFFF;
+      border: 1px solid rgba(1, 53, 114, 0.12);
+      border-radius: 12px;
+      overflow: hidden;
+      transition: all 0.2s ease;
+    }
+
+    .faq-item:hover {
+      border-color: rgba(0, 168, 255, 0.5);
+      box-shadow: 0 4px 16px rgba(1, 53, 114, 0.06);
+    }
+
+    .faq-item.active {
+      border-color: var(--logo-navy);
+      box-shadow: 0 6px 24px rgba(1, 53, 114, 0.08);
+    }
+
+    .faq-question-btn {
+      width: 100%;
+      text-align: left;
+      background: none;
+      border: none;
+      padding: 20px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      cursor: pointer;
+      font-family: var(--font-headline);
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--logo-navy);
+      line-height: 1.4;
+    }
+
+    .faq-icon-chevron {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: rgba(1, 53, 114, 0.06);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: var(--logo-navy);
+      transition: transform 0.25s ease, background 0.2s ease;
+    }
+
+    .faq-item.active .faq-icon-chevron {
+      transform: rotate(180deg);
+      background: var(--logo-navy);
+      color: #FFFFFF;
+    }
+
+    .faq-answer-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s cubic-bezier(0.16, 1, 0.3, 1), padding 0.3s ease;
+      padding: 0 24px;
+      font-family: var(--font-body);
+      font-size: 14px;
+      color: var(--ink-muted);
+      line-height: 1.7;
+    }
+
+    .faq-item.active .faq-answer-content {
+      padding: 0 24px 22px 24px;
+      max-height: 500px;
+    }
+
+    .faq-badge {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: 4px;
+      background: rgba(0, 168, 255, 0.1);
+      color: var(--accent-blue);
+      margin-bottom: 8px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="blueprint-lines"></div>
+
+  <!-- SITE HEADER -->
+  <header class="site-header" id="mainHeader">
+    <div class="nav-left">
+      <a href="index.html#heroTrack" class="brand-logo-wrap">
+        <img src="assets/ChatGPT Image Sep 28, 2026, 04_42_50 PM.png" alt="GAI AI-DISPO Logo" class="brand-logo-img">
+        <span class="brand-logo">AI-DISPO<span class="accent-dot">.</span></span>
+      </a>
+    </div>
+
+    <nav class="nav-center" aria-label="Main Navigation">
+      <a href="index.html#heroTrack" class="nav-link">Home</a>
+
+      <!-- Product Dropdown Menu -->
+      <div class="nav-item-dropdown" id="productDropdown">
+        <a href="syringe.html" class="nav-link nav-dropdown-trigger" id="productDropdownBtn" aria-haspopup="true"
+          aria-expanded="false">
+          Product
+          <svg class="dropdown-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2.5">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </a>
+        <div class="nav-dropdown-menu" id="productMenu" role="menu">
+          <a href="syringe.html" class="dropdown-item" role="menuitem">
+            <div class="dropdown-item-thumb">
+              <img src="assets/prod_syringe.jpg" alt="Syringe" class="dropdown-thumb-img">
+            </div>
+            <div class="dropdown-item-info">
+              <span class="dropdown-item-title">Disposable Hypodermic Syringe</span>
+              <span class="dropdown-item-sub">UltraFlow 1mL – 50mL Clinical</span>
+            </div>
+          </a>
+
+          <a href="iv-cannula.html" class="dropdown-item" role="menuitem">
+            <div class="dropdown-item-thumb">
+              <img src="assets/prod_iv_cannula.jpg" alt="IV Cannula" class="dropdown-thumb-img">
+            </div>
+            <div class="dropdown-item-info">
+              <span class="dropdown-item-title">Intravenous Cannula</span>
+              <span class="dropdown-item-sub">Ported &amp; Winged Catheters</span>
+            </div>
+          </a>
+
+          <a href="infusion-sets.html" class="dropdown-item" role="menuitem">
+            <div class="dropdown-item-thumb">
+              <img src="assets/prod_iv_set.jpg" alt="Infusion sets / IV sets" class="dropdown-thumb-img">
+            </div>
+            <div class="dropdown-item-info">
+              <span class="dropdown-item-title">Intravenous Infusion Set</span>
+              <span class="dropdown-item-sub">Gravity &amp; Micro-Drip Infusion</span>
+            </div>
+          </a>
+
+          <a href="needle.html" class="dropdown-item" role="menuitem">
+            <div class="dropdown-item-thumb">
+              <img src="assets/prod_needle.jpg" alt="Needle" class="dropdown-thumb-img">
+            </div>
+            <div class="dropdown-item-info">
+              <span class="dropdown-item-title">Hypodermic Needle</span>
+              <span class="dropdown-item-sub">Tri-Bevel Hypodermic Cannulas</span>
+            </div>
+          </a>
+
+          <a href="other-products.html" class="dropdown-item" role="menuitem">
+            <div class="dropdown-item-thumb">
+              <img src="assets/prod_other.jpg" alt="Other Product" class="dropdown-thumb-img">
+            </div>
+            <div class="dropdown-item-info">
+              <span class="dropdown-item-title">Other Product</span>
+              <span class="dropdown-item-sub">Gloves, Medical Tape &amp; Blood Transfusion</span>
+            </div>
+          </a>
+
+          <a href="upcoming-products.html" class="dropdown-item upcoming" role="menuitem">
+            <div class="dropdown-item-thumb">
+              <img src="assets/prod_upcoming.jpg" alt="Upcoming Product" class="dropdown-thumb-img">
+            </div>
+            <div class="dropdown-item-info">
+              <span class="dropdown-item-title">Upcoming Products</span>
+              <span class="dropdown-item-sub">Urine Bag, Ryle's Tube, Scalp Vein &amp; Diaper</span>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <a href="about.html" class="nav-link">About Us</a>
+      <a href="gallery.html" class="nav-link">Gallery</a>
+      <a href="blog.html" class="nav-link">Blog</a>
+      <a href="oem.html" class="nav-link">OEM / ODM</a>
+      <a href="catalogue.html" class="nav-link">E-Catalogue</a>
+    </nav>
+
+    <div class="nav-right">
+      <a href="contact.html" class="btn-craft btn-craft-primary">CONTACT US</a>
+      <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Open Mobile Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- MOBILE NAVIGATION DRAWER -->
+  <div class="mobile-nav-backdrop" id="mobileNavBackdrop"></div>
+  <div class="mobile-nav-drawer" id="mobileNavDrawer" aria-hidden="true">
+    <div class="mobile-nav-header">
+      <div class="brand-logo-wrap">
+        <img src="assets/ChatGPT Image Sep 28, 2026, 04_42_50 PM.png" alt="GAI AI-DISPO Logo" class="brand-logo-img">
+        <span class="brand-logo">AI-DISPO<span class="accent-dot">.</span></span>
+      </div>
+      <button class="mobile-nav-close" id="mobileNavClose" aria-label="Close Navigation Menu">&times;</button>
+    </div>
+
+    <div class="mobile-nav-links">
+      <a href="index.html" class="mobile-nav-link">Home</a>
+
+      <div class="mobile-nav-dropdown" id="mobileProductDropdown">
+        <button class="mobile-nav-dropdown-btn" id="mobileProductToggle" type="button">
+          <span>Product</span>
+          <svg class="dropdown-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2.5">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </button>
+        <div class="mobile-dropdown-list" id="mobileProductList">
+          <a href="syringe.html" class="mobile-dropdown-item">
+            <img src="assets/prod_syringe.jpg" alt="Syringe" class="mobile-thumb">
+            <div>
+              <strong>Disposable Hypodermic Syringe</strong>
+              <small>UltraFlow 1mL – 50mL Clinical</small>
+            </div>
+          </a>
+          <a href="iv-cannula.html" class="mobile-dropdown-item">
+            <img src="assets/prod_iv_cannula.jpg" alt="IV Cannula" class="mobile-thumb">
+            <div>
+              <strong>Intravenous Cannula</strong>
+              <small>Ported &amp; Winged Catheters</small>
+            </div>
+          </a>
+          <a href="infusion-sets.html" class="mobile-dropdown-item">
+            <img src="assets/prod_iv_set.jpg" alt="Infusion sets / IV sets" class="mobile-thumb">
+            <div>
+              <strong>Intravenous Infusion Set</strong>
+              <small>Gravity &amp; Micro-Drip Infusion</small>
+            </div>
+          </a>
+          <a href="needle.html" class="mobile-dropdown-item">
+            <img src="assets/prod_needle.jpg" alt="Needle" class="mobile-thumb">
+            <div>
+              <strong>Hypodermic Needle</strong>
+              <small>Tri-Bevel Hypodermic Cannulas</small>
+            </div>
+          </a>
+          <a href="other-products.html" class="mobile-dropdown-item">
+            <img src="assets/prod_other.jpg" alt="Other Product" class="mobile-thumb">
+            <div>
+              <strong>Other Medical Consumables</strong>
+              <small>Gloves, Medical Tape &amp; Blood Transfusion</small>
+            </div>
+          </a>
+          <a href="upcoming-products.html" class="mobile-dropdown-item">
+            <img src="assets/prod_upcoming.jpg" alt="Upcoming Products" class="mobile-thumb">
+            <div>
+              <strong>Upcoming Products</strong>
+              <small>Dialysis, Safety &amp; Arterial Lines</small>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <a href="about.html" class="mobile-nav-link">About Us</a>
+      <a href="gallery.html" class="mobile-nav-link">Facility &amp; Product Gallery</a>
+      <a href="blog.html" class="mobile-nav-link">Clinical Insights &amp; Blog</a>
+      <a href="catalogue.html" class="mobile-nav-link">E-Catalogue &amp; Specs</a>
+      <a href="faq.html" class="mobile-nav-link active">Frequently Asked Questions</a>
+      <a href="privacy-policy.html" class="mobile-nav-link">Privacy Policy</a>
+      <a href="terms-conditions.html" class="mobile-nav-link">Terms &amp; Conditions</a>
+    </div>
+
+    <div class="mobile-nav-footer">
+      <a href="contact.html" class="btn-craft btn-craft-primary" style="width: 100%; justify-content: center;">
+        CONTACT US →
+      </a>
+    </div>
+  </div>
+
+  <main id="mainContent">
+    <!-- HERO HEADER -->
+    <section class="prod-hero-section">
+      <div class="stamp-pill" style="margin: 0 auto 16px;">KNOWLEDGE BASE • PROCUREMENT &amp; CLINICAL GUIDE</div>
+      <h1 class="prod-hero-title" style="font-size: clamp(2rem, 5vw, 3.2rem); margin-bottom: 14px;">Frequently Asked Questions</h1>
+      <p style="font-size: 15px; color: var(--ink-muted); max-width: 680px; margin: 0 auto; line-height: 1.6;">
+        Everything you need to know about AI-DISPO® clinical specifications, Blister vs. Ribbon packaging, sterilization, export ordering, and complimentary sample requests.
+      </p>
+    </section>
+
+    <!-- SEARCH & FILTER SECTION -->
+    <section style="max-width: 900px; margin: 0 auto 20px; padding: 0 24px;">
+      <!-- Search Input -->
+      <div class="faq-search-wrap">
+        <svg class="faq-search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+        <input type="text" id="faqSearchInput" class="faq-search-input" placeholder="Search questions (e.g. Blister, Ribbon, ETO, MOQ, Sample, Gauge)...">
+      </div>
+
+      <!-- Category Filter Pills -->
+      <div class="faq-category-pills">
+        <button class="faq-cat-btn active" data-cat="all">All Topics</button>
+        <button class="faq-cat-btn" data-cat="packaging">Packaging (Blister vs Ribbon)</button>
+        <button class="faq-cat-btn" data-cat="products">Syringes &amp; Needles</button>
+        <button class="faq-cat-btn" data-cat="sterilization">Sterilization &amp; Shelf Life</button>
+        <button class="faq-cat-btn" data-cat="export">Orders, Export &amp; Samples</button>
+        <button class="faq-cat-btn" data-cat="certifications">Certifications &amp; Standards</button>
+      </div>
+    </section>
+
+    <!-- ACCORDION FAQ LIST -->
+    <section style="max-width: 900px; margin: 0 auto 80px; padding: 0 24px;">
+      <div class="faq-accordion-list" id="faqAccordionList">
+
+        <!-- Item 1: Blister vs Ribbon Packaging -->
+        <div class="faq-item active" data-category="packaging">
+          <button class="faq-question-btn">
+            <span>What is the difference between Blister Pack and Ribbon Pack packaging options?</span>
+            <span class="faq-icon-chevron">↓</span>
+          </button>
+          <div class="faq-answer-content">
+            <span class="faq-badge">PACKAGING COMPARISON</span>
+            <p>
+              AI-DISPO® provides two distinct sterile primary packaging options tailored to your hospital and clinical distribution workflows:
+            </p>
+            <ul style="margin-top: 8px; padding-left: 18px; display: flex; flex-direction: column; gap: 6px;">
+              <li><strong>Blister Pack (Individual Thermoformed Pack):</strong> Engineered with premium 60 GSM medical-grade paper and a transparent peelable film. It delivers maximum puncture resistance, superior ETO gas penetration, and fiber-free aseptic peel opening. Ideal for surgical theatres, ICUs, and international institutional tenders.</li>
+              <li><strong>Ribbon Pack (Tear-Strip Poly-Pack):</strong> Constructed from durable multi-layer laminated polyethylene film strips. Designed for high-speed automated dispensing, high-volume routine ward injection, and cost-effective bulk healthcare campaigns.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Item 2: Shelf Life & Sterilization -->
+        <div class="faq-item" data-category="sterilization">
+          <button class="faq-question-btn">
+            <span>What is the shelf life and sterilization method of AI-DISPO® syringes?</span>
+            <span class="faq-icon-chevron">↓</span>
+          </button>
+          <div class="faq-answer-content">
+            <span class="faq-badge">ETO STERILITY • 5-YEAR SHELF LIFE</span>
+            <p>
+              Every AI-DISPO® syringe undergoes 100% In-House industrial Ethylene Oxide (ETO) sterilization cycles validated under ISO 11135. The products have a certified shelf life of <strong>5 years (60 months)</strong> from the date of manufacture when stored in their original unopened packaging under standard dry warehouse conditions (5°C to 40°C).
+            </p>
+          </div>
+        </div>
+
+        <!-- Item 3: Sample Requests -->
+        <div class="faq-item" data-category="export">
+          <button class="faq-question-btn">
+            <span>Can hospitals or medical distributors request free product evaluation samples?</span>
+            <span class="faq-icon-chevron">↓</span>
+          </button>
+          <div class="faq-answer-content">
+            <span class="faq-badge">SAME-DAY SAMPLE DISPATCH</span>
+            <p>
+              Yes. We provide <strong>Complimentary Clinical Evaluation Kits</strong> to certified medical centers, hospitals, and licensed distributors worldwide. Sample kits contain sterile samples of 1mL, 2mL, 5mL, 10mL syringes (in both Blister and Ribbon packs) alongside comprehensive Certificate of Analysis (COA) compliance dossiers. We dispatch standard sample kits within 24 hours of verification.
+            </p>
+          </div>
+        </div>
+
+        <!-- Item 4: Dead Space & Insulin Precision -->
+        <div class="faq-item" data-category="products">
+          <button class="faq-question-btn">
+            <span>What is Zero Dead Space LDS geometry and why is it important?</span>
+            <span class="faq-icon-chevron">↓</span>
+          </button>
+          <div class="faq-answer-content">
+            <span class="faq-badge">CLINICAL FLUIDICS</span>
+            <p>
+              Our Low Dead Space (LDS) design features an extended piston protrusion that completely clears the nozzle hub when fully depressed. This reduces medication residual fluid waste to <strong>&lt; 0.005 mL</strong> per injection (compared to &gt; 0.07 mL in conventional syringes), ensuring maximum dose extraction for high-value vaccines, insulin, and biologic medications.
+            </p>
+          </div>
+        </div>
+
+        <!-- Item 5: Export MOQs & Private Labeling -->
+        <div class="faq-item" data-category="export">
+          <button class="faq-question-btn">
+            <span>What are the Minimum Order Quantities (MOQ) and is OEM private labeling available?</span>
+            <span class="faq-icon-chevron">↓</span>
+          </button>
+          <div class="faq-answer-content">
+            <span class="faq-badge">OEM &amp; EXPORT CAPABILITY</span>
+            <p>
+              Our standard export MOQ is <strong>10,000 units</strong> for AI-DISPO® branded stock products. For full OEM private labeling (customized outer boxes, inner blister artwork in English/French/Spanish/Arabic, localized barcodes, and hospital branding), specific batch MOQs apply. Contact our export desk at <a href="mailto:export@aidispo.com" style="color: var(--accent-blue);">export@aidispo.com</a> for exact container-load configurations.
+            </p>
+          </div>
+        </div>
+
+        <!-- Item 6: Certifications -->
+        <div class="faq-item" data-category="certifications">
+          <button class="faq-question-btn">
+            <span>Which regulatory certifications and quality standards does your factory hold?</span>
+            <span class="faq-icon-chevron">↓</span>
+          </button>
+          <div class="faq-answer-content">
+            <span class="faq-badge">REGULATORY CREDENTIALS</span>
+            <p>
+              Goel Allied Industries operates certified Class 100,000 (ISO Class 8) cleanrooms compliant with:
+            </p>
+            <ul style="margin-top: 8px; padding-left: 18px; display: flex; flex-direction: column; gap: 6px;">
+              <li><strong>WHO-GMP:</strong> World Health Organization Good Manufacturing Practices.</li>
+              <li><strong>CDSCO:</strong> Central Drugs Standard Control Organization manufacturing licenses (Form MD-5 / MD-9).</li>
+              <li><strong>ISO 9001:2015 &amp; ISO 13485:</strong> Medical Device Quality Management Systems.</li>
+              <li><strong>CE Certification:</strong> European medical device compliance.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Item 7: Luer Lock vs Luer Slip -->
+        <div class="faq-item" data-category="products">
+          <button class="faq-question-btn">
+            <span>Should I choose Luer Lock or Luer Slip connection for my clinical department?</span>
+            <span class="faq-icon-chevron">↓</span>
+          </button>
+          <div class="faq-answer-content">
+            <span class="faq-badge">NOZZLE GEOMETRY</span>
+            <p>
+              <strong>Luer Lock (LL):</strong> Recommended for high-pressure applications, syringe infusion pumps, dense viscous solutions, and arterial blood gas sampling where needle disconnection must be mechanically prevented.<br><br>
+              <strong>Luer Slip (LS):</strong> Recommended for rapid routine injections, standard vaccination clinics, and non-pressurized aspiration procedures.
+            </p>
+          </div>
+        </div>
+
+        <!-- Item 8: Needle Gauges & Color Codes -->
+        <div class="faq-item" data-category="products">
+          <button class="faq-question-btn">
+            <span>Are needle hub colors standardized according to ISO 6009?</span>
+            <span class="faq-icon-chevron">↓</span>
+          </button>
+          <div class="faq-answer-content">
+            <span class="faq-badge">ISO 6009 COLOR MATRIX</span>
+            <p>
+              Yes. All AI-DISPO® needle hubs are molded with medical-grade non-toxic pigments strictly conforming to ISO 6009 universal color codes (e.g., Green for 21G, Black for 22G, Deep Blue for 23G, Purple for 24G, Brown for 26G). This eliminates clinical error during fast-paced emergency and surgical administration.
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Quick Contact Card Banner -->
+      <div style="margin-top: 50px; background: linear-gradient(135deg, #013572 0%, #03244d 100%); border-radius: 16px; padding: 36px 32px; color: #FFFFFF; text-align: center; box-shadow: 0 12px 36px rgba(1, 53, 114, 0.2);">
+        <h3 style="font-family: var(--font-headline); font-size: 22px; font-weight: 800; margin-bottom: 10px; color: #FFFFFF;">
+          Still have questions or need a customized hospital quote?
+        </h3>
+        <p style="font-size: 14px; color: rgba(255, 255, 255, 0.85); max-width: 580px; margin: 0 auto 24px; line-height: 1.6;">
+          Our clinical engineering specialists and export officers are available 24/7 to assist with technical datasheets, tender documentation, and sample dispatches.
+        </p>
+        <div style="display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;">
+          <a href="contact.html" class="btn-craft btn-craft-primary" style="background: #00A8FF; color: #FFFFFF; border-color: #00A8FF;">
+            REQUEST COMPLIMENTARY SAMPLES →
+          </a>
+          <a href="tel:+919120808855" class="btn-craft btn-craft-outline" style="color: #FFFFFF; border-color: rgba(255, 255, 255, 0.4);">
+            CALL +91 91208 08855
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- SITE FOOTER -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-top-grid">
+        <!-- Brand Summary -->
+        <div class="footer-brand-col">
+          <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+            <img src="assets/ChatGPT Image Sep 28, 2026, 04_42_50 PM.png" alt="GAI AI-DISPO Logo"
+              style="height: 48px; width: auto; object-fit: contain; filter: drop-shadow(0 2px 6px rgba(1, 53, 114, 0.16));">
+            <div class="footer-logo">AI-DISPO<span style="color:var(--accent-blue)">.</span></div>
+          </div>
+          <p class="footer-brand-desc">
+            Goel Allied Industries — Manufacturer of AI-DISPO® sterile injection systems, IV cannulas, and infusion sets.
+            Precision, safety, and reliability where every life counts.
+          </p>
+          <div class="regulatory-stamp-row">
+            <span class="stamp-tag red">WHO-GMP</span>
+            <span class="stamp-tag dark">CDSCO</span>
+            <span class="stamp-tag dark">ISO 9001:2015</span>
+            <span class="stamp-tag red">CE CERTIFIED</span>
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="footer-col">
+          <h4>EXPLORE PRODUCTS</h4>
+          <ul class="footer-links">
+            <li><a href="syringe.html">Disposable Hypodermic Syringes (1mL – 50mL)</a></li>
+            <li><a href="iv-cannula.html">Intravenous Cannulas (Ported &amp; Winged)</a></li>
+            <li><a href="infusion-sets.html">Intravenous Infusion Sets (Gravity &amp; Blood)</a></li>
+            <li><a href="needle.html">Hypodermic Needles (Tri-Bevel)</a></li>
+            <li><a href="other-products.html">Gloves, Medical Tape &amp; Blood Transfusion</a></li>
+            <li><a href="upcoming-products.html">Urine Bag, Ryle's Tube, Scalp Vein &amp; Diaper</a></li>
+            <li><a href="oem.html">OEM &amp; Contract Manufacturing</a></li>
+          </ul>
+        </div>
+
+        <!-- Corporate Navigation -->
+        <div class="footer-col">
+          <h4>COMPANY &amp; RESOURCES</h4>
+          <ul class="footer-links">
+            <li><a href="about.html">About Goel Allied Industries</a></li>
+            <li><a href="catalogue.html">E-Catalogue &amp; Company Profile</a></li>
+            <li><a href="gallery.html">Facility &amp; Product Gallery</a></li>
+            <li><a href="blog.html">Clinical Insights &amp; Blog</a></li>
+            <li><a href="faq.html">Frequently Asked Questions (FAQ)</a></li>
+            <li><a href="privacy-policy.html">Privacy Policy</a></li>
+            <li><a href="terms-conditions.html">Terms &amp; Conditions</a></li>
+            <li><a href="contact.html">Corporate Contact &amp; Inquiries</a></li>
+          </ul>
+        </div>
+
+        <!-- Contact Info -->
+        <div class="footer-col">
+          <h4>MANUFACTURING HEADQUARTERS</h4>
+          <p style="font-size: 13px; color: var(--ink-muted); line-height: 1.6; margin-bottom: 12px;">
+            Goel Allied Industries<br>
+            State-of-the-Art Cleanroom Facility<br>
+            India
+          </p>
+          <p style="font-size: 13px; color: var(--logo-navy); font-weight: 700; font-family: var(--font-mono); line-height: 1.7;">
+            Phone: <a href="tel:+919120808855" style="color: inherit; text-decoration: none;">+91 91208 08855</a><br>
+            Email: <a href="mailto:export@aidispo.com" style="color: inherit; text-decoration: none;">export@aidispo.com</a><br>
+            Email: <a href="mailto:goelsyringe@gmail.com" style="color: inherit; text-decoration: none;">goelsyringe@gmail.com</a>
+          </p>
+        </div>
+      </div>
+
+      <div class="footer-bottom-bar">
+        <div>© 2026 Goel Allied Industries (Brand: AI-DISPO®). All Rights Reserved. • Designed and Developed by <a href="https://alightwaysolutions.com/" target="_blank" rel="noopener noreferrer" style="color: var(--logo-navy); font-weight: 700; text-decoration: underline; text-underline-offset: 2px;">Alightway Solutions</a></div>
+        <div class="footer-legal-links" style="display: flex; gap: 16px; align-items: center; font-size: 12px;">
+          <a href="privacy-policy.html" style="color: var(--ink-muted); text-decoration: none;">Privacy Policy</a>
+          <span style="color: var(--ink-faint);">•</span>
+          <a href="terms-conditions.html" style="color: var(--ink-muted); text-decoration: none;">Terms &amp; Conditions</a>
+          <span style="color: var(--ink-faint);">•</span>
+          <a href="faq.html" style="color: var(--logo-navy); font-weight: 700; text-decoration: none;">FAQs</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+  <script>
+    // FAQ Interactive Accordion & Search Logic
+    document.addEventListener('DOMContentLoaded', () => {
+      const accordionItems = document.querySelectorAll('.faq-item');
+      const catBtns = document.querySelectorAll('.faq-cat-btn');
+      const searchInput = document.getElementById('faqSearchInput');
+
+      // Accordion click toggle
+      accordionItems.forEach(item => {
+        const btn = item.querySelector('.faq-question-btn');
+        btn.addEventListener('click', () => {
+          const isActive = item.classList.contains('active');
+          accordionItems.forEach(i => i.classList.remove('active'));
+          if (!isActive) {
+            item.classList.add('active');
+          }
+        });
+      });
+
+      // Category filter buttons
+      catBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          catBtns.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          const cat = btn.getAttribute('data-cat');
+          applyFilter(cat, searchInput ? searchInput.value.toLowerCase().trim() : '');
+        });
+      });
+
+      // Search filter
+      if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+          const query = e.target.value.toLowerCase().trim();
+          const activeCatBtn = document.querySelector('.faq-cat-btn.active');
+          const cat = activeCatBtn ? activeCatBtn.getAttribute('data-cat') : 'all';
+          applyFilter(cat, query);
+        });
+      }
+
+      function applyFilter(category, query) {
+        accordionItems.forEach(item => {
+          const itemCat = item.getAttribute('data-category');
+          const itemText = item.textContent.toLowerCase();
+          const matchesCat = (category === 'all' || itemCat === category);
+          const matchesQuery = !query || itemText.includes(query);
+
+          if (matchesCat && matchesQuery) {
+            item.style.display = 'block';
+          } else {
+            item.style.display = 'none';
+          }
+        });
+      }
+    });
+  </script>
+</body>
+
+</html>

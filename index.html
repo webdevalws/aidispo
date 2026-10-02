@@ -1,0 +1,1770 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI-DISPO® — UltraFlow Precision Syringe | Craft Clinical Engineering</title>
+  <meta name="description"
+    content="AI-DISPO UltraFlow Precision Syringe. Engineered for zero dead-space, ultra-sharp 25G tri-bevel penetration, and absolute clinical dosing accuracy.">
+
+  <!-- Google Fonts: Plus Jakarta Sans & Inter for clean, decent, modern typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=JetBrains+Mono:wght@400;500;600&display=swap"
+    rel="stylesheet">
+
+  <link rel="icon" type="image/png" href="assets/ChatGPT Image Sep 28, 2026, 04_42_50 PM.png">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="products.css">
+</head>
+
+<body>
+
+  <!-- Precision Clinical Reticle Cursor (Non-touch screens) -->
+  <div class="clinical-cursor" id="clinicalCursor" aria-hidden="true">
+    <div class="cursor-crosshair"></div>
+    <div class="cursor-reticle"></div>
+    <div class="cursor-coords" id="cursorCoords">000.000</div>
+  </div>
+
+  <!-- Subtle noise grain texture overlay -->
+  <div class="grain-overlay" aria-hidden="true"></div>
+
+  <!-- FIXED VIEWPORT FRAME WITH REGISTRATION MARKS -->
+  <div class="viewport-frame" aria-hidden="true">
+    <div class="frame-corner top-left"></div>
+    <div class="frame-corner top-right"></div>
+    <div class="frame-corner bottom-left"></div>
+    <div class="frame-corner bottom-right"></div>
+  </div>
+
+  <!-- =========================================================================
+       SITE HEADER / TOP BAR
+       ========================================================================= -->
+  <header class="site-header" id="mainHeader">
+    <div class="nav-left">
+      <a href="#heroTrack" class="brand-logo-wrap">
+        <img src="assets/ChatGPT Image Sep 28, 2026, 04_42_50 PM.png" alt="GAI AI-DISPO Logo" class="brand-logo-img">
+        <span class="brand-logo">AI-DISPO<span class="accent-dot"></span></span>
+      </a>
+    </div>
+
+    <nav class="nav-center" aria-label="Main Navigation">
+      <a href="index.html" class="nav-link active">Home</a>
+
+      <!-- Product Dropdown Menu -->
+      <div class="nav-item-dropdown" id="productDropdown">
+        <a href="syringe.html" class="nav-link nav-dropdown-trigger" id="productDropdownBtn" aria-haspopup="true"
+          aria-expanded="false">
+          Product
+          <svg class="dropdown-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2.5">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </a>
+        <div class="nav-dropdown-menu" id="productMenu" role="menu">
+          <a href="syringe.html" class="dropdown-item" role="menuitem">
+            <div class="dropdown-item-thumb">
+              <img src="assets/prod_syringe.jpg" alt="Syringe" class="dropdown-thumb-img">
+            </div>
+            <div class="dropdown-item-info">
+              <span class="dropdown-item-title">Disposable Hypodermic Syringe</span>
+              <span class="dropdown-item-sub">UltraFlow 1mL – 10mL Clinical</span>
+            </div>
+          </a>
+
+          <a href="iv-cannula.html" class="dropdown-item" role="menuitem">
+            <div class="dropdown-item-thumb">
+              <img src="assets/prod_iv_cannula.jpg" alt="IV Cannula" class="dropdown-thumb-img">
+            </div>
+            <div class="dropdown-item-info">
+              <span class="dropdown-item-title">Intravenous Cannula</span>
+              <span class="dropdown-item-sub">Ported &amp; Winged Catheters</span>
+            </div>
+          </a>
+
+          <a href="infusion-sets.html" class="dropdown-item" role="menuitem">
+            <div class="dropdown-item-thumb">
+              <img src="assets/prod_iv_set.jpg" alt="Infusion sets / IV sets" class="dropdown-thumb-img">
+            </div>
+            <div class="dropdown-item-info">
+              <span class="dropdown-item-title">Infusion Set</span>
+              <span class="dropdown-item-sub">Gravity &amp; Micro-Drip Infusion</span>
+            </div>
+          </a>
+
+          <a href="needle.html" class="dropdown-item" role="menuitem">
+            <div class="dropdown-item-thumb">
+              <img src="assets/prod_needle.jpg" alt="Needle" class="dropdown-thumb-img">
+            </div>
+            <div class="dropdown-item-info">
+              <span class="dropdown-item-title">Hypodermic Needle</span>
+              <span class="dropdown-item-sub">Tri-Bevel Hypodermic Cannulas</span>
+            </div>
+          </a>
+
+          <a href="other-products.html" class="dropdown-item" role="menuitem">
+            <div class="dropdown-item-thumb">
+              <img src="assets/prod_other.jpg" alt="Other Product" class="dropdown-thumb-img">
+            </div>
+            <div class="dropdown-item-info">
+              <span class="dropdown-item-title">Other Product</span>
+              <span class="dropdown-item-sub">Gloves, Medical Tape &amp; Blood Transfusion</span>
+            </div>
+          </a>
+
+          <a href="upcoming-products.html" class="dropdown-item upcoming" role="menuitem">
+            <div class="dropdown-item-thumb">
+              <img src="assets/prod_upcoming.jpg" alt="Upcoming Product" class="dropdown-thumb-img">
+            </div>
+            <div class="dropdown-item-info">
+              <span class="dropdown-item-title">Upcoming Product</span>
+              <span class="dropdown-item-sub">Urine Bag, Ryle's Tube, Scalp Vein &amp; Diaper</span>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <a href="about.html" class="nav-link">About Us</a>
+      <a href="gallery.html" class="nav-link">Gallery</a>
+      <a href="blog.html" class="nav-link">Blog</a>
+      <a href="oem.html" class="nav-link">OEM / ODM</a>
+      <a href="catalogue.html" class="nav-link">E-Catalogue</a>
+    </nav>
+
+    <div class="nav-right">
+      <a href="contact.html" class="btn-craft btn-craft-primary" id="topContactBtn">
+        CONTACT US
+      </a>
+      <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Open Mobile Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- =========================================================================
+       MOBILE NAVIGATION DRAWER & BACKDROP
+       ========================================================================= -->
+  <div class="mobile-nav-backdrop" id="mobileNavBackdrop"></div>
+  <div class="mobile-nav-drawer" id="mobileNavDrawer" aria-hidden="true">
+    <div class="mobile-nav-header">
+      <div class="brand-logo-wrap">
+        <img src="assets/ChatGPT Image Sep 28, 2026, 04_42_50 PM.png" alt="GAI AI-DISPO Logo" class="brand-logo-img">
+        <span class="brand-logo">AI-DISPO<span class="accent-dot">.</span></span>
+      </div>
+      <button class="mobile-nav-close" id="mobileNavClose" aria-label="Close Navigation Menu">&times;</button>
+    </div>
+
+    <div class="mobile-nav-links">
+      <a href="index.html" class="mobile-nav-link active">Home</a>
+
+      <!-- Mobile Products Accordion -->
+      <div class="mobile-nav-dropdown" id="mobileProductDropdown">
+        <button class="mobile-nav-dropdown-btn" id="mobileProductToggle" type="button">
+          <span>Product</span>
+          <svg class="dropdown-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2.5">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </button>
+        <div class="mobile-dropdown-list" id="mobileProductList">
+          <a href="syringe.html" class="mobile-dropdown-item">
+            <img src="assets/prod_syringe.jpg" alt="Syringe" class="mobile-thumb">
+            <div>
+              <strong>Disposable Hypodermic Syringe</strong>
+              <small>UltraFlow 1mL – 10mL Clinical</small>
+            </div>
+          </a>
+          <a href="iv-cannula.html" class="mobile-dropdown-item">
+            <img src="assets/prod_iv_cannula.jpg" alt="IV Cannula" class="mobile-thumb">
+            <div>
+              <strong>Intravenous Cannula</strong>
+              <small>Ported &amp; Winged Catheters</small>
+            </div>
+          </a>
+          <a href="infusion-sets.html" class="mobile-dropdown-item">
+            <img src="assets/prod_iv_set.jpg" alt="Infusion sets / IV sets" class="mobile-thumb">
+            <div>
+              <strong>Intravenous Infusion Set</strong>
+              <small>Gravity &amp; Micro-Drip Infusion</small>
+            </div>
+          </a>
+          <a href="needle.html" class="mobile-dropdown-item">
+            <img src="assets/prod_needle.jpg" alt="Needle" class="mobile-thumb">
+            <div>
+              <strong>Hypodermic Needle</strong>
+              <small>Tri-Bevel Hypodermic Cannulas</small>
+            </div>
+          </a>
+          <a href="other-products.html" class="mobile-dropdown-item">
+            <img src="assets/prod_other.jpg" alt="Other Product" class="mobile-thumb">
+            <div>
+              <strong>Other Product</strong>
+              <small>Gloves, Medical Tape &amp; Blood Transfusion</small>
+            </div>
+          </a>
+          <a href="upcoming-products.html" class="mobile-dropdown-item">
+            <img src="assets/prod_upcoming.jpg" alt="Upcoming Product" class="mobile-thumb">
+            <div>
+              <strong>Upcoming Product</strong>
+              <small>Urine Bag, Ryle's Tube, Scalp Vein &amp; Diaper</small>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <a href="about.html" class="mobile-nav-link">About Us</a>
+      <a href="gallery.html" class="mobile-nav-link">Gallery</a>
+      <a href="blog.html" class="mobile-nav-link">Blog</a>
+      <a href="oem.html" class="mobile-nav-link">OEM / ODM</a>
+      <a href="catalogue.html" class="mobile-nav-link">E-Catalogue</a>
+    </div>
+
+    <div class="mobile-nav-footer">
+      <a href="contact.html" class="btn-craft btn-craft-primary" style="width: 100%;">
+        CONTACT US
+      </a>
+      <div
+        style="font-family: var(--font-body); font-size: 11px; font-weight: 600; color: var(--ink-muted); text-align: center; margin-top: 12px; letter-spacing: 0.04em;">
+        ISO 13485:2016 • CE 0197 STERILE
+      </div>
+    </div>
+  </div>
+
+  <main>
+    <!-- =======================================================================
+         SECTION 1: HERO SCROLL-DRIVEN TRACK & DOCKING EXPERIENCE
+         ======================================================================= -->
+    <div class="hero-scroll-track" id="heroTrack">
+      <div class="hero-sticky-container" id="heroStickyContainer">
+
+        <!-- 1. Deepest Background: Blurred Animated Text & Splash (BEHIND ARROWS & TEXT) -->
+        <div class="hero-bg-text-layer" id="heroBgTextLayer" aria-hidden="true">
+          <div class="hero-massive-text">
+            <span class="line-1">YOUR SAFETY</span>
+            <span class="line-2">OUR PRIORITY</span>
+          </div>
+        </div>
+
+        <!-- Organic Ink-Splash Accent Behind Syringe -->
+        <svg class="hero-ink-splash" id="heroInkSplash" viewBox="0 0 400 400" fill="currentColor"
+          style="color: var(--accent-blue);" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M198,34 C256,12 320,68 348,124 C378,185 362,260 312,308 C262,356 182,374 118,344 C54,314 22,236 34,168 C46,100 138,56 198,34 Z" />
+          <circle cx="80" cy="90" r="14" />
+          <circle cx="330" cy="90" r="8" />
+          <circle cx="360" cy="220" r="18" />
+          <circle cx="95" cy="290" r="10" />
+          <circle cx="60" cy="240" r="6" />
+        </svg>
+
+        <!-- 3. Hero Bottom Bar: Precision Medical Minimalist Card -->
+        <div class="hero-bottom-bar" id="heroBottomBar">
+          <div class="hero-info-minimal">
+            <div class="hero-cert-badge">
+              <span class="tag-live-dot"></span>
+              WHO-GMP • CDSCO • CE • ISO 9001
+            </div>
+            <h1 class="hero-subheadline">AI-DISPO® UltraFlow™ Precision Syringe</h1>
+            <p class="hero-subcopy">
+              Precision, Safety &amp; Reliability — Every Life Counts. Engineered with zero dead-space geometry and 100%
+              in-house ETO sterilization.
+            </p>
+          </div>
+
+          <div class="hero-clinical-card">
+            <div class="clinical-card-specs">
+              <div class="clinical-spec-col">
+                <span class="col-val">&lt; 0.005 mL</span>
+                <span class="col-lbl">DEAD-SPACE</span>
+              </div>
+              <div class="clinical-spec-sep"></div>
+              <div class="clinical-spec-col">
+                <span class="col-val">In-House ETO</span>
+                <span class="col-lbl">STERILIZED</span>
+              </div>
+              <div class="clinical-spec-sep"></div>
+              <div class="clinical-spec-col">
+                <span class="col-val">WHO • CE • ISO</span>
+                <span class="col-lbl">CERTIFIED</span>
+              </div>
+            </div>
+
+            <a href="contact.html" class="clinical-cta-btn">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+                stroke-linecap="round" stroke-linejoin="round" class="btn-icon">
+                <path
+                  d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z">
+                </path>
+                <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                <line x1="12" y1="22.08" x2="12" y2="12"></line>
+              </svg>
+              <span class="btn-text">REQUEST SAMPLES</span>
+              <span class="btn-arrow">&rarr;</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Opening Screen Prompt (In front of background text) -->
+        <div class="intro-full-badge" id="introBadge">
+          <div class="stamp-pill">AI-DISPO® 2026 • UltraFlow™ Clinical Series</div>
+          <div class="scroll-hint">
+            <span>Scroll Down to Inspect & Dock</span>
+            <span class="scroll-arrow">↓</span>
+          </div>
+        </div>
+
+        <!-- 4. Center Floating Syringe Visual Stage — AT THE ABSOLUTE MAXIMUM TOP Z-INDEX -->
+        <div class="hero-visual-stage" id="heroVisualStage">
+          <div class="hero-dust-field" id="heroDustField" aria-hidden="true"></div>
+          <div class="hero-laser-target" id="heroLaserTarget"></div>
+          <div class="hero-product-img-wrapper" id="heroProductWrapper">
+            <div class="hero-fluid-core" id="heroFluidCore"></div>
+            <img src="assets/syringe_hero.png"
+              alt="AI-DISPO UltraFlow Precision Syringe isolated transparent render with crystal clear graduated barrel and ultra-sharp needle"
+              class="hero-product-img" id="heroProductImg">
+
+            <!-- Responsive Hero 4 Feature Callouts (Permanently locked 1:1 to Syringe Image Coordinate Space) -->
+            <div class="hero-feature-callouts" id="heroFeatureCallouts" aria-hidden="true">
+              <svg class="hero-callouts-full-svg" viewBox="0 0 1376 768" fill="none">
+                <!-- 1. Smooth Plunger Action Line (Shelf Underline directly below text -> Plunger Shaft) -->
+                <polyline points="720,0 1000,0 1120,180" fill="none" stroke="#00A8FF" stroke-linecap="round"
+                  stroke-linejoin="round" />
+                <circle cx="1120" cy="180" r="10" fill="#00A8FF" />
+
+                <!-- 2. Clear Measurement Line (Shelf Underline directly below text -> Graduations) -->
+                <polyline points="30,120 320,120 600,340" fill="none" stroke="#00A8FF" stroke-linecap="round"
+                  stroke-linejoin="round" />
+                <circle cx="600" cy="340" r="10" fill="#00A8FF" />
+
+                <!-- 3. Medical Grade Material Line (Barrel Wall -> Shelf Overline directly above text) -->
+                <polyline points="720,440 760,780 1060,780" fill="none" stroke="#00A8FF" stroke-linecap="round"
+                  stroke-linejoin="round" />
+                <circle cx="720" cy="440" r="10" fill="#00A8FF" />
+
+                <!-- 4. Precision Needle Line (Needle Cannula -> Shelf Overline directly above text) -->
+                <polyline points="240,598 70,720 70,860 360,860" fill="none" stroke="#00A8FF" stroke-linecap="round"
+                  stroke-linejoin="round" />
+                <circle cx="240" cy="598" r="10" fill="#00A8FF" />
+              </svg>
+
+              <!-- 1. Smooth Plunger Action (Top Right) -->
+              <div class="hero-callout-item callout-plunger">
+                <div class="callout-header">
+                  <span class="callout-title">Smooth Plunger Action</span>
+                </div>
+                <div class="callout-desc">Consistent flow, better control</div>
+              </div>
+
+              <!-- 2. Clear Measurement (Top Left) -->
+              <div class="hero-callout-item callout-measurement">
+                <div class="callout-header">
+                  <span class="callout-title">Clear Measurement</span>
+                </div>
+                <div class="callout-desc">Accurate &amp; easy-to-read graduations</div>
+              </div>
+
+              <!-- 3. Medical Grade Material (Bottom Right) -->
+              <div class="hero-callout-item callout-material">
+                <div class="callout-header">
+                  <span class="callout-title">Medical Grade Material</span>
+                </div>
+                <div class="callout-desc">Safe, durable &amp; biocompatible</div>
+              </div>
+
+              <!-- 4. Precision Needle (Bottom Left) -->
+              <div class="hero-callout-item callout-needle">
+                <div class="callout-header">
+                  <span class="callout-title">Precision Needle</span>
+                </div>
+                <div class="callout-desc">Ultra-sharp for minimal discomfort</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- TICKER RUNNER -->
+    <div class="ticker-ribbon" aria-hidden="true">
+      <div class="ticker-track">
+        <span class="ticker-item"><span class="ticker-tag">PORTFOLIO</span> AI-DISPO® Disposable Syringes (1 mL – 50 mL)
+          <span class="dot">◆</span></span>
+        <span class="ticker-item"><span class="ticker-tag">CATHETERS</span> Ported &amp; Winged I.V. Cannulas (14G–26G)
+          <span class="dot">◆</span></span>
+        <span class="ticker-item"><span class="ticker-tag">SURGICAL</span> Tri-Bevel 304 Stainless Steel Needles <span
+            class="dot">◆</span></span>
+        <span class="ticker-item"><span class="ticker-tag">INFUSION</span> Gravity &amp; Blood Transfusion Sets <span
+            class="dot">◆</span></span>
+        <span class="ticker-item"><span class="ticker-tag">PRECISION</span> Low Dead Space Fluidic Reclaim (&lt;0.005
+          mL) <span class="dot">◆</span></span>
+        <span class="ticker-item"><span class="ticker-tag">PPE</span> Latex &amp; Nitrile Surgical Examination Gloves
+          <span class="dot">◆</span></span>
+        <span class="ticker-item"><span class="ticker-tag">DRESSING</span> Micro-Porous Breathable Medical Tape <span
+            class="dot">◆</span></span>
+        <span class="ticker-item"><span class="ticker-tag">STERILITY</span> 100% In-House Validated ETO Gas <span
+            class="dot">◆</span></span>
+        <span class="ticker-item"><span class="ticker-tag">PIPELINE</span> Ryle's Tubes &amp; Winged Scalp Vein Sets
+          <span class="dot">◆</span></span>
+        <!-- Duplicated for seamless infinite loop -->
+        <span class="ticker-item"><span class="ticker-tag">PORTFOLIO</span> AI-DISPO® Disposable Syringes (1 mL – 50 mL)
+          <span class="dot">◆</span></span>
+        <span class="ticker-item"><span class="ticker-tag">CATHETERS</span> Ported &amp; Winged I.V. Cannulas (14G–26G)
+          <span class="dot">◆</span></span>
+        <span class="ticker-item"><span class="ticker-tag">SURGICAL</span> Tri-Bevel 304 Stainless Steel Needles <span
+            class="dot">◆</span></span>
+        <span class="ticker-item"><span class="ticker-tag">INFUSION</span> Gravity &amp; Blood Transfusion Sets <span
+            class="dot">◆</span></span>
+        <span class="ticker-item"><span class="ticker-tag">PRECISION</span> Low Dead Space Fluidic Reclaim (&lt;0.005
+          mL) <span class="dot">◆</span></span>
+        <span class="ticker-item"><span class="ticker-tag">PPE</span> Latex &amp; Nitrile Surgical Examination Gloves
+          <span class="dot">◆</span></span>
+        <span class="ticker-item"><span class="ticker-tag">DRESSING</span> Micro-Porous Breathable Medical Tape <span
+            class="dot">◆</span></span>
+        <span class="ticker-item"><span class="ticker-tag">STERILITY</span> 100% In-House Validated ETO Gas <span
+            class="dot">◆</span></span>
+        <span class="ticker-item"><span class="ticker-tag">PIPELINE</span> Ryle's Tubes &amp; Winged Scalp Vein Sets
+          <span class="dot">◆</span></span>
+      </div>
+    </div>
+
+    <!-- =======================================================================
+         SCROLL ASSEMBLY SECTION 1: SYRINGE (10 INDIVIDUAL PARTS)
+         ======================================================================= -->
+    <section class="assembly-scroll-track" id="syringeAssemblyTrack" aria-label="Syringe Precision Scroll Assembly">
+      <div class="assembly-sticky-stage" id="syringeStickyStage">
+        <!-- Ambient Radial Glow and Grid Backdrop -->
+        <div class="assembly-stage-bg" aria-hidden="true">
+          <div class="assembly-radial-glow"></div>
+          <div class="assembly-tech-grid"></div>
+        </div>
+
+        <!-- Top HUD Bar: Section Title, Progress, and Counter -->
+        <div class="assembly-top-hud">
+          <div class="assembly-hud-title-wrap">
+            <span class="assembly-eyebrow-tag">DEVICE SPEC 01 • ULTRAFLOW PRECISION SYRINGE</span>
+            <h2 class="assembly-section-title">Syringe Anatomy</h2>
+          </div>
+          <div class="assembly-hud-progress-wrap">
+            <div class="assembly-counter-badge" id="syringeCounterBadge">Part 1 / 10</div>
+            <div class="assembly-progress-track">
+              <div class="assembly-progress-bar" id="syringeProgressBar" style="width: 10%;"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Central Assembly Workspace -->
+        <div class="assembly-stage-workspace">
+          <!-- Device Assembly Canvas with 10 Parts Layers -->
+          <div class="device-assembly-frame" id="syringeDeviceFrame">
+            <!-- Blueprint Target Ghost Silhouette -->
+            <div class="assembly-ghost-silhouette" aria-hidden="true">
+              <img src="assets/syringe/full-syringe.png" alt="" class="ghost-img">
+            </div>
+
+            <!-- Ground Drop Shadow -->
+            <div class="device-drop-shadow" aria-hidden="true"></div>
+
+            <!-- Pulsing Joint Attachment Ring Marker -->
+            <div class="joint-pulse-ring" id="syringeJointPulse" aria-hidden="true"></div>
+
+            <!-- SVG Leader Line Overlay -->
+            <svg class="assembly-leader-svg" id="syringeLeaderSvg" aria-hidden="true">
+              <line class="leader-line" id="syringeLeaderLine" x1="0" y1="0" x2="0" y2="0" />
+              <circle class="leader-anchor" id="syringeLeaderAnchor" cx="0" cy="0" r="4" />
+              <circle class="leader-target" id="syringeLeaderTarget" cx="0" cy="0" r="5" />
+            </svg>
+
+            <!-- 10 Individual Syringe Parts Layers (Identical coordinate plane) -->
+            <div class="assembly-parts-container" id="syringePartsContainer">
+              <img src="assets/syringe/01-needle-tip.png" alt="Needle Bevel Tip" class="assembly-part" data-part="0"
+                id="sPart0">
+              <img src="assets/syringe/02-needle-shaft.png" alt="Needle Shaft" class="assembly-part" data-part="1"
+                id="sPart1">
+              <img src="assets/syringe/03-needle-hub.png" alt="Needle Hub" class="assembly-part" data-part="2"
+                id="sPart2">
+              <img src="assets/syringe/04-luer-nozzle.png" alt="Luer Nozzle" class="assembly-part" data-part="3"
+                id="sPart3">
+              <img src="assets/syringe/05-barrel.png" alt="Transparent Barrel" class="assembly-part" data-part="4"
+                id="sPart4">
+              <img src="assets/syringe/06-graduation-marks.png" alt="Graduation Marks" class="assembly-part"
+                data-part="5" id="sPart5">
+              <img src="assets/syringe/07-rubber-stopper.png" alt="Rubber Stopper" class="assembly-part" data-part="6"
+                id="sPart6">
+              <img src="assets/syringe/08-plunger-rod.png" alt="Plunger Rod" class="assembly-part" data-part="7"
+                id="sPart7">
+              <img src="assets/syringe/09-flange.png" alt="Finger Flange" class="assembly-part" data-part="8"
+                id="sPart8">
+              <img src="assets/syringe/10-thumb-pad.png" alt="Thumb Pad" class="assembly-part" data-part="9"
+                id="sPart9">
+            </div>
+
+            <!-- Fully Assembled Syringe Layer for completion bonus (plunger push/pull) -->
+            <div class="assembly-complete-layer" id="syringeCompleteLayer" aria-hidden="true">
+              <img src="assets/syringe/full-syringe.png" alt="Fully Assembled Syringe" class="assembled-full-img"
+                id="syringeCompleteImg">
+              <div class="syringe-droplet-bead" id="syringeDropletBead"></div>
+            </div>
+          </div>
+
+          <!-- Dynamic Side Information Card -->
+          <div class="assembly-info-card" id="syringeInfoCard">
+            <div class="info-card-header">
+              <span class="info-part-tag" id="syringePartTag">PART 01 OF 10</span>
+              <span class="info-status-pill" id="syringeStatusPill">ATTACHING...</span>
+            </div>
+            <h3 class="info-part-title" id="syringePartTitle">Needle Bevel Tip</h3>
+            <p class="info-part-desc" id="syringePartDesc">
+              Laser-honed tri-bevel point minimizing tissue trauma and penetration force.
+            </p>
+            <div class="info-part-spec">
+              <span class="spec-label">ENGINEERING SPEC</span>
+              <span class="spec-val" id="syringePartSpec">25G Lancet Bevel • ISO 7864</span>
+            </div>
+            <!-- Interactive Action Hint -->
+            <div class="assembly-scroll-guide">
+              <span class="guide-icon">⟱</span>
+              <span class="guide-text" id="syringeGuideText">Scroll down to assemble next component</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bottom Assembly Indicator / Completed Banner -->
+        <div class="assembly-bottom-indicator">
+          <div class="assembly-dots-track" id="syringeDots">
+            <span class="assembly-dot active" data-index="0"></span>
+            <span class="assembly-dot" data-index="1"></span>
+            <span class="assembly-dot" data-index="2"></span>
+            <span class="assembly-dot" data-index="3"></span>
+            <span class="assembly-dot" data-index="4"></span>
+            <span class="assembly-dot" data-index="5"></span>
+            <span class="assembly-dot" data-index="6"></span>
+            <span class="assembly-dot" data-index="7"></span>
+            <span class="assembly-dot" data-index="8"></span>
+            <span class="assembly-dot" data-index="9"></span>
+          </div>
+          <div class="assembly-bonus-banner" id="syringeBonusBanner">
+            <span class="bonus-badge">✓ FULLY ASSEMBLED</span>
+            <span class="bonus-text">Fluid Aspiration &amp; Injection Demonstration Active</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         SCROLL ASSEMBLY SECTION 2: IV CANNULA (8 INDIVIDUAL PARTS)
+         ======================================================================= -->
+    <section class="assembly-scroll-track" id="cannulaAssemblyTrack" aria-label="IV Cannula Anatomy">
+      <div class="assembly-sticky-stage" id="cannulaStickyStage">
+        <!-- Ambient Radial Glow and Grid Backdrop -->
+        <div class="assembly-stage-bg" aria-hidden="true">
+          <div class="assembly-radial-glow cannula-glow"></div>
+          <div class="assembly-tech-grid"></div>
+        </div>
+
+        <!-- Top HUD Bar: Section Title, Progress, and Counter -->
+        <div class="assembly-top-hud">
+          <div class="assembly-hud-title-wrap">
+            <span class="assembly-eyebrow-tag">DEVICE SPEC 02 • 20G PORTED IV CANNULA</span>
+            <h2 class="assembly-section-title">IV Cannula Anatomy</h2>
+          </div>
+          <div class="assembly-hud-progress-wrap">
+            <div class="assembly-counter-badge" id="cannulaCounterBadge">Part 1 / 8</div>
+            <div class="assembly-progress-track">
+              <div class="assembly-progress-bar" id="cannulaProgressBar" style="width: 12.5%;"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Central Assembly Workspace -->
+        <div class="assembly-stage-workspace">
+          <!-- Device Assembly Canvas with 8 Parts Layers -->
+          <div class="device-assembly-frame" id="cannulaDeviceFrame">
+            <!-- Blueprint Target Ghost Silhouette -->
+            <div class="assembly-ghost-silhouette" aria-hidden="true">
+              <img src="assets/cannula/full-cannula.png" alt="" class="ghost-img">
+            </div>
+
+            <!-- Ground Drop Shadow -->
+            <div class="device-drop-shadow" aria-hidden="true"></div>
+
+            <!-- Pulsing Joint Attachment Ring Marker -->
+            <div class="joint-pulse-ring" id="cannulaJointPulse" aria-hidden="true"></div>
+
+            <!-- SVG Leader Line Overlay -->
+            <svg class="assembly-leader-svg" id="cannulaLeaderSvg" aria-hidden="true">
+              <line class="leader-line" id="cannulaLeaderLine" x1="0" y1="0" x2="0" y2="0" />
+              <circle class="leader-anchor" id="cannulaLeaderAnchor" cx="0" cy="0" r="4" />
+              <circle class="leader-target" id="cannulaLeaderTarget" cx="0" cy="0" r="5" />
+            </svg>
+
+            <!-- 8 Individual Cannula Parts Layers (Identical coordinate plane) -->
+            <div class="assembly-parts-container" id="cannulaPartsContainer">
+              <img src="assets/cannula/01-introducer-needle.png" alt="Introducer Needle" class="assembly-part"
+                data-part="0" id="cPart0">
+              <img src="assets/cannula/02-catheter-tube.png" alt="Catheter Tube" class="assembly-part" data-part="1"
+                id="cPart1">
+              <img src="assets/cannula/03-catheter-hub.png" alt="Catheter Hub" class="assembly-part" data-part="2"
+                id="cPart2">
+              <img src="assets/cannula/04-stabilising-wings.png" alt="Stabilising Wings" class="assembly-part"
+                data-part="3" id="cPart3">
+              <img src="assets/cannula/05-injection-port.png" alt="Injection Port with Pink Cap" class="assembly-part"
+                data-part="4" id="cPart4">
+              <img src="assets/cannula/06-port-cover-flap.png" alt="Port Cover Flap" class="assembly-part" data-part="5"
+                id="cPart5">
+              <img src="assets/cannula/07-flashback-chamber.png" alt="Flashback Chamber" class="assembly-part"
+                data-part="6" id="cPart6">
+              <img src="assets/cannula/08-luer-cap.png" alt="Vented Luer Cap" class="assembly-part" data-part="7"
+                id="cPart7">
+            </div>
+
+            <!-- Fully Assembled Cannula Layer -->
+            <div class="assembly-complete-layer" id="cannulaCompleteLayer" aria-hidden="true">
+              <img src="assets/cannula/full-cannula.png" alt="Fully Assembled IV Cannula" class="assembled-full-img"
+                id="cannulaCompleteImg">
+            </div>
+          </div>
+
+          <!-- Dynamic Side Information Card -->
+          <div class="assembly-info-card" id="cannulaInfoCard">
+            <div class="info-card-header">
+              <span class="info-part-tag" id="cannulaPartTag">PART 01 OF 08</span>
+              <span class="info-status-pill" id="cannulaStatusPill">ATTACHING...</span>
+            </div>
+            <h3 class="info-part-title" id="cannulaPartTitle">Introducer Trocar Needle</h3>
+            <p class="info-part-desc" id="cannulaPartDesc">
+              Siliconized 304 stainless steel needle ground with back-cut bevel geometry for painless venipuncture.
+            </p>
+            <div class="info-part-spec">
+              <span class="spec-label">ENGINEERING SPEC</span>
+              <span class="spec-val" id="cannulaPartSpec">Back-Cut Lancet Bevel • Siliconized 304 SS</span>
+            </div>
+            <!-- Interactive Action Hint -->
+            <div class="assembly-scroll-guide">
+              <span class="guide-icon">⟱</span>
+              <span class="guide-text" id="cannulaGuideText">Scroll down to assemble next component</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bottom Assembly Indicator / Completed Banner -->
+        <div class="assembly-bottom-indicator">
+          <div class="assembly-dots-track" id="cannulaDots">
+            <span class="assembly-dot active" data-index="0"></span>
+            <span class="assembly-dot" data-index="1"></span>
+            <span class="assembly-dot" data-index="2"></span>
+            <span class="assembly-dot" data-index="3"></span>
+            <span class="assembly-dot" data-index="4"></span>
+            <span class="assembly-dot" data-index="5"></span>
+            <span class="assembly-dot" data-index="6"></span>
+            <span class="assembly-dot" data-index="7"></span>
+          </div>
+          <div class="assembly-bonus-banner" id="cannulaBonusBanner">
+            <span class="bonus-badge" style="background: #10B981;">✓ CATHETER ASSEMBLED</span>
+            <span class="bonus-text">Clinical 20G IV Catheter Assembly Complete</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         SECTION 3: PRODUCT DETAIL + SPEC SIDEBAR
+         ======================================================================= -->
+    <section class="detail-section" id="specs">
+      <!-- Watermark text bleeding off edge -->
+      <div class="bleed-watermark" aria-hidden="true">
+        SPECIFICATION MATRIX • 0.005 mL
+      </div>
+
+      <div class="specs-matrix-container reveal-on-scroll">
+        <!-- Section Top Showcase Header (Left Info + Right 3D Visual) -->
+        <div class="specs-top-showcase">
+          <div class="specs-showcase-info">
+            <div class="specs-badge-pill">
+              <span class="tag-live-dot"></span>
+              MANUFACTURING STANDARDS • ISO 7886-1 • WHO-GMP • CE • CDSCO
+            </div>
+            <h2 class="specs-matrix-title">
+              PRECISION CLINICAL ENGINEERING.<br>
+              <span class="highlight">SURGICAL ACCURACY &amp; ZERO WASTE.</span>
+            </h2>
+            <p class="specs-matrix-desc">
+              Manufactured by Goel Allied Industries under stringent cleanroom protocols. <strong>AI-DISPO®
+                UltraFlow</strong> sterile single-use syringes deliver unwavering performance, smooth glide kinetics,
+              and absolute fluidic control for hospitals and healthcare systems worldwide.
+            </p>
+            <div class="specs-showcase-tags">
+              <span class="specs-hero-tag">Zero Dead-Space LDS Geometry</span>
+              <span class="specs-hero-tag">1.2 N Ultra-Smooth Glide</span>
+              <span class="specs-hero-tag">100% In-House ETO Sterilized</span>
+            </div>
+          </div>
+
+          <div class="specs-showcase-visual">
+            <div class="specs-visual-card">
+              <div class="specs-visual-badge">AI-DISPO® 3D MACRO SPEC</div>
+              <img src="assets/clinical_spec_hero.jpg"
+                alt="AI-DISPO UltraFlow Precision Syringe 3D Macro Engineering Render" class="specs-visual-img">
+              <div class="specs-visual-overlay-hud">
+                <span class="hud-item">CALIBRATION: ±0.005 mL</span>
+                <span class="hud-item">USP CLASS VI PP</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4-Card Bento Matrix Grid -->
+        <div class="specs-matrix-grid">
+          <!-- Card 1: Volume Range -->
+          <div class="specs-bento-card">
+            <div class="bento-card-top">
+              <span class="bento-num">01</span>
+              <span class="bento-tag">VOLUME SPECTRUM</span>
+            </div>
+            <div class="bento-metric">1mL – 50mL</div>
+            <h3 class="bento-title">Full Clinical Capacity</h3>
+            <p class="bento-text">
+              Available in 1mL, 2mL, 3mL, 5mL, 10mL, 20mL, and 50mL sizes with crystal-clear barrels and high-contrast,
+              solvent-resistant graduations for accurate micro-dosing.
+            </p>
+            <div class="bento-specs-pill">±1.5% Volume Tolerance • ISO 7886-1</div>
+          </div>
+
+          <!-- Card 2: Dead Space -->
+          <div class="specs-bento-card featured">
+            <div class="bento-card-top">
+              <span class="bento-num">02</span>
+              <span class="bento-tag">FLUIDIC GEOMETRY</span>
+            </div>
+            <div class="bento-metric">&lt; 0.005 mL</div>
+            <h3 class="bento-title">Low Dead Space (LDS)</h3>
+            <p class="bento-text">
+              Micro-machined flush-mating plunger tip eliminates medication entrapment in the hub cone, preventing
+              expensive pharmaceutical residual waste.
+            </p>
+            <div class="bento-specs-pill">Zero Drug Entrapment • 100% Delivery</div>
+          </div>
+
+          <!-- Card 3: Needles Compatibility -->
+          <div class="specs-bento-card">
+            <div class="bento-card-top">
+              <span class="bento-num">03</span>
+              <span class="bento-tag">PENETRATION PROFILE</span>
+            </div>
+            <div class="bento-metric">16G – 26G</div>
+            <h3 class="bento-title">Tri-Bevel Cannulas</h3>
+            <p class="bento-text">
+              Compatible with 304 surgical stainless steel needles in 0.5" to 1.5" lengths. Internationally color-coded
+              hubs (16G White to 26G Brown) for instant clinical gauge recognition.
+            </p>
+            <div class="bento-specs-pill">Laser-Honed Tri-Bevel • Reduced Pain</div>
+          </div>
+
+          <!-- Card 4: Sterility & Plunger -->
+          <div class="specs-bento-card">
+            <div class="bento-card-top">
+              <span class="bento-num">04</span>
+              <span class="bento-tag">STERILITY &amp; SEAL</span>
+            </div>
+            <div class="bento-metric">100% ETO</div>
+            <h3 class="bento-title">Sterility &amp; Anti-Reflux</h3>
+            <p class="bento-text">
+              100% in-house ethylene oxide sterilized with biological testing validation. Dual-ring synthetic elastomer
+              plunger seal with positive stop prevents accidental pullout.
+            </p>
+            <div class="bento-specs-pill">Blister &amp; Ribbon Pack • 5-Yr Shelf Life</div>
+          </div>
+        </div>
+
+        <!-- Bottom Action Bar & Regulatory Trust Badges -->
+        <div class="specs-bottom-bar">
+          <div class="specs-trust-badges">
+            <span class="trust-badge-item">✓ WHO-GMP CERTIFIED</span>
+            <span class="trust-badge-item">✓ CDSCO APPROVED</span>
+            <span class="trust-badge-item">✓ CE CERTIFIED</span>
+            <span class="trust-badge-item">✓ ISO 9001:2015</span>
+            <span class="trust-badge-item">✓ USP CLASS VI POLYMER</span>
+          </div>
+
+          <div class="specs-cta-group">
+            <a href="contact.html" class="btn-craft btn-craft-primary">
+              REQUEST CLINICAL SAMPLES
+            </a>
+            <a href="contact.html" class="btn-craft btn-craft-outline">
+              CONTACT PROCUREMENT
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         SECTION 3: BIG STATEMENT SECTION (CINEMATIC NEEDLE MACRO TRACK)
+         ======================================================================= -->
+    <div class="needle-scroll-track statement-section" id="statement">
+      <div class="needle-sticky-container" id="needleStickyContainer">
+
+
+
+        <div class="needle-tech-hud left-rail" aria-hidden="true">
+          <span class="needle-rail-text">CALIBRATION TOLERANCE: ±0.005 ML</span>
+        </div>
+
+        <!-- Giant background word spanning full width (glides horizontally with scroll) -->
+        <div class="statement-bg-word" id="statementBgWord" aria-hidden="true">
+          AI-DISPO
+        </div>
+
+        <div class="statement-content-wrap" id="statementContentWrap">
+          <!-- Left: Free-Floating Macro Needle Visual with Laser Inspection Hotspots -->
+          <div class="needle-macro-stage" id="needleMacroStage">
+            <div class="needle-hotspot tip" id="needleTipHotspot">
+              <span class="needle-pulse-ring"></span>
+              <span>θ=12° TRI-BEVEL GROUND</span>
+            </div>
+
+            <div class="needle-hotspot hub" id="needleHubHotspot">
+              <span class="needle-pulse-ring"></span>
+              <span>PRECISION 27G / 25G HUB</span>
+            </div>
+
+            <div class="needle-macro-wrapper" id="needleMacroWrapper">
+              <div class="needle-fluid-droplet" id="needleDroplet"></div>
+              <div class="needle-droplet-splash" id="needleDropletSplash"></div>
+              <img src="assets/syringe_macro.png"
+                alt="Macro extreme close-up of AI-DISPO ultra-sharp 25G stainless steel needle tip bevel and luer-lock hub"
+                class="needle-macro-img" id="needleMacroImg">
+            </div>
+
+            <div class="needle-droplet-ctrl-wrap">
+              <button class="btn-craft btn-craft-outline droplet-dispense-btn" id="dispenseDropletBtn">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="margin-right: 6px;">
+                  <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z" />
+                </svg>
+                DISPENSE MICRO-DROPLET (0.005 mL)
+              </button>
+              <div class="needle-telemetry-badge">
+                <span class="needle-live-dot"></span>
+                <span>CHAMBER PRIMED &bull; ZERO BUBBLE CAVITATION</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: Bold Statement Copy -->
+          <div class="statement-text-side">
+            <div class="statement-badge-pill">
+              <span class="tag-live-dot"></span>
+              SURGICAL INTEGRITY • 304 SURGICAL STEEL
+            </div>
+            <h2 class="statement-huge-title">
+              FEEL THE CLINICAL
+              <span class="accent">PRECISION &amp; GLIDE.</span>
+            </h2>
+
+            <p class="statement-lead-paragraph">
+              Every injection stroke provides immediate, unmistakable tactile control. Goel Allied Industries refines
+              the friction coefficient with medical-grade silicone lubrication to eliminate stick-slip stuttering,
+              enabling microscopic titration down to the single droplet.
+            </p>
+
+            <p class="statement-sub-paragraph" style="font-size: 15px; color: var(--ink-muted); line-height: 1.65;">
+              Featuring laser-honed 304 surgical stainless steel tri-bevel needles (16G–26G) and crystal-clear graduated
+              barrels, AI-DISPO® UltraFlow provides absolute fluidic certainty without backflow or micro-cavitation.
+            </p>
+
+            <div class="statement-stats-strip">
+              <div class="stat-item">
+                <span class="stat-num">16–26G</span>
+                <span class="stat-desc">Tri-Bevel Cannula</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-num">1.2 N</span>
+                <span class="stat-desc">Ultra-Smooth Glide</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-num">100% ETO</span>
+                <span class="stat-desc">In-House Sterile</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- =======================================================================
+         SECTION 4: FEATURE CALLOUTS (3-PILLAR INSPECTION)
+         ======================================================================= -->
+    <!-- =======================================================================
+         SECTION 4: FEATURE CALLOUTS (3-PILLAR INSPECTION)
+         ======================================================================= -->
+    <div class="features-scroll-track" id="featuresTrack">
+      <div class="features-sticky-container" id="featuresStickyContainer">
+
+        <!-- Section 4 Header & Quote -->
+        <div class="features-header-wrap" id="featuresHeaderWrap">
+          <p class="engineer-quote-line">
+            “Engineered with medical-grade polymers and laser-honed 304 surgical steel for absolute fluidic certainty
+            and zero stick-slip resistance.”
+          </p>
+          <p class="quote-author">
+            — GOEL ALLIED INDUSTRIES QUALITY &amp; R&amp;D STANDARDS
+          </p>
+          <h2 class="features-main-title">
+            THREE PILLARS OF <span style="color: var(--accent-blue);">PRECISION</span>
+          </h2>
+        </div>
+
+        <!-- Interactive Stage: Center Syringe with 3 Docking Cards -->
+        <div class="features-interactive-stage" id="featuresInteractiveStage">
+
+          <!-- Center Syringe Element -->
+          <div class="feature-center-syringe-wrap" id="featureCenterSyringeWrap">
+            <img src="assets/syringe_side.png"
+              alt="AI-DISPO UltraFlow syringe horizontal studio photography with red plunger and clear barrel"
+              class="feature-center-img" id="featureCenterImg">
+          </div>
+
+          <!-- Feature Splash Card 1 (Top Left: Needle End) -->
+          <div class="splash-feature-card pos-1" id="splashCard1" data-feature="needle">
+            <div class="card-glass-glow"></div>
+            <div class="splash-card-head">
+              <span class="splash-badge-num">01.</span>
+              <span class="splash-card-pill">16G–26G</span>
+            </div>
+            <h3 class="splash-feat-title">Tri-Bevel Cannula</h3>
+            <p class="splash-feat-desc">
+              Laser-honed 304 surgical stainless steel with ISO 6009 color-coded hubs and bonded medical silicone for
+              painless, zero-trauma penetration.
+            </p>
+          </div>
+
+          <!-- Feature Splash Card 2 (Bottom: Barrel Center) -->
+          <div class="splash-feature-card pos-2" id="splashCard2" data-feature="deadspace">
+            <div class="card-glass-glow"></div>
+            <div class="splash-card-head">
+              <span class="splash-badge-num">02.</span>
+              <span class="splash-card-pill">1–50 mL BARREL</span>
+            </div>
+            <h3 class="splash-feat-title">Zero Dead Space Barrel</h3>
+            <p class="splash-feat-desc">
+              High-transparency medical polymer with indelible high-contrast graduations and tapered nozzle hub geometry
+              to eliminate medication waste.
+            </p>
+          </div>
+
+          <!-- Feature Splash Card 3 (Top Right: Plunger Flange) -->
+          <div class="splash-feature-card pos-3" id="splashCard3" data-feature="reflux">
+            <div class="card-glass-glow"></div>
+            <div class="splash-card-head">
+              <span class="splash-badge-num">03.</span>
+              <span class="splash-card-pill">1.2N GLIDE</span>
+            </div>
+            <h3 class="splash-feat-title">Anti-Reflux Gasket</h3>
+            <p class="splash-feat-desc">
+              Dual-contact synthetic elastomer piston with positive stop ring to prevent plunger ejection, air
+              micro-bubbles, and fluid reflux.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Philosophy & Technical Specs Block (Flows seamlessly directly below) -->
+    <section class="features-philosophy-section">
+      <div class="features-philosophy-grid reveal-on-scroll">
+        <div class="philosophy-card">
+          <h3>
+            <span class="stamp-tag red">PHILOSOPHY</span>
+            RADICAL TRANSPARENCY
+          </h3>
+          <p>
+            We believe clinical equipment should inspire tactile confidence. By using 99.4% optical clarity medical
+            polypropylene, our graduations are readable from extreme oblique angles under surgical shadowless theater
+            lighting.
+          </p>
+        </div>
+        <div class="philosophy-card">
+          <h3>
+            <span class="stamp-tag dark">TOLERANCE</span>
+            MICRON-LEVEL REPRODUCIBILITY
+          </h3>
+          <p>
+            Every single batch is machine-inspected with automated optical micrometer systems, verifying needle bevel
+            acuity, luer-taper concentricity, and seal airtightness at 4 atmospheres before sterile blister sealing.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         SECTION 5: GLOBAL HEALTHCARE PARTNERS MARQUEE
+         ======================================================================= -->
+    <section class="home-partners-section" id="partners-marquee">
+      <div class="home-partners-container">
+        <div class="home-partners-header">
+          <span class="sim-pill-tag feature">GLOBAL HEALTHCARE FOOTPRINT</span>
+          <h2 class="home-partners-title">TRUSTED BY HOSPITALS &amp; HEALTH SYSTEMS WORLDWIDE</h2>
+          <p class="home-partners-sub">Delivering clinical reliability to premier healthcare networks, ICUs, and
+            government procurement agencies.</p>
+        </div>
+
+        <!-- Infinite Scrolling Partner Marquee (Row 1) -->
+        <div class="marquee-row marquee-row-1">
+          <div class="marquee-track-content">
+            <div class="partner-card">
+              <div class="p-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                  stroke-width="2">
+                  <path
+                    d="M3 21h18M9 8h1M9 12h1M9 16h1M14 8h1M14 12h1M14 16h1M5 21V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16" />
+                </svg></div>
+              <div class="p-info"><strong>Apollo Hospitals</strong><span>Tertiary Care Partner</span></div>
+            </div>
+            <div class="partner-card">
+              <div class="p-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                  stroke-width="2">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                </svg></div>
+              <div class="p-info"><strong>Max Healthcare</strong><span>Clinical Supply</span></div>
+            </div>
+            <div class="partner-card">
+              <div class="p-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                  stroke-width="2">
+                  <polygon
+                    points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                </svg></div>
+              <div class="p-info"><strong>Fortis Healthcare</strong><span>Multi-Specialty Supply</span></div>
+            </div>
+            <div class="partner-card">
+              <div class="p-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                  stroke-width="2">
+                  <path d="M6 18h8M10 22v-4M10 6a4 4 0 0 1 4 4v3a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2v-3a4 4 0 0 1 4-4z" />
+                  <circle cx="10" cy="4" r="2" />
+                </svg></div>
+              <div class="p-info"><strong>AIIMS New Delhi</strong><span>Research &amp; Hospital Supply</span></div>
+            </div>
+            <div class="partner-card">
+              <div class="p-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                  stroke-width="2">
+                  <circle cx="12" cy="12" r="10" />
+                  <line x1="2" y1="12" x2="22" y2="12" />
+                  <path
+                    d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+                </svg></div>
+              <div class="p-info"><strong>Medanta The Medicity</strong><span>Critical Care Units</span></div>
+            </div>
+            <div class="partner-card">
+              <div class="p-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                  stroke-width="2">
+                  <path
+                    d="M4.5 3v5a4.5 4.5 0 0 0 9 0V3M18 10a3 3 0 0 0-3-3h-1.5M18 10v4a5 5 0 0 1-5 5h-1a5 5 0 0 1-5-5V3" />
+                </svg></div>
+              <div class="p-info"><strong>Manipal Hospitals</strong><span>Institutional Partner</span></div>
+            </div>
+            <!-- Duplicate for infinite seamless scroll -->
+            <div class="partner-card">
+              <div class="p-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                  stroke-width="2">
+                  <path
+                    d="M3 21h18M9 8h1M9 12h1M9 16h1M14 8h1M14 12h1M14 16h1M5 21V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16" />
+                </svg></div>
+              <div class="p-info"><strong>Apollo Hospitals</strong><span>Tertiary Care Partner</span></div>
+            </div>
+            <div class="partner-card">
+              <div class="p-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                  stroke-width="2">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                </svg></div>
+              <div class="p-info"><strong>Max Healthcare</strong><span>Clinical Supply</span></div>
+            </div>
+            <div class="partner-card">
+              <div class="p-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                  stroke-width="2">
+                  <polygon
+                    points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                </svg></div>
+              <div class="p-info"><strong>Fortis Healthcare</strong><span>Multi-Specialty Supply</span></div>
+            </div>
+            <div class="partner-card">
+              <div class="p-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                  stroke-width="2">
+                  <path d="M6 18h8M10 22v-4M10 6a4 4 0 0 1 4 4v3a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2v-3a4 4 0 0 1 4-4z" />
+                  <circle cx="10" cy="4" r="2" />
+                </svg></div>
+              <div class="p-info"><strong>AIIMS New Delhi</strong><span>Research &amp; Hospital Supply</span></div>
+            </div>
+            <div class="partner-card">
+              <div class="p-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                  stroke-width="2">
+                  <circle cx="12" cy="12" r="10" />
+                  <line x1="2" y1="12" x2="22" y2="12" />
+                  <path
+                    d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+                </svg></div>
+              <div class="p-info"><strong>Medanta The Medicity</strong><span>Critical Care Units</span></div>
+            </div>
+            <div class="partner-card">
+              <div class="p-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                  stroke-width="2">
+                  <path
+                    d="M4.5 3v5a4.5 4.5 0 0 0 9 0V3M18 10a3 3 0 0 0-3-3h-1.5M18 10v4a5 5 0 0 1-5 5h-1a5 5 0 0 1-5-5V3" />
+                </svg></div>
+              <div class="p-info"><strong>Manipal Hospitals</strong><span>Institutional Partner</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Marquee Row 2 (Reverse Direction: Standards & Global Regulatory) -->
+        <div class="marquee-row marquee-row-2">
+          <div class="marquee-track-content reverse">
+            <div class="partner-card cert-card">
+              <div class="p-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                  stroke-width="2">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                  <polyline points="14 2 14 8 20 8" />
+                  <line x1="16" y1="13" x2="8" y2="13" />
+                  <line x1="16" y1="17" x2="8" y2="17" />
+                </svg></div>
+              <div class="p-info"><strong>WHO-GMP Certified</strong><span>Good Manufacturing Practice</span></div>
+            </div>
+            <div class="partner-card cert-card">
+              <div class="p-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                  stroke-width="2">
+                  <circle cx="12" cy="12" r="10" />
+                  <path d="M12 8v8M8 12h8" />
+                </svg></div>
+              <div class="p-info"><strong>CE 0197 Certified</strong><span>European Medical Device Directive</span></div>
+            </div>
+            <div class="partner-card cert-card">
+              <div class="p-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                  stroke-width="2">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                </svg></div>
+              <div class="p-info"><strong>CDSCO Approved</strong><span>Form MD-9 Manufacturing License</span></div>
+            </div>
+            <div class="partner-card cert-card">
+              <div class="p-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                  stroke-width="2">
+                  <circle cx="12" cy="12" r="3" />
+                  <path
+                    d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z" />
+                </svg></div>
+              <div class="p-info"><strong>ISO 13485:2016</strong><span>Medical Devices Quality Management</span></div>
+            </div>
+            <div class="partner-card cert-card">
+              <div class="p-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                  stroke-width="2">
+                  <path d="M10 2v7.31M14 9.3V1.99M8.5 2h7M14 9.3a6.5 6.5 0 1 1-4 0" />
+                </svg></div>
+              <div class="p-info"><strong>ISO 7886-1 &amp; 7864</strong><span>Syringe &amp; Needle Standard
+                  Compliant</span></div>
+            </div>
+            <div class="partner-card cert-card">
+              <div class="p-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                  stroke-width="2">
+                  <circle cx="12" cy="12" r="10" />
+                  <line x1="2" y1="12" x2="22" y2="12" />
+                  <path
+                    d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+                </svg></div>
+              <div class="p-info"><strong>40+ Export Nations</strong><span>Global Supply Distribution</span></div>
+            </div>
+            <!-- Duplicate for infinite seamless scroll -->
+            <div class="partner-card cert-card">
+              <div class="p-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                  stroke-width="2">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                  <polyline points="14 2 14 8 20 8" />
+                  <line x1="16" y1="13" x2="8" y2="13" />
+                  <line x1="16" y1="17" x2="8" y2="17" />
+                </svg></div>
+              <div class="p-info"><strong>WHO-GMP Certified</strong><span>Good Manufacturing Practice</span></div>
+            </div>
+            <div class="partner-card cert-card">
+              <div class="p-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                  stroke-width="2">
+                  <circle cx="12" cy="12" r="10" />
+                  <path d="M12 8v8M8 12h8" />
+                </svg></div>
+              <div class="p-info"><strong>CE 0197 Certified</strong><span>European Medical Device Directive</span></div>
+            </div>
+            <div class="partner-card cert-card">
+              <div class="p-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                  stroke-width="2">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                </svg></div>
+              <div class="p-info"><strong>CDSCO Approved</strong><span>Form MD-9 Manufacturing License</span></div>
+            </div>
+            <div class="partner-card cert-card">
+              <div class="p-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                  stroke-width="2">
+                  <circle cx="12" cy="12" r="3" />
+                  <path
+                    d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z" />
+                </svg></div>
+              <div class="p-info"><strong>ISO 13485:2016</strong><span>Medical Devices Quality Management</span></div>
+            </div>
+            <div class="partner-card cert-card">
+              <div class="p-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                  stroke-width="2">
+                  <path d="M10 2v7.31M14 9.3V1.99M8.5 2h7M14 9.3a6.5 6.5 0 1 1-4 0" />
+                </svg></div>
+              <div class="p-info"><strong>ISO 7886-1 &amp; 7864</strong><span>Syringe &amp; Needle Standard
+                  Compliant</span></div>
+            </div>
+            <div class="partner-card cert-card">
+              <div class="p-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                  stroke-width="2">
+                  <circle cx="12" cy="12" r="10" />
+                  <line x1="2" y1="12" x2="22" y2="12" />
+                  <path
+                    d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+                </svg></div>
+              <div class="p-info"><strong>40+ Export Nations</strong><span>Global Supply Distribution</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         SECTION 6: CLINICAL EVALUATION & BULK PROCUREMENT CTA BANNER
+         ======================================================================= -->
+    <section class="home-cta-banner-section" id="clinical-cta-banner">
+      <div class="home-cta-banner-container reveal-on-scroll">
+        <div class="home-cta-glass-card">
+          <div class="cta-badge-pill">
+            <span class="tag-live-dot" style="background: #00A8FF;"></span>
+            DIRECT FACTORY PROCUREMENT &amp; HOSPITAL SAMPLE PROGRAM
+          </div>
+          <h2 class="cta-banner-title">
+            UPGRADE YOUR CLINICAL FLEET WITH <br>
+            <span class="highlight">AI-DISPO® ULTRAFLOW™ PRECISION.</span>
+          </h2>
+          <p class="cta-banner-sub">
+            Request complimentary sample evaluation kits for your clinical team or download our comprehensive technical
+            specifications catalogue for institutional tenders.
+          </p>
+
+          <div class="cta-button-group">
+            <a href="contact.html" class="btn-craft btn-craft-primary"
+              style="background: #00A8FF; color: #040C18; padding: 14px 28px; font-size: 13px; font-weight: 800;">
+              REQUEST EVALUATION SAMPLES
+            </a>
+            <a href="catalogue.html" class="btn-craft btn-craft-outline"
+              style="border-color: rgba(255,255,255,0.4); color: #fff; padding: 14px 28px; font-size: 13px; font-weight: 700;">
+              DOWNLOAD E-CATALOGUE PDF
+            </a>
+            <a href="contact.html" class="btn-craft"
+              style="background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.2); color: #94A3B8; padding: 14px 24px; font-size: 13px;">
+              TALK TO PROCUREMENT
+            </a>
+          </div>
+
+          <div class="cta-assurance-row">
+            <span class="cta-dot">•</span>
+            <span>Same-Day Sample Dispatch</span>
+            <span class="cta-dot">•</span>
+            <span>100% Quality Lot Certificates</span>
+            <span class="cta-dot">•</span>
+            <span>Worldwide Export Compliance</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- =========================================================================
+       SECTION 6: FOOTER / CLOSING
+       ========================================================================= -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-top-grid">
+
+        <!-- Brand Summary -->
+        <div class="footer-brand-col">
+          <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+            <img src="assets/ChatGPT Image Sep 28, 2026, 04_42_50 PM.png" alt="GAI AI-DISPO Logo"
+              style="height: 48px; width: auto; object-fit: contain; filter: drop-shadow(0 2px 6px rgba(1, 53, 114, 0.16));">
+            <div class="footer-logo">AI-DISPO<span style="color:var(--accent-blue)">.</span></div>
+          </div>
+          <p class="footer-brand-desc">
+            UltraFlow Precision Syringes. Advanced micro-fluidic disposables engineered for clinical mastery, zero
+            medication waste, and uncompromising patient comfort.
+          </p>
+          <div class="regulatory-stamp-row">
+            <span class="stamp-tag red">CE 0197</span>
+            <span class="stamp-tag dark">FDA 510(k)</span>
+            <span class="stamp-tag dark">ISO 13485:2016</span>
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="footer-col">
+          <h4>EXPLORE PRODUCTS</h4>
+          <ul class="footer-links">
+            <li><a href="syringe.html">Disposable Hypodermic Syringes (1mL – 50mL)</a></li>
+            <li><a href="iv-cannula.html">Intravenous Cannulas (Ported &amp; Winged)</a></li>
+            <li><a href="infusion-sets.html">Intravenous Infusion Sets (Gravity &amp; Blood)</a></li>
+            <li><a href="needle.html">Hypodermic Needles (Tri-Bevel)</a></li>
+            <li><a href="other-products.html">Fluid Accessories &amp; Stopcocks</a></li>
+            <li><a href="upcoming-products.html">Urine Bag, Ryle's Tube, Scalp Vein &amp; Diaper</a></li>
+            <li><a href="oem.html">OEM &amp; Contract Manufacturing</a></li>
+          </ul>
+        </div>
+
+        <!-- Documentation -->
+        <div class="footer-col">
+          <h4>COMPANY &amp; RESOURCES</h4>
+          <ul class="footer-links">
+            <li><a href="about.html">About Goel Allied Industries</a></li>
+            <li><a href="catalogue.html">E-Catalogue &amp; Company Profile</a></li>
+            <li><a href="gallery.html">Facility &amp; Product Gallery</a></li>
+            <li><a href="blog.html">Clinical Insights &amp; Blog</a></li>
+            <li><a href="faq.html">Frequently Asked Questions (FAQ)</a></li>
+            <li><a href="privacy-policy.html">Privacy Policy</a></li>
+            <li><a href="terms-conditions.html">Terms &amp; Conditions</a></li>
+            <li><a href="contact.html">Corporate Contact &amp; Inquiries</a></li>
+          </ul>
+        </div>
+
+        <!-- Dispatch Newsletter -->
+        <div class="footer-col">
+          <h4>CLINICAL DISPATCH</h4>
+          <p style="font-size: 13px; color: var(--ink-muted); margin-bottom: 12px;">
+            Subscribe for lot batch notifications, regulatory updates, and bulk pricing schedules.
+          </p>
+          <form class="newsletter-form" id="newsletterForm">
+            <div class="newsletter-input-wrap">
+              <input type="email" placeholder="clinician@hospital.org" class="newsletter-input" required>
+              <button type="submit" class="newsletter-btn">→</button>
+            </div>
+            <span style="font-size: 11px; color: var(--ink-faint); font-family: var(--font-mono);">No spam. Only
+              technical bulletin updates.</span>
+          </form>
+        </div>
+
+      </div>
+
+      <!-- Bottom Bar -->
+      <div class="footer-bottom-bar">
+        <div>© 2026 Goel Allied Industries (Brand: AI-DISPO®). All Rights Reserved. • Designed and Developed by <a
+            href="https://alightwaysolutions.com/" target="_blank" rel="noopener noreferrer"
+            style="color: var(--logo-navy); font-weight: 700; text-decoration: underline; text-underline-offset: 2px;">Alightway
+            Solutions</a></div>
+        <div class="footer-legal-links" style="display: flex; gap: 16px; align-items: center; font-size: 12px;">
+          <a href="privacy-policy.html" style="color: var(--ink-muted); text-decoration: none;">Privacy Policy</a>
+          <span style="color: var(--ink-faint);">•</span>
+          <a href="terms-conditions.html" style="color: var(--ink-muted); text-decoration: none;">Terms &amp;
+            Conditions</a>
+          <span style="color: var(--ink-faint);">•</span>
+          <a href="faq.html" style="color: var(--ink-muted); text-decoration: none;">FAQs</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- =========================================================================
+       OFF-CANVAS ORDER / SAMPLE DRAWER
+       ========================================================================= -->
+  <div class="drawer-backdrop" id="drawerBackdrop">
+    <div class="craft-drawer" id="craftDrawer">
+      <div class="drawer-header">
+        <h3 class="drawer-title" id="drawerHeading">ORDER / SAMPLES</h3>
+        <button class="drawer-close-btn" id="drawerCloseBtn">&times;</button>
+      </div>
+
+      <div class="drawer-body" id="drawerBody">
+        <div class="stamp-tag red" id="drawerBadge">EXPRESS DISPATCH</div>
+
+        <div id="cartItemsList" style="display: flex; flex-direction: column; gap: 12px;">
+          <!-- Selected product will populate here -->
+        </div>
+
+        <form id="orderSampleForm" style="display: flex; flex-direction: column; gap: 16px; margin-top: 10px;">
+          <div>
+            <label
+              style="font-family: var(--font-mono); font-size: 11px; font-weight: 700; text-transform: uppercase;">Organization
+              / Clinic Name</label>
+            <input type="text" required placeholder="e.g. St. Jude Research Labs"
+              style="width: 100%; padding: 10px; border: var(--border-bold); background: var(--bg-cream-light); margin-top: 4px;">
+          </div>
+
+          <div>
+            <label
+              style="font-family: var(--font-mono); font-size: 11px; font-weight: 700; text-transform: uppercase;">Professional
+              Email</label>
+            <input type="email" required placeholder="e.g. procurement@health.org"
+              style="width: 100%; padding: 10px; border: var(--border-bold); background: var(--bg-cream-light); margin-top: 4px;">
+          </div>
+
+          <div>
+            <label
+              style="font-family: var(--font-mono); font-size: 11px; font-weight: 700; text-transform: uppercase;">Requested
+              Volume / Format</label>
+            <select id="formatSelect"
+              style="width: 100%; padding: 10px; border: var(--border-bold); background: var(--bg-cream-light); margin-top: 4px; font-family: var(--font-mono);">
+              <option value="3ml">3.0 mL Standard Clinical (Box of 100)</option>
+              <option value="1ml">1.0 mL Precision Micro (Box of 100)</option>
+              <option value="5ml">5.0 mL High-Flow (Box of 100)</option>
+              <option value="10ml">10.0 mL Infusion (Box of 100)</option>
+              <option value="sample_kit">Complete Evaluation Sample Kit (Free for Clinics)</option>
+            </select>
+          </div>
+
+          <div>
+            <label
+              style="font-family: var(--font-mono); font-size: 11px; font-weight: 700; text-transform: uppercase;">Shipping
+              Address</label>
+            <textarea rows="2" placeholder="Full postal delivery address..."
+              style="width: 100%; padding: 10px; border: var(--border-bold); background: var(--bg-cream-light); margin-top: 4px;"></textarea>
+          </div>
+
+          <button type="submit" class="btn-craft btn-craft-primary" style="width: 100%; margin-top: 10px;">
+            CONFIRM REQUEST & DISPATCH
+          </button>
+        </form>
+      </div>
+
+      <div class="drawer-footer">
+        <span style="font-family: var(--font-body); font-size: 11px; color: var(--ink-muted);">
+          SAME-DAY DISPATCH FOR ORDERS RECEIVED BEFORE 2:00 PM EST.
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       WELCOME / SHOWCASE VIDEO POPUP MODAL (ON WEBSITE VISIT)
+       ========================================================================= -->
+  <div class="video-intro-modal" id="videoIntroModal" aria-modal="true" role="dialog"
+    aria-label="AI-DISPO Showcase Video">
+    <div class="video-modal-backdrop" id="videoModalBackdrop"></div>
+    <div class="video-modal-dialog">
+      <div class="video-modal-header">
+        <div class="video-modal-title-wrap">
+          <span class="video-modal-pulse-dot"></span>
+          <span class="video-modal-tag">AI-DISPO® • Clinical Manufacturing Showcase</span>
+        </div>
+        <button type="button" class="video-modal-close" id="videoModalClose" aria-label="Close video popup">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+            stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+      <div class="video-modal-body">
+        <video id="introPopupVideo" autoplay muted defaultMuted playsinline loop
+          poster="assets/ChatGPT Image Sep 28, 2026, 04_42_50 PM.png">
+          <source src="assets/gemini_generated_video_283ade2f.mp4" type="video/mp4">
+          Your browser does not support HTML5 video.
+        </video>
+      </div>
+      <div class="video-modal-footer">
+        <span class="video-modal-hint">Click close or tap outside to enter the AI-DISPO portal</span>
+        <button type="button" class="video-modal-btn-enter" id="videoModalEnterBtn">
+          ENTER WEBSITE →
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    /* Welcome Video Popup Modal */
+    .video-intro-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 999999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.35s;
+    }
+
+    .video-intro-modal.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .video-modal-backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(4, 12, 24, 0.88);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      cursor: pointer;
+    }
+
+    .video-modal-dialog {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      max-width: 860px;
+      background: #0A1C30;
+      border-radius: 18px;
+      border: 1.5px solid rgba(0, 168, 255, 0.35);
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.75), 0 0 45px rgba(0, 168, 255, 0.22);
+      overflow: hidden;
+      transform: scale(0.92) translateY(12px);
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .video-intro-modal.active .video-modal-dialog {
+      transform: scale(1) translateY(0);
+    }
+
+    .video-modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 20px;
+      background: linear-gradient(90deg, #071728 0%, #0C233C 100%);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .video-modal-title-wrap {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .video-modal-pulse-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #10B981;
+      box-shadow: 0 0 10px #10B981;
+      animation: pulseGreen 1.8s infinite;
+    }
+
+    @keyframes pulseGreen {
+      0% {
+        transform: scale(0.9);
+        opacity: 0.8;
+      }
+
+      50% {
+        transform: scale(1.25);
+        opacity: 1;
+        box-shadow: 0 0 14px #10B981;
+      }
+
+      100% {
+        transform: scale(0.9);
+        opacity: 0.8;
+      }
+    }
+
+    .video-modal-tag {
+      font-family: var(--font-body);
+      font-size: 12px;
+      font-weight: 700;
+      color: #38BDF8;
+      letter-spacing: 0.04em;
+    }
+
+    .video-modal-close {
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 50%;
+      color: #E2E8F0;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .video-modal-close:hover {
+      background: #EF4444;
+      border-color: #EF4444;
+      color: #FFFFFF;
+      transform: scale(1.1) rotate(90deg);
+    }
+
+    .video-modal-body {
+      position: relative;
+      width: 100%;
+      background: #000000;
+      line-height: 0;
+    }
+
+    .video-modal-body video {
+      width: 100%;
+      height: auto;
+      max-height: 68vh;
+      display: block;
+      object-fit: contain;
+      background: #000;
+    }
+
+    .video-modal-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 12px 20px;
+      background: #061322;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      flex-wrap: wrap;
+    }
+
+    .video-modal-hint {
+      font-size: 12px;
+      color: #94A3B8;
+      font-family: var(--font-body);
+    }
+
+    .video-modal-btn-enter {
+      padding: 9px 20px;
+      border-radius: 8px;
+      background: #00A8FF;
+      color: #FFFFFF;
+      font-family: var(--font-body);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 14px rgba(0, 168, 255, 0.35);
+    }
+
+    .video-modal-btn-enter:hover {
+      background: #0284C7;
+      transform: translateY(-1px);
+      box-shadow: 0 6px 18px rgba(0, 168, 255, 0.5);
+    }
+
+    @media (max-width: 600px) {
+      .video-modal-dialog {
+        border-radius: 12px;
+      }
+
+      .video-modal-header,
+      .video-modal-footer {
+        padding: 10px 14px;
+      }
+
+      .video-modal-tag {
+        font-size: 10px;
+      }
+
+      .video-modal-hint {
+        display: none;
+      }
+
+      .video-modal-btn-enter {
+        width: 100%;
+        text-align: center;
+      }
+    }
+  </style>
+
+  <script>
+    // Video Intro Modal Handler (Only on initial first visit per session)
+    document.addEventListener('DOMContentLoaded', () => {
+      const modal = document.getElementById('videoIntroModal');
+      const backdrop = document.getElementById('videoModalBackdrop');
+      const closeBtn = document.getElementById('videoModalClose');
+      const enterBtn = document.getElementById('videoModalEnterBtn');
+      const video = document.getElementById('introPopupVideo');
+
+      // If user has already visited/seen the intro in this session, keep modal closed
+      if (sessionStorage.getItem('ai_dispo_intro_shown') === 'true') {
+        if (modal) {
+          modal.classList.remove('active');
+          modal.style.display = 'none';
+        }
+        if (video) video.pause();
+        return;
+      }
+
+      if (video) {
+        video.muted = true;
+        video.defaultMuted = true;
+        video.volume = 0;
+        video.addEventListener('volumechange', () => {
+          if (!video.muted || video.volume > 0) {
+            video.muted = true;
+            video.volume = 0;
+          }
+        });
+        video.addEventListener('play', () => {
+          video.muted = true;
+          video.volume = 0;
+        });
+      }
+
+      function closeModal() {
+        if (!modal) return;
+        sessionStorage.setItem('ai_dispo_intro_shown', 'true');
+        if (video) video.pause();
+        modal.classList.remove('active');
+        setTimeout(() => {
+          modal.style.display = 'none';
+        }, 360);
+      }
+
+      if (closeBtn) closeBtn.addEventListener('click', closeModal);
+      if (backdrop) backdrop.addEventListener('click', closeModal);
+      if (enterBtn) enterBtn.addEventListener('click', closeModal);
+
+      // When clicking Home, logo, or any navbar link, mark session and close modal
+      document.querySelectorAll('.site-header a, .mobile-nav-drawer a, .nav-link, .brand-logo-wrap').forEach(link => {
+        link.addEventListener('click', () => {
+          sessionStorage.setItem('ai_dispo_intro_shown', 'true');
+          closeModal();
+        });
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal && modal.classList.contains('active')) {
+          closeModal();
+        }
+      });
+
+      // Show popup only on first initial visit
+      setTimeout(() => {
+        if (sessionStorage.getItem('ai_dispo_intro_shown') === 'true') {
+          if (modal) {
+            modal.classList.remove('active');
+            modal.style.display = 'none';
+          }
+          return;
+        }
+
+        if (modal) {
+          sessionStorage.setItem('ai_dispo_intro_shown', 'true');
+          modal.classList.add('active');
+          if (video) {
+            video.muted = true;
+            video.defaultMuted = true;
+            video.volume = 0;
+            const playPromise = video.play();
+            if (playPromise !== undefined) {
+              playPromise.catch(() => { });
+            }
+          }
+        }
+      }, 180);
+    });
+  </script>
+
+  <script src="app.js"></script>
+</body>
+
+</html>

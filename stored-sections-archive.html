@@ -1,0 +1,209 @@
+<!-- =========================================================================
+     ARCHIVED SECTIONS STORE: GOEL ALLIED INDUSTRIES / AI-DISPO®
+     This file preserves the exact HTML, structure, and documentation for:
+       1. SECTION: HIGH-VELOCITY PENETRATION & LOCK (Ballistic Impact Lab)
+       2. SECTION: CALCULATE MEDICATION SAVED (Clinical ROI Calculator)
+     
+     HOW TO RESTORE:
+     Copy and paste either or both sections below back into `index.html`
+     right before `<footer class="site-footer">`.
+     ========================================================================= -->
+
+<!-- =========================================================================
+     1. SECTION: BALLISTIC NEEDLE DYNAMICS (HIGH-VELOCITY PENETRATION & LOCK)
+     ========================================================================= -->
+<section class="impact-section" id="impactLab">
+  <div class="impact-inner-wrap reveal-on-scroll">
+
+    <!-- Header & Action Row -->
+    <div class="impact-header-row">
+      <div class="impact-title-group">
+        <div class="impact-tags">
+          <span class="stamp-tag red">BALLISTIC NEEDLE DYNAMICS</span>
+          <span class="stamp-tag dark">TEST MATRIX: ISO 7864 &amp; 9626</span>
+        </div>
+        <h2 class="impact-headline">HIGH-VELOCITY <span class="accent">PENETRATION &amp; LOCK</span></h2>
+        <p class="impact-subtext">
+          High-speed clinical simulation: Watch the UltraFlow™ 25G tri-bevel cannula launch across 3D perspective
+          and impale directly into the clinical elastomer target. Zero lateral deflection, instant seal penetration,
+          and mechanical spring absorption.
+        </p>
+      </div>
+
+      <div class="impact-controls-bar">
+        <button class="btn-craft btn-craft-primary" id="fireNeedleBtn">
+          LAUNCH &amp; STICK NEEDLE
+        </button>
+        <div class="gauge-selector-wrap">
+          <span class="gauge-lbl">CANAL GAUGE:</span>
+          <div class="gauge-pills">
+            <button class="gauge-pill active" data-gauge="25G">25G Standard</button>
+            <button class="gauge-pill" data-gauge="27G">27G Micro</button>
+            <button class="gauge-pill" data-gauge="30G">30G Pediatric</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sticking Arena: Target Board + Live Diagnostics Panel -->
+    <div class="impact-arena-container">
+
+      <!-- Target Chamber / Board with 3D Perspective -->
+      <div class="impact-target-board" id="impactTargetBoard">
+
+        <!-- Concentric Laser & Millimeter Calibration Rings -->
+        <div class="target-rings-matrix">
+          <div class="ring ring-outer"></div>
+          <div class="ring ring-mid"></div>
+          <div class="ring ring-inner"></div>
+          <div class="ring ring-bullseye">
+            <div class="bullseye-center" id="bullseyeCenter"></div>
+          </div>
+
+          <!-- Crosshairs -->
+          <div class="target-crosshair-h"></div>
+          <div class="target-crosshair-v"></div>
+          <div class="target-diag-1"></div>
+          <div class="target-diag-2"></div>
+        </div>
+
+        <!-- Dynamic Shockwave Ring (Blasts outward upon impact) -->
+        <div class="impact-shockwave" id="impactShockwave"></div>
+        <div class="impact-flash" id="impactFlash"></div>
+        <div class="impact-sparks-wrap" id="impactSparksWrap" aria-hidden="true"></div>
+        <div class="target-laser-pointer" id="targetLaserPointer" aria-hidden="true"></div>
+        <div class="target-interactive-click-hint"><span>[ CLICK ANYWHERE ON MATRIX TO TARGET &amp; FIRE ]</span>
+        </div>
+
+        <!-- Ink Splatter / Decal at Puncture Center -->
+        <div class="impact-puncture-mark" id="impactPunctureMark">
+          <div class="puncture-hole"></div>
+          <div class="puncture-cracks"></div>
+        </div>
+
+        <!-- THE FLYING SYRINGE CHASSIS (Flies in & quivers stuck in the board) -->
+        <div class="flying-syringe-chassis" id="flyingSyringeChassis">
+          <img src="assets/syringe_hero.png" alt="AI-DISPO Ballistic Syringe piercing target"
+            class="flying-syringe-img" id="flyingSyringeImg">
+          <div class="needle-tip-anchor"></div>
+        </div>
+
+        <!-- Target HUD Status Indicator -->
+        <div class="target-hud-badge" id="targetHudBadge">
+          <span class="hud-status-dot"></span>
+          <span class="hud-status-text" id="hudStatusText">STANDBY • READY FOR LAUNCH</span>
+        </div>
+      </div>
+
+      <!-- Live Telemetry / Diagnostics Dashboard -->
+      <div class="impact-telemetry-panel">
+        <div class="telemetry-header">
+          <div class="telemetry-title">BALLISTIC SENSOR TELEMETRY</div>
+          <div class="telemetry-lot">LOT: UF-9042 • RIGID CANNULA</div>
+        </div>
+
+        <div class="telemetry-metrics-grid">
+          <div class="telemetry-metric-card">
+            <div class="metric-label">PENETRATION FORCE</div>
+            <div class="metric-val" id="metricForce">0.82 <span class="unit">N</span></div>
+            <div class="metric-bar">
+              <div class="metric-bar-fill" id="barForce" style="width: 28%;"></div>
+            </div>
+            <div class="metric-sub">64% lower drag than standard</div>
+          </div>
+
+          <div class="telemetry-metric-card">
+            <div class="metric-label">DEFLECTION ANGLE</div>
+            <div class="metric-val" id="metricDeflection">0.00 <span class="unit">DEG</span></div>
+            <div class="metric-bar">
+              <div class="metric-bar-fill" id="barDeflection" style="width: 2%;"></div>
+            </div>
+            <div class="metric-sub">Zero lateral tissue drift</div>
+          </div>
+
+          <div class="telemetry-metric-card">
+            <div class="metric-label">STRIKE VELOCITY</div>
+            <div class="metric-val" id="metricSpeed">4.8 <span class="unit">M/S</span></div>
+            <div class="metric-bar">
+              <div class="metric-bar-fill" id="barSpeed" style="width: 82%;"></div>
+            </div>
+            <div class="metric-sub">Instantaneous kinetic insertion</div>
+          </div>
+
+          <div class="telemetry-metric-card">
+            <div class="metric-label">SEAL ENGAGEMENT</div>
+            <div class="metric-val" id="metricIntegrity">100 <span class="unit">%</span></div>
+            <div class="metric-bar">
+              <div class="metric-bar-fill" id="barIntegrity" style="width: 100%;"></div>
+            </div>
+            <div class="metric-sub">Zero coring / hermetic retention</div>
+          </div>
+        </div>
+
+        <div class="telemetry-log-console">
+          <div class="console-label">CLINICAL STRIKE LOG:</div>
+          <div class="console-line-wrap" id="consoleLog">
+            <div class="console-entry">[SYS] Target elastomer membrane calibrated.</div>
+            <div class="console-entry">[SYS] 25G Tri-Bevel cannula loaded into 3D trajectory guide.</div>
+            <div class="console-entry highlight">[READY] Waiting for launch trigger...</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+
+<!-- =========================================================================
+     2. SECTION: CLINICAL ROI CALCULATOR (CALCULATE MEDICATION SAVED)
+     ========================================================================= -->
+<section class="calculator-section" id="calculator">
+  <div class="calc-container reveal-on-scroll">
+    <div class="calc-left">
+      <span class="stamp-tag red">CLINICAL ROI CALCULATOR</span>
+      <h3>CALCULATE MEDICATION SAVED</h3>
+      <p>
+        See how much medication volume and operational budget your clinic saves each month by switching to AI-DISPO
+        Low Dead Space (LDS) technology.
+      </p>
+
+      <div class="calc-slider-group">
+        <div class="calc-slider-header">
+          <span>MONTHLY INJECTIONS / PROCEDURES:</span>
+          <span class="calc-slider-val" id="injectionsValDisplay">5,000 doses</span>
+        </div>
+        <input type="range" min="500" max="50000" step="500" value="5000" class="calc-range-input"
+          id="injectionsSlider">
+      </div>
+
+      <div class="calc-slider-group">
+        <div class="calc-slider-header">
+          <span>AVG. MEDICATION COST PER ML:</span>
+          <span class="calc-slider-val" id="costValDisplay">$45 / mL</span>
+        </div>
+        <input type="range" min="5" max="250" step="5" value="45" class="calc-range-input" id="costSlider">
+      </div>
+    </div>
+
+    <div class="calc-results-box">
+      <div>
+        <div class="calc-res-title">ESTIMATED ANNUAL RECOVERY</div>
+        <div class="calc-big-num" id="calcSavingsMoney">$21,600</div>
+        <div class="calc-big-label">Direct Medication Cost Saved / Year</div>
+      </div>
+
+      <div>
+        <div class="calc-savings-row">
+          <span>Fluid Volume Reclaimed:</span>
+          <span class="val" id="calcVolumeSaved">480.0 mL / yr</span>
+        </div>
+        <div class="calc-savings-row" style="margin-top: 8px;">
+          <span>Extra Doses Extracted:</span>
+          <span class="val" id="calcExtraDoses">+960 Doses</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

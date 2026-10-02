@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Medical IV Sets & Blood Transfusion Systems | AI-DISPO® Precision Engineering</title>
+  <meta name="description" content="Medical IV Infusion Sets and Blood Transfusion Systems. Macro-drip, micro-drip pediatric, and dual chamber blood lines with interactive drop simulator.">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  
+  <link rel="icon" type="image/png" href="assets/ChatGPT Image Sep 28, 2026, 04_42_50 PM.png">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="products.css">
+</head>
+<body>
+
+  <!-- Clinical Reticle Cursor -->
+  <div class="clinical-cursor" id="clinicalCursor" aria-hidden="true">
+    <div class="cursor-crosshair"></div>
+    <div class="cursor-reticle"></div>
+    <div class="cursor-coords" id="cursorCoords">000.000</div>
+  </div>
+
+  <div class="grain-overlay" aria-hidden="true"></div>
+
+  <!-- FIXED VIEWPORT FRAME -->
+  <div class="viewport-frame" aria-hidden="true">
+    <div class="frame-corner top-left"></div>
+    <div class="frame-corner top-right"></div>
+    <div class="frame-corner bottom-left"></div>
+    <div class="frame-corner bottom-right"></div>
+  </div>
+
+  <!-- SITE HEADER -->
+  <header class="site-header" id="mainHeader">
+    <div class="nav-left">
+      <a href="index.html#heroTrack" class="brand-logo-wrap">
+        <img src="assets/ChatGPT Image Sep 28, 2026, 04_42_50 PM.png" alt="GAI AI-DISPO Logo" class="brand-logo-img">
+        <span class="brand-logo">AI-DISPO<span class="accent-dot">.</span></span>
+      </a>
+    </div>
+
+    <nav class="nav-center" aria-label="Main Navigation">
+      <a href="index.html" class="nav-link">Home</a>
+      
+      <!-- Product Dropdown Menu -->
+      <div class="nav-item-dropdown" id="productDropdown">
+        <a href="infusion-sets.html" class="nav-link nav-dropdown-trigger active" id="productDropdownBtn" aria-haspopup="true" aria-expanded="false">
+          Product
+          <svg class="dropdown-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </a>
+        <div class="nav-dropdown-menu" id="productMenu" role="menu">
+          <a href="syringe.html" class="dropdown-item" role="menuitem">
+            <div class="dropdown-item-thumb">
+              <img src="assets/prod_syringe.jpg" alt="Syringe" class="dropdown-thumb-img">
+            </div>
+            <div class="dropdown-item-info">
+              <span class="dropdown-item-title">Disposable Hypodermic Syringe</span>
+              <span class="dropdown-item-sub">UltraFlow 1mL – 10mL Clinical</span>
+            </div>
+          </a>
+
+          <a href="iv-cannula.html" class="dropdown-item" role="menuitem">
+            <div class="dropdown-item-thumb">
+              <img src="assets/prod_iv_cannula.jpg" alt="IV Cannula" class="dropdown-thumb-img">
+            </div>
+            <div class="dropdown-item-info">
+              <span class="dropdown-item-title">Intravenous Cannula</span>
+              <span class="dropdown-item-sub">Ported &amp; Winged Catheters</span>
+            </div>
+          </a>
+
+          <a href="infusion-sets.html" class="dropdown-item active" role="menuitem">
+            <div class="dropdown-item-thumb">
+              <img src="assets/prod_iv_set.jpg" alt="Infusion sets / IV sets" class="dropdown-thumb-img">
+            </div>
+            <div class="dropdown-item-info">
+              <span class="dropdown-item-title">Intravenous Infusion Set</span>
+              <span class="dropdown-item-sub">Gravity &amp; Micro-Drip Infusion</span>
+            </div>
+          </a>
+
+          <a href="needle.html" class="dropdown-item" role="menuitem">
+            <div class="dropdown-item-thumb">
+              <img src="assets/prod_needle.jpg" alt="Needle" class="dropdown-thumb-img">
+            </div>
+            <div class="dropdown-item-info">
+              <span class="dropdown-item-title">Hypodermic Needle</span>
+              <span class="dropdown-item-sub">Tri-Bevel Hypodermic Cannulas</span>
+            </div>
+          </a>
+
+          <a href="other-products.html" class="dropdown-item" role="menuitem">
+            <div class="dropdown-item-thumb">
+              <img src="assets/prod_other.jpg" alt="Other Product" class="dropdown-thumb-img">
+            </div>
+            <div class="dropdown-item-info">
+              <span class="dropdown-item-title">Other Product</span>
+              <span class="dropdown-item-sub">Gloves, Medical Tape &amp; Blood Transfusion</span>
+            </div>
+          </a>
+
+          <a href="upcoming-products.html" class="dropdown-item upcoming" role="menuitem">
+            <div class="dropdown-item-thumb">
+              <img src="assets/prod_upcoming.jpg" alt="Upcoming Product" class="dropdown-thumb-img">
+            </div>
+            <div class="dropdown-item-info">
+              <span class="dropdown-item-title">Upcoming Product</span>
+              <span class="dropdown-item-sub">Urine Bag, Ryle's Tube, Scalp Vein &amp; Diaper</span>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <a href="about.html" class="nav-link">About Us</a>
+      <a href="gallery.html" class="nav-link">Gallery</a>
+      <a href="blog.html" class="nav-link">Blog</a>
+      <a href="oem.html" class="nav-link">OEM / ODM</a>
+      <a href="catalogue.html" class="nav-link">E-Catalogue</a>
+    </nav>
+
+    <div class="nav-right">
+      <a href="contact.html" class="btn-craft btn-craft-primary" id="topContactBtn">
+        CONTACT US
+      </a>
+      <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Open Mobile Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- MOBILE NAVIGATION DRAWER -->
+  <div class="mobile-nav-backdrop" id="mobileNavBackdrop"></div>
+  <div class="mobile-nav-drawer" id="mobileNavDrawer" aria-hidden="true">
+    <div class="mobile-nav-header">
+      <div class="brand-logo-wrap">
+        <img src="assets/ChatGPT Image Sep 28, 2026, 04_42_50 PM.png" alt="GAI AI-DISPO Logo" class="brand-logo-img">
+        <span class="brand-logo">AI-DISPO<span class="accent-dot">.</span></span>
+      </div>
+      <button class="mobile-nav-close" id="mobileNavClose" aria-label="Close Navigation Menu">&times;</button>
+    </div>
+
+    <div class="mobile-nav-links">
+      <a href="index.html" class="mobile-nav-link">Home</a>
+      
+      <div class="mobile-nav-dropdown" id="mobileProductDropdown">
+        <button class="mobile-nav-dropdown-btn" id="mobileProductToggle" type="button">
+          <span>Product</span>
+          <svg class="dropdown-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </button>
+        <div class="mobile-dropdown-list" id="mobileProductList">
+          <a href="syringe.html" class="mobile-dropdown-item">
+            <img src="assets/prod_syringe.jpg" alt="Syringe" class="mobile-thumb">
+            <div>
+              <strong>Disposable Hypodermic Syringe</strong>
+              <small>UltraFlow 1mL – 10mL Clinical</small>
+            </div>
+          </a>
+          <a href="iv-cannula.html" class="mobile-dropdown-item">
+            <img src="assets/prod_iv_cannula.jpg" alt="IV Cannula" class="mobile-thumb">
+            <div>
+              <strong>Intravenous Cannula</strong>
+              <small>Ported &amp; Winged Catheters</small>
+            </div>
+          </a>
+          <a href="infusion-sets.html" class="mobile-dropdown-item active">
+            <img src="assets/prod_iv_set.jpg" alt="Infusion sets / IV sets" class="mobile-thumb">
+            <div>
+              <strong>Intravenous Infusion Set</strong>
+              <small>Gravity &amp; Micro-Drip Infusion</small>
+            </div>
+          </a>
+          <a href="needle.html" class="mobile-dropdown-item">
+            <img src="assets/prod_needle.jpg" alt="Needle" class="mobile-thumb">
+            <div>
+              <strong>Hypodermic Needle</strong>
+              <small>Tri-Bevel Hypodermic Cannulas</small>
+            </div>
+          </a>
+          <a href="other-products.html" class="mobile-dropdown-item">
+            <img src="assets/prod_other.jpg" alt="Other Product" class="mobile-thumb">
+            <div>
+              <strong>Other Product</strong>
+              <small>Gloves, Medical Tape &amp; Blood Transfusion</small>
+            </div>
+          </a>
+          <a href="upcoming-products.html" class="mobile-dropdown-item">
+            <img src="assets/prod_upcoming.jpg" alt="Upcoming Product" class="mobile-thumb">
+            <div>
+              <strong>Upcoming Product</strong>
+              <small>Urine Bag, Ryle's Tube, Scalp Vein &amp; Diaper</small>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <a href="about.html" class="mobile-nav-link">About Us</a>
+      <a href="gallery.html" class="mobile-nav-link">Gallery</a>
+      <a href="blog.html" class="mobile-nav-link">Blog</a>
+      <a href="oem.html" class="mobile-nav-link">OEM / ODM</a>
+      <a href="catalogue.html" class="mobile-nav-link">E-Catalogue</a>
+    </div>
+
+    <div class="mobile-nav-footer">
+      <a href="contact.html" class="btn-craft btn-craft-primary" style="width: 100%;">
+        CONTACT US
+      </a>
+    </div>
+  </div>
+
+  <main id="mainContent">
+    <!-- PRODUCT HERO -->
+    <section class="prod-page-hero">
+      <div class="prod-hero-container">
+        <div>
+          <div class="hero-feature-tags-row">
+            <span class="hero-feature-tag">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z" />
+              </svg>
+              ISO 8536-4 &amp; ISO 1135-4 CERTIFIED
+            </span>
+            <span class="hero-feature-tag">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+              </svg>
+              100% DEHP-FREE MEDICAL PVC
+            </span>
+            <span class="hero-feature-tag">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+              </svg>
+              15 µM PARTICULATE RETENTION
+            </span>
+          </div>
+          <h1 class="sim-title" style="margin-top: 14px; font-size: clamp(28px, 3.5vw, 42px); line-height: 1.15;">
+            Medical IV Sets &amp; <span class="highlight-cyan">Blood Transfusion Systems</span>
+          </h1>
+          <p class="prod-hero-lead">
+            Medical gravity infusion lines, pediatric micro-drip burettes, and double-chamber whole blood transfusion sets. Engineered with 15 µm particulate filtration, antibacterial air vents, and precision flow regulators.
+          </p>
+          <div style="display: flex; gap: 14px; flex-wrap: wrap;">
+            <a href="#ivsetSimulator" class="sim-enquire-btn">LAUNCH DRIP SIMULATOR →</a>
+            <a href="contact.html?product=IV-Set" class="btn-craft btn-craft-outline">REQUEST SAMPLE BATCH</a>
+          </div>
+          <div class="hero-micro-metrics">
+            <div class="hero-micro-metric-item">
+              <span class="val">20 / 60 Drops/mL</span>
+              <span class="lbl">Macro / Micro Drip</span>
+            </div>
+            <div class="hero-micro-metric-item">
+              <span class="val">15 µm</span>
+              <span class="lbl">Fluid Filter Mesh</span>
+            </div>
+            <div class="hero-micro-metric-item">
+              <span class="val">0.22 µm</span>
+              <span class="lbl">Hydrophobic Vent</span>
+            </div>
+            <div class="hero-micro-metric-item">
+              <span class="val">150 – 180 cm</span>
+              <span class="lbl">Kink-Resistant Tube</span>
+            </div>
+          </div>
+        </div>
+        <div class="prod-hero-img-wrap">
+          <img src="assets/prod_iv_set.jpg" alt="AI-DISPO Medical IV Set" class="prod-hero-img" style="max-height: 280px; border-radius: 8px;">
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         MEDICAL IV SETS & BLOOD TRANSFUSION SYSTEMS SIMULATOR (IMAGE 1 MATCH)
+         ======================================================================= -->
+    <section class="simulator-section" id="ivsetSimulator">
+      <div class="simulator-container">
+        
+        <!-- Header -->
+        <div class="sim-header">
+          <div class="sim-badge-row">
+            <span class="sim-pill-tag feature">
+              <span class="sim-engine-pulse-dot"></span>
+              ISO 8536-4 &amp; ISO 1135-4 CERTIFIED INFUSION LINES
+            </span>
+            <span class="sim-pill-tag dark">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+              Hydrophobic 0.22µm Filter
+            </span>
+          </div>
+          <h2 class="sim-title">
+            Medical IV Sets &amp; <span class="highlight-cyan">Blood Transfusion Systems</span>
+          </h2>
+          <p class="sim-subtitle">
+            Precision drop calibration, DEHP-free medical grade PVC, and high-efficiency particulate &amp; clot retention filters.
+          </p>
+        </div>
+
+        <!-- 4 Top Cards (Tabs: Vented & Non-Vented with Economy & Premium Tiers) -->
+        <div class="sim-tabs-grid">
+          <div class="sim-tab-card ivset-type-tab active" data-idx="0">
+            <span class="sim-tab-badge">MACRO-DRIP • VENTED</span>
+            <div class="sim-tab-title">Vented Set (Economy)</div>
+            <div class="sim-tab-desc">150 cm Standard Medical PVC • Air Vent</div>
+          </div>
+
+          <div class="sim-tab-card ivset-type-tab" data-idx="1">
+            <span class="sim-tab-badge">MACRO-DRIP • VENTED</span>
+            <div class="sim-tab-title">Vented Set (Premium)</div>
+            <div class="sim-tab-desc">180 cm DEHP-Free • 0.22µm Vent • Rotating Lock</div>
+          </div>
+
+          <div class="sim-tab-card ivset-type-tab" data-idx="2">
+            <span class="sim-tab-badge">MACRO-DRIP • NON-VENTED</span>
+            <div class="sim-tab-title">Non-Vented Set (Economy)</div>
+            <div class="sim-tab-desc">150 cm Standard PVC • Collapsible Bags</div>
+          </div>
+
+          <div class="sim-tab-card ivset-type-tab" data-idx="3">
+            <span class="sim-tab-badge">MACRO-DRIP • NON-VENTED</span>
+            <div class="sim-tab-title">Non-Vented Set (Premium)</div>
+            <div class="sim-tab-desc">180 cm DEHP-Free • Precision Clamp • Y-Port</div>
+          </div>
+        </div>
+
+        <!-- Interactive Frame -->
+        <div class="sim-interactive-frame">
+          <div class="sim-split-content">
+            
+            <!-- Left: Flow Rate Slider & Animated Drip Chamber -->
+            <div class="sim-visual-panel">
+              <!-- Clinical Product Description (2 Lines) -->
+              <div class="sim-desc-box" id="ivSetDescBox">
+                <div class="sim-desc-badge">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                  </svg>
+                  <span>CLINICAL PRODUCT SPECIFICATION</span>
+                </div>
+                <p class="sim-desc-text" id="ivSetDescText">
+                  Designed for gravity infusions from rigid glass or semi-rigid plastic bottles with built-in antibacterial air filter. Features 15 µm particulate filtration and kink-resistant medical tubing.
+                </p>
+              </div>
+
+              <!-- Real Precision IV Infusion Set Showcase -->
+              <div class="sim-stage-area sim-real-stage" style="min-height: 290px;">
+                <div class="sim-real-img-container iv-set-container">
+                  <img src="assets/real_ivset_clean.png" alt="AI-DISPO Precision IV Infusion Set Real Image" class="sim-real-main-img iv-set-img" id="ivRealSetImg" />
+                </div>
+              </div>
+
+              <!-- Calibration Label at bottom of visualizer -->
+              <div style="text-align: center; font-family: var(--font-mono); font-size: 11px; font-weight: 700; color: #013572;" id="ivSetCalibLabel">
+                Dynamic Droplet Calibration: Macro-drip (20 drops/ml)
+              </div>
+            </div>
+
+            <!-- Right: Technical Specification & Indication Card -->
+            <div class="sim-controls-panel">
+              <div>
+                <span class="sim-pill-tag dark" style="font-size: 10px;" id="ivSetBadge">MACRO-DRIP (20 DROPS/ML) • VENTED ECONOMY</span>
+                <h3 class="sim-title" style="font-size: 24px; margin-top: 10px;" id="ivSetDetailTitle">
+                  Vented IV Infusion Set (Economy Grade)
+                </h3>
+                <p style="font-size: 13.5px; color: var(--ink-muted); line-height: 1.5; margin-top: 8px;" id="ivSetDetailDesc">
+                  Standard gravity infusion set with integrated air vent and 15 µm particle filter for routine intravenous fluid administration from glass and semi-rigid plastic bottles.
+                </p>
+              </div>
+
+              <div class="sim-spec-box-list">
+                <div class="sim-spec-box-item">
+                  <span class="lbl">TUBING SPECIFICATION</span>
+                  <span class="val" id="ivSetTubingVal">150 cm Medical-Grade Kink-Resistant PVC</span>
+                </div>
+                <div class="sim-spec-box-item">
+                  <span class="lbl">PARTICLE / AIR FILTRATION</span>
+                  <span class="val" id="ivSetFilterVal">15 µm Fluid Particle Filter &amp; Hydrophobic Air Vent Filter</span>
+                </div>
+                <div class="sim-spec-box-item">
+                  <span class="lbl">CONNECTOR &amp; PORT ARCHITECTURE</span>
+                  <span class="val" id="ivSetConnVal">Luer Slip / Lock with Self-Sealing Latex Injection Bulb</span>
+                </div>
+              </div>
+
+              <div class="sim-spec-callout" id="ivSetIndicVal">
+                <strong>Clinical Indication:</strong> Routine intravenous hydration, electrolyte maintenance, and standard ward medication administration.
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Bottom Footer Bar -->
+          <div class="sim-bottom-bar">
+            <div class="sim-moq-info">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+              <span>Subtle MOQ: <strong>5,000 units</strong> (500 per carton)</span>
+            </div>
+            <a href="contact.html?product=IV-Set" class="sim-enquire-btn" id="ivSetEnquireBtn">
+              Request IV Set Sample Batch →
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- TECHNICAL SPECIFICATION MATRIX -->
+    <section class="prod-spec-table-section">
+      <div class="prod-table-wrap">
+        <div class="sim-header" style="margin-bottom: 18px;">
+          <span class="sim-pill-tag dark">ISO 8536-4 &amp; ISO 1135-4 TECHNICAL MATRIX</span>
+          <h2 class="sim-title" style="font-size: 28px; margin-top: 8px;">Infusion &amp; Blood Set Engineering Standards</h2>
+        </div>
+        <table class="prod-data-table">
+          <thead>
+            <tr>
+              <th>SET ARCHITECTURE</th>
+              <th>CALIBRATION</th>
+              <th>AIR VENTILATION</th>
+              <th>PARTICLE RETENTION</th>
+              <th>INJECTION PORT</th>
+              <th>TUBING SPEC</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Vented Set (Economy)</strong></td>
+              <td>20 drops / mL (Macro-drip)</td>
+              <td>Hydrophobic Air Vent with Cap</td>
+              <td>15 µm Fluid Filter</td>
+              <td>Self-Sealing Latex Injection Bulb</td>
+              <td>150 cm Medical-Grade Kink-Resistant PVC</td>
+            </tr>
+            <tr>
+              <td><strong>Vented Set (Premium DEHP-Free)</strong></td>
+              <td>20 drops / mL (Macro-drip)</td>
+              <td>0.22 µm Hydrophobic Antibacterial PTFE</td>
+              <td>15 µm High-Precision Mesh</td>
+              <td>Universal Rotating Luer Lock &amp; Latex-Free Y-Port</td>
+              <td>180 cm Ultra-Clear DEHP-Free Medical PVC</td>
+            </tr>
+            <tr>
+              <td><strong>Non-Vented Set (Economy)</strong></td>
+              <td>20 drops / mL (Macro-drip)</td>
+              <td>Non-Vented (Closed Collapsible Bags)</td>
+              <td>15 µm Particulate Trap</td>
+              <td>Self-Sealing Flashball Port</td>
+              <td>150 cm Standard Flexible PVC</td>
+            </tr>
+            <tr>
+              <td><strong>Non-Vented Set (Premium DEHP-Free)</strong></td>
+              <td>20 drops / mL (Macro-drip)</td>
+              <td>Non-Vented (Closed Collapsible Bags)</td>
+              <td>15 µm High-Retention Filter</td>
+              <td>Rotating Safety Lock &amp; Needle-Free Y-Port</td>
+              <td>180 cm High-Flexibility DEHP-Free PVC</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+    <!-- SITE FOOTER -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-top-grid">
+        <!-- Brand Summary -->
+        <div class="footer-brand-col">
+          <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+            <img src="assets/ChatGPT Image Sep 28, 2026, 04_42_50 PM.png" alt="GAI AI-DISPO Logo"
+              style="height: 48px; width: auto; object-fit: contain; filter: drop-shadow(0 2px 6px rgba(1, 53, 114, 0.16));">
+            <div class="footer-logo">AI-DISPO<span style="color:var(--accent-blue)">.</span></div>
+          </div>
+          <p class="footer-brand-desc">
+            Goel Allied Industries — Manufacturer of AI-DISPO® sterile injection systems, IV cannulas, and infusion sets.
+            Precision, safety, and reliability where every life counts.
+          </p>
+          <div class="regulatory-stamp-row">
+            <span class="stamp-tag red">WHO-GMP</span>
+            <span class="stamp-tag dark">CDSCO</span>
+            <span class="stamp-tag dark">ISO 9001:2015</span>
+            <span class="stamp-tag red">CE CERTIFIED</span>
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="footer-col">
+          <h4>EXPLORE PRODUCTS</h4>
+          <ul class="footer-links">
+            <li><a href="syringe.html">Disposable Hypodermic Syringes (1mL – 50mL)</a></li>
+            <li><a href="iv-cannula.html">Intravenous Cannulas (Ported &amp; Winged)</a></li>
+            <li><a href="infusion-sets.html">Intravenous Infusion Sets (Gravity &amp; Blood)</a></li>
+            <li><a href="needle.html">Hypodermic Needles (Tri-Bevel)</a></li>
+            <li><a href="other-products.html">Gloves, Medical Tape &amp; Blood Transfusion</a></li>
+            <li><a href="upcoming-products.html">Urine Bag, Ryle's Tube, Scalp Vein &amp; Diaper</a></li>
+            <li><a href="oem.html">OEM &amp; Contract Manufacturing</a></li>
+          </ul>
+        </div>
+
+        <!-- Corporate Navigation -->
+        <div class="footer-col">
+          <h4>COMPANY &amp; RESOURCES</h4>
+          <ul class="footer-links">
+            <li><a href="about.html">About Goel Allied Industries</a></li>
+            <li><a href="catalogue.html">E-Catalogue &amp; Company Profile</a></li>
+            <li><a href="gallery.html">Facility &amp; Product Gallery</a></li>
+            <li><a href="blog.html">Clinical Insights &amp; Blog</a></li>
+            <li><a href="faq.html">Frequently Asked Questions (FAQ)</a></li>
+            <li><a href="privacy-policy.html">Privacy Policy</a></li>
+            <li><a href="terms-conditions.html">Terms &amp; Conditions</a></li>
+            <li><a href="contact.html">Corporate Contact &amp; Inquiries</a></li>
+          </ul>
+        </div>
+
+        <!-- Contact Info -->
+        <div class="footer-col">
+          <h4>MANUFACTURING HEADQUARTERS</h4>
+          <p style="font-size: 13px; color: var(--ink-muted); line-height: 1.6; margin-bottom: 12px;">
+            Goel Allied Industries<br>
+            State-of-the-Art Cleanroom Facility<br>
+            India
+          </p>
+          <p style="font-size: 13px; color: var(--logo-navy); font-weight: 700; font-family: var(--font-mono); line-height: 1.7;">
+            Phone: <a href="tel:+919120808855" style="color: inherit; text-decoration: none;">+91 91208 08855</a><br>
+            Email: <a href="mailto:export@aidispo.com" style="color: inherit; text-decoration: none;">export@aidispo.com</a><br>
+            Email: <a href="mailto:goelsyringe@gmail.com" style="color: inherit; text-decoration: none;">goelsyringe@gmail.com</a>
+          </p>
+        </div>
+      </div>
+
+      <div class="footer-bottom-bar">
+        <div>© 2026 Goel Allied Industries (Brand: AI-DISPO®). All Rights Reserved. • Designed and Developed by <a href="https://alightwaysolutions.com/" target="_blank" rel="noopener noreferrer" style="color: var(--logo-navy); font-weight: 700; text-decoration: underline; text-underline-offset: 2px;">Alightway Solutions</a></div>
+        <div class="footer-legal-links" style="display: flex; gap: 16px; align-items: center; font-size: 12px;">
+          <a href="privacy-policy.html" style="color: var(--ink-muted); text-decoration: none;">Privacy Policy</a>
+          <span style="color: var(--ink-faint);">•</span>
+          <a href="terms-conditions.html" style="color: var(--ink-muted); text-decoration: none;">Terms &amp; Conditions</a>
+          <span style="color: var(--ink-faint);">•</span>
+          <a href="faq.html" style="color: var(--ink-muted); text-decoration: none;">FAQs</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+  <script src="product-engine.js"></script>
+</body>
+</html>

@@ -1,0 +1,5 @@
+*.py
+.vercel
+.git
+.gitignore
+.vercelignore

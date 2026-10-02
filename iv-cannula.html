@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IV Cannula & Vascular Access Catheters | AI-DISPO® Precision Engineering</title>
+  <meta name="description" content="Precision IV Cannula with Port & Wings, Plain Straight, and Safety Shield. ISO 10555-5 compliant with interactive ISO flow velocity simulator.">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  
+  <link rel="icon" type="image/png" href="assets/ChatGPT Image Sep 28, 2026, 04_42_50 PM.png">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="products.css">
+</head>
+<body>
+
+  <!-- Clinical Reticle Cursor -->
+  <div class="clinical-cursor" id="clinicalCursor" aria-hidden="true">
+    <div class="cursor-crosshair"></div>
+    <div class="cursor-reticle"></div>
+    <div class="cursor-coords" id="cursorCoords">000.000</div>
+  </div>
+
+  <div class="grain-overlay" aria-hidden="true"></div>
+
+  <!-- FIXED VIEWPORT FRAME -->
+  <div class="viewport-frame" aria-hidden="true">
+    <div class="frame-corner top-left"></div>
+    <div class="frame-corner top-right"></div>
+    <div class="frame-corner bottom-left"></div>
+    <div class="frame-corner bottom-right"></div>
+  </div>
+
+  <!-- SITE HEADER -->
+  <header class="site-header" id="mainHeader">
+    <div class="nav-left">
+      <a href="index.html#heroTrack" class="brand-logo-wrap">
+        <img src="assets/ChatGPT Image Sep 28, 2026, 04_42_50 PM.png" alt="GAI AI-DISPO Logo" class="brand-logo-img">
+        <span class="brand-logo">AI-DISPO<span class="accent-dot">.</span></span>
+      </a>
+    </div>
+
+    <nav class="nav-center" aria-label="Main Navigation">
+      <a href="index.html" class="nav-link">Home</a>
+      
+      <!-- Product Dropdown Menu -->
+      <div class="nav-item-dropdown" id="productDropdown">
+        <a href="iv-cannula.html" class="nav-link nav-dropdown-trigger active" id="productDropdownBtn" aria-haspopup="true" aria-expanded="false">
+          Product
+          <svg class="dropdown-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </a>
+        <div class="nav-dropdown-menu" id="productMenu" role="menu">
+          <a href="syringe.html" class="dropdown-item" role="menuitem">
+            <div class="dropdown-item-thumb">
+              <img src="assets/prod_syringe.jpg" alt="Syringe" class="dropdown-thumb-img">
+            </div>
+            <div class="dropdown-item-info">
+              <span class="dropdown-item-title">Disposable Hypodermic Syringe</span>
+              <span class="dropdown-item-sub">UltraFlow 1mL – 10mL Clinical</span>
+            </div>
+          </a>
+
+          <a href="iv-cannula.html" class="dropdown-item active" role="menuitem">
+            <div class="dropdown-item-thumb">
+              <img src="assets/prod_iv_cannula.jpg" alt="IV Cannula" class="dropdown-thumb-img">
+            </div>
+            <div class="dropdown-item-info">
+              <span class="dropdown-item-title">Intravenous Cannula</span>
+              <span class="dropdown-item-sub">Ported &amp; Winged Catheters</span>
+            </div>
+          </a>
+
+          <a href="infusion-sets.html" class="dropdown-item" role="menuitem">
+            <div class="dropdown-item-thumb">
+              <img src="assets/prod_iv_set.jpg" alt="Infusion sets / IV sets" class="dropdown-thumb-img">
+            </div>
+            <div class="dropdown-item-info">
+              <span class="dropdown-item-title">Intravenous Infusion Set</span>
+              <span class="dropdown-item-sub">Gravity &amp; Micro-Drip Infusion</span>
+            </div>
+          </a>
+
+          <a href="needle.html" class="dropdown-item" role="menuitem">
+            <div class="dropdown-item-thumb">
+              <img src="assets/prod_needle.jpg" alt="Needle" class="dropdown-thumb-img">
+            </div>
+            <div class="dropdown-item-info">
+              <span class="dropdown-item-title">Hypodermic Needle</span>
+              <span class="dropdown-item-sub">Tri-Bevel Hypodermic Cannulas</span>
+            </div>
+          </a>
+
+          <a href="other-products.html" class="dropdown-item" role="menuitem">
+            <div class="dropdown-item-thumb">
+              <img src="assets/prod_other.jpg" alt="Other Product" class="dropdown-thumb-img">
+            </div>
+            <div class="dropdown-item-info">
+              <span class="dropdown-item-title">Other Product</span>
+              <span class="dropdown-item-sub">Gloves, Medical Tape &amp; Blood Transfusion</span>
+            </div>
+          </a>
+
+          <a href="upcoming-products.html" class="dropdown-item upcoming" role="menuitem">
+            <div class="dropdown-item-thumb">
+              <img src="assets/prod_upcoming.jpg" alt="Upcoming Product" class="dropdown-thumb-img">
+            </div>
+            <div class="dropdown-item-info">
+              <span class="dropdown-item-title">Upcoming Product</span>
+              <span class="dropdown-item-sub">Urine Bag, Ryle's Tube, Scalp Vein &amp; Diaper</span>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <a href="about.html" class="nav-link">About Us</a>
+      <a href="gallery.html" class="nav-link">Gallery</a>
+      <a href="blog.html" class="nav-link">Blog</a>
+      <a href="oem.html" class="nav-link">OEM / ODM</a>
+      <a href="catalogue.html" class="nav-link">E-Catalogue</a>
+    </nav>
+
+    <div class="nav-right">
+      <a href="contact.html" class="btn-craft btn-craft-primary" id="topContactBtn">
+        CONTACT US
+      </a>
+      <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Open Mobile Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- MOBILE NAVIGATION DRAWER -->
+  <div class="mobile-nav-backdrop" id="mobileNavBackdrop"></div>
+  <div class="mobile-nav-drawer" id="mobileNavDrawer" aria-hidden="true">
+    <div class="mobile-nav-header">
+      <div class="brand-logo-wrap">
+        <img src="assets/ChatGPT Image Sep 28, 2026, 04_42_50 PM.png" alt="GAI AI-DISPO Logo" class="brand-logo-img">
+        <span class="brand-logo">AI-DISPO<span class="accent-dot">.</span></span>
+      </div>
+      <button class="mobile-nav-close" id="mobileNavClose" aria-label="Close Navigation Menu">&times;</button>
+    </div>
+
+    <div class="mobile-nav-links">
+      <a href="index.html" class="mobile-nav-link">Home</a>
+      
+      <div class="mobile-nav-dropdown" id="mobileProductDropdown">
+        <button class="mobile-nav-dropdown-btn" id="mobileProductToggle" type="button">
+          <span>Product</span>
+          <svg class="dropdown-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </button>
+        <div class="mobile-dropdown-list" id="mobileProductList">
+          <a href="syringe.html" class="mobile-dropdown-item">
+            <img src="assets/prod_syringe.jpg" alt="Syringe" class="mobile-thumb">
+            <div>
+              <strong>Disposable Hypodermic Syringe</strong>
+              <small>UltraFlow 1mL – 10mL Clinical</small>
+            </div>
+          </a>
+          <a href="iv-cannula.html" class="mobile-dropdown-item active">
+            <img src="assets/prod_iv_cannula.jpg" alt="IV Cannula" class="mobile-thumb">
+            <div>
+              <strong>Intravenous Cannula</strong>
+              <small>Ported &amp; Winged Catheters</small>
+            </div>
+          </a>
+          <a href="infusion-sets.html" class="mobile-dropdown-item">
+            <img src="assets/prod_iv_set.jpg" alt="Infusion sets / IV sets" class="mobile-thumb">
+            <div>
+              <strong>Intravenous Infusion Set</strong>
+              <small>Gravity &amp; Micro-Drip Infusion</small>
+            </div>
+          </a>
+          <a href="needle.html" class="mobile-dropdown-item">
+            <img src="assets/prod_needle.jpg" alt="Needle" class="mobile-thumb">
+            <div>
+              <strong>Hypodermic Needle</strong>
+              <small>Tri-Bevel Hypodermic Cannulas</small>
+            </div>
+          </a>
+          <a href="other-products.html" class="mobile-dropdown-item">
+            <img src="assets/prod_other.jpg" alt="Other Product" class="mobile-thumb">
+            <div>
+              <strong>Other Product</strong>
+              <small>Gloves, Medical Tape &amp; Blood Transfusion</small>
+            </div>
+          </a>
+          <a href="upcoming-products.html" class="mobile-dropdown-item">
+            <img src="assets/prod_upcoming.jpg" alt="Upcoming Product" class="mobile-thumb">
+            <div>
+              <strong>Upcoming Product</strong>
+              <small>Urine Bag, Ryle's Tube, Scalp Vein &amp; Diaper</small>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <a href="about.html" class="mobile-nav-link">About Us</a>
+      <a href="gallery.html" class="mobile-nav-link">Gallery</a>
+      <a href="blog.html" class="mobile-nav-link">Blog</a>
+      <a href="oem.html" class="mobile-nav-link">OEM / ODM</a>
+      <a href="catalogue.html" class="mobile-nav-link">E-Catalogue</a>
+    </div>
+
+    <div class="mobile-nav-footer">
+      <a href="contact.html" class="btn-craft btn-craft-primary" style="width: 100%;">
+        CONTACT US
+      </a>
+    </div>
+  </div>
+
+  <main id="mainContent">
+    <!-- PRODUCT HERO -->
+    <section class="prod-page-hero">
+      <div class="prod-hero-container">
+        <div>
+          <div class="hero-feature-tags-row">
+            <span class="hero-feature-tag">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+              </svg>
+              ISO 10555-5 &amp; CE CERTIFIED
+            </span>
+            <span class="hero-feature-tag">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+              </svg>
+              FEP / PTFE RADIO-OPAQUE STRIPES
+            </span>
+            <span class="hero-feature-tag">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <circle cx="12" cy="12" r="10" />
+                <polyline points="12 6 12 12 14 14" />
+              </svg>
+              ATRAUMATIC BACK-CUT TROCAR
+            </span>
+          </div>
+          <h1 class="sim-title" style="margin-top: 14px; font-size: clamp(28px, 3.5vw, 42px); line-height: 1.15;">
+            Vascular Access <span class="highlight-cyan">IV Cannula &amp; Catheter</span> Series
+          </h1>
+          <p class="prod-hero-lead">
+            Precision peripheral intravenous catheters engineered with lubricated back-cut lancet trocars and ultra-thin wall radio-opaque catheter tubes for smooth, painless venipuncture with minimal vein trauma.
+          </p>
+          <div style="display: flex; gap: 14px; flex-wrap: wrap;">
+            <a href="#cannulaSimulator" class="sim-enquire-btn">EXPLORE VARIATIONS &amp; FLOW →</a>
+            <a href="contact.html?product=IV-Cannula" class="btn-craft btn-craft-outline">REQUEST SAMPLE PACK</a>
+          </div>
+          <div class="hero-micro-metrics">
+            <div class="hero-micro-metric-item">
+              <span class="val">14G – 26G</span>
+              <span class="lbl">Gauge Spectrum</span>
+            </div>
+            <div class="hero-micro-metric-item">
+              <span class="val">10 – 305 mL/min</span>
+              <span class="lbl">Gravity Flow Range</span>
+            </div>
+            <div class="hero-micro-metric-item">
+              <span class="val">3-Facet Lancet</span>
+              <span class="lbl">Trocar Bevel</span>
+            </div>
+            <div class="hero-micro-metric-item">
+              <span class="val">100% Optical</span>
+              <span class="lbl">Flashback Chamber</span>
+            </div>
+          </div>
+        </div>
+        <div class="prod-hero-img-wrap">
+          <img src="assets/prod_iv_cannula.jpg" alt="AI-DISPO IV Cannula" class="prod-hero-img" style="max-height: 280px; border-radius: 8px;">
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         IV CANNULA VARIATIONS & ISO FLOW SIMULATOR (IMAGE 3 MATCH)
+         ======================================================================= -->
+    <section class="simulator-section" id="cannulaSimulator">
+      <div class="simulator-container">
+        
+        <!-- Header -->
+        <div class="sim-header">
+          <div class="sim-badge-row">
+            <span class="sim-pill-tag feature">
+              <span class="sim-engine-pulse-dot"></span>
+              ISO 10555-5 COMPLIANT VASCULAR ACCESS
+            </span>
+            <span class="sim-pill-tag dark">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="m4.93 4.93 4.24 4.24M14.83 9.17l4.24-4.24M14.83 14.83l4.24 4.24M9.17 14.83l-4.24 4.24"/></svg>
+              FEP / PTFE Radio-Opaque Stripe
+            </span>
+          </div>
+          <h2 class="sim-title">
+            IV Cannula <span class="highlight-cyan">Variations &amp; ISO Flow Simulator</span>
+          </h2>
+          <p class="sim-subtitle">
+            Choose cannula architecture and gauge standard. Observe dynamic flow rate, flashback chamber optics, and vein trauma reduction.
+          </p>
+        </div>
+
+        <!-- 3 Architecture Selector Tabs -->
+        <div class="sim-tabs-grid">
+          <div class="sim-tab-card c-type-tab active" data-type="Port &amp; Wings">
+            <span class="sim-tab-badge">MOST POPULAR CLINICAL STANDARD</span>
+            <div class="sim-tab-title">IV Cannula with Injection Port &amp; Wings</div>
+            <div class="sim-tab-desc">Features color-coded one-way silicone port valve for intermittent extra medication delivery without interrupting continuous infusion. Flexible angled wings for stable skin fixation.</div>
+          </div>
+
+          <div class="sim-tab-card c-type-tab" data-type="Plain">
+            <span class="sim-tab-badge">ULTRA-COMPACT STERILE INFUSION</span>
+            <div class="sim-tab-title">IV Cannula Plain (Without Port / Straight)</div>
+            <div class="sim-tab-desc">Sleek low-profile design without injection valve, ideal for sensitive skin, continuous closed infusion lines, and minimizing patient snagging or pressure sores.</div>
+          </div>
+
+          <div class="sim-tab-card c-type-tab" data-type="Safety">
+            <span class="sim-tab-badge">OSHA &amp; EU DIRECTIVE COMPLIANT SAFETY</span>
+            <div class="sim-tab-title">Safety IV Cannula (Auto Needle-Stick Shield)</div>
+            <div class="sim-tab-desc">Automated passive clip shield encapsulates the sharp needle point upon withdrawal, completely eliminating accidental needle-stick injuries and blood splatter.</div>
+          </div>
+        </div>
+
+        <!-- Main Interactive Split Frame -->
+        <div class="sim-interactive-frame">
+          <div class="sim-split-content">
+            
+            <!-- Left: Gauge Selector & Flow Velocity Meter -->
+            <div class="sim-controls-panel" style="justify-content: flex-start;">
+              <div class="sim-ctrl-group">
+                <span class="sim-ctrl-title">SELECT ISO 10555-5 COLOR-CODED GAUGE:</span>
+                <div class="sim-gauge-row" style="margin-top: 6px;">
+                  <div class="sim-gauge-pill c-gauge-btn" data-gauge="14G">
+                    <span class="sim-gauge-dot" style="background: #FF7800;"></span>
+                    <span class="sim-gauge-text">14G</span>
+                    <span class="sim-gauge-sub">45 mm</span>
+                  </div>
+                  <div class="sim-gauge-pill c-gauge-btn" data-gauge="16G">
+                    <span class="sim-gauge-dot" style="background: #808080;"></span>
+                    <span class="sim-gauge-text">16G</span>
+                    <span class="sim-gauge-sub">45 mm</span>
+                  </div>
+                  <div class="sim-gauge-pill c-gauge-btn" data-gauge="18G">
+                    <span class="sim-gauge-dot" style="background: #10B981;"></span>
+                    <span class="sim-gauge-text">18G</span>
+                    <span class="sim-gauge-sub">45 mm</span>
+                  </div>
+                  <div class="sim-gauge-pill c-gauge-btn active" data-gauge="20G">
+                    <span class="sim-gauge-dot" style="background: #EC4899;"></span>
+                    <span class="sim-gauge-text">20G</span>
+                    <span class="sim-gauge-sub">32 mm</span>
+                  </div>
+                  <div class="sim-gauge-pill c-gauge-btn" data-gauge="22G">
+                    <span class="sim-gauge-dot" style="background: #0284C7;"></span>
+                    <span class="sim-gauge-text">22G</span>
+                    <span class="sim-gauge-sub">25 mm</span>
+                  </div>
+                  <div class="sim-gauge-pill c-gauge-btn" data-gauge="24G">
+                    <span class="sim-gauge-dot" style="background: #EAB308;"></span>
+                    <span class="sim-gauge-text">24G</span>
+                    <span class="sim-gauge-sub">19 mm</span>
+                  </div>
+                  <div class="sim-gauge-pill c-gauge-btn" data-gauge="26G">
+                    <span class="sim-gauge-dot" style="background: #8B5CF6;"></span>
+                    <span class="sim-gauge-text">26G</span>
+                    <span class="sim-gauge-sub">19 mm</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Gravity Flow Velocity Meter -->
+              <div class="sim-flow-bar-wrap">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                  <span style="font-family: var(--font-mono); font-size: 11px; font-weight: 700; color: var(--ink-black); display: flex; align-items: center; gap: 6px;">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#00A8FF" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                    Gravity Flow Velocity:
+                  </span>
+                  <span style="font-family: var(--font-mono); font-size: 15px; font-weight: 800; color: #008be0;" id="cFlowVal">
+                    61 ml / min
+                  </span>
+                </div>
+                <div class="sim-flow-meter-track">
+                  <div class="sim-flow-meter-fill" id="cFlowFill" style="width: 32%;"></div>
+                </div>
+                <div style="display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 9.5px; color: var(--ink-muted); margin-top: 5px;">
+                  <span>10 ml/min (26G Micro)</span>
+                  <span>150 ml/min</span>
+                  <span>385 ml/min (14G Trauma)</span>
+                </div>
+              </div>
+
+              <!-- Clinical Indication Note -->
+              <div class="sim-spec-callout" id="cClinicalUseText" style="margin-top: 14px;">
+                <strong>20G (Pink) Clinical Use:</strong> General adult IV infusion, routine medication, non-viscous solutions.
+              </div>
+            </div>
+
+            <!-- Right: Real Precision IV Cannula Showcase -->
+            <div class="sim-visual-panel" style="justify-content: center; align-items: center;">
+              <div class="sim-stage-area sim-real-stage" style="width: 100%;">
+                <div class="sim-real-img-container">
+                  <img src="assets/cannula_20g.png" alt="AI-DISPO Precision IV Cannula Real Image" class="sim-real-main-img cannula-rotate-img" id="cRealCannulaImg" />
+                </div>
+              </div>
+
+              <!-- Live Dimension Readout -->
+              <div class="sim-visual-metrics" style="width: 100%; grid-template-columns: 1fr 1fr; margin-top: 10px;">
+                <div class="sim-metric-pill">
+                  <span class="lbl">External Diameter</span>
+                  <span class="val" id="cExtDiaVal">1.1 mm</span>
+                </div>
+                <div class="sim-metric-pill">
+                  <span class="lbl">Catheter Length</span>
+                  <span class="val" id="cCatheterLenVal">32 mm</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Bottom Footer Bar -->
+          <div class="sim-bottom-bar">
+            <div class="sim-moq-info">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+              <span>Export MOQ: <strong>10,000 pcs / size</strong> (50 pcs/inner box, 1,000 pcs/master carton)</span>
+            </div>
+            <a href="contact.html?product=IV-Cannula" class="sim-enquire-btn" id="cEnquireBtn">
+              ENQUIRE 20G with Port &amp; Wings →
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- GAUGE MATRIX TABLE -->
+    <section class="prod-spec-table-section">
+      <div class="prod-table-wrap">
+        <div class="sim-header" style="margin-bottom: 18px;">
+          <span class="sim-pill-tag dark">ISO 10555-5 STANDARD COLOR &amp; FLOW CODING</span>
+          <h2 class="sim-title" style="font-size: 28px; margin-top: 8px;">Peripheral IV Catheter Specification Matrix</h2>
+        </div>
+        <table class="prod-data-table">
+          <thead>
+            <tr>
+              <th>GAUGE</th>
+              <th>COLOR CODE</th>
+              <th>OUTER DIA.</th>
+              <th>CATHETER LENGTH</th>
+              <th>GRAVITY FLOW RATE</th>
+              <th>CLINICAL INDICATION</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>14G</strong></td>
+              <td><span style="display:inline-block;width:10px;height:10px;background:#FF7800;border-radius:50%;margin-right:6px;"></span> Orange</td>
+              <td>2.1 mm</td>
+              <td>45 mm</td>
+              <td><strong>385 ml / min</strong></td>
+              <td>Massive trauma resuscitation, rapid blood transfusions, cardiac surgery</td>
+            </tr>
+            <tr>
+              <td><strong>16G</strong></td>
+              <td><span style="display:inline-block;width:10px;height:10px;background:#808080;border-radius:50%;margin-right:6px;"></span> Grey</td>
+              <td>1.7 mm</td>
+              <td>45 mm</td>
+              <td><strong>210 ml / min</strong></td>
+              <td>Major surgery, high-volume fluid resuscitation, viscous infusion</td>
+            </tr>
+            <tr>
+              <td><strong>18G</strong></td>
+              <td><span style="display:inline-block;width:10px;height:10px;background:#10B981;border-radius:50%;margin-right:6px;"></span> Green</td>
+              <td>1.3 mm</td>
+              <td>45 mm</td>
+              <td><strong>105 ml / min</strong></td>
+              <td>Blood administration, parenteral nutrition, routine operating room access</td>
+            </tr>
+            <tr>
+              <td><strong>20G</strong></td>
+              <td><span style="display:inline-block;width:10px;height:10px;background:#EC4899;border-radius:50%;margin-right:6px;"></span> Pink</td>
+              <td>1.1 mm</td>
+              <td>32 mm</td>
+              <td><strong>61 ml / min</strong></td>
+              <td>Most popular clinical standard, general adult IV therapy, antibiotic infusion</td>
+            </tr>
+            <tr>
+              <td><strong>22G</strong></td>
+              <td><span style="display:inline-block;width:10px;height:10px;background:#0284C7;border-radius:50%;margin-right:6px;"></span> Blue</td>
+              <td>0.9 mm</td>
+              <td>25 mm</td>
+              <td><strong>36 ml / min</strong></td>
+              <td>Elderly patients, oncology, pediatric routine fluid therapy, fragile veins</td>
+            </tr>
+            <tr>
+              <td><strong>24G</strong></td>
+              <td><span style="display:inline-block;width:10px;height:10px;background:#EAB308;border-radius:50%;margin-right:6px;"></span> Yellow</td>
+              <td>0.7 mm</td>
+              <td>19 mm</td>
+              <td><strong>22 ml / min</strong></td>
+              <td>Pediatrics, neonates, extremely delicate or sclerosed peripheral veins</td>
+            </tr>
+            <tr>
+              <td><strong>26G</strong></td>
+              <td><span style="display:inline-block;width:10px;height:10px;background:#8B5CF6;border-radius:50%;margin-right:6px;"></span> Purple</td>
+              <td>0.6 mm</td>
+              <td>19 mm</td>
+              <td><strong>10 ml / min</strong></td>
+              <td>Premature neonates, micro-vascular intensive care vascular access</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+    <!-- SITE FOOTER -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-top-grid">
+        <!-- Brand Summary -->
+        <div class="footer-brand-col">
+          <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+            <img src="assets/ChatGPT Image Sep 28, 2026, 04_42_50 PM.png" alt="GAI AI-DISPO Logo"
+              style="height: 48px; width: auto; object-fit: contain; filter: drop-shadow(0 2px 6px rgba(1, 53, 114, 0.16));">
+            <div class="footer-logo">AI-DISPO<span style="color:var(--accent-blue)">.</span></div>
+          </div>
+          <p class="footer-brand-desc">
+            Goel Allied Industries — Manufacturer of AI-DISPO® sterile injection systems, IV cannulas, and infusion sets.
+            Precision, safety, and reliability where every life counts.
+          </p>
+          <div class="regulatory-stamp-row">
+            <span class="stamp-tag red">WHO-GMP</span>
+            <span class="stamp-tag dark">CDSCO</span>
+            <span class="stamp-tag dark">ISO 9001:2015</span>
+            <span class="stamp-tag red">CE CERTIFIED</span>
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="footer-col">
+          <h4>EXPLORE PRODUCTS</h4>
+          <ul class="footer-links">
+            <li><a href="syringe.html">Disposable Hypodermic Syringes (1mL – 50mL)</a></li>
+            <li><a href="iv-cannula.html">Intravenous Cannulas (Ported &amp; Winged)</a></li>
+            <li><a href="infusion-sets.html">Intravenous Infusion Sets (Gravity &amp; Blood)</a></li>
+            <li><a href="needle.html">Hypodermic Needles (Tri-Bevel)</a></li>
+            <li><a href="other-products.html">Gloves, Medical Tape &amp; Blood Transfusion</a></li>
+            <li><a href="upcoming-products.html">Urine Bag, Ryle's Tube, Scalp Vein &amp; Diaper</a></li>
+            <li><a href="oem.html">OEM &amp; Contract Manufacturing</a></li>
+          </ul>
+        </div>
+
+        <!-- Corporate Navigation -->
+        <div class="footer-col">
+          <h4>COMPANY &amp; RESOURCES</h4>
+          <ul class="footer-links">
+            <li><a href="about.html">About Goel Allied Industries</a></li>
+            <li><a href="catalogue.html">E-Catalogue &amp; Company Profile</a></li>
+            <li><a href="gallery.html">Facility &amp; Product Gallery</a></li>
+            <li><a href="blog.html">Clinical Insights &amp; Blog</a></li>
+            <li><a href="faq.html">Frequently Asked Questions (FAQ)</a></li>
+            <li><a href="privacy-policy.html">Privacy Policy</a></li>
+            <li><a href="terms-conditions.html">Terms &amp; Conditions</a></li>
+            <li><a href="contact.html">Corporate Contact &amp; Inquiries</a></li>
+          </ul>
+        </div>
+
+        <!-- Contact Info -->
+        <div class="footer-col">
+          <h4>MANUFACTURING HEADQUARTERS</h4>
+          <p style="font-size: 13px; color: var(--ink-muted); line-height: 1.6; margin-bottom: 12px;">
+            Goel Allied Industries<br>
+            State-of-the-Art Cleanroom Facility<br>
+            India
+          </p>
+          <p style="font-size: 13px; color: var(--logo-navy); font-weight: 700; font-family: var(--font-mono); line-height: 1.7;">
+            Phone: <a href="tel:+919120808855" style="color: inherit; text-decoration: none;">+91 91208 08855</a><br>
+            Email: <a href="mailto:export@aidispo.com" style="color: inherit; text-decoration: none;">export@aidispo.com</a><br>
+            Email: <a href="mailto:goelsyringe@gmail.com" style="color: inherit; text-decoration: none;">goelsyringe@gmail.com</a>
+          </p>
+        </div>
+      </div>
+
+      <div class="footer-bottom-bar">
+        <div>© 2026 Goel Allied Industries (Brand: AI-DISPO®). All Rights Reserved. • Designed and Developed by <a href="https://alightwaysolutions.com/" target="_blank" rel="noopener noreferrer" style="color: var(--logo-navy); font-weight: 700; text-decoration: underline; text-underline-offset: 2px;">Alightway Solutions</a></div>
+        <div class="footer-legal-links" style="display: flex; gap: 16px; align-items: center; font-size: 12px;">
+          <a href="privacy-policy.html" style="color: var(--ink-muted); text-decoration: none;">Privacy Policy</a>
+          <span style="color: var(--ink-faint);">•</span>
+          <a href="terms-conditions.html" style="color: var(--ink-muted); text-decoration: none;">Terms &amp; Conditions</a>
+          <span style="color: var(--ink-faint);">•</span>
+          <a href="faq.html" style="color: var(--ink-muted); text-decoration: none;">FAQs</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+  <script src="product-engine.js"></script>
+</body>
+</html>

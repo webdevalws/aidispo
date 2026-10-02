@@ -1,0 +1,1259 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Corporate Gallery — Factory Tour, Events &amp; Certifications | AI-DISPO®</title>
+  <meta name="description"
+    content="Take an interactive tour of Goel Allied Industries ISO Class 100k cleanrooms, in-house ETO sterilization, global trade fairs & medical expos, and accredited regulatory certifications (ISO 13485, CE 0197, WHO-GMP, CDSCO).">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700;800&family=Plus+Jakarta+Sans:wght@600;700;800;900&display=swap"
+    rel="stylesheet">
+
+  <link rel="icon" type="image/png" href="assets/ChatGPT Image Sep 28, 2026, 04_42_50 PM.png">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="products.css">
+  <style>
+    .gallery-filter-bar {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 36px;
+      justify-content: center;
+      position: relative;
+      background: #FFFFFF;
+      padding: 12px 18px;
+      border-radius: 40px;
+      border: 1.5px solid rgba(1, 53, 114, 0.14);
+      box-shadow: 0 4px 16px rgba(1, 53, 114, 0.06);
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .gallery-filter-btn {
+      background: #FFFFFF;
+      border: 1.5px solid rgba(1, 53, 114, 0.16);
+      border-radius: 24px;
+      padding: 9px 20px;
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      font-weight: 700;
+      color: var(--ink-black);
+      cursor: pointer;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+    }
+    .gallery-filter-btn:hover {
+      background: #EDF6FF;
+      color: var(--logo-navy);
+      border-color: var(--accent-blue);
+      transform: translateY(-2px);
+    }
+    .gallery-filter-btn.active {
+      background: var(--logo-navy);
+      color: #FFFFFF;
+      border-color: var(--logo-navy);
+      box-shadow: 0 4px 14px rgba(1, 53, 114, 0.28);
+      transform: translateY(-2px);
+    }
+    .gallery-section-header {
+      margin: 40px 0 20px;
+      padding-bottom: 12px;
+      border-bottom: 2px solid rgba(1, 53, 114, 0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .gallery-section-title {
+      font-family: var(--font-headline);
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--logo-navy);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .gallery-section-sub {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--ink-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 24px;
+      margin-bottom: 48px;
+    }
+    @media (max-width: 768px) {
+      .gallery-grid {
+        grid-template-columns: 1fr;
+        gap: 18px;
+      }
+      .gallery-filter-bar {
+        display: flex;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        justify-content: flex-start;
+        align-items: center;
+        padding: 8px 10px;
+        border-radius: 16px;
+        margin-bottom: 24px;
+        gap: 8px;
+        width: 100%;
+        max-width: 100%;
+        box-shadow: 0 2px 10px rgba(1, 53, 114, 0.08);
+        position: relative;
+        top: 0;
+      }
+      .gallery-filter-bar::-webkit-scrollbar {
+        display: none;
+      }
+      .gallery-filter-btn {
+        flex-shrink: 0;
+        white-space: nowrap;
+        padding: 7px 14px;
+        font-size: 11px;
+        border-radius: 20px;
+      }
+      .gallery-section-header {
+        margin: 28px 0 16px;
+      }
+      .gallery-section-title {
+        font-size: 20px;
+      }
+    }
+    .gallery-item-card {
+      background: #FFFFFF;
+      border: 1.5px solid rgba(1, 53, 114, 0.16);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 16px rgba(1, 53, 114, 0.07);
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease, border-color 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      cursor: pointer;
+    }
+    .gallery-item-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 28px rgba(1, 53, 114, 0.16);
+      border-color: var(--accent-blue);
+    }
+    .gallery-item-img-wrap {
+      width: 100%;
+      height: 230px;
+      background: #F4F8FB;
+      overflow: hidden;
+      position: relative;
+    }
+    .gallery-item-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .gallery-item-card:hover .gallery-item-img {
+      transform: scale(1.06);
+    }
+    .gallery-item-badge {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: rgba(1, 53, 114, 0.9);
+      color: #FFFFFF;
+      font-family: var(--font-mono);
+      font-size: 9.5px;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 20px;
+      letter-spacing: 0.04em;
+      backdrop-filter: blur(6px);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    }
+    .gallery-item-badge.event {
+      background: rgba(225, 29, 72, 0.92);
+    }
+    .gallery-item-badge.cert {
+      background: rgba(16, 185, 129, 0.92);
+    }
+    .gallery-item-body {
+      padding: 18px 20px;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+    .gallery-item-category {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 800;
+      color: var(--accent-blue);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 6px;
+      display: block;
+    }
+    .gallery-item-title {
+      font-family: var(--font-headline);
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--ink-black);
+      line-height: 1.35;
+      margin-bottom: 8px;
+    }
+    .gallery-item-desc {
+      font-size: 12.5px;
+      color: var(--ink-muted);
+      line-height: 1.55;
+      margin-bottom: 12px;
+      flex-grow: 1;
+    }
+    .gallery-item-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 10px;
+      border-top: 1px solid rgba(1, 53, 114, 0.08);
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--logo-navy);
+    }
+    .gallery-zoom-prompt {
+      color: var(--accent-blue);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    /* Lightbox Modal */
+    .gallery-modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(10, 28, 48, 0.88);
+      backdrop-filter: blur(8px);
+      z-index: 9999;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .gallery-modal-overlay.active {
+      display: flex;
+      opacity: 1;
+    }
+    .gallery-modal-container {
+      background: #FFFFFF;
+      border-radius: 16px;
+      max-width: 900px;
+      width: 100%;
+      max-height: 90vh;
+      overflow: hidden;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      animation: modalSlide 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    @keyframes modalSlide {
+      from { transform: scale(0.94) translateY(20px); opacity: 0; }
+      to { transform: scale(1) translateY(0); opacity: 1; }
+    }
+    .gallery-modal-close {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      background: rgba(0, 0, 0, 0.6);
+      color: #FFFFFF;
+      border: none;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      font-size: 20px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10;
+      transition: background 0.2s ease;
+    }
+    .gallery-modal-close:hover {
+      background: #E11D48;
+    }
+    .gallery-modal-img-wrap {
+      width: 100%;
+      max-height: 60vh;
+      background: #000000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .gallery-modal-img {
+      max-width: 100%;
+      max-height: 60vh;
+      object-fit: contain;
+    }
+    .gallery-modal-body {
+      padding: 20px 24px;
+      background: #FFFFFF;
+    }
+    .gallery-modal-cat {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 800;
+      color: var(--accent-blue);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .gallery-modal-title {
+      font-family: var(--font-headline);
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--ink-black);
+      margin: 4px 0 8px;
+    }
+    .gallery-modal-desc {
+      font-size: 13.5px;
+      color: var(--ink-muted);
+      line-height: 1.6;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="blueprint-lines"></div>
+
+  <!-- SITE HEADER -->
+  <header class="site-header" id="mainHeader">
+    <div class="nav-left">
+      <a href="index.html#heroTrack" class="brand-logo-wrap">
+        <img src="assets/ChatGPT Image Sep 28, 2026, 04_42_50 PM.png" alt="GAI AI-DISPO Logo" class="brand-logo-img">
+        <span class="brand-logo">AI-DISPO<span class="accent-dot">.</span></span>
+      </a>
+    </div>
+
+    <nav class="nav-center" aria-label="Main Navigation">
+      <a href="index.html#heroTrack" class="nav-link">Home</a>
+
+      <!-- Product Dropdown Menu -->
+      <div class="nav-item-dropdown" id="productDropdown">
+        <a href="syringe.html" class="nav-link nav-dropdown-trigger" id="productDropdownBtn" aria-haspopup="true"
+          aria-expanded="false">
+          Product
+          <svg class="dropdown-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2.5">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </a>
+        <div class="nav-dropdown-menu" id="productMenu" role="menu">
+          <a href="syringe.html" class="dropdown-item" role="menuitem">
+            <div class="dropdown-item-thumb">
+              <img src="assets/prod_syringe.jpg" alt="Syringe" class="dropdown-thumb-img">
+            </div>
+            <div class="dropdown-item-info">
+              <span class="dropdown-item-title">Disposable Hypodermic Syringe</span>
+              <span class="dropdown-item-sub">UltraFlow 1mL – 10mL Clinical</span>
+            </div>
+          </a>
+
+          <a href="iv-cannula.html" class="dropdown-item" role="menuitem">
+            <div class="dropdown-item-thumb">
+              <img src="assets/prod_iv_cannula.jpg" alt="IV Cannula" class="dropdown-thumb-img">
+            </div>
+            <div class="dropdown-item-info">
+              <span class="dropdown-item-title">Intravenous Cannula</span>
+              <span class="dropdown-item-sub">Ported &amp; Winged Catheters</span>
+            </div>
+          </a>
+
+          <a href="infusion-sets.html" class="dropdown-item" role="menuitem">
+            <div class="dropdown-item-thumb">
+              <img src="assets/prod_iv_set.jpg" alt="Infusion sets / IV sets" class="dropdown-thumb-img">
+            </div>
+            <div class="dropdown-item-info">
+              <span class="dropdown-item-title">Intravenous Infusion Set</span>
+              <span class="dropdown-item-sub">Gravity &amp; Micro-Drip Infusion</span>
+            </div>
+          </a>
+
+          <a href="needle.html" class="dropdown-item" role="menuitem">
+            <div class="dropdown-item-thumb">
+              <img src="assets/prod_needle.jpg" alt="Needle" class="dropdown-thumb-img">
+            </div>
+            <div class="dropdown-item-info">
+              <span class="dropdown-item-title">Hypodermic Needle</span>
+              <span class="dropdown-item-sub">Tri-Bevel Hypodermic Cannulas</span>
+            </div>
+          </a>
+
+          <a href="other-products.html" class="dropdown-item" role="menuitem">
+            <div class="dropdown-item-thumb">
+              <img src="assets/prod_other.jpg" alt="Other Product" class="dropdown-thumb-img">
+            </div>
+            <div class="dropdown-item-info">
+              <span class="dropdown-item-title">Other Product</span>
+              <span class="dropdown-item-sub">Gloves, Medical Tape &amp; Blood Transfusion</span>
+            </div>
+          </a>
+
+          <a href="upcoming-products.html" class="dropdown-item upcoming" role="menuitem">
+            <div class="dropdown-item-thumb">
+              <img src="assets/prod_upcoming.jpg" alt="Upcoming Product" class="dropdown-thumb-img">
+            </div>
+            <div class="dropdown-item-info">
+              <span class="dropdown-item-title">Upcoming Product</span>
+              <span class="dropdown-item-sub">Urine Bag, Ryle's Tube, Scalp Vein &amp; Diaper</span>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <a href="about.html" class="nav-link">About Us</a>
+      <a href="gallery.html" class="nav-link active">Gallery</a>
+      <a href="blog.html" class="nav-link">Blog</a>
+      <a href="oem.html" class="nav-link">OEM / ODM</a>
+      <a href="catalogue.html" class="nav-link">E-Catalogue</a>
+    </nav>
+
+    <div class="nav-right">
+      <a href="contact.html" class="btn-craft btn-craft-primary" id="topContactBtn">
+        CONTACT US
+      </a>
+      <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Open Mobile Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- MOBILE NAVIGATION DRAWER -->
+  <div class="mobile-nav-backdrop" id="mobileNavBackdrop"></div>
+  <div class="mobile-nav-drawer" id="mobileNavDrawer" aria-hidden="true">
+    <div class="mobile-nav-header">
+      <div class="brand-logo-wrap">
+        <img src="assets/ChatGPT Image Sep 28, 2026, 04_42_50 PM.png" alt="GAI AI-DISPO Logo" class="brand-logo-img">
+        <span class="brand-logo">AI-DISPO<span class="accent-dot">.</span></span>
+      </div>
+      <button class="mobile-nav-close" id="mobileNavClose" aria-label="Close Navigation Menu">&times;</button>
+    </div>
+
+    <div class="mobile-nav-links">
+      <a href="index.html" class="mobile-nav-link">Home</a>
+
+      <div class="mobile-nav-dropdown" id="mobileProductDropdown">
+        <button class="mobile-nav-dropdown-btn" id="mobileProductToggle" type="button">
+          <span>Product</span>
+          <svg class="dropdown-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2.5">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </button>
+        <div class="mobile-dropdown-list" id="mobileProductList">
+          <a href="syringe.html" class="mobile-dropdown-item">
+            <img src="assets/prod_syringe.jpg" alt="Syringe" class="mobile-thumb">
+            <div>
+              <strong>Disposable Hypodermic Syringe</strong>
+              <small>UltraFlow 1mL – 10mL Clinical</small>
+            </div>
+          </a>
+          <a href="iv-cannula.html" class="mobile-dropdown-item">
+            <img src="assets/prod_iv_cannula.jpg" alt="IV Cannula" class="mobile-thumb">
+            <div>
+              <strong>Intravenous Cannula</strong>
+              <small>Ported &amp; Winged Catheters</small>
+            </div>
+          </a>
+          <a href="infusion-sets.html" class="mobile-dropdown-item">
+            <img src="assets/prod_iv_set.jpg" alt="Infusion sets / IV sets" class="mobile-thumb">
+            <div>
+              <strong>Intravenous Infusion Set</strong>
+              <small>Gravity &amp; Micro-Drip Infusion</small>
+            </div>
+          </a>
+          <a href="needle.html" class="mobile-dropdown-item">
+            <img src="assets/prod_needle.jpg" alt="Needle" class="mobile-thumb">
+            <div>
+              <strong>Hypodermic Needle</strong>
+              <small>Tri-Bevel Hypodermic Cannulas</small>
+            </div>
+          </a>
+          <a href="other-products.html" class="mobile-dropdown-item">
+            <img src="assets/prod_other.jpg" alt="Other Product" class="mobile-thumb">
+            <div>
+              <strong>Other Product</strong>
+              <small>Gloves, Medical Tape &amp; Blood Transfusion</small>
+            </div>
+          </a>
+          <a href="upcoming-products.html" class="mobile-dropdown-item">
+            <img src="assets/prod_upcoming.jpg" alt="Upcoming Product" class="mobile-thumb">
+            <div>
+              <strong>Upcoming Product</strong>
+              <small>Urine Bag, Ryle's Tube, Scalp Vein &amp; Diaper</small>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <a href="about.html" class="mobile-nav-link">About Us</a>
+      <a href="gallery.html" class="mobile-nav-link active">Gallery</a>
+      <a href="blog.html" class="mobile-nav-link">Blog</a>
+      <a href="oem.html" class="mobile-nav-link">OEM / ODM</a>
+      <a href="catalogue.html" class="mobile-nav-link">E-Catalogue</a>
+    </div>
+
+    <div class="mobile-nav-footer">
+      <a href="contact.html" class="btn-craft btn-craft-primary" style="width: 100%;">
+        CONTACT US
+      </a>
+      <div style="font-family: var(--font-body); font-size: 11px; font-weight: 600; color: var(--ink-muted); text-align: center; margin-top: 12px; letter-spacing: 0.04em;">
+        ISO 13485:2016 • CE 0197 STERILE
+      </div>
+    </div>
+  </div>
+
+  <main id="mainContent">
+    <!-- GALLERY HERO -->
+    <section class="prod-page-hero">
+      <div class="prod-hero-container" style="grid-template-columns: 1fr; text-align: center; max-width: 960px;">
+        <div>
+          <div class="sim-pill-tag dark">VISUAL SHOWCASE • CLEANROOMS • EXPOS • ACCREDITATIONS</div>
+          <h1 class="sim-title" style="margin-top: 14px;">
+            Factory Tour, Global Events &amp; <span class="highlight-cyan">Certifications</span>
+          </h1>
+          <p class="prod-hero-lead" style="max-width: 760px; margin: 14px auto 0;">
+            Experience the precision of Goel Allied Industries: automated Class 100k cleanroom production floors, presence at premier international medical expos, and accredited global regulatory quality certificates.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- GALLERY SECTION -->
+    <section class="simulator-section">
+      <div class="simulator-container">
+        
+        <!-- Interactive Category Filter Bar -->
+        <div class="gallery-filter-bar">
+          <button class="gallery-filter-btn active" data-filter="all">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+            All Showcase
+          </button>
+          <button class="gallery-filter-btn" data-filter="factory">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 20a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8l-7 5V8l-7 5V4a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/></svg>
+            Factory Tour &amp; Cleanrooms
+          </button>
+          <button class="gallery-filter-btn" data-filter="events">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="m4.93 4.93 4.24 4.24M14.83 9.17l4.24-4.24M14.83 14.83l4.24 4.24M9.17 14.83l-4.24 4.24"/></svg>
+            Global Events &amp; Expos
+          </button>
+          <button class="gallery-filter-btn" data-filter="certifications">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            Certifications &amp; Standards
+          </button>
+          <button class="gallery-filter-btn" data-filter="products">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m18 2 4 4-12 12-4-4L18 2zM15 5l4 4M2 22l4-4"/></svg>
+            Sterile Products
+          </button>
+        </div>
+
+        <!-- =================================================================
+             1. FACTORY TOUR & CLEANROOM INFRASTRUCTURE SECTION
+             ================================================================= -->
+        <div class="gallery-category-group" data-group="factory">
+          <div class="gallery-section-header">
+            <div class="gallery-section-title">
+              <span>Factory Tour &amp; Cleanroom Plant</span>
+            </div>
+            <span class="gallery-section-sub">ISO 14644-1 CLASS 8 • AUTOMATED ROBOTICS • ETO STERILIZATION</span>
+          </div>
+
+          <div class="gallery-grid">
+            <!-- Card 1: Cleanroom Floor -->
+            <div class="gallery-item-card" data-cat="factory" data-title="Class 100,000 Cleanroom Production Floor" data-desc="State-of-the-art positive-pressure cleanroom facility with 25+ air changes per hour, H14 terminal HEPA filtration, and strict bioburden control for contamination-free syringe and cannula molding.">
+              <div class="gallery-item-img-wrap">
+                <span class="gallery-item-badge">CLEANROOM CLASS 100K</span>
+                <img src="assets/facility_banner_1.jpg" alt="Class 100k Cleanroom Production Floor" class="gallery-item-img">
+              </div>
+              <div class="gallery-item-body">
+                <span class="gallery-item-category">MANUFACTURING ENVIRONMENT</span>
+                <div class="gallery-item-title">Class 100,000 Cleanroom Production Floor</div>
+                <p class="gallery-item-desc">Continuous positive pressure airlock cascade with automated laminar airflow and environmental particle monitoring.</p>
+                <div class="gallery-item-footer">
+                  <span>ISO 14644-1 Validated</span>
+                  <span class="gallery-zoom-prompt">View Large ⤢</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 2: Injection Molding -->
+            <div class="gallery-item-card" data-cat="factory" data-title="Automated High-Precision Injection Molding Lines" data-desc="High-speed all-electric KraussMaffei and Sumitomo injection molding machines equipped with multi-cavity hot runner systems and robotic part pickers for zero-defect syringe barrels and plungers.">
+              <div class="gallery-item-img-wrap">
+                <span class="gallery-item-badge">ROBOTIC AUTOMATION</span>
+                <img src="assets/facility_banner_2.jpg" alt="Automated Injection Molding Lines" class="gallery-item-img">
+              </div>
+              <div class="gallery-item-body">
+                <span class="gallery-item-category">HIGH-PRECISION TOOLING</span>
+                <div class="gallery-item-title">Automated Robotic Injection Molding &amp; Assembly</div>
+                <p class="gallery-item-desc">Closed-loop servo-driven multi-cavity molds with automated optical inspection for micrometer dimensional consistency.</p>
+                <div class="gallery-item-footer">
+                  <span>Zero-Defect Quality</span>
+                  <span class="gallery-zoom-prompt">View Large ⤢</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 3: ETO Sterilization -->
+            <div class="gallery-item-card" data-cat="factory" data-title="In-House Industrial ETO Sterilization Chamber" data-desc="Fully automated Ethylene Oxide (ETO) gas sterilization chambers with computerized preconditioning, gas exposure, and deep aeration cycles validated by biological indicator spore testing.">
+              <div class="gallery-item-img-wrap">
+                <span class="gallery-item-badge">ETO STERILIZATION</span>
+                <img src="assets/facility_banner_3.jpg" alt="In-House Industrial ETO Sterilization Chamber" class="gallery-item-img">
+              </div>
+              <div class="gallery-item-body">
+                <span class="gallery-item-category">TERMINAL STERILITY</span>
+                <div class="gallery-item-title">In-House Industrial ETO Sterilization Chamber</div>
+                <p class="gallery-item-desc">Computer-controlled 100% EO gas cycles ensuring SAL 10⁻⁶ sterility assurance with zero toxic chemical residuals.</p>
+                <div class="gallery-item-footer">
+                  <span>ISO 11135 Compliant</span>
+                  <span class="gallery-zoom-prompt">View Large ⤢</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 4: Quality Lab -->
+            <div class="gallery-item-card" data-cat="factory" data-title="Microbiology &amp; Bioburden Testing Clean Lab" data-desc="Equipped with Class 100 laminar flow hoods for in-house LAL endotoxin pyrogen testing (< 0.25 EU/mL), sterility incubation, and physical tensile testing per ISO 7886-1.">
+              <div class="gallery-item-img-wrap">
+                <span class="gallery-item-badge">QUALITY ASSURANCE</span>
+                <img src="assets/facility_banner_1.jpg" alt="Microbiology Clean Testing Lab" class="gallery-item-img">
+              </div>
+              <div class="gallery-item-body">
+                <span class="gallery-item-category">LABORATORY TESTING</span>
+                <div class="gallery-item-title">Microbiological &amp; Pyrogen Testing Clean Lab</div>
+                <p class="gallery-item-desc">In-house bioburden quantification, bacterial endotoxin testing, and hydraulic pressure decay leak testing on every batch.</p>
+                <div class="gallery-item-footer">
+                  <span>Pyrogen-Free Standard</span>
+                  <span class="gallery-zoom-prompt">View Large ⤢</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 5: Blister Packaging -->
+            <div class="gallery-item-card" data-cat="factory" data-title="Automated Blister Packaging &amp; Sealing Line" data-desc="Continuous high-speed thermoforming blister packaging lines utilizing medical-grade peelable coated paper for tamper-evident, sterile barrier integrity.">
+              <div class="gallery-item-img-wrap">
+                <span class="gallery-item-badge">STERILE BARRIER</span>
+                <img src="assets/facility_banner_2.jpg" alt="Automated Blister Packaging Line" class="gallery-item-img">
+              </div>
+              <div class="gallery-item-body">
+                <span class="gallery-item-category">PACKAGING AUTOMATION</span>
+                <div class="gallery-item-title">Automated High-Speed Blister Packaging &amp; Sealing</div>
+                <p class="gallery-item-desc">Peel-open medical paper and blister film packaging ensuring certified 5-year sterile shelf-life protection.</p>
+                <div class="gallery-item-footer">
+                  <span>ISO 11607 Packaging</span>
+                  <span class="gallery-zoom-prompt">View Large ⤢</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 6: Raw Material Silos -->
+            <div class="gallery-item-card" data-cat="factory" data-title="Medical-Grade Virgin Polymer Storage &amp; QC" data-desc="Dedicated storage for 100% virgin medical-grade Polypropylene (PP), USP Class VI silicone lubricants, and surgical stainless steel AISI 304 cannulas.">
+              <div class="gallery-item-img-wrap">
+                <span class="gallery-item-badge">RAW MATERIAL QC</span>
+                <img src="assets/facility_banner_3.jpg" alt="Raw Polymer Storage and Quality Control" class="gallery-item-img">
+              </div>
+              <div class="gallery-item-body">
+                <span class="gallery-item-category">POLYMER SUPPLY CHAIN</span>
+                <div class="gallery-item-title">Medical-Grade Polymer Storage &amp; Raw Material QC</div>
+                <p class="gallery-item-desc">Certified raw materials sourced exclusively from top-tier global polymer manufacturers with full batch COA traceability.</p>
+                <div class="gallery-item-footer">
+                  <span>USP Class VI Virgin PP</span>
+                  <span class="gallery-zoom-prompt">View Large ⤢</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- =================================================================
+             2. GLOBAL MEDICAL EXPOS & INDUSTRY EVENTS SECTION
+             ================================================================= -->
+        <div class="gallery-category-group" data-group="events">
+          <div class="gallery-section-header">
+            <div class="gallery-section-title">
+              <span>Global Medical Expos &amp; Events</span>
+            </div>
+            <span class="gallery-section-sub">INTERNATIONAL HEALTHCARE TRADE FAIRS &amp; CONFERENCES</span>
+          </div>
+
+          <div class="gallery-grid">
+            <!-- Event 1: Arab Health -->
+            <div class="gallery-item-card" data-cat="events" data-title="Arab Health 2026 — Dubai World Trade Centre" data-desc="Goel Allied Industries / AI-DISPO® showcase booth at Arab Health Dubai, exhibiting precision syringes, ported IV cannulas, and gravity infusion sets to healthcare distributors across the MENA region.">
+              <div class="gallery-item-img-wrap">
+                <span class="gallery-item-badge event">DUBAI • ARAB HEALTH</span>
+                <img src="assets/gallery_event_arabhealth.jpg" alt="Arab Health Dubai Exhibition Booth" class="gallery-item-img">
+              </div>
+              <div class="gallery-item-body">
+                <span class="gallery-item-category">INTERNATIONAL HEALTHCARE EXPO</span>
+                <div class="gallery-item-title">Arab Health Dubai — Global Healthcare Pavilion</div>
+                <p class="gallery-item-desc">Presenting AI-DISPO® sterile injection technologies and vascular access solutions to leading hospital chains and international importers.</p>
+                <div class="gallery-item-footer">
+                  <span>Dubai World Trade Centre</span>
+                  <span class="gallery-zoom-prompt">View Large ⤢</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Event 2: MEDICA Germany -->
+            <div class="gallery-item-card" data-cat="events" data-title="MEDICA 2025/2026 — Messe Düsseldorf, Germany" data-desc="World Forum for Medicine exhibition stand in Düsseldorf, Germany. Engaging with European medical device buyers, CE certification auditors, and institutional procurement partners.">
+              <div class="gallery-item-img-wrap">
+                <span class="gallery-item-badge event">DÜSSELDORF • MEDICA</span>
+                <img src="assets/gallery_event_medica.jpg" alt="MEDICA Germany Trade Show Pavilion" class="gallery-item-img">
+              </div>
+              <div class="gallery-item-body">
+                <span class="gallery-item-category">WORLD FORUM FOR MEDICINE</span>
+                <div class="gallery-item-title">MEDICA Germany — Global Disposables Showcase</div>
+                <p class="gallery-item-desc">European trade conference showcasing CE-certified disposable hypodermic syringes, infusion sets, and pediatric butterfly cannulas.</p>
+                <div class="gallery-item-footer">
+                  <span>Messe Düsseldorf, Germany</span>
+                  <span class="gallery-zoom-prompt">View Large ⤢</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Event 3: Medical Fair India -->
+            <div class="gallery-item-card" data-cat="events" data-title="Medical Fair India — Pragati Maidan, New Delhi" data-desc="Premier national hospital equipment and medical consumables exhibition, showcasing AI-DISPO® domestic manufacturing capability, hospital bulk supply, and government health mission tenders.">
+              <div class="gallery-item-img-wrap">
+                <span class="gallery-item-badge event">NEW DELHI • MEDICAL FAIR</span>
+                <img src="assets/gallery_event_arabhealth.jpg" alt="Medical Fair India Exhibition Stand" class="gallery-item-img">
+              </div>
+              <div class="gallery-item-body">
+                <span class="gallery-item-category">NATIONAL HEALTHCARE FORUM</span>
+                <div class="gallery-item-title">Medical Fair India — Hospital Procurement Summit</div>
+                <p class="gallery-item-desc">Connecting with leading Indian corporate hospitals, state medical corporations, and healthcare distribution conglomerates.</p>
+                <div class="gallery-item-footer">
+                  <span>Pragati Maidan, New Delhi</span>
+                  <span class="gallery-zoom-prompt">View Large ⤢</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Event 4: CPhI & P-MEC South Asia -->
+            <div class="gallery-item-card" data-cat="events" data-title="CPhI &amp; P-MEC South Asia — Greater Noida" data-desc="Leading pharmaceutical packaging and drug delivery device conference, presenting customized primary container closures and auto-injector delivery platforms to pharma manufacturers.">
+              <div class="gallery-item-img-wrap">
+                <span class="gallery-item-badge event">GREATER NOIDA • P-MEC</span>
+                <img src="assets/gallery_event_medica.jpg" alt="CPhI & P-MEC South Asia Exhibition Stand" class="gallery-item-img">
+              </div>
+              <div class="gallery-item-body">
+                <span class="gallery-item-category">PHARMA PACKAGING &amp; DEVICES</span>
+                <div class="gallery-item-title">CPhI &amp; P-MEC South Asia — Medical Delivery Summit</div>
+                <p class="gallery-item-desc">B2B technical collaboration with biopharma developers for pre-filled sterile injection systems and OEM co-manufacturing.</p>
+                <div class="gallery-item-footer">
+                  <span>IEML Greater Noida</span>
+                  <span class="gallery-zoom-prompt">View Large ⤢</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- =================================================================
+             3. REGULATORY CERTIFICATIONS & QUALITY ACCREDITATIONS SECTION
+             ================================================================= -->
+        <div class="gallery-category-group" data-group="certifications">
+          <div class="gallery-section-header">
+            <div class="gallery-section-title">
+              <span>Regulatory Certifications &amp; Accreditations</span>
+            </div>
+            <span class="gallery-section-sub">GLOBAL HEALTHCARE COMPLIANCE • NOTIFIED BODY ACCREDITED</span>
+          </div>
+
+          <div class="gallery-grid">
+            <!-- Cert 1: ISO 13485 -->
+            <div class="gallery-item-card" data-cat="certifications" data-title="ISO 13485:2016 Quality Management Certificate" data-desc="Accredited Medical Device Quality Management System (QMS) standard covering design, precision molding, cleanroom assembly, ETO sterilization, and global distribution of sterile hypodermic injection sets and vascular access devices.">
+              <div class="gallery-item-img-wrap">
+                <span class="gallery-item-badge cert">ISO 13485:2016</span>
+                <img src="assets/gallery_cert_iso13485.jpg" alt="ISO 13485:2016 Quality Management Certificate" class="gallery-item-img">
+              </div>
+              <div class="gallery-item-body">
+                <span class="gallery-item-category">INTERNATIONAL MEDICAL STANDARD</span>
+                <div class="gallery-item-title">ISO 13485:2016 Medical QMS Accreditation</div>
+                <p class="gallery-item-desc">Certified compliance with international quality management systems for sterile single-use medical devices.</p>
+                <div class="gallery-item-footer">
+                  <span>Audited by Notified Body</span>
+                  <span class="gallery-zoom-prompt">View Large ⤢</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Cert 2: CE Mark -->
+            <div class="gallery-item-card" data-cat="certifications" data-title="European CE Mark Conformity (CE 0197 / MDR)" data-desc="European Union CE mark certification under Medical Device Regulation (EU) 2017/745 for Class IIa sterile hypodermic syringes, needles, and ported IV catheters, authorized for unrestricted healthcare use across the European Economic Area.">
+              <div class="gallery-item-img-wrap">
+                <span class="gallery-item-badge cert">CE 0197 CERTIFIED</span>
+                <img src="assets/gallery_cert_ce.jpg" alt="European CE Mark Conformity Certificate" class="gallery-item-img">
+              </div>
+              <div class="gallery-item-body">
+                <span class="gallery-item-category">EUROPEAN CONFORMITY (MDR)</span>
+                <div class="gallery-item-title">European Union CE 0197 Conformity Certificate</div>
+                <p class="gallery-item-desc">Conformity certification authorizing sterile medical product distribution across EU member states and EEA territories.</p>
+                <div class="gallery-item-footer">
+                  <span>MDR (EU) 2017/745 Compliant</span>
+                  <span class="gallery-zoom-prompt">View Large ⤢</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Cert 3: WHO-GMP -->
+            <div class="gallery-item-card" data-cat="certifications" data-title="WHO-GMP Good Manufacturing Practices Certificate" data-desc="World Health Organization (WHO) compliant Good Manufacturing Practices certification validating contamination-controlled cleanroom infrastructure, automated traceability, validation protocols, and sterile manufacturing integrity.">
+              <div class="gallery-item-img-wrap">
+                <span class="gallery-item-badge cert">WHO-GMP COMPLIANT</span>
+                <img src="assets/gallery_cert_whogmp.jpg" alt="WHO-GMP Good Manufacturing Practices Certificate" class="gallery-item-img">
+              </div>
+              <div class="gallery-item-body">
+                <span class="gallery-item-category">WORLD HEALTH ORGANIZATION</span>
+                <div class="gallery-item-title">WHO-GMP Good Manufacturing Practice Standard</div>
+                <p class="gallery-item-desc">Certified adherence to WHO technical report guidelines for sterile medical device and parenteral administration manufacturing.</p>
+                <div class="gallery-item-footer">
+                  <span>WHO Cleanroom Standard</span>
+                  <span class="gallery-zoom-prompt">View Large ⤢</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Cert 4: CDSCO License -->
+            <div class="gallery-item-card" data-cat="certifications" data-title="CDSCO Medical Device Manufacturing License" data-desc="Central Drugs Standard Control Organisation (Govt. of India) regulatory manufacturing license for sterile hypodermic syringes with/without needles, IV cannulas, and infusion sets under Medical Device Rules (MDR 2017).">
+              <div class="gallery-item-img-wrap">
+                <span class="gallery-item-badge cert">CDSCO LICENSED</span>
+                <img src="assets/gallery_cert_iso13485.jpg" alt="CDSCO Manufacturing License" class="gallery-item-img">
+              </div>
+              <div class="gallery-item-body">
+                <span class="gallery-item-category">NATIONAL DRUG REGULATOR</span>
+                <div class="gallery-item-title">CDSCO Medical Device Manufacturing License</div>
+                <p class="gallery-item-desc">Official regulatory manufacturing license granted by the Central Drugs Standard Control Organisation, Ministry of Health.</p>
+                <div class="gallery-item-footer">
+                  <span>Govt. of India Certified</span>
+                  <span class="gallery-zoom-prompt">View Large ⤢</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Cert 5: ISO 9001 -->
+            <div class="gallery-item-card" data-cat="certifications" data-title="ISO 9001:2015 Quality Management Standard" data-desc="Comprehensive institutional quality assurance standard for manufacturing operations, international export logistics, raw material procurement, and customer satisfaction assurance.">
+              <div class="gallery-item-img-wrap">
+                <span class="gallery-item-badge cert">ISO 9001:2015</span>
+                <img src="assets/gallery_cert_ce.jpg" alt="ISO 9001:2015 Quality Certificate" class="gallery-item-img">
+              </div>
+              <div class="gallery-item-body">
+                <span class="gallery-item-category">QUALITY MANAGEMENT</span>
+                <div class="gallery-item-title">ISO 9001:2015 Quality Management System</div>
+                <p class="gallery-item-desc">Enterprise-wide operational quality framework governing batch traceability, testing, and continuous process optimization.</p>
+                <div class="gallery-item-footer">
+                  <span>International Standard</span>
+                  <span class="gallery-zoom-prompt">View Large ⤢</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Cert 6: Cleanroom ISO 14644 -->
+            <div class="gallery-item-card" data-cat="certifications" data-title="ISO 14644-1 Cleanroom Particulate Validation" data-desc="Environmental cleanroom air testing certificate certifying Class 100,000 (ISO Class 8) airborne particle cleanliness, HEPA velocity certification, and microbiological air/surface counts.">
+              <div class="gallery-item-img-wrap">
+                <span class="gallery-item-badge cert">ISO 14644-1 CLASS 8</span>
+                <img src="assets/gallery_cert_whogmp.jpg" alt="Cleanroom Validation Certificate" class="gallery-item-img">
+              </div>
+              <div class="gallery-item-body">
+                <span class="gallery-item-category">AIRBORNE CLEANLINESS</span>
+                <div class="gallery-item-title">ISO 14644-1 Cleanroom Validation Certificate</div>
+                <p class="gallery-item-desc">Annual third-party physical and microbiological validation for Class 100k cleanroom production suites.</p>
+                <div class="gallery-item-footer">
+                  <span>Class 100k Certified</span>
+                  <span class="gallery-zoom-prompt">View Large ⤢</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- =================================================================
+             4. STERILE MEDICAL PRODUCTS GALLERY SECTION
+             ================================================================= -->
+        <div class="gallery-category-group" data-group="products">
+          <div class="gallery-section-header">
+            <div class="gallery-section-title">
+              <span>Sterile Medical Products Showcase</span>
+            </div>
+            <span class="gallery-section-sub">CLINICAL DISPOSABLES • VASCULAR ACCESS • HOSPITAL CONSUMABLES</span>
+          </div>
+
+          <div class="gallery-grid">
+            <!-- Syringe -->
+            <div class="gallery-item-card" data-cat="products" data-title="AI-DISPO® Disposable Hypodermic Syringes" data-desc="UltraFlow 1mL to 50mL 3-piece clinical syringes featuring zero dead space, high-contrast black graduations, ultra-smooth silicone lubrication, and leak-proof ISO 7886-1 hydraulic seal.">
+              <div class="gallery-item-img-wrap">
+                <span class="gallery-item-badge">1mL – 50mL SIZES</span>
+                <img src="assets/prod_syringe.jpg" alt="AI-DISPO UltraFlow Syringes" class="gallery-item-img">
+              </div>
+              <div class="gallery-item-body">
+                <span class="gallery-item-category">DISPOSABLE SYRINGES</span>
+                <div class="gallery-item-title">UltraFlow 1mL – 50mL Hypodermic Syringes</div>
+                <p class="gallery-item-desc">Medical-grade clear barrel with medical silicone lubrication for painless, low-breakaway clinical injection delivery.</p>
+                <div class="gallery-item-footer">
+                  <span>ISO 7886-1 Compliant</span>
+                  <span class="gallery-zoom-prompt">View Large ⤢</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- IV Cannula -->
+            <div class="gallery-item-card" data-cat="products" data-title="AI-DISPO® Intravenous Cannula (14G – 26G)" data-desc="Precision ported and winged IV catheters with lubricated back-cut lancet trocars and radio-opaque FEP/PTFE stripes for smooth, painless venipuncture.">
+              <div class="gallery-item-img-wrap">
+                <span class="gallery-item-badge">14G – 26G ISO GAUGES</span>
+                <img src="assets/prod_iv_cannula.jpg" alt="Ported IV Cannula" class="gallery-item-img">
+              </div>
+              <div class="gallery-item-body">
+                <span class="gallery-item-category">VASCULAR ACCESS</span>
+                <div class="gallery-item-title">Ported &amp; Winged IV Cannulas (14G – 26G)</div>
+                <p class="gallery-item-desc">Color-coded one-way injection port with flexible fixation wings and crystal clear flashback chamber.</p>
+                <div class="gallery-item-footer">
+                  <span>ISO 10555-5 Standard</span>
+                  <span class="gallery-zoom-prompt">View Large ⤢</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- IV Infusion Set -->
+            <div class="gallery-item-card" data-cat="products" data-title="Sterile Intravenous Infusion Sets" data-desc="Vented and non-vented gravity infusion sets with 15µm fluid particle filter, 0.22µm hydrophobic antibacterial air vent, and precision roller clamp.">
+              <div class="gallery-item-img-wrap">
+                <span class="gallery-item-badge">VENTED &amp; NON-VENTED</span>
+                <img src="assets/prod_iv_set.jpg" alt="IV Infusion Sets" class="gallery-item-img">
+              </div>
+              <div class="gallery-item-body">
+                <span class="gallery-item-category">INFUSION SYSTEMS</span>
+                <div class="gallery-item-title">Vented &amp; Non-Vented Gravity Infusion Sets</div>
+                <p class="gallery-item-desc">DEHP-free kink-resistant medical PVC tubing with self-sealing latex/latex-free injection Y-site port.</p>
+                <div class="gallery-item-footer">
+                  <span>ISO 8536-4 Compliant</span>
+                  <span class="gallery-zoom-prompt">View Large ⤢</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Needles -->
+            <div class="gallery-item-card" data-cat="products" data-title="Precision Tri-Bevel Hypodermic Needles" data-desc="Cold-drawn 304 surgical stainless steel hypodermic needles with diamond-ground 3-bevel lancet grind and ultrasonic silicone coating (16G – 26G).">
+              <div class="gallery-item-img-wrap">
+                <span class="gallery-item-badge">16G – 26G ISO 6009</span>
+                <img src="assets/prod_needle.jpg" alt="Hypodermic Needles" class="gallery-item-img">
+              </div>
+              <div class="gallery-item-body">
+                <span class="gallery-item-category">SURGICAL STEEL CANNULAS</span>
+                <div class="gallery-item-title">Tri-Bevel Diamond-Honed Hypodermic Needles</div>
+                <p class="gallery-item-desc">Micro-force skin penetration (< 0.35 N) eliminating coring and patient tissue displacement.</p>
+                <div class="gallery-item-footer">
+                  <span>ISO 7864 &amp; ISO 9626</span>
+                  <span class="gallery-zoom-prompt">View Large ⤢</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Gloves -->
+            <div class="gallery-item-card" data-cat="products" data-title="Medical Examination &amp; Surgical Gloves" data-desc="High-tensile, ambidextrous powder-free nitrile and latex examination gloves with micro-textured fingertips for sensitive tactile grip.">
+              <div class="gallery-item-img-wrap">
+                <span class="gallery-item-badge">AQL 1.5 POWDER-FREE</span>
+                <img src="assets/prod_gloves.jpg" alt="Medical Examination Gloves" class="gallery-item-img">
+              </div>
+              <div class="gallery-item-body">
+                <span class="gallery-item-category">CLINICAL CONSUMABLES</span>
+                <div class="gallery-item-title">Medical Examination Gloves (Nitrile &amp; Latex)</div>
+                <p class="gallery-item-desc">100% barrier protection against bloodborne pathogens, chemicals, and infectious viral agents.</p>
+                <div class="gallery-item-footer">
+                  <span>ASTM D6319 / EN 455</span>
+                  <span class="gallery-zoom-prompt">View Large ⤢</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Medical Tape -->
+            <div class="gallery-item-card" data-cat="products" data-title="Microporous Surgical Medical Tape" data-desc="Gentle hypoallergenic microporous surgical paper tape with moisture-permeable acrylic adhesive for secure IV and dressing anchoring.">
+              <div class="gallery-item-img-wrap">
+                <span class="gallery-item-badge">HYPOALLERGENIC</span>
+                <img src="assets/prod_tape.jpg" alt="Medical Surgical Tape" class="gallery-item-img">
+              </div>
+              <div class="gallery-item-body">
+                <span class="gallery-item-category">SURGICAL FIXATION</span>
+                <div class="gallery-item-title">Microporous Surgical Paper Medical Tape</div>
+                <p class="gallery-item-desc">Breathable, skin-friendly fixation tape preventing skin maceration with easy bi-directional hand tear.</p>
+                <div class="gallery-item-footer">
+                  <span>ISO 10993 Biocompatible</span>
+                  <span class="gallery-zoom-prompt">View Large ⤢</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Blood Transfusion Set -->
+            <div class="gallery-item-card" data-cat="products" data-title="Sterile Blood Transfusion Set (200µm Mesh)" data-desc="Precision dual drip chamber blood transfusion system with integrated 200 µm clot retention filter and rotating male luer lock.">
+              <div class="gallery-item-img-wrap">
+                <span class="gallery-item-badge">200µm CLOT FILTER</span>
+                <img src="assets/prod_blood_transfusion.jpg" alt="Blood Transfusion Set" class="gallery-item-img">
+              </div>
+              <div class="gallery-item-body">
+                <span class="gallery-item-category">TRANSFUSION SYSTEMS</span>
+                <div class="gallery-item-title">Sterile Dual-Chamber Blood Transfusion Set</div>
+                <p class="gallery-item-desc">Large-bore kink-resistant line engineered for rapid whole blood, packed red cell, and plasma administration.</p>
+                <div class="gallery-item-footer">
+                  <span>ISO 1135-4 Standard</span>
+                  <span class="gallery-zoom-prompt">View Large ⤢</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Urine Bag -->
+            <div class="gallery-item-card" data-cat="products" data-title="Sterile Urine Collection Bag (2000 mL)" data-desc="Medical-grade clear PVC drainage bag with anti-reflux flutter valve, graduated volume scale, 90 cm inlet tube, and bottom T-tap outlet.">
+              <div class="gallery-item-img-wrap">
+                <span class="gallery-item-badge">2000 mL CAPACITY</span>
+                <img src="assets/prod_urine_bag.jpg" alt="Sterile Urine Collection Bag" class="gallery-item-img">
+              </div>
+              <div class="gallery-item-body">
+                <span class="gallery-item-category">DRAINAGE &amp; UROLOGY</span>
+                <div class="gallery-item-title">Sterile Medical Urine Collection Bag (2000 mL)</div>
+                <p class="gallery-item-desc">Integrated anti-reflux valve preventing retrograde infection with universal stepped catheter connector.</p>
+                <div class="gallery-item-footer">
+                  <span>ISO 8669 Compliant</span>
+                  <span class="gallery-zoom-prompt">View Large ⤢</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Ryle's Tube -->
+            <div class="gallery-item-card" data-cat="products" data-title="Ryle's Tube (Nasogastric Feeding &amp; Aspiration)" data-desc="Thermo-sensitive medical PVC stomach tube with radiopaque X-ray line, corrosion-resistant lead weighted tip, and 4 lateral drainage eyes (8Fr–20Fr).">
+              <div class="gallery-item-img-wrap">
+                <span class="gallery-item-badge">8Fr – 20Fr SIZES</span>
+                <img src="assets/prod_ryles_tube.jpg" alt="Ryle's Tube" class="gallery-item-img">
+              </div>
+              <div class="gallery-item-body">
+                <span class="gallery-item-category">GASTRIC DECOMPRESSION</span>
+                <div class="gallery-item-title">Ryle's Tube (Nasogastric Feeding &amp; Aspiration)</div>
+                <p class="gallery-item-desc">Graduated depth markings at 45, 55, 60, and 65 cm with universal color-coded funnel connector.</p>
+                <div class="gallery-item-footer">
+                  <span>ISO 10555 Compliant</span>
+                  <span class="gallery-zoom-prompt">View Large ⤢</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Scalp Vein Set -->
+            <div class="gallery-item-card" data-cat="products" data-title="Butterfly Scalp Vein Infusion Set" data-desc="Precision pediatric and geriatric butterfly needle set with flexible textured wings, 30 cm kink-proof tubing, and female luer lock (18G–27G).">
+              <div class="gallery-item-img-wrap">
+                <span class="gallery-item-badge">18G – 27G GAUGES</span>
+                <img src="assets/prod_scalp_vein.jpg" alt="Scalp Vein Set" class="gallery-item-img">
+              </div>
+              <div class="gallery-item-body">
+                <span class="gallery-item-category">PEDIATRIC INFUSION</span>
+                <div class="gallery-item-title">Butterfly Scalp Vein Set with Flexible Wings</div>
+                <p class="gallery-item-desc">Robotic 3-bevel lancet point ensuring pain-free entry for delicate or fragile peripheral veins.</p>
+                <div class="gallery-item-footer">
+                  <span>ISO 6009 Standard</span>
+                  <span class="gallery-zoom-prompt">View Large ⤢</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Adult Diaper -->
+            <div class="gallery-item-card" data-cat="products" data-title="Hospital-Grade Premium Adult Diaper" data-desc="Super-absorbent adult incontinence brief featuring multi-layer SAP core, standing leak barriers, wetness indicator, and refastenable side adhesive tapes.">
+              <div class="gallery-item-img-wrap">
+                <span class="gallery-item-badge">M / L / XL SIZES</span>
+                <img src="assets/prod_adult_diaper.jpg" alt="Hospital-Grade Adult Diaper" class="gallery-item-img">
+              </div>
+              <div class="gallery-item-body">
+                <span class="gallery-item-category">PATIENT CARE CONSUMABLES</span>
+                <div class="gallery-item-title">Hospital-Grade Premium Adult Incontinence Diaper</div>
+                <p class="gallery-item-desc">Breathable cloth-like non-woven outer layer with rapid moisture-wicking and odor neutralization.</p>
+                <div class="gallery-item-footer">
+                  <span>High Absorbency SAP</span>
+                  <span class="gallery-zoom-prompt">View Large ⤢</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- LIGHTBOX MODAL -->
+  <div class="gallery-modal-overlay" id="galleryModal">
+    <div class="gallery-modal-container">
+      <button class="gallery-modal-close" id="modalCloseBtn" aria-label="Close Preview">&times;</button>
+      <div class="gallery-modal-img-wrap">
+        <img src="" alt="" class="gallery-modal-img" id="modalImg">
+      </div>
+      <div class="gallery-modal-body">
+        <span class="gallery-modal-cat" id="modalCat">CATEGORY</span>
+        <h3 class="gallery-modal-title" id="modalTitle">Title</h3>
+        <p class="gallery-modal-desc" id="modalDesc">Detailed description...</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SITE FOOTER -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-top-grid">
+        <!-- Brand Summary -->
+        <div class="footer-brand-col">
+          <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+            <img src="assets/ChatGPT Image Sep 28, 2026, 04_42_50 PM.png" alt="GAI AI-DISPO Logo"
+              style="height: 48px; width: auto; object-fit: contain; filter: drop-shadow(0 2px 6px rgba(1, 53, 114, 0.16));">
+            <div class="footer-logo">AI-DISPO<span style="color:var(--accent-blue)">.</span></div>
+          </div>
+          <p class="footer-brand-desc">
+            Goel Allied Industries — Manufacturer of AI-DISPO® sterile injection systems, IV cannulas, and infusion sets.
+            Precision, safety, and reliability where every life counts.
+          </p>
+          <div class="regulatory-stamp-row">
+            <span class="stamp-tag red">WHO-GMP</span>
+            <span class="stamp-tag dark">CDSCO</span>
+            <span class="stamp-tag dark">ISO 9001:2015</span>
+            <span class="stamp-tag red">CE CERTIFIED</span>
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="footer-col">
+          <h4>EXPLORE PRODUCTS</h4>
+          <ul class="footer-links">
+            <li><a href="syringe.html">Disposable Hypodermic Syringes (1mL – 50mL)</a></li>
+            <li><a href="iv-cannula.html">Intravenous Cannulas (Ported &amp; Winged)</a></li>
+            <li><a href="infusion-sets.html">Intravenous Infusion Sets (Gravity &amp; Blood)</a></li>
+            <li><a href="needle.html">Hypodermic Needles (Tri-Bevel)</a></li>
+            <li><a href="other-products.html">Gloves, Medical Tape &amp; Blood Transfusion</a></li>
+            <li><a href="upcoming-products.html">Urine Bag, Ryle's Tube, Scalp Vein &amp; Diaper</a></li>
+            <li><a href="oem.html">OEM &amp; Contract Manufacturing</a></li>
+          </ul>
+        </div>
+
+        <!-- Corporate Navigation -->
+        <div class="footer-col">
+          <h4>COMPANY &amp; RESOURCES</h4>
+          <ul class="footer-links">
+            <li><a href="about.html">About Goel Allied Industries</a></li>
+            <li><a href="catalogue.html">E-Catalogue &amp; Company Profile</a></li>
+            <li><a href="gallery.html">Facility &amp; Product Gallery</a></li>
+            <li><a href="blog.html">Clinical Insights &amp; Blog</a></li>
+            <li><a href="faq.html">Frequently Asked Questions (FAQ)</a></li>
+            <li><a href="privacy-policy.html">Privacy Policy</a></li>
+            <li><a href="terms-conditions.html">Terms &amp; Conditions</a></li>
+            <li><a href="contact.html">Corporate Contact &amp; Inquiries</a></li>
+          </ul>
+        </div>
+
+        <!-- Contact Info -->
+        <div class="footer-col">
+          <h4>MANUFACTURING HEADQUARTERS</h4>
+          <p style="font-size: 13px; color: var(--ink-muted); line-height: 1.6; margin-bottom: 12px;">
+            Goel Allied Industries<br>
+            State-of-the-Art Cleanroom Facility<br>
+            India
+          </p>
+          <p style="font-size: 13px; color: var(--logo-navy); font-weight: 700; font-family: var(--font-mono); line-height: 1.7;">
+            Phone: <a href="tel:+919120808855" style="color: inherit; text-decoration: none;">+91 91208 08855</a><br>
+            Email: <a href="mailto:export@aidispo.com" style="color: inherit; text-decoration: none;">export@aidispo.com</a><br>
+            Email: <a href="mailto:goelsyringe@gmail.com" style="color: inherit; text-decoration: none;">goelsyringe@gmail.com</a>
+          </p>
+        </div>
+      </div>
+
+      <div class="footer-bottom-bar">
+        <div>© 2026 Goel Allied Industries (Brand: AI-DISPO®). All Rights Reserved. • Designed and Developed by <a href="https://alightwaysolutions.com/" target="_blank" rel="noopener noreferrer" style="color: var(--logo-navy); font-weight: 700; text-decoration: underline; text-underline-offset: 2px;">Alightway Solutions</a></div>
+        <div class="footer-legal-links" style="display: flex; gap: 16px; align-items: center; font-size: 12px;">
+          <a href="privacy-policy.html" style="color: var(--ink-muted); text-decoration: none;">Privacy Policy</a>
+          <span style="color: var(--ink-faint);">•</span>
+          <a href="terms-conditions.html" style="color: var(--ink-muted); text-decoration: none;">Terms &amp; Conditions</a>
+          <span style="color: var(--ink-faint);">•</span>
+          <a href="faq.html" style="color: var(--ink-muted); text-decoration: none;">FAQs</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+  <script>
+    // Category Filtering Logic
+    const filterBtns = document.querySelectorAll('.gallery-filter-btn');
+    const categoryGroups = document.querySelectorAll('.gallery-category-group');
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const filter = btn.getAttribute('data-filter');
+
+        categoryGroups.forEach(group => {
+          const groupType = group.getAttribute('data-group');
+          if (filter === 'all' || filter === groupType) {
+            group.style.display = 'block';
+          } else {
+            group.style.display = 'none';
+          }
+        });
+      });
+    });
+
+    // Lightbox Modal Logic
+    const modal = document.getElementById('galleryModal');
+    const modalImg = document.getElementById('modalImg');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalCat = document.getElementById('modalCat');
+    const modalDesc = document.getElementById('modalDesc');
+    const closeBtn = document.getElementById('modalCloseBtn');
+
+    document.querySelectorAll('.gallery-item-card').forEach(card => {
+      card.addEventListener('click', () => {
+        const img = card.querySelector('.gallery-item-img');
+        const cat = card.querySelector('.gallery-item-category');
+        const title = card.getAttribute('data-title') || card.querySelector('.gallery-item-title').textContent;
+        const desc = card.getAttribute('data-desc') || card.querySelector('.gallery-item-desc').textContent;
+
+        if (img) modalImg.src = img.src;
+        if (cat) modalCat.textContent = cat.textContent;
+        if (title) modalTitle.textContent = title;
+        if (desc) modalDesc.textContent = desc;
+
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+
+    function closeModal() {
+      modal.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    if (closeBtn) closeBtn.addEventListener('click', closeModal);
+    if (modal) {
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) closeModal();
+      });
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal.classList.contains('active')) {
+        closeModal();
+      }
+    });
+  </script>
+</body>
+
+</html>

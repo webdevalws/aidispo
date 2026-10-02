@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>E-Catalogue &amp; Company Profile — Goel Allied Industries | AI-DISPO®</title>
+  <meta name="description"
+    content="Download the official AI-DISPO® product catalogue and Goel Allied Industries company profile PDF. Sterile syringes, IV cannulas, infusion sets, and medical consumables.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700;800&family=Plus+Jakarta+Sans:wght@600;700;800;900&display=swap"
+    rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="products.css">
+</head>
+
+<body>
+  <div class="blueprint-lines"></div>
+
+  <!-- SITE HEADER -->
+  <header class="site-header" id="mainHeader">
+    <div class="nav-left">
+      <a href="index.html#heroTrack" class="brand-logo-wrap">
+        <img src="assets/ChatGPT Image Sep 28, 2026, 04_42_50 PM.png" alt="GAI AI-DISPO Logo" class="brand-logo-img">
+        <span class="brand-logo">AI-DISPO<span class="accent-dot">.</span></span>
+      </a>
+    </div>
+
+    <nav class="nav-center" aria-label="Main Navigation">
+      <a href="index.html#heroTrack" class="nav-link">Home</a>
+
+      <!-- Product Dropdown Menu -->
+      <div class="nav-item-dropdown" id="productDropdown">
+        <a href="syringe.html" class="nav-link nav-dropdown-trigger" id="productDropdownBtn" aria-haspopup="true"
+          aria-expanded="false">
+          Product
+          <svg class="dropdown-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2.5">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </a>
+        <div class="nav-dropdown-menu" id="productMenu" role="menu">
+          <a href="syringe.html" class="dropdown-item" role="menuitem">
+            <div class="dropdown-item-thumb">
+              <img src="assets/prod_syringe.jpg" alt="Syringe" class="dropdown-thumb-img">
+            </div>
+            <div class="dropdown-item-info">
+              <span class="dropdown-item-title">Disposable Hypodermic Syringe</span>
+              <span class="dropdown-item-sub">UltraFlow 1mL – 10mL Clinical</span>
+            </div>
+          </a>
+
+          <a href="iv-cannula.html" class="dropdown-item" role="menuitem">
+            <div class="dropdown-item-thumb">
+              <img src="assets/prod_iv_cannula.jpg" alt="IV Cannula" class="dropdown-thumb-img">
+            </div>
+            <div class="dropdown-item-info">
+              <span class="dropdown-item-title">Intravenous Cannula</span>
+              <span class="dropdown-item-sub">Ported &amp; Winged Catheters</span>
+            </div>
+          </a>
+
+          <a href="infusion-sets.html" class="dropdown-item" role="menuitem">
+            <div class="dropdown-item-thumb">
+              <img src="assets/prod_iv_set.jpg" alt="Infusion sets / IV sets" class="dropdown-thumb-img">
+            </div>
+            <div class="dropdown-item-info">
+              <span class="dropdown-item-title">Intravenous Infusion Set</span>
+              <span class="dropdown-item-sub">Gravity &amp; Micro-Drip Infusion</span>
+            </div>
+          </a>
+
+          <a href="needle.html" class="dropdown-item" role="menuitem">
+            <div class="dropdown-item-thumb">
+              <img src="assets/prod_needle.jpg" alt="Needle" class="dropdown-thumb-img">
+            </div>
+            <div class="dropdown-item-info">
+              <span class="dropdown-item-title">Hypodermic Needle</span>
+              <span class="dropdown-item-sub">Tri-Bevel Hypodermic Cannulas</span>
+            </div>
+          </a>
+
+          <a href="other-products.html" class="dropdown-item" role="menuitem">
+            <div class="dropdown-item-thumb">
+              <img src="assets/prod_other.jpg" alt="Other Product" class="dropdown-thumb-img">
+            </div>
+            <div class="dropdown-item-info">
+              <span class="dropdown-item-title">Other Product</span>
+              <span class="dropdown-item-sub">Gloves, Medical Tape &amp; Blood Transfusion</span>
+            </div>
+          </a>
+
+          <a href="upcoming-products.html" class="dropdown-item upcoming" role="menuitem">
+            <div class="dropdown-item-thumb">
+              <img src="assets/prod_upcoming.jpg" alt="Upcoming Product" class="dropdown-thumb-img">
+            </div>
+            <div class="dropdown-item-info">
+              <span class="dropdown-item-title">Upcoming Product</span>
+              <span class="dropdown-item-sub">Urine Bag, Ryle's Tube, Scalp Vein &amp; Diaper</span>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <a href="about.html" class="nav-link">About Us</a>
+      <a href="gallery.html" class="nav-link">Gallery</a>
+      <a href="blog.html" class="nav-link">Blog</a>
+      <a href="oem.html" class="nav-link">OEM / ODM</a>
+      <a href="catalogue.html" class="nav-link active">E-Catalogue</a>
+    </nav>
+
+    <div class="nav-right">
+      <a href="contact.html" class="btn-craft btn-craft-primary" id="topContactBtn">
+        CONTACT US
+      </a>
+      <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Open Mobile Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- MOBILE NAVIGATION DRAWER -->
+  <div class="mobile-nav-backdrop" id="mobileNavBackdrop"></div>
+  <div class="mobile-nav-drawer" id="mobileNavDrawer" aria-hidden="true">
+    <div class="mobile-nav-header">
+      <div class="brand-logo-wrap">
+        <img src="assets/ChatGPT Image Sep 28, 2026, 04_42_50 PM.png" alt="GAI AI-DISPO Logo" class="brand-logo-img">
+        <span class="brand-logo">AI-DISPO<span class="accent-dot">.</span></span>
+      </div>
+      <button class="mobile-nav-close" id="mobileNavClose" aria-label="Close Navigation Menu">&times;</button>
+    </div>
+
+    <div class="mobile-nav-links">
+      <a href="index.html" class="mobile-nav-link">Home</a>
+
+      <div class="mobile-nav-dropdown" id="mobileProductDropdown">
+        <button class="mobile-nav-dropdown-btn" id="mobileProductToggle" type="button">
+          <span>Product</span>
+          <svg class="dropdown-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2.5">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </button>
+        <div class="mobile-dropdown-list" id="mobileProductList">
+          <a href="syringe.html" class="mobile-dropdown-item">
+            <img src="assets/prod_syringe.jpg" alt="Syringe" class="mobile-thumb">
+            <div>
+              <strong>Disposable Hypodermic Syringe</strong>
+              <small>UltraFlow 1mL – 10mL Clinical</small>
+            </div>
+          </a>
+          <a href="iv-cannula.html" class="mobile-dropdown-item">
+            <img src="assets/prod_iv_cannula.jpg" alt="IV Cannula" class="mobile-thumb">
+            <div>
+              <strong>Intravenous Cannula</strong>
+              <small>Ported &amp; Winged Catheters</small>
+            </div>
+          </a>
+          <a href="infusion-sets.html" class="mobile-dropdown-item">
+            <img src="assets/prod_iv_set.jpg" alt="Infusion sets / IV sets" class="mobile-thumb">
+            <div>
+              <strong>Intravenous Infusion Set</strong>
+              <small>Gravity &amp; Micro-Drip Infusion</small>
+            </div>
+          </a>
+          <a href="needle.html" class="mobile-dropdown-item">
+            <img src="assets/prod_needle.jpg" alt="Needle" class="mobile-thumb">
+            <div>
+              <strong>Hypodermic Needle</strong>
+              <small>Tri-Bevel Hypodermic Cannulas</small>
+            </div>
+          </a>
+          <a href="other-products.html" class="mobile-dropdown-item">
+            <img src="assets/prod_other.jpg" alt="Other Product" class="mobile-thumb">
+            <div>
+              <strong>Other Product</strong>
+              <small>Gloves, Medical Tape &amp; Blood Transfusion</small>
+            </div>
+          </a>
+          <a href="upcoming-products.html" class="mobile-dropdown-item">
+            <img src="assets/prod_upcoming.jpg" alt="Upcoming Product" class="mobile-thumb">
+            <div>
+              <strong>Upcoming Product</strong>
+              <small>Urine Bag, Ryle's Tube, Scalp Vein &amp; Diaper</small>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <a href="about.html" class="mobile-nav-link">About Us</a>
+      <a href="gallery.html" class="mobile-nav-link">Gallery</a>
+      <a href="blog.html" class="mobile-nav-link">Blog</a>
+      <a href="oem.html" class="mobile-nav-link">OEM / ODM</a>
+      <a href="catalogue.html" class="mobile-nav-link active">E-Catalogue</a>
+    </div>
+
+    <div class="mobile-nav-footer">
+      <a href="contact.html" class="btn-craft btn-craft-primary" style="width: 100%;">
+        CONTACT US
+      </a>
+      <div style="font-family: var(--font-body); font-size: 11px; font-weight: 600; color: var(--ink-muted); text-align: center; margin-top: 12px; letter-spacing: 0.04em;">
+        ISO 13485:2016 • CE 0197 STERILE
+      </div>
+    </div>
+  </div>
+
+  <main id="mainContent">
+    <!-- E-CATALOGUE HERO WITH DIRECT DOWNLOAD -->
+    <section class="prod-page-hero">
+      <div class="prod-hero-container">
+        <div>
+          <div class="hero-feature-tags-row">
+            <span class="hero-feature-tag">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                <polyline points="14 2 14 8 20 8" />
+              </svg>
+              OFFICIAL DIGITAL PUBLICATION • 2026
+            </span>
+            <span class="hero-feature-tag">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+              </svg>
+              WHO-GMP &amp; CE CERTIFIED
+            </span>
+            <span class="hero-feature-tag">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <circle cx="12" cy="12" r="10" />
+                <polyline points="12 6 12 12 14 14" />
+              </svg>
+              CLASS 100K CLEANROOM
+            </span>
+          </div>
+          <h1 class="sim-title" style="margin-top: 14px; font-size: clamp(28px, 3.5vw, 42px); line-height: 1.15;">
+            AI-DISPO® Product Catalogue &amp; <span class="highlight-cyan">Company Profile</span>
+          </h1>
+          <p class="prod-hero-lead">
+            Download our complete technical catalogue and corporate overview. Covers full specifications, packaging
+            matrices, ISO dimensions, and regulatory documentation for our sterile disposable syringe, IV cannula, infusion
+            set, and clinical consumables portfolios.
+          </p>
+
+          <!-- Direct Download Box -->
+          <div class="sim-interactive-frame" style="padding: 24px; background: #FFFFFF; margin: 24px 0;">
+            <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px;">
+              <div>
+                <div style="font-family: var(--font-headline); font-size: 17px; font-weight: 800; color: var(--logo-navy);">
+                  Goel Allied Industries — Company Profile &amp; Catalogue
+                </div>
+                <div style="font-family: var(--font-mono); font-size: 11.5px; color: var(--ink-muted); margin-top: 4px;">
+                  PDF Document • 5.7 MB • Full Color High-Res • English
+                </div>
+              </div>
+              <a href="assets/COMPANY PROFILE-1.pdf" download="AI-DISPO_Company_Profile_Catalogue.pdf"
+                class="sim-enquire-btn" id="downloadPdfBtn" style="font-size: 13.5px; padding: 14px 28px;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="margin-right: 4px;">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                  <polyline points="7 10 12 15 17 10"></polyline>
+                  <line x1="12" y1="15" x2="12" y2="3"></line>
+                </svg>
+                DOWNLOAD PDF (5.7 MB)
+              </a>
+            </div>
+          </div>
+
+          <div class="hero-micro-metrics" style="margin-top: 0; padding-top: 0; border-top: none;">
+            <div class="hero-micro-metric-item">
+              <span class="val">5.7 MB</span>
+              <span class="lbl">High-Res Document</span>
+            </div>
+            <div class="hero-micro-metric-item">
+              <span class="val">50+ SKUs</span>
+              <span class="lbl">Complete Matrix</span>
+            </div>
+            <div class="hero-micro-metric-item">
+              <span class="val">ISO &amp; CE</span>
+              <span class="lbl">Certified Products</span>
+            </div>
+            <div class="hero-micro-metric-item">
+              <span class="val">OEM / ODM</span>
+              <span class="lbl">Global Distribution</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Catalogue Visual Mockup -->
+        <div class="catalogue-hero-preview-card">
+          <div class="catalogue-cover-wrap">
+            <img src="assets/company_profile_cover.jpg" alt="AI-DISPO Company Profile &amp; Product Catalogue" class="catalogue-cover-img">
+          </div>
+          <div class="catalogue-card-actions">
+            <span class="catalogue-doc-meta">PDF • 5.7 MB • Full Color</span>
+            <a href="assets/COMPANY PROFILE-1.pdf" target="_blank" class="catalogue-open-link">
+              <span>Open PDF in New Tab</span>
+              <span>↗</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- COMPANY PROFILE & OVERVIEW FROM OFFICIAL CATALOGUE -->
+    <section class="simulator-section" style="background: #FFFFFF; border-top: var(--border-thin);">
+      <div class="simulator-container">
+        <!-- Main About Split -->
+        <div class="sim-split-content" style="gap: 36px; align-items: center; margin-bottom: 36px;">
+          <div>
+            <span class="sim-pill-tag feature">CORPORATE PROFILE</span>
+            <h2 class="sim-title" style="margin-top: 12px; margin-bottom: 14px;">About Company</h2>
+            <p style="font-size: 15px; color: var(--ink-charcoal); line-height: 1.7; margin-bottom: 14px;">
+              Welcome to <strong>Goel Allied Industries</strong>, where innovation meets trust in manufacturing of high-quality medical devices. At Goel Allied Industries, we are committed to patient safety and product excellence. Our state-of-the-art facility specializes in the production of sterile disposable medical products.
+            </p>
+            <p style="font-size: 15px; color: var(--ink-charcoal); line-height: 1.7; margin-bottom: 14px;">
+              Proudly marketing our products under the trusted brand name <strong>"AI-Dispo"</strong>, we adhere to the highest standards of quality and safety. Most importantly, we prioritize the health and safety of our workers, maintaining strict hygiene protocols and mandatory use of safety gear during production.
+            </p>
+            <p style="font-size: 15px; color: var(--ink-charcoal); line-height: 1.7; margin-bottom: 14px;">
+              We are an <strong>WHO, CDSCO, GMP, CE and ISO 9001 certified company</strong>, equipped with cutting-edge automatic machinery, advanced Clean Room areas, in-house sterilization process, and a dedicated Quality Lab to meet both national and international regulatory standards.
+            </p>
+            <p style="font-size: 15px; color: var(--ink-charcoal); line-height: 1.7; margin-bottom: 18px;">
+              Our team of skilled professionals, reliable access to premium raw materials, and strong financial partnerships ensure smooth and efficient operations.
+            </p>
+            <div style="background: #F4F8FB; border-left: 4px solid var(--accent-blue); padding: 14px 18px; border-radius: 0 8px 8px 0;">
+              <p style="font-family: var(--font-headline); font-size: 16px; font-weight: 800; color: var(--logo-navy); margin: 0;">
+                "At Goel Allied Industries, quality is not just a promise... it's our way of life."
+              </p>
+              <div style="font-family: var(--font-mono); font-size: 12px; font-weight: 700; color: var(--accent-blue); margin-top: 4px;">
+                Precision, Safety And Reliability — Every Life Counts
+              </div>
+            </div>
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 16px; width: 100%;">
+            <div class="prod-hero-img-wrap" style="padding: 12px;">
+              <img src="assets/facility_banner_2.jpg" alt="Automated Manufacturing Floor" style="width: 100%; max-width: 100%; border-radius: 8px; max-height: 220px; object-fit: cover;">
+            </div>
+            <div class="sim-interactive-frame" style="padding: 20px; background: #FFFFFF;">
+              <div style="font-family: var(--font-mono); font-size: 11px; font-weight: 800; color: var(--logo-navy); text-transform: uppercase; margin-bottom: 8px;">
+                AT GOEL ALLIED INDUSTRIES, YOUR TRUST DRIVES OUR QUALITY.
+              </div>
+              <p style="font-size: 13.5px; color: var(--ink-muted); line-height: 1.6; margin: 0;">
+                We specialize in sterile, disposable products like I.V. Sets, I.V. Cannulas and Disposable Syringes, marketed under our brand "AI-Dispo".
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Vision & Mission Grid -->
+        <div class="sim-tabs-grid" style="gap: 20px; margin-bottom: 28px;">
+          <div class="sim-tab-card" style="border-top: 4px solid var(--accent-blue); padding: 22px;">
+            <span class="sim-pill-tag feature" style="margin-bottom: 10px;">VISION</span>
+            <p style="font-size: 14.5px; color: var(--ink-charcoal); line-height: 1.6; margin: 0;">
+              "To be a global leader in healthcare industry, delivering world-class medical solutions with a commitment to safety, reliability, quality, and trust."
+            </p>
+          </div>
+          <div class="sim-tab-card" style="border-top: 4px solid var(--logo-navy); padding: 22px;">
+            <span class="sim-pill-tag dark" style="margin-bottom: 10px;">MISSION</span>
+            <p style="font-size: 14.5px; color: var(--ink-charcoal); line-height: 1.6; margin: 0;">
+              "To consistently provide reliable and precise high-quality disposable medical devices that meet the evolving needs of healthcare professionals worldwide, ensuring excellence at every step."
+            </p>
+          </div>
+        </div>
+
+        <!-- Objectives -->
+        <div class="sim-interactive-frame" style="padding: 24px; background: #F4F8FB;">
+          <div style="font-family: var(--font-headline); font-size: 18px; font-weight: 800; color: var(--logo-navy); margin-bottom: 16px;">
+            Core Objectives
+          </div>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px;">
+            <div style="background: #FFFFFF; border: 1.5px solid rgba(1, 53, 114, 0.15); border-radius: 6px; padding: 14px;">
+              <div style="font-family: var(--font-mono); font-size: 13px; font-weight: 800; color: var(--accent-blue); margin-bottom: 4px;">01.</div>
+              <p style="font-size: 12px; color: var(--ink-charcoal); line-height: 1.5; margin: 0;">To maintain the highest standards of manufacturing through continuous innovation and advanced technologies.</p>
+            </div>
+            <div style="background: #FFFFFF; border: 1.5px solid rgba(1, 53, 114, 0.15); border-radius: 6px; padding: 14px;">
+              <div style="font-family: var(--font-mono); font-size: 13px; font-weight: 800; color: var(--accent-blue); margin-bottom: 4px;">02.</div>
+              <p style="font-size: 12px; color: var(--ink-charcoal); line-height: 1.5; margin: 0;">To ensure full compliance with all national and international healthcare regulations and quality benchmarks.</p>
+            </div>
+            <div style="background: #FFFFFF; border: 1.5px solid rgba(1, 53, 114, 0.15); border-radius: 6px; padding: 14px;">
+              <div style="font-family: var(--font-mono); font-size: 13px; font-weight: 800; color: var(--accent-blue); margin-bottom: 4px;">03.</div>
+              <p style="font-size: 12px; color: var(--ink-charcoal); line-height: 1.5; margin: 0;">To foster long-term partnerships by exceeding customer expectations in product performance, service, and reliability.</p>
+            </div>
+            <div style="background: #FFFFFF; border: 1.5px solid rgba(1, 53, 114, 0.15); border-radius: 6px; padding: 14px;">
+              <div style="font-family: var(--font-mono); font-size: 13px; font-weight: 800; color: var(--accent-blue); margin-bottom: 4px;">04.</div>
+              <p style="font-size: 12px; color: var(--ink-charcoal); line-height: 1.5; margin: 0;">To promote a culture of safety, hygiene, and sustainability throughout our workflow.</p>
+            </div>
+            <div style="background: #FFFFFF; border: 1.5px solid rgba(1, 53, 114, 0.15); border-radius: 6px; padding: 14px;">
+              <div style="font-family: var(--font-mono); font-size: 13px; font-weight: 800; color: var(--accent-blue); margin-bottom: 4px;">05.</div>
+              <p style="font-size: 12px; color: var(--ink-charcoal); line-height: 1.5; margin: 0;">To drive manufacturing excellence by empowering our workforce and investing in skills, safety, and development.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHAT'S INSIDE THE CATALOGUE -->
+    <section class="simulator-section">
+      <div class="simulator-container">
+        <div class="sim-header">
+          <span class="sim-pill-tag feature">DOCUMENT OVERVIEW</span>
+          <h2 class="sim-title">Catalogue Sections &amp; Product Portfolio</h2>
+          <p class="sim-subtitle">Everything required for hospital procurement, clinical evaluation committees, and international medical import registration.</p>
+        </div>
+
+        <div class="sim-tabs-grid" style="gap: 20px;">
+          <!-- Section 1 -->
+          <div class="sim-tab-card prod-feature-card">
+            <div class="prod-card-thumb-wrap" style="height: 160px;">
+              <img src="assets/prod_syringe.jpg" alt="Syringes" class="prod-card-thumb">
+            </div>
+            <span class="sim-tab-badge">CHAPTER 01</span>
+            <div class="sim-tab-title">Disposable Hypodermic Syringes (1mL – 50mL)</div>
+            <div class="sim-tab-desc">Comprehensive dimensional schematics, dead space parameters, breakaway force charts, and Luer Lock vs. Luer Slip configurations across 2-part and 3-part clinical syringes.</div>
+          </div>
+
+          <!-- Section 2 -->
+          <div class="sim-tab-card prod-feature-card">
+            <div class="prod-card-thumb-wrap" style="height: 160px;">
+              <img src="assets/prod_iv_cannula.jpg" alt="IV Cannula" class="prod-card-thumb">
+            </div>
+            <span class="sim-tab-badge">CHAPTER 02</span>
+            <div class="sim-tab-title">Intravenous Cannula &amp; Catheter Systems</div>
+            <div class="sim-tab-desc">Full 14G through 26G ISO color-coded specifications, flow rates (up to 385 ml/min), FEP/PUR radiopaque catheter technology, and Ported vs. Plain wing designs.</div>
+          </div>
+
+          <!-- Section 3 -->
+          <div class="sim-tab-card prod-feature-card">
+            <div class="prod-card-thumb-wrap" style="height: 160px;">
+              <img src="assets/prod_iv_set.jpg" alt="IV Infusion Sets" class="prod-card-thumb">
+            </div>
+            <span class="sim-tab-badge">CHAPTER 03</span>
+            <div class="sim-tab-title">Intravenous Infusion Sets &amp; Transfusion Systems</div>
+            <div class="sim-tab-desc">Vented/non-vented gravity infusion sets (20 drops/mL &amp; 60 drops/mL), inline 15µm particle filters, and blood transfusion sets with 200µm clot barriers.</div>
+          </div>
+
+          <!-- Section 4 -->
+          <div class="sim-tab-card prod-feature-card">
+            <div class="prod-card-thumb-wrap" style="height: 160px;">
+              <img src="assets/prod_needle.jpg" alt="Hypodermic Needles" class="prod-card-thumb">
+            </div>
+            <span class="sim-tab-badge">CHAPTER 04</span>
+            <div class="sim-tab-title">Hypodermic Needles &amp; Scalp Veins</div>
+            <div class="sim-tab-desc">Diamond-honed tri-bevel lancet needle cannulas (16G – 27G), ultra-thin wall lumen measurements, and butterfly scalp vein sets for pediatric infusions.</div>
+          </div>
+
+          <!-- Section 5 -->
+          <div class="sim-tab-card prod-feature-card">
+            <div class="prod-card-thumb-wrap" style="height: 160px;">
+              <img src="assets/prod_gloves.jpg" alt="Medical Consumables" class="prod-card-thumb">
+            </div>
+            <span class="sim-tab-badge">CHAPTER 05</span>
+            <div class="sim-tab-title">Clinical Consumables &amp; Protection</div>
+            <div class="sim-tab-desc">Medical examination gloves (nitrile/latex), hypoallergenic microporous surgical tape, and sterile Ryle's tubes for nasogastric gastric decompression.</div>
+          </div>
+
+          <!-- Section 6 -->
+          <div class="sim-tab-card prod-feature-card">
+            <div class="prod-card-thumb-wrap" style="height: 160px;">
+              <img src="assets/facility_banner_3.jpg" alt="Facility & Quality" class="prod-card-thumb">
+            </div>
+            <span class="sim-tab-badge">CHAPTER 06</span>
+            <div class="sim-tab-title">Cleanroom Facility &amp; Quality QA</div>
+            <div class="sim-tab-desc">Detailed walk-through of Goel Allied Industries Class 100k cleanroom area, automatic robotic molding, ETO sterilization validation, and testing lab protocols.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EMBEDDED PDF VIEWER / DOWNLOAD CTA -->
+    <section class="prod-spec-table-section" style="background: #F4F8FB; border-top: var(--border-thin);">
+      <div class="prod-table-wrap" style="max-width: 900px; margin: 0 auto; text-align: center;">
+        <span class="sim-pill-tag dark">DIRECT PDF DOWNLOAD</span>
+        <h2 class="sim-title" style="margin-top: 14px;">Instant PDF Access &amp; Offline Viewing</h2>
+        <p style="font-size: 15px; color: var(--ink-muted); line-height: 1.6; margin: 12px 0 28px;">
+          Click the download button below to save the official Goel Allied Industries AI-DISPO® company profile and product catalogue directly to your device.
+        </p>
+
+        <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+          <a href="assets/COMPANY PROFILE-1.pdf" download="AI-DISPO_Company_Profile_Catalogue.pdf"
+            class="sim-enquire-btn" style="font-size: 15px; padding: 16px 36px;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="margin-right: 6px;">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="7 10 12 15 17 10"></polyline>
+              <line x1="12" y1="15" x2="12" y2="3"></line>
+            </svg>
+            DOWNLOAD COMPANY PROFILE (PDF)
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+    <!-- SITE FOOTER -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-top-grid">
+        <!-- Brand Summary -->
+        <div class="footer-brand-col">
+          <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+            <img src="assets/ChatGPT Image Sep 28, 2026, 04_42_50 PM.png" alt="GAI AI-DISPO Logo"
+              style="height: 48px; width: auto; object-fit: contain; filter: drop-shadow(0 2px 6px rgba(1, 53, 114, 0.16));">
+            <div class="footer-logo">AI-DISPO<span style="color:var(--accent-blue)">.</span></div>
+          </div>
+          <p class="footer-brand-desc">
+            Goel Allied Industries — Manufacturer of AI-DISPO® sterile injection systems, IV cannulas, and infusion sets.
+            Precision, safety, and reliability where every life counts.
+          </p>
+          <div class="regulatory-stamp-row">
+            <span class="stamp-tag red">WHO-GMP</span>
+            <span class="stamp-tag dark">CDSCO</span>
+            <span class="stamp-tag dark">ISO 9001:2015</span>
+            <span class="stamp-tag red">CE CERTIFIED</span>
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="footer-col">
+          <h4>EXPLORE PRODUCTS</h4>
+          <ul class="footer-links">
+            <li><a href="syringe.html">Disposable Hypodermic Syringes (1mL – 50mL)</a></li>
+            <li><a href="iv-cannula.html">Intravenous Cannulas (Ported &amp; Winged)</a></li>
+            <li><a href="infusion-sets.html">Intravenous Infusion Sets (Gravity &amp; Blood)</a></li>
+            <li><a href="needle.html">Hypodermic Needles (Tri-Bevel)</a></li>
+            <li><a href="other-products.html">Gloves, Medical Tape &amp; Blood Transfusion</a></li>
+            <li><a href="upcoming-products.html">Urine Bag, Ryle's Tube, Scalp Vein &amp; Diaper</a></li>
+            <li><a href="oem.html">OEM &amp; Contract Manufacturing</a></li>
+          </ul>
+        </div>
+
+        <!-- Corporate Navigation -->
+        <div class="footer-col">
+          <h4>COMPANY &amp; RESOURCES</h4>
+          <ul class="footer-links">
+            <li><a href="about.html">About Goel Allied Industries</a></li>
+            <li><a href="catalogue.html">E-Catalogue &amp; Company Profile</a></li>
+            <li><a href="gallery.html">Facility &amp; Product Gallery</a></li>
+            <li><a href="blog.html">Clinical Insights &amp; Blog</a></li>
+            <li><a href="faq.html">Frequently Asked Questions (FAQ)</a></li>
+            <li><a href="privacy-policy.html">Privacy Policy</a></li>
+            <li><a href="terms-conditions.html">Terms &amp; Conditions</a></li>
+            <li><a href="contact.html">Corporate Contact &amp; Inquiries</a></li>
+          </ul>
+        </div>
+
+        <!-- Contact Info -->
+        <div class="footer-col">
+          <h4>MANUFACTURING HEADQUARTERS</h4>
+          <p style="font-size: 13px; color: var(--ink-muted); line-height: 1.6; margin-bottom: 12px;">
+            Goel Allied Industries<br>
+            State-of-the-Art Cleanroom Facility<br>
+            India
+          </p>
+          <p style="font-size: 13px; color: var(--logo-navy); font-weight: 700; font-family: var(--font-mono); line-height: 1.7;">
+            Phone: <a href="tel:+919120808855" style="color: inherit; text-decoration: none;">+91 91208 08855</a><br>
+            Email: <a href="mailto:export@aidispo.com" style="color: inherit; text-decoration: none;">export@aidispo.com</a><br>
+            Email: <a href="mailto:goelsyringe@gmail.com" style="color: inherit; text-decoration: none;">goelsyringe@gmail.com</a>
+          </p>
+        </div>
+      </div>
+
+      <div class="footer-bottom-bar">
+        <div>© 2026 Goel Allied Industries (Brand: AI-DISPO®). All Rights Reserved. • Designed and Developed by <a href="https://alightwaysolutions.com/" target="_blank" rel="noopener noreferrer" style="color: var(--logo-navy); font-weight: 700; text-decoration: underline; text-underline-offset: 2px;">Alightway Solutions</a></div>
+        <div class="footer-legal-links" style="display: flex; gap: 16px; align-items: center; font-size: 12px;">
+          <a href="privacy-policy.html" style="color: var(--ink-muted); text-decoration: none;">Privacy Policy</a>
+          <span style="color: var(--ink-faint);">•</span>
+          <a href="terms-conditions.html" style="color: var(--ink-muted); text-decoration: none;">Terms &amp; Conditions</a>
+          <span style="color: var(--ink-faint);">•</span>
+          <a href="faq.html" style="color: var(--ink-muted); text-decoration: none;">FAQs</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+
+</html>

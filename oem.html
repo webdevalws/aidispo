@@ -1,0 +1,954 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OEM &amp; Contract Medical Device Manufacturing | AI-DISPO® &amp; Goel Allied Industries</title>
+  <meta name="description"
+    content="Turnkey OEM, ODM & Private Label contract manufacturing for sterile hypodermic syringes, IV cannulas, and infusion sets. ISO Class 100k cleanrooms, high-precision multi-cavity injection molding, and in-house ETO sterilization.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800;900&display=swap"
+    rel="stylesheet">
+
+  <link rel="icon" type="image/png" href="assets/ChatGPT Image Sep 28, 2026, 04_42_50 PM.png">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="products.css">
+  <style>
+    /* OEM Specific Styles */
+    .oem-hero-banner {
+      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1.5px solid rgba(1, 53, 114, 0.18);
+      box-shadow: 0 16px 36px rgba(1, 53, 114, 0.14);
+      margin-top: 24px;
+      height: 380px;
+    }
+    .oem-hero-banner img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .oem-banner-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(10, 28, 48, 0.2) 0%, rgba(10, 28, 48, 0.85) 100%);
+      display: flex;
+      align-items: flex-end;
+      padding: 30px;
+    }
+    .oem-banner-stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      width: 100%;
+    }
+    @media (max-width: 768px) {
+      .oem-banner-stats {
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+      .oem-hero-banner {
+        height: 280px;
+      }
+    }
+    .oem-stat-box {
+      background: rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      border-radius: 10px;
+      padding: 14px 18px;
+      color: #FFFFFF;
+    }
+    .oem-stat-num {
+      font-family: var(--font-mono);
+      font-size: 26px;
+      font-weight: 800;
+      color: var(--accent-cyan);
+      line-height: 1.1;
+    }
+    .oem-stat-lbl {
+      font-size: 11.5px;
+      color: rgba(255, 255, 255, 0.85);
+      font-weight: 600;
+      margin-top: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* Capabilities Grid */
+    .oem-cap-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 24px;
+      margin-top: 32px;
+    }
+    .oem-cap-card {
+      background: #FFFFFF;
+      border: 1.5px solid rgba(1, 53, 114, 0.16);
+      border-radius: 12px;
+      padding: 26px 24px;
+      box-shadow: 0 4px 16px rgba(1, 53, 114, 0.06);
+      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+      display: flex;
+      flex-direction: column;
+    }
+    .oem-cap-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 28px rgba(1, 53, 114, 0.14);
+      border-color: var(--accent-blue);
+    }
+    .oem-cap-icon-wrap {
+      width: 48px;
+      height: 48px;
+      border-radius: 10px;
+      background: #EDF6FF;
+      border: 1.5px solid rgba(0, 168, 255, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 16px;
+      color: var(--logo-navy);
+    }
+    .oem-cap-title {
+      font-family: var(--font-headline);
+      font-size: 17px;
+      font-weight: 800;
+      color: var(--ink-black);
+      margin-bottom: 10px;
+    }
+    .oem-cap-desc {
+      font-size: 13px;
+      color: var(--ink-muted);
+      line-height: 1.6;
+      flex-grow: 1;
+      margin-bottom: 16px;
+    }
+    .oem-cap-features {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      border-top: 1px solid rgba(1, 53, 114, 0.08);
+      padding-top: 12px;
+    }
+    .oem-cap-features li {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--logo-navy);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 6px;
+    }
+    .oem-cap-features li::before {
+      content: "✓";
+      color: #10B981;
+      font-weight: 800;
+    }
+
+    /* Workflow Steps */
+    .oem-steps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      margin-top: 32px;
+    }
+    .oem-step-card {
+      background: #FFFFFF;
+      border: 1.5px solid rgba(1, 53, 114, 0.16);
+      border-radius: 12px;
+      padding: 24px 20px;
+      position: relative;
+    }
+    .oem-step-num {
+      position: absolute;
+      top: 16px;
+      right: 18px;
+      font-family: var(--font-mono);
+      font-size: 32px;
+      font-weight: 800;
+      color: rgba(1, 53, 114, 0.12);
+      line-height: 1;
+    }
+    .oem-step-title {
+      font-family: var(--font-headline);
+      font-size: 15px;
+      font-weight: 800;
+      color: var(--logo-navy);
+      margin-bottom: 8px;
+    }
+    .oem-step-desc {
+      font-size: 12.5px;
+      color: var(--ink-muted);
+      line-height: 1.55;
+    }
+
+    /* Interactive OEM Configurator Box */
+    .oem-config-box {
+      background: #FFFFFF;
+      border: 2px solid var(--logo-navy);
+      border-radius: 16px;
+      padding: 32px;
+      box-shadow: 0 12px 36px rgba(1, 53, 114, 0.12);
+      margin-top: 40px;
+    }
+    .oem-config-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+    }
+    @media (max-width: 800px) {
+      .oem-config-grid {
+        grid-template-columns: 1fr;
+      }
+      .oem-config-box {
+        padding: 20px;
+      }
+    }
+    .oem-form-group {
+      margin-bottom: 18px;
+    }
+    .oem-form-lbl {
+      display: block;
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      font-weight: 700;
+      color: var(--ink-black);
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .oem-select, .oem-input, .oem-textarea {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1.5px solid rgba(1, 53, 114, 0.22);
+      border-radius: 8px;
+      font-family: var(--font-body);
+      font-size: 13.5px;
+      color: var(--ink-black);
+      background: #F8FAFC;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+    .oem-select:focus, .oem-input:focus, .oem-textarea:focus {
+      outline: none;
+      border-color: var(--accent-blue);
+      background: #FFFFFF;
+      box-shadow: 0 0 0 3px rgba(0, 168, 255, 0.18);
+    }
+    .oem-summary-card {
+      background: #F4F8FB;
+      border: 1.5px solid rgba(1, 53, 114, 0.14);
+      border-radius: 12px;
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .oem-spec-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(1, 53, 114, 0.08);
+      font-size: 12.5px;
+    }
+    .oem-spec-item .lbl {
+      color: var(--ink-muted);
+      font-weight: 500;
+    }
+    .oem-spec-item .val {
+      font-family: var(--font-mono);
+      font-weight: 700;
+      color: var(--logo-navy);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="blueprint-lines"></div>
+
+  <!-- Clinical Reticle Cursor -->
+  <div class="clinical-cursor" id="clinicalCursor" aria-hidden="true">
+    <div class="cursor-crosshair"></div>
+    <div class="cursor-reticle"></div>
+    <div class="cursor-coords" id="cursorCoords">000.000</div>
+  </div>
+
+  <!-- FIXED VIEWPORT FRAME -->
+  <div class="viewport-frame" aria-hidden="true">
+    <div class="frame-corner top-left"></div>
+    <div class="frame-corner top-right"></div>
+    <div class="frame-corner bottom-left"></div>
+    <div class="frame-corner bottom-right"></div>
+  </div>
+
+  <!-- SITE HEADER -->
+  <header class="site-header" id="mainHeader">
+    <div class="nav-left">
+      <a href="index.html#heroTrack" class="brand-logo-wrap">
+        <img src="assets/ChatGPT Image Sep 28, 2026, 04_42_50 PM.png" alt="GAI AI-DISPO Logo" class="brand-logo-img">
+        <span class="brand-logo">AI-DISPO<span class="accent-dot">.</span></span>
+      </a>
+    </div>
+
+    <nav class="nav-center" aria-label="Main Navigation">
+      <a href="index.html#heroTrack" class="nav-link">Home</a>
+
+      <!-- Product Dropdown Menu -->
+      <div class="nav-item-dropdown" id="productDropdown">
+        <a href="syringe.html" class="nav-link nav-dropdown-trigger" id="productDropdownBtn" aria-haspopup="true"
+          aria-expanded="false">
+          Product
+          <svg class="dropdown-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2.5">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </a>
+        <div class="nav-dropdown-menu" id="productMenu" role="menu">
+          <a href="syringe.html" class="dropdown-item" role="menuitem">
+            <div class="dropdown-item-thumb">
+              <img src="assets/prod_syringe.jpg" alt="Syringe" class="dropdown-thumb-img">
+            </div>
+            <div class="dropdown-item-info">
+              <span class="dropdown-item-title">Disposable Hypodermic Syringe</span>
+              <span class="dropdown-item-sub">UltraFlow 1mL – 10mL Clinical</span>
+            </div>
+          </a>
+
+          <a href="iv-cannula.html" class="dropdown-item" role="menuitem">
+            <div class="dropdown-item-thumb">
+              <img src="assets/prod_iv_cannula.jpg" alt="IV Cannula" class="dropdown-thumb-img">
+            </div>
+            <div class="dropdown-item-info">
+              <span class="dropdown-item-title">Intravenous Cannula</span>
+              <span class="dropdown-item-sub">Ported &amp; Winged Catheters</span>
+            </div>
+          </a>
+
+          <a href="infusion-sets.html" class="dropdown-item" role="menuitem">
+            <div class="dropdown-item-thumb">
+              <img src="assets/prod_iv_set.jpg" alt="Infusion sets / IV sets" class="dropdown-thumb-img">
+            </div>
+            <div class="dropdown-item-info">
+              <span class="dropdown-item-title">Intravenous Infusion Set</span>
+              <span class="dropdown-item-sub">Gravity &amp; Micro-Drip Infusion</span>
+            </div>
+          </a>
+
+          <a href="needle.html" class="dropdown-item" role="menuitem">
+            <div class="dropdown-item-thumb">
+              <img src="assets/prod_needle.jpg" alt="Needle" class="dropdown-thumb-img">
+            </div>
+            <div class="dropdown-item-info">
+              <span class="dropdown-item-title">Hypodermic Needle</span>
+              <span class="dropdown-item-sub">Tri-Bevel Hypodermic Cannulas</span>
+            </div>
+          </a>
+
+          <a href="other-products.html" class="dropdown-item" role="menuitem">
+            <div class="dropdown-item-thumb">
+              <img src="assets/prod_other.jpg" alt="Other Product" class="dropdown-thumb-img">
+            </div>
+            <div class="dropdown-item-info">
+              <span class="dropdown-item-title">Other Product</span>
+              <span class="dropdown-item-sub">Gloves, Medical Tape &amp; Blood Transfusion</span>
+            </div>
+          </a>
+
+          <a href="upcoming-products.html" class="dropdown-item upcoming" role="menuitem">
+            <div class="dropdown-item-thumb">
+              <img src="assets/prod_upcoming.jpg" alt="Upcoming Product" class="dropdown-thumb-img">
+            </div>
+            <div class="dropdown-item-info">
+              <span class="dropdown-item-title">Upcoming Product</span>
+              <span class="dropdown-item-sub">Urine Bag, Ryle's Tube, Scalp Vein &amp; Diaper</span>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <a href="about.html" class="nav-link">About Us</a>
+      <a href="gallery.html" class="nav-link">Gallery</a>
+      <a href="blog.html" class="nav-link">Blog</a>
+      <a href="oem.html" class="nav-link active">OEM / ODM</a>
+      <a href="catalogue.html" class="nav-link">E-Catalogue</a>
+    </nav>
+
+    <div class="nav-right">
+      <a href="contact.html" class="btn-craft btn-craft-primary" id="topContactBtn">
+        CONTACT US
+      </a>
+      <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Open Mobile Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- MOBILE NAVIGATION DRAWER -->
+  <div class="mobile-nav-backdrop" id="mobileNavBackdrop"></div>
+  <div class="mobile-nav-drawer" id="mobileNavDrawer" aria-hidden="true">
+    <div class="mobile-nav-header">
+      <div class="brand-logo-wrap">
+        <img src="assets/ChatGPT Image Sep 28, 2026, 04_42_50 PM.png" alt="GAI AI-DISPO Logo" class="brand-logo-img">
+        <span class="brand-logo">AI-DISPO<span class="accent-dot">.</span></span>
+      </div>
+      <button class="mobile-nav-close" id="mobileNavClose" aria-label="Close Navigation Menu">&times;</button>
+    </div>
+
+    <div class="mobile-nav-links">
+      <a href="index.html" class="mobile-nav-link">Home</a>
+
+      <div class="mobile-nav-dropdown" id="mobileProductDropdown">
+        <button class="mobile-nav-dropdown-btn" id="mobileProductToggle" type="button">
+          <span>Product</span>
+          <svg class="dropdown-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2.5">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </button>
+        <div class="mobile-dropdown-list" id="mobileProductList">
+          <a href="syringe.html" class="mobile-dropdown-item">
+            <img src="assets/prod_syringe.jpg" alt="Syringe" class="mobile-thumb">
+            <div>
+              <strong>Disposable Hypodermic Syringe</strong>
+              <small>UltraFlow 1mL – 10mL Clinical</small>
+            </div>
+          </a>
+          <a href="iv-cannula.html" class="mobile-dropdown-item">
+            <img src="assets/prod_iv_cannula.jpg" alt="IV Cannula" class="mobile-thumb">
+            <div>
+              <strong>Intravenous Cannula</strong>
+              <small>Ported &amp; Winged Catheters</small>
+            </div>
+          </a>
+          <a href="infusion-sets.html" class="mobile-dropdown-item">
+            <img src="assets/prod_iv_set.jpg" alt="Infusion sets / IV sets" class="mobile-thumb">
+            <div>
+              <strong>Intravenous Infusion Set</strong>
+              <small>Gravity &amp; Micro-Drip Infusion</small>
+            </div>
+          </a>
+          <a href="needle.html" class="mobile-dropdown-item">
+            <img src="assets/prod_needle.jpg" alt="Needle" class="mobile-thumb">
+            <div>
+              <strong>Hypodermic Needle</strong>
+              <small>Tri-Bevel Hypodermic Cannulas</small>
+            </div>
+          </a>
+          <a href="other-products.html" class="mobile-dropdown-item">
+            <img src="assets/prod_other.jpg" alt="Other Product" class="mobile-thumb">
+            <div>
+              <strong>Other Product</strong>
+              <small>Gloves, Medical Tape &amp; Blood Transfusion</small>
+            </div>
+          </a>
+          <a href="upcoming-products.html" class="mobile-dropdown-item">
+            <img src="assets/prod_upcoming.jpg" alt="Upcoming Product" class="mobile-thumb">
+            <div>
+              <strong>Upcoming Product</strong>
+              <small>Urine Bag, Ryle's Tube, Scalp Vein &amp; Diaper</small>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <a href="about.html" class="mobile-nav-link">About Us</a>
+      <a href="gallery.html" class="mobile-nav-link">Gallery</a>
+      <a href="blog.html" class="mobile-nav-link">Blog</a>
+      <a href="oem.html" class="mobile-nav-link active">OEM / ODM</a>
+      <a href="catalogue.html" class="mobile-nav-link">E-Catalogue</a>
+    </div>
+
+    <div class="mobile-nav-footer">
+      <a href="contact.html" class="btn-craft btn-craft-primary" style="width: 100%;">
+        CONTACT US
+      </a>
+    </div>
+  </div>
+
+  <main id="mainContent">
+    <!-- OEM HERO SECTION -->
+    <section class="prod-page-hero">
+      <div class="prod-hero-container" style="grid-template-columns: 1fr; max-width: 1100px;">
+        <div style="text-align: center;">
+          <div class="sim-pill-tag dark">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            ISO 13485:2016 • CE 0197 • CLASS 100K CLEANROOMS • TURNKEY PRIVATE LABEL
+          </div>
+          <h1 class="sim-title" style="margin-top: 16px; font-size: clamp(32px, 4.5vw, 48px);">
+            OEM, ODM &amp; Contract <span class="highlight-cyan">Medical Device Manufacturing</span>
+          </h1>
+          <p class="prod-hero-lead" style="max-width: 820px; margin: 16px auto 0;">
+            Goel Allied Industries (AI-DISPO®) is a premier global manufacturing partner for multinational healthcare corporations, pharmaceutical brands, and government health institutions. We deliver high-precision multi-cavity injection molding, automated cleanroom assembly, custom private-label printing, and certified in-house ETO gas sterilization.
+          </p>
+          <div style="display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-top: 24px;">
+            <a href="#oemConfigurator" class="sim-enquire-btn">CONFIGURE OEM PROJECT →</a>
+            <a href="#oemCapabilities" class="btn-craft btn-craft-outline">EXPLORE CAPABILITIES</a>
+          </div>
+        </div>
+
+        <!-- Hero Panoramic Banner with Live Metrics -->
+        <div class="oem-hero-banner">
+          <img src="assets/oem_hero_banner.jpg" alt="AI-DISPO High-Tech Cleanroom Manufacturing Plant">
+          <div class="oem-banner-overlay">
+            <div class="oem-banner-stats">
+              <div class="oem-stat-box">
+                <div class="oem-stat-num">500M+</div>
+                <div class="oem-stat-lbl">Annual Unit Capacity</div>
+              </div>
+              <div class="oem-stat-box">
+                <div class="oem-stat-num">Class 100k</div>
+                <div class="oem-stat-lbl">ISO 8 Cleanrooms</div>
+              </div>
+              <div class="oem-stat-box">
+                <div class="oem-stat-num">100%</div>
+                <div class="oem-stat-lbl">In-House ETO Sterility</div>
+              </div>
+              <div class="oem-stat-box">
+                <div class="oem-stat-num">40+</div>
+                <div class="oem-stat-lbl">Export Countries</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- CORE OEM CAPABILITIES (6 PILLARS) -->
+    <section class="simulator-section" id="oemCapabilities">
+      <div class="simulator-container">
+        <div class="sim-header">
+          <span class="sim-pill-tag feature">END-TO-END MANUFACTURING EXCELLENCE</span>
+          <h2 class="sim-title">Our Contract Manufacturing Capabilities</h2>
+          <p class="sim-subtitle">From custom mold design and micro-precision polymer injection to sterile barrier blister packaging and global regulatory submission dossiers.</p>
+        </div>
+
+        <div class="oem-cap-grid">
+          <!-- Pillar 1 -->
+          <div class="oem-cap-card">
+            <div class="oem-cap-icon-wrap">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            </div>
+            <div class="oem-cap-title">Tooling &amp; Multi-Cavity Injection Molding</div>
+            <div class="oem-cap-desc">State-of-the-art all-electric robotic injection molding lines handling up to 128-cavity hot-runner precision molds with ±0.01 mm dimensional tolerance. Medical virgin PP, HDPE, and polycarbonate.</div>
+            <ul class="oem-cap-features">
+              <li>High-speed robotic parts extraction</li>
+              <li>Hot-runner balanced melt distribution</li>
+              <li>Optical camera in-mold QC verification</li>
+            </ul>
+          </div>
+
+          <!-- Pillar 2 -->
+          <div class="oem-cap-card">
+            <div class="oem-cap-icon-wrap">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+            </div>
+            <div class="oem-cap-title">Private Labeling &amp; Custom Scale Printing</div>
+            <div class="oem-cap-desc">Complete brand customization including client logo pad printing, custom volumetric increment markings in specialized inks, color-coded plunger rods, and bespoke multi-lingual packaging artwork.</div>
+            <ul class="oem-cap-features">
+              <li>High-contrast indelible medical inks</li>
+              <li>Custom colored plunger &amp; hub options</li>
+              <li>GS1 DataMatrix &amp; UDI barcode printing</li>
+            </ul>
+          </div>
+
+          <!-- Pillar 3 -->
+          <div class="oem-cap-card">
+            <div class="oem-cap-icon-wrap">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="m4.93 4.93 4.24 4.24M14.83 9.17l4.24-4.24M14.83 14.83l4.24 4.24M9.17 14.83l-4.24 4.24"/></svg>
+            </div>
+            <div class="oem-cap-title">Automated Cleanroom Assembly (Class 100k)</div>
+            <div class="oem-cap-desc">Robotic assembly suites operating under validated ISO Class 8 / Class 100,000 cleanroom conditions with HEPA filtration, automated cannula insertion, silicone micro-spray, and automated hub bonding.</div>
+            <ul class="oem-cap-features">
+              <li>Dow Corning ultrasonic silicone coating</li>
+              <li>Automated needle tip geometry check</li>
+              <li>Zero human contact during assembly</li>
+            </ul>
+          </div>
+
+          <!-- Pillar 4 -->
+          <div class="oem-cap-card">
+            <div class="oem-cap-icon-wrap">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+            </div>
+            <div class="oem-cap-title">Flexible Packaging Formats</div>
+            <div class="oem-cap-desc">High-speed thermoforming blister lines utilizing medical-grade peel-open coated paper or Tyvek®, ribbon packs, non-sterile bulk component shipping, and customized inner cartons.</div>
+            <ul class="oem-cap-features">
+              <li>Medical paper &amp; Tyvek® blister packs</li>
+              <li>Ribbon pack &amp; polybag options</li>
+              <li>Heavy-duty 5-ply export shipper cartons</li>
+            </ul>
+          </div>
+
+          <!-- Pillar 5 -->
+          <div class="oem-cap-card">
+            <div class="oem-cap-icon-wrap">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <div class="oem-cap-title">In-House ETO Sterilization &amp; Aeration</div>
+            <div class="oem-cap-desc">Industrial computerized Ethylene Oxide sterilization chambers programmed for deep vacuum, controlled humidity conditioning, gas penetration, and rapid residual desorption with biological spore confirmation.</div>
+            <ul class="oem-cap-features">
+              <li>Guaranteed SAL 10⁻⁶ sterility level</li>
+              <li>ISO 11135 validation protocols</li>
+              <li>In-house residual EO &amp; ECH gas analysis</li>
+            </ul>
+          </div>
+
+          <!-- Pillar 6 -->
+          <div class="oem-cap-card">
+            <div class="oem-cap-icon-wrap">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+            </div>
+            <div class="oem-cap-title">Global Regulatory &amp; Dossier Support</div>
+            <div class="oem-cap-desc">Full technical file support for national and international regulatory filings including European CE MDR (2017/745), US FDA 510(k), CDSCO (India), and national MOH registrations across Asia, Africa &amp; Latin America.</div>
+            <ul class="oem-cap-features">
+              <li>ISO 10993 Biocompatibility test reports</li>
+              <li>Accelerated &amp; real-time stability studies</li>
+              <li>Complete Plant Master File (PMF) support</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6-STEP TURNKEY OEM WORKFLOW -->
+    <section class="simulator-section" style="background: #F4F8FB; border-top: var(--border-thin); border-bottom: var(--border-thin);">
+      <div class="simulator-container">
+        <div class="sim-header">
+          <span class="sim-pill-tag dark">SEAMLESS ONBOARDING ROADMAP</span>
+          <h2 class="sim-title">Our Turnkey 6-Step OEM Process</h2>
+          <p class="sim-subtitle">From initial technical consultation to global export container delivery, we handle every phase with clinical precision.</p>
+        </div>
+
+        <div class="oem-steps-grid">
+          <div class="oem-step-card">
+            <span class="oem-step-num">01</span>
+            <div class="oem-step-title">Engineering &amp; Spec Alignment</div>
+            <p class="oem-step-desc">NDA signing, 3D CAD modeling, raw material grade selection, and regulatory classification review.</p>
+          </div>
+
+          <div class="oem-step-card">
+            <span class="oem-step-num">02</span>
+            <div class="oem-step-title">Tooling &amp; Prototype Sampling</div>
+            <p class="oem-step-desc">Mold manufacturing, pilot prototype runs, hydraulic seal verification, and client sample approval.</p>
+          </div>
+
+          <div class="oem-step-card">
+            <span class="oem-step-num">03</span>
+            <div class="oem-step-title">Cleanroom Pilot &amp; Sterility Validation</div>
+            <p class="oem-step-desc">Pilot cleanroom production, bioburden testing, and ISO 11135 ETO sterilization cycle validation.</p>
+          </div>
+
+          <div class="oem-step-card">
+            <span class="oem-step-num">04</span>
+            <div class="oem-step-title">Technical Dossier &amp; QA Sign-Off</div>
+            <p class="oem-step-desc">Compilation of Certificate of Analysis (COA), biocompatibility data, and customer QA formal sign-off.</p>
+          </div>
+
+          <div class="oem-step-card">
+            <span class="oem-step-num">05</span>
+            <div class="oem-step-title">Full-Scale Mass Production</div>
+            <p class="oem-step-desc">24/7 automated cleanroom manufacturing with 100% in-line optical vision inspection.</p>
+          </div>
+
+          <div class="oem-step-card">
+            <span class="oem-step-num">06</span>
+            <div class="oem-step-title">Global Export &amp; Logistics Delivery</div>
+            <p class="oem-step-desc">Palletized container loading, customs documentation, and CIF/FOB delivery to your destination port.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- INTERACTIVE OEM CONFIGURATOR & INQUIRY FORM -->
+    <section class="simulator-section" id="oemConfigurator">
+      <div class="simulator-container">
+        <div class="sim-header">
+          <span class="sim-pill-tag feature">CUSTOMIZE YOUR SPECIFICATIONS</span>
+          <h2 class="sim-title">Interactive OEM Project Configurator</h2>
+          <p class="sim-subtitle">Select your device architecture, packaging standard, and volume parameters to generate a customized OEM specification summary.</p>
+        </div>
+
+        <div class="oem-config-box">
+          <div class="oem-config-grid">
+            <!-- Left: Options Selector -->
+            <div>
+              <div class="oem-form-group">
+                <label class="oem-form-lbl" for="oemProductSelect">1. Select Target Medical Device:</label>
+                <select class="oem-select" id="oemProductSelect">
+                  <option value="Disposable Syringes (1mL – 50mL)">Disposable Hypodermic Syringes (1mL – 50mL)</option>
+                  <option value="Auto-Disable Syringes (AD)">Auto-Disable Immunization Syringes (AD)</option>
+                  <option value="IV Cannulas (14G – 26G)">Intravenous Cannula with Port &amp; Wings (14G – 26G)</option>
+                  <option value="Safety IV Cannula">Safety IV Cannula (Auto Needle-Stick Shield)</option>
+                  <option value="IV Infusion Sets (Vented / Non-Vented)">IV Infusion Sets (Vented &amp; Non-Vented)</option>
+                  <option value="Blood Transfusion Sets">Sterile Blood Transfusion Sets (200µm Mesh)</option>
+                  <option value="Hypodermic Needles (16G – 26G)">Hypodermic Needles (Tri-Bevel Surgical Steel)</option>
+                  <option value="Hospital Consumables (Urine Bag, Ryle's Tube, Diaper)">Hospital Consumables (Urine Bag, Ryle's Tube, Diaper)</option>
+                  <option value="Custom Molded Components">Custom Molded Cleanroom Components</option>
+                </select>
+              </div>
+
+              <div class="oem-form-group">
+                <label class="oem-form-lbl" for="oemBrandingSelect">2. Branding &amp; Labeling Mode:</label>
+                <select class="oem-select" id="oemBrandingSelect">
+                  <option value="Full Private Label (Client Logo & Artwork)">Full Private Label (Client Logo, Custom Scale &amp; Box Artwork)</option>
+                  <option value="AI-DISPO® Authorized Distribution">AI-DISPO® Authorized Master Distribution</option>
+                  <option value="Neutral OEM / Plain Export Packaging">Neutral OEM / Plain Export Packaging</option>
+                  <option value="Bulk Non-Sterile Cleanroom Components">Bulk Non-Sterile Cleanroom Components for Local Assembly</option>
+                </select>
+              </div>
+
+              <div class="oem-form-group">
+                <label class="oem-form-lbl" for="oemPackSelect">3. Sterile Packaging Format:</label>
+                <select class="oem-select" id="oemPackSelect">
+                  <option value="Individual Medical Paper Blister Pack">Individual Medical-Grade Paper Blister Pack (Peel-Open)</option>
+                  <option value="Tyvek® High-Barrier Blister Pack">Tyvek® High-Barrier Blister Pack</option>
+                  <option value="Ribbon Pack (Film / Film)">Ribbon Pack (Film / Film)</option>
+                  <option value="Bulk Cleanroom Polybag (Non-Sterile)">Bulk Cleanroom Polybag (Non-Sterile)</option>
+                </select>
+              </div>
+
+              <div class="oem-form-group">
+                <label class="oem-form-lbl" for="oemVolumeSelect">4. Estimated Annual Volume:</label>
+                <select class="oem-select" id="oemVolumeSelect">
+                  <option value="100,000 – 500,000 Units (Pilot Run)">100,000 – 500,000 Units (Pilot / Tender Run)</option>
+                  <option value="500,000 – 2,000,000 Units (Annual)">500,000 – 2,000,000 Units (Commercial Supply)</option>
+                  <option value="2,000,000 – 10,000,000+ Units (Enterprise)">2,000,000 – 10,000,000+ Units (High-Volume Enterprise)</option>
+                  <option value="10,000,000+ Units (National MOH Tender)">10,000,000+ Units (National MOH Tender)</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Right: Dynamic Spec Card & Inquiry Submission -->
+            <div class="oem-summary-card">
+              <div>
+                <span class="sim-pill-tag dark" style="font-size: 10px; margin-bottom: 12px;">GENERATED OEM SPECIFICATION</span>
+                <h3 style="font-family: var(--font-headline); font-size: 18px; font-weight: 800; color: var(--logo-navy); margin-bottom: 14px;">
+                  Project Summary Preview
+                </h3>
+
+                <div class="oem-spec-item">
+                  <span class="lbl">Product Scope:</span>
+                  <span class="val" id="sumProduct">Disposable Syringes (1mL – 50mL)</span>
+                </div>
+                <div class="oem-spec-item">
+                  <span class="lbl">Branding Level:</span>
+                  <span class="val" id="sumBranding">Full Private Label</span>
+                </div>
+                <div class="oem-spec-item">
+                  <span class="lbl">Packaging:</span>
+                  <span class="val" id="sumPack">Individual Medical Paper Blister</span>
+                </div>
+                <div class="oem-spec-item">
+                  <span class="lbl">Target Volume:</span>
+                  <span class="val" id="sumVolume">100k – 500k Units</span>
+                </div>
+                <div class="oem-spec-item">
+                  <span class="lbl">Sterility Assurance:</span>
+                  <span class="val">ETO Sterilized (SAL 10⁻⁶)</span>
+                </div>
+                <div class="oem-spec-item">
+                  <span class="lbl">Audit Standard:</span>
+                  <span class="val">ISO 13485 / CE / WHO-GMP</span>
+                </div>
+              </div>
+
+              <div style="margin-top: 24px;">
+                <button class="sim-enquire-btn" id="oemProceedBtn" style="width: 100%; justify-content: center; font-size: 13.5px; padding: 14px 20px;">
+                  INQUIRE THIS OEM CONFIGURATION →
+                </button>
+                <div style="font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-muted); text-align: center; margin-top: 8px;">
+                  🔒 Strict NDA Protection &amp; Technical Feasibility Consultation
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- OEM REGULATORY ASSURANCE -->
+    <section class="prod-spec-table-section" style="background: #FFFFFF;">
+      <div class="prod-table-wrap">
+        <div class="sim-header" style="margin-bottom: 18px;">
+          <span class="sim-pill-tag dark">QUALITY &amp; REGULATORY COMPLIANCE</span>
+          <h2 class="sim-title" style="font-size: 28px; margin-top: 8px;">Accredited Quality Standards</h2>
+        </div>
+        <table class="prod-data-table">
+          <thead>
+            <tr>
+              <th>REGULATORY STANDARD</th>
+              <th>ACCREDITATION BODY</th>
+              <th>APPLICABLE OEM SCOPE</th>
+              <th>BENEFIT FOR PRIVATE LABEL CLIENTS</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>ISO 13485:2016</strong></td>
+              <td>International Notified Body</td>
+              <td>Medical Devices Quality Management System</td>
+              <td>Fast-track market authorization and recognized quality worldwide.</td>
+            </tr>
+            <tr>
+              <td><strong>European CE 0197 Mark</strong></td>
+              <td>TÜV / European Notified Body</td>
+              <td>EU Medical Device Regulation (MDR 2017/745)</td>
+              <td>Direct sales authorization across EU and EEA member states.</td>
+            </tr>
+            <tr>
+              <td><strong>WHO-GMP Compliance</strong></td>
+              <td>World Health Organization Standards</td>
+              <td>Cleanroom Facilities &amp; Sterile Manufacturing</td>
+              <td>Eligibility for international tenders, UNICEF, and global health NGOs.</td>
+            </tr>
+            <tr>
+              <td><strong>CDSCO License</strong></td>
+              <td>Ministry of Health, Govt. of India</td>
+              <td>Medical Device Manufacturing &amp; Testing</td>
+              <td>Full national regulatory clearance and institutional hospital supply.</td>
+            </tr>
+            <tr>
+              <td><strong>ISO 11135 / ISO 10993</strong></td>
+              <td>Accredited Testing Labs</td>
+              <td>ETO Gas Sterilization &amp; Biocompatibility</td>
+              <td>Complete cytotoxicity, irritation, sensitization, and pyrogen dossiers.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <!-- SITE FOOTER -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-top-grid">
+        <!-- Brand Summary -->
+        <div class="footer-brand-col">
+          <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+            <img src="assets/ChatGPT Image Sep 28, 2026, 04_42_50 PM.png" alt="GAI AI-DISPO Logo"
+              style="height: 48px; width: auto; object-fit: contain; filter: drop-shadow(0 2px 6px rgba(1, 53, 114, 0.16));">
+            <div class="footer-logo">AI-DISPO<span style="color:var(--accent-blue)">.</span></div>
+          </div>
+          <p class="footer-brand-desc">
+            Goel Allied Industries — Manufacturer of AI-DISPO® sterile injection systems, IV cannulas, and infusion sets.
+            Precision, safety, and reliability where every life counts.
+          </p>
+          <div class="regulatory-stamp-row">
+            <span class="stamp-tag red">WHO-GMP</span>
+            <span class="stamp-tag dark">CDSCO</span>
+            <span class="stamp-tag dark">ISO 9001:2015</span>
+            <span class="stamp-tag red">CE CERTIFIED</span>
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="footer-col">
+          <h4>EXPLORE PRODUCTS</h4>
+          <ul class="footer-links">
+            <li><a href="syringe.html">Disposable Hypodermic Syringes (1mL – 50mL)</a></li>
+            <li><a href="iv-cannula.html">Intravenous Cannulas (Ported &amp; Winged)</a></li>
+            <li><a href="infusion-sets.html">Intravenous Infusion Sets (Gravity &amp; Blood)</a></li>
+            <li><a href="needle.html">Hypodermic Needles (Tri-Bevel)</a></li>
+            <li><a href="other-products.html">Gloves, Medical Tape &amp; Blood Transfusion</a></li>
+            <li><a href="upcoming-products.html">Urine Bag, Ryle's Tube, Scalp Vein &amp; Diaper</a></li>
+            <li><a href="oem.html">OEM &amp; Contract Manufacturing</a></li>
+          </ul>
+        </div>
+
+        <!-- Corporate Navigation -->
+        <div class="footer-col">
+          <h4>COMPANY &amp; RESOURCES</h4>
+          <ul class="footer-links">
+            <li><a href="about.html">About Goel Allied Industries</a></li>
+            <li><a href="oem.html">OEM &amp; Private Label Services</a></li>
+            <li><a href="catalogue.html">E-Catalogue &amp; Company Profile</a></li>
+            <li><a href="gallery.html">Facility &amp; Product Gallery</a></li>
+            <li><a href="blog.html">Clinical Insights &amp; Blog</a></li>
+            <li><a href="faq.html">Frequently Asked Questions (FAQ)</a></li>
+            <li><a href="privacy-policy.html">Privacy Policy</a></li>
+            <li><a href="terms-conditions.html">Terms &amp; Conditions</a></li>
+            <li><a href="contact.html">Corporate Contact &amp; Inquiries</a></li>
+          </ul>
+        </div>
+
+        <!-- Contact Info -->
+        <div class="footer-col">
+          <h4>MANUFACTURING HEADQUARTERS</h4>
+          <p style="font-size: 13px; color: var(--ink-muted); line-height: 1.6; margin-bottom: 12px;">
+            Goel Allied Industries<br>
+            State-of-the-Art Cleanroom Facility<br>
+            India
+          </p>
+          <p style="font-size: 13px; color: var(--logo-navy); font-weight: 700; font-family: var(--font-mono); line-height: 1.7;">
+            Phone: <a href="tel:+919120808855" style="color: inherit; text-decoration: none;">+91 91208 08855</a><br>
+            Email: <a href="mailto:export@aidispo.com" style="color: inherit; text-decoration: none;">export@aidispo.com</a><br>
+            Email: <a href="mailto:goelsyringe@gmail.com" style="color: inherit; text-decoration: none;">goelsyringe@gmail.com</a>
+          </p>
+        </div>
+      </div>
+
+      <div class="footer-bottom-bar">
+        <div>© 2026 Goel Allied Industries (Brand: AI-DISPO®). All Rights Reserved. • Designed and Developed by <a href="https://alightwaysolutions.com/" target="_blank" rel="noopener noreferrer" style="color: var(--logo-navy); font-weight: 700; text-decoration: underline; text-underline-offset: 2px;">Alightway Solutions</a></div>
+        <div class="footer-legal-links" style="display: flex; gap: 16px; align-items: center; font-size: 12px;">
+          <a href="privacy-policy.html" style="color: var(--ink-muted); text-decoration: none;">Privacy Policy</a>
+          <span style="color: var(--ink-faint);">•</span>
+          <a href="terms-conditions.html" style="color: var(--ink-muted); text-decoration: none;">Terms &amp; Conditions</a>
+          <span style="color: var(--ink-faint);">•</span>
+          <a href="faq.html" style="color: var(--ink-muted); text-decoration: none;">FAQs</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+  <script>
+    // Live OEM Configurator Script
+    const prodSelect = document.getElementById('oemProductSelect');
+    const brandSelect = document.getElementById('oemBrandingSelect');
+    const packSelect = document.getElementById('oemPackSelect');
+    const volSelect = document.getElementById('oemVolumeSelect');
+
+    const sumProd = document.getElementById('sumProduct');
+    const sumBrand = document.getElementById('sumBranding');
+    const sumPack = document.getElementById('sumPack');
+    const sumVol = document.getElementById('sumVolume');
+    const proceedBtn = document.getElementById('oemProceedBtn');
+
+    function updateOEMSummary() {
+      if (sumProd) sumProd.textContent = prodSelect.value;
+      if (sumBrand) sumBrand.textContent = brandSelect.value.split('(')[0].trim();
+      if (sumPack) sumPack.textContent = packSelect.value.split('(')[0].trim();
+      if (sumVol) sumVol.textContent = volSelect.value.split('(')[0].trim();
+    }
+
+    if (prodSelect) prodSelect.addEventListener('change', updateOEMSummary);
+    if (brandSelect) brandSelect.addEventListener('change', updateOEMSummary);
+    if (packSelect) packSelect.addEventListener('change', updateOEMSummary);
+    if (volSelect) volSelect.addEventListener('change', updateOEMSummary);
+
+    if (proceedBtn) {
+      proceedBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const p = encodeURIComponent(prodSelect.value);
+        const b = encodeURIComponent(brandSelect.value);
+        const pk = encodeURIComponent(packSelect.value);
+        const v = encodeURIComponent(volSelect.value);
+        window.location.href = `contact.html?type=OEM&product=${p}&branding=${b}&pack=${pk}&volume=${v}`;
+      });
+    }
+
+    updateOEMSummary();
+  </script>
+</body>
+
+</html>
