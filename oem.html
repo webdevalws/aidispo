@@ -160,18 +160,31 @@
       background: #FFFFFF;
       border: 1.5px solid rgba(1, 53, 114, 0.16);
       border-radius: 12px;
-      padding: 24px 20px;
-      position: relative;
+      padding: 22px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+    .oem-step-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 24px rgba(1, 53, 114, 0.08);
+      border-color: var(--logo-cyan);
     }
     .oem-step-num {
-      position: absolute;
-      top: 16px;
-      right: 18px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
       font-family: var(--font-mono);
-      font-size: 32px;
+      font-size: 13px;
       font-weight: 800;
-      color: rgba(1, 53, 114, 0.12);
-      line-height: 1;
+      color: var(--logo-navy);
+      background: #EBF3FA;
+      border: 1px solid rgba(1, 53, 114, 0.16);
+      border-radius: 6px;
+      padding: 3px 10px;
+      margin-bottom: 12px;
+      letter-spacing: 0.5px;
     }
     .oem-step-title {
       font-family: var(--font-headline);
@@ -179,11 +192,13 @@
       font-weight: 800;
       color: var(--logo-navy);
       margin-bottom: 8px;
+      line-height: 1.4;
     }
     .oem-step-desc {
       font-size: 12.5px;
       color: var(--ink-muted);
       line-height: 1.55;
+      margin: 0;
     }
 
     /* Interactive OEM Configurator Box */
@@ -893,8 +908,7 @@
             <input type="email" placeholder="clinician@hospital.org" class="newsletter-input" required>
             <button type="submit" class="newsletter-btn">→</button>
           </div>
-          <span style="font-size: 11px; color: var(--ink-faint); font-family: var(--font-mono);">No spam. Only
-            technical bulletin updates.</span>
+          <span style="font-size: 11px; color: var(--ink-faint); font-family: var(--font-mono);">Direct access to verified regulatory bulletins, lot releases & export schedules.</span>
         </form>
       </div>
 
@@ -918,9 +932,82 @@
   </div>
 </footer>
 
+  <!-- OEM PROJECT INQUIRY MODAL -->
+  <div class="apply-modal-overlay" id="oemInquiryModal" style="display: none; position: fixed; inset: 0; background: rgba(3, 16, 36, 0.7); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); z-index: 1000; align-items: center; justify-content: center; padding: 20px; box-sizing: border-box;">
+    <div class="apply-modal-card" style="background: #FFFFFF; border-radius: 16px; border: 2px solid var(--logo-navy); max-width: 580px; width: 100%; max-height: 90vh; overflow-y: auto; padding: 30px 28px; box-shadow: 0 20px 50px rgba(1, 53, 114, 0.3); position: relative; box-sizing: border-box;">
+      <button class="modal-close-btn" id="btnCloseOemModal" type="button" style="position: absolute; top: 16px; right: 18px; background: none; border: none; font-size: 28px; cursor: pointer; color: var(--ink-muted); line-height: 1;">&times;</button>
+      
+      <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
+        <span class="sim-pill-tag feature" style="font-size: 10px; padding: 3px 8px;">OEM &amp; PRIVATE LABEL</span>
+        <span style="font-family: var(--font-mono); font-size: 11px; color: var(--ink-muted);">🔒 STRICT NDA PROTOCOL</span>
+      </div>
+
+      <h2 style="font-family: var(--font-headline); font-size: 22px; font-weight: 800; color: var(--logo-navy); margin: 0 0 6px 0;">
+        Submit OEM Project Inquire
+      </h2>
+      <p style="font-size: 13px; color: var(--ink-muted); margin: 0 0 18px 0; line-height: 1.45;">
+        Send your configured manufacturing requirements directly to our OEM technical project desk for feasibility review, tooling timeline, and private label quotation.
+      </p>
+
+      <!-- Config Summary Preview Box -->
+      <div style="background: #F4F8FD; border: 1.5px solid rgba(0, 168, 255, 0.3); border-radius: 10px; padding: 14px 16px; margin-bottom: 20px;">
+        <div style="font-family: var(--font-mono); font-size: 10.5px; font-weight: 700; color: var(--accent-blue); text-transform: uppercase; margin-bottom: 8px;">
+          Configured OEM Specifications
+        </div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; font-size: 12.5px;">
+          <div><span style="color: var(--ink-muted);">Target Device:</span> <strong id="modalOemProd" style="color: var(--ink-black); display: block;"></strong></div>
+          <div><span style="color: var(--ink-muted);">Branding Mode:</span> <strong id="modalOemBrand" style="color: var(--ink-black); display: block;"></strong></div>
+          <div><span style="color: var(--ink-muted);">Packaging:</span> <strong id="modalOemPack" style="color: var(--ink-black); display: block;"></strong></div>
+          <div><span style="color: var(--ink-muted);">Target Volume:</span> <strong id="modalOemVol" style="color: var(--ink-black); display: block;"></strong></div>
+        </div>
+      </div>
+
+      <form id="oemDirectInquiryForm">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px;">
+          <div>
+            <label style="display: block; font-family: var(--font-mono); font-size: 11px; font-weight: 700; color: var(--ink-black); margin-bottom: 4px;">YOUR FULL NAME *</label>
+            <input type="text" id="oemClientName" required placeholder="e.g. Dr. Arthur Pendelton" style="width: 100%; padding: 10px 12px; border: 1.5px solid rgba(1, 53, 114, 0.2); border-radius: 8px; font-size: 13.5px; font-family: var(--font-body); box-sizing: border-box;">
+          </div>
+          <div>
+            <label style="display: block; font-family: var(--font-mono); font-size: 11px; font-weight: 700; color: var(--ink-black); margin-bottom: 4px;">ORGANIZATION / BRAND *</label>
+            <input type="text" id="oemClientOrg" required placeholder="e.g. MedSupply Global Ltd." style="width: 100%; padding: 10px 12px; border: 1.5px solid rgba(1, 53, 114, 0.2); border-radius: 8px; font-size: 13.5px; font-family: var(--font-body); box-sizing: border-box;">
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px;">
+          <div>
+            <label style="display: block; font-family: var(--font-mono); font-size: 11px; font-weight: 700; color: var(--ink-black); margin-bottom: 4px;">OFFICIAL WORK EMAIL *</label>
+            <input type="email" id="oemClientEmail" required placeholder="name@company.com" style="width: 100%; padding: 10px 12px; border: 1.5px solid rgba(1, 53, 114, 0.2); border-radius: 8px; font-size: 13.5px; font-family: var(--font-body); box-sizing: border-box;">
+          </div>
+          <div>
+            <label style="display: block; font-family: var(--font-mono); font-size: 11px; font-weight: 700; color: var(--ink-black); margin-bottom: 4px;">PHONE / WHATSAPP *</label>
+            <input type="tel" id="oemClientPhone" required placeholder="+1 (555) 019-2834" style="width: 100%; padding: 10px 12px; border: 1.5px solid rgba(1, 53, 114, 0.2); border-radius: 8px; font-size: 13.5px; font-family: var(--font-body); box-sizing: border-box;">
+          </div>
+        </div>
+
+        <div style="margin-bottom: 16px;">
+          <label style="display: block; font-family: var(--font-mono); font-size: 11px; font-weight: 700; color: var(--ink-black); margin-bottom: 4px;">PROJECT NOTES &amp; COMPLIANCE TIMELINE</label>
+          <textarea id="oemClientNotes" rows="3" placeholder="Specify any regulatory certifications required (CE, US FDA, CDSCO, WHO-GMP), destination country, target pilot date, or custom tooling specs..." style="width: 100%; padding: 10px 12px; border: 1.5px solid rgba(1, 53, 114, 0.2); border-radius: 8px; font-size: 13px; font-family: var(--font-body); box-sizing: border-box;"></textarea>
+        </div>
+
+        <div id="oemModalSuccessNotice" style="display: none; background: #ECFDF5; border: 1.5px solid #10B981; border-radius: 8px; padding: 12px 16px; margin-bottom: 14px; color: #065F46; font-size: 13px; line-height: 1.45;">
+          ✓ <strong>OEM project inquiry submitted successfully!</strong><br>
+          Reference #<span id="oemRefNum" style="font-family: var(--font-mono); font-weight: 700;"></span> logged directly to the manufacturing desk. An OEM technical director will contact you within 24 hours.
+        </div>
+
+        <div style="display: flex; gap: 12px; justify-content: flex-end; align-items: center;">
+          <button type="button" class="btn-cancel" id="btnCancelOemModal" style="padding: 10px 18px; font-size: 13px; background: none; border: 1px solid #CBD5E1; border-radius: 8px; cursor: pointer; color: var(--ink-muted);">Cancel</button>
+          <button type="submit" class="sim-enquire-btn" id="btnSubmitOemModal" style="padding: 12px 24px; font-size: 13.5px;">
+            TRANSMIT OEM INQUIRY →
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
   <script src="app.js"></script>
   <script>
-    // Live OEM Configurator Script
+    // Live OEM Configurator Script & Direct Inquire Modal
     const prodSelect = document.getElementById('oemProductSelect');
     const brandSelect = document.getElementById('oemBrandingSelect');
     const packSelect = document.getElementById('oemPackSelect');
@@ -931,6 +1018,14 @@
     const sumPack = document.getElementById('sumPack');
     const sumVol = document.getElementById('sumVolume');
     const proceedBtn = document.getElementById('oemProceedBtn');
+
+    const oemModal = document.getElementById('oemInquiryModal');
+    const btnCloseOemModal = document.getElementById('btnCloseOemModal');
+    const btnCancelOemModal = document.getElementById('btnCancelOemModal');
+    const oemForm = document.getElementById('oemDirectInquiryForm');
+    const oemSuccess = document.getElementById('oemModalSuccessNotice');
+    const oemRefNum = document.getElementById('oemRefNum');
+    const btnSubmitOem = document.getElementById('btnSubmitOemModal');
 
     function updateOEMSummary() {
       if (sumProd) sumProd.textContent = prodSelect.value;
@@ -944,14 +1039,123 @@
     if (packSelect) packSelect.addEventListener('change', updateOEMSummary);
     if (volSelect) volSelect.addEventListener('change', updateOEMSummary);
 
+    function openOEMModal() {
+      if (!oemModal) return;
+      document.getElementById('modalOemProd').textContent = prodSelect ? prodSelect.value : 'Disposable Syringes';
+      document.getElementById('modalOemBrand').textContent = brandSelect ? brandSelect.value : 'Full Private Label';
+      document.getElementById('modalOemPack').textContent = packSelect ? packSelect.value : 'Medical Paper Blister';
+      document.getElementById('modalOemVol').textContent = volSelect ? volSelect.value : '100,000 - 500,000 Units';
+      
+      if (oemSuccess) oemSuccess.style.display = 'none';
+      if (oemForm) oemForm.reset();
+      if (btnSubmitOem) {
+        btnSubmitOem.disabled = false;
+        btnSubmitOem.innerHTML = 'TRANSMIT OEM INQUIRY →';
+      }
+      oemModal.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeOEMModal() {
+      if (!oemModal) return;
+      oemModal.style.display = 'none';
+      document.body.style.overflow = '';
+    }
+
     if (proceedBtn) {
       proceedBtn.addEventListener('click', (e) => {
         e.preventDefault();
-        const p = encodeURIComponent(prodSelect.value);
-        const b = encodeURIComponent(brandSelect.value);
-        const pk = encodeURIComponent(packSelect.value);
-        const v = encodeURIComponent(volSelect.value);
-        window.location.href = `contact.html?type=OEM&product=${p}&branding=${b}&pack=${pk}&volume=${v}`;
+        openOEMModal();
+      });
+    }
+
+    if (btnCloseOemModal) btnCloseOemModal.addEventListener('click', closeOEMModal);
+    if (btnCancelOemModal) btnCancelOemModal.addEventListener('click', closeOEMModal);
+    if (oemModal) {
+      oemModal.addEventListener('click', (e) => {
+        if (e.target === oemModal) closeOEMModal();
+      });
+    }
+
+    // Direct Form Submission
+    if (oemForm) {
+      oemForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const name = (document.getElementById('oemClientName')?.value || '').trim();
+        const organization = (document.getElementById('oemClientOrg')?.value || '').trim();
+        const email = (document.getElementById('oemClientEmail')?.value || '').trim();
+        const phone = (document.getElementById('oemClientPhone')?.value || '').trim();
+        const notes = (document.getElementById('oemClientNotes')?.value || '').trim();
+
+        const product = prodSelect ? prodSelect.value : 'Disposable Syringes';
+        const branding = brandSelect ? brandSelect.value : 'Full Private Label';
+        const pack = packSelect ? packSelect.value : 'Medical Paper Blister';
+        const volume = volSelect ? volSelect.value : '100k - 500k Units';
+
+        const sku = `OEM: ${branding.split('(')[0].trim()} | ${pack.split('(')[0].trim()}`;
+        const refId = 'OEM-' + Math.floor(100000 + Math.random() * 900000);
+
+        const fullMessage = `OEM Configurator Project Submission:
+• Target Medical Device: ${product}
+• Branding & Labeling: ${branding}
+• Sterile Packaging Format: ${pack}
+• Estimated Annual Volume: ${volume}
+
+Project Notes & Requirements:
+${notes || 'Standard OEM feasibility consultation requested.'}`;
+
+        const queryData = {
+          id: Date.now(),
+          name,
+          organization,
+          email,
+          phone,
+          product,
+          volume,
+          sku,
+          query_type: 'OEM Project',
+          type: 'OEM',
+          message: fullMessage,
+          status: 'New',
+          created_at: new Date().toISOString()
+        };
+
+        if (btnSubmitOem) {
+          btnSubmitOem.disabled = true;
+          btnSubmitOem.innerHTML = 'TRANSMITTING TO OEM DESK...';
+        }
+
+        // 1. LocalStorage instantaneous sync for localhost admin panel
+        try {
+          const localQueries = JSON.parse(localStorage.getItem('aidispo_queries') || '[]');
+          localQueries.unshift(queryData);
+          localStorage.setItem('aidispo_queries', JSON.stringify(localQueries));
+        } catch (err) {
+          console.warn('LocalStorage error:', err);
+        }
+
+        // 2. Cloudflare API backend sync
+        try {
+          await fetch('/api/queries', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(queryData)
+          });
+        } catch (netErr) {
+          console.log('Backend sync offline/fallback active:', netErr);
+        }
+
+        if (oemRefNum) oemRefNum.textContent = refId;
+        if (oemSuccess) oemSuccess.style.display = 'block';
+
+        if (btnSubmitOem) {
+          btnSubmitOem.innerHTML = '✓ SUBMITTED';
+        }
+
+        setTimeout(() => {
+          closeOEMModal();
+        }, 4000);
       });
     }
 

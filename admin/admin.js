@@ -26,9 +26,10 @@ document.addEventListener("DOMContentLoaded", () => {
   let applicantJobFilter = "ALL";
   let searchApplicantQuery = "";
 
-  // Queries State (Contact Us Procurement Inquiries)
+  // Queries State (Contact Us & OEM Project Procurement Inquiries)
   let queries = [];
   let currentViewingQueryId = null;
+  let queryCategoryFilter = "ALL"; // "ALL", "contact", or "oem"
   let queryStatusFilter = "ALL";
   let queryProductFilter = "ALL";
   let searchQueryVal = "";
@@ -73,7 +74,15 @@ document.addEventListener("DOMContentLoaded", () => {
   const viewApplicants = document.getElementById("viewApplicants");
   const viewQueries = document.getElementById("viewQueries");
 
-  // Query Elements
+  // Query Elements & Tabs
+  const queryViewMainTitle = document.getElementById("queryViewMainTitle");
+  const queryViewSubtitle = document.getElementById("queryViewSubtitle");
+  const tabQueryAll = document.getElementById("tabQueryAll");
+  const tabQueryContact = document.getElementById("tabQueryContact");
+  const tabQueryOem = document.getElementById("tabQueryOem");
+  const countQueryAll = document.getElementById("countQueryAll");
+  const countQueryContact = document.getElementById("countQueryContact");
+  const countQueryOem = document.getElementById("countQueryOem");
   const queryStatusFilterEl = document.getElementById("queryStatusFilter");
   const queryProductFilterEl = document.getElementById("queryProductFilter");
   const searchQueryInputEl = document.getElementById("searchQueryInput");
@@ -94,6 +103,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const queryModalSkuRow = document.getElementById("queryModalSkuRow");
   const queryModalMessage = document.getElementById("queryModalMessage");
   const queryModalStatusBadge = document.getElementById("queryModalStatusBadge");
+  const queryModalTypeBadge = document.getElementById("queryModalTypeBadge");
   const queryModalDate = document.getElementById("queryModalDate");
   const queryModalStatusSelect = document.getElementById("queryModalStatusSelect");
   const queryModalMailtoBtn = document.getElementById("queryModalMailtoBtn");
@@ -380,7 +390,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // Switch Active View
-  function switchView(viewName) {
+  function switchView(viewName, subCategory = null) {
     [viewBlogList, viewPostBlog, viewJobList, viewPostJob, viewApplicants, viewQueries].forEach(v => {
       if (v) v.classList.remove("active");
     });
@@ -398,6 +408,9 @@ document.addEventListener("DOMContentLoaded", () => {
     } else if (viewName === "queries") {
       if (viewQueries) viewQueries.classList.add("active");
       if (menuItemQuery) menuItemQuery.classList.add("active");
+      if (subCategory) {
+        queryCategoryFilter = subCategory;
+      }
       renderQueryTable();
     } else if (viewName === "job-list") {
       if (viewJobList) viewJobList.classList.add("active");
@@ -1156,7 +1169,7 @@ document.addEventListener("DOMContentLoaded", () => {
   applicantJobFilterEl.addEventListener("change", (e) => { applicantJobFilter = e.target.value; renderApplicantTable(); });
   searchApplicantInput.addEventListener("input", (e) => { searchApplicantQuery = e.target.value; renderApplicantTable(); });
 
-  // ==================== 6. QUERIES (CONTACT US INQUIRIES) MANAGEMENT ====================
+  // ==================== 6. QUERIES (CONTACT US & OEM INQUIRIES) MANAGEMENT ====================
   const defaultSampleQueries = [
     {
       id: 101,
@@ -1167,6 +1180,7 @@ document.addEventListener("DOMContentLoaded", () => {
       product: "Syringe",
       volume: "50k-200k",
       sku: "AD-5ML-LL-N21G-15-STERILE",
+      query_type: "Contact Us",
       message: "Requesting comprehensive batch quote for 100,000 units of 5mL Luer Lock Syringes with 21G needles for quarterly ICU and Emergency supplies. Please provide delivery timeline to Chennai Central Medical Store.",
       status: "New",
       created_at: "2026-10-02T14:30:00.000Z"
@@ -1180,6 +1194,7 @@ document.addEventListener("DOMContentLoaded", () => {
       product: "IV-Cannula",
       volume: "Container-Load",
       sku: "CAN-20G-PTFE-WINGED",
+      query_type: "Contact Us",
       message: "Looking for FCL export quotation of 20G and 22G Winged with Port IV Cannulas with CE marking for GCC territory distribution.",
       status: "In Progress",
       created_at: "2026-10-01T09:15:00.000Z"
@@ -1193,11 +1208,57 @@ document.addEventListener("DOMContentLoaded", () => {
       product: "Needle",
       volume: "Evaluation-Samples",
       sku: "NDL-23G-1INCH-BEVEL",
+      query_type: "Contact Us",
       message: "Please dispatch sample pack of 23G & 24G hypodermic needles for our lab phlebotomy trial.",
       status: "Contacted",
       created_at: "2026-09-29T11:40:00.000Z"
+    },
+    {
+      id: 104,
+      name: "Jean-Pierre Laurent",
+      organization: "EuroHealth Pharma SAS (France)",
+      email: "jp.laurent@eurohealth-pharma.fr",
+      phone: "+33 4 72 88 19 20",
+      product: "Disposable Hypodermic Syringes (1mL – 50mL)",
+      volume: "500,000 – 2,000,000 Units",
+      sku: "OEM: Full Private Label | Medical Paper Blister Pack",
+      query_type: "OEM Project",
+      message: "OEM Configurator Project Submission:\n• Target Medical Device: Disposable Hypodermic Syringes (1mL – 50mL)\n• Branding & Labeling: Full Private Label (Client Logo, Custom Scale & Box Artwork)\n• Sterile Packaging Format: Individual Medical-Grade Paper Blister Pack (Peel-Open)\n• Estimated Annual Volume: 500,000 – 2,000,000 Units\n\nNotes: We require CE 0197 and ISO 13485 certified private label production with multi-lingual French/English carton packaging for EU institutional tender.",
+      status: "New",
+      created_at: "2026-10-03T11:20:00.000Z"
     }
   ];
+
+  function isOemQuery(q) {
+    if (!q) return false;
+    const type = (q.query_type || q.type || "").toUpperCase();
+    if (type.includes("OEM")) return true;
+    const sku = (q.sku || "").toUpperCase();
+    if (sku.includes("OEM")) return true;
+    const prod = (q.product || "").toUpperCase();
+    if (prod.includes("OEM")) return true;
+    const msg = (q.message || "").toUpperCase();
+    if (msg.includes("OEM CONFIGURATOR") || msg.includes("OEM PROJECT")) return true;
+    return false;
+  }
+
+  window.filterQueryCategory = (cat) => {
+    queryCategoryFilter = cat;
+    queryCurrentPage = 1;
+    if (queryViewMainTitle) {
+      if (cat === "oem") {
+        queryViewMainTitle.textContent = "OEM & Private Label Project Inquiries";
+        if (queryViewSubtitle) queryViewSubtitle.textContent = "Projects submitted via Interactive OEM Project Configurator";
+      } else if (cat === "contact") {
+        queryViewMainTitle.textContent = "Contact Us Procurement Inquiries";
+        if (queryViewSubtitle) queryViewSubtitle.textContent = "Direct requests submitted via Contact Us form";
+      } else {
+        queryViewMainTitle.textContent = "Procurement & Project Inquiries";
+        if (queryViewSubtitle) queryViewSubtitle.textContent = "All requests submitted via Contact Us and Interactive OEM Configurator";
+      }
+    }
+    renderQueryTable();
+  };
 
   async function loadQueries() {
     try {
@@ -1242,13 +1303,44 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!queryCountBadge) return;
     const newCount = queries.filter(q => q.status === "New" || !q.status).length;
     queryCountBadge.textContent = newCount;
-    queryCountBadge.title = `${newCount} unread / new procurement queries`;
+    queryCountBadge.title = `${newCount} unread / new inquiries`;
   }
 
   function renderQueryTable() {
+    // 1. Update Category Tab Counts & Active Styling
+    const totalAll = queries.length;
+    const totalOem = queries.filter(q => isOemQuery(q)).length;
+    const totalContact = totalAll - totalOem;
+
+    if (countQueryAll) countQueryAll.textContent = totalAll;
+    if (countQueryContact) countQueryContact.textContent = totalContact;
+    if (countQueryOem) countQueryOem.textContent = totalOem;
+
+    const setTabStyle = (tabEl, isActive) => {
+      if (!tabEl) return;
+      if (isActive) {
+        tabEl.style.background = "#013572";
+        tabEl.style.color = "#FFFFFF";
+        tabEl.style.borderColor = "#013572";
+      } else {
+        tabEl.style.background = "#f8fafc";
+        tabEl.style.color = "#475569";
+        tabEl.style.borderColor = "#cbd5e1";
+      }
+    };
+
+    setTabStyle(tabQueryAll, queryCategoryFilter === "ALL");
+    setTabStyle(tabQueryContact, queryCategoryFilter === "contact");
+    setTabStyle(tabQueryOem, queryCategoryFilter === "oem");
+
+    // 2. Filter Queries
     let filtered = queries.filter(q => {
+      // Category filter (Contact Form vs OEM Project)
+      if (queryCategoryFilter === "contact" && isOemQuery(q)) return false;
+      if (queryCategoryFilter === "oem" && !isOemQuery(q)) return false;
+
       const matchStatus = (queryStatusFilter === "ALL") || (q.status === queryStatusFilter);
-      const matchProduct = (queryProductFilter === "ALL") || (q.product && q.product.toLowerCase() === queryProductFilter.toLowerCase());
+      const matchProduct = (queryProductFilter === "ALL") || (q.product && q.product.toLowerCase().includes(queryProductFilter.toLowerCase()));
       const search = searchQueryVal.toLowerCase();
       const matchSearch = !searchQueryVal || 
         (q.name && q.name.toLowerCase().includes(search)) ||
@@ -1256,6 +1348,7 @@ document.addEventListener("DOMContentLoaded", () => {
         (q.email && q.email.toLowerCase().includes(search)) ||
         (q.phone && q.phone.toLowerCase().includes(search)) ||
         (q.sku && q.sku.toLowerCase().includes(search)) ||
+        (q.product && q.product.toLowerCase().includes(search)) ||
         (q.message && q.message.toLowerCase().includes(search));
       return matchStatus && matchProduct && matchSearch;
     });
@@ -1272,14 +1365,17 @@ document.addEventListener("DOMContentLoaded", () => {
         queryPaginationInfo.textContent = "Showing 0 entries";
       } else {
         const endIdx = Math.min(startIdx + queryEntriesPerPage, totalEntries);
-        queryPaginationInfo.textContent = `Showing ${startIdx + 1} to ${endIdx} of ${totalEntries} queries`;
+        queryPaginationInfo.textContent = `Showing ${startIdx + 1} to ${endIdx} of ${totalEntries} inquiries`;
       }
     }
 
     renderQueryPaginationButtons(totalPages);
 
     if (paginated.length === 0) {
-      queryTableBody.innerHTML = `<tr><td colspan="8" style="text-align: center; padding: 40px; color: #94a3b8;">No procurement queries found matching criteria.</td></tr>`;
+      const emptyMsg = queryCategoryFilter === "oem" 
+        ? "No OEM project configurator inquiries found matching criteria." 
+        : (queryCategoryFilter === "contact" ? "No Contact Us form inquiries found matching criteria." : "No inquiries found matching criteria.");
+      queryTableBody.innerHTML = `<tr><td colspan="8" style="text-align: center; padding: 40px; color: #94a3b8;">${emptyMsg}</td></tr>`;
       return;
     }
 
@@ -1288,11 +1384,17 @@ document.addEventListener("DOMContentLoaded", () => {
       const dateStr = q.created_at ? new Date(q.created_at).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" }) : "Recent";
       const safeEmail = encodeURIComponent(q.email || "");
       const safePhone = encodeURIComponent(q.phone || "");
+      const isOem = isOemQuery(q);
+
+      const typeBadge = isOem 
+        ? `<span class="job-badge" style="background: #fdf4ff; color: #a21caf; border-color: #f0abfc; font-size: 10px; font-weight: 700; margin-bottom: 4px; display: inline-block;">⚙️ OEM PROJECT</span>`
+        : `<span class="job-badge" style="background: #e0f2fe; color: #0369a1; border-color: #bae6fd; font-size: 10px; font-weight: 700; margin-bottom: 4px; display: inline-block;">📧 CONTACT FORM</span>`;
 
       return `
         <tr>
           <td class="col-sno">${sNo}</td>
           <td>
+            ${typeBadge}
             <div style="font-weight: 700; color: #013572;">
               <a href="javascript:void(0)" onclick="window.viewQueryDetails(${Number(q.id)})" style="color: inherit; text-decoration: underline;">
                 ${escapeHtml(q.name)}
@@ -1305,11 +1407,11 @@ document.addEventListener("DOMContentLoaded", () => {
             <div style="color: #475569; margin-top: 2px;">📞 <a href="tel:${safePhone}" style="color: inherit; text-decoration: none;">${escapeHtml(q.phone)}</a></div>
           </td>
           <td style="font-size: 12.5px;">
-            <div><span class="job-badge" style="background: #e0f2fe; color: #0369a1; border-color: #bae6fd;">${escapeHtml(q.product || 'Syringe')}</span></div>
-            <div style="font-size: 11px; color: #64748b; margin-top: 3px;">📦 ${escapeHtml(q.volume || 'Standard MOQ')}</div>
+            <div><strong style="color: #0f172a;">${escapeHtml(q.product || (isOem ? 'Custom OEM Device' : 'Syringe'))}</strong></div>
+            <div style="font-size: 11px; color: #64748b; margin-top: 3px;">📦 ${escapeHtml(q.volume || 'Standard Volume')}</div>
           </td>
           <td>
-            ${q.sku ? `<code style="font-size: 11px; font-weight: 700; background: #f1f5f9; padding: 2px 6px; border-radius: 4px; color: #0f172a;">${escapeHtml(q.sku)}</code>` : '<span style="color: #94a3b8; font-size: 12px;">—</span>'}
+            ${q.sku ? `<code style="font-size: 11px; font-weight: 700; background: ${isOem ? '#fdf4ff' : '#f1f5f9'}; color: ${isOem ? '#86198f' : '#0f172a'}; padding: 3px 6px; border-radius: 4px; display: inline-block; max-width: 180px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${escapeHtml(q.sku)}</code>` : '<span style="color: #94a3b8; font-size: 12px;">—</span>'}
           </td>
           <td style="font-family: var(--font-mono); font-size: 12px; color: #64748b; white-space: nowrap;">${escapeHtml(dateStr)}</td>
           <td style="text-align: center;">
@@ -1331,7 +1433,6 @@ document.addEventListener("DOMContentLoaded", () => {
         </tr>
       `;
     }).join("");
-
   }
 
   function renderQueryPaginationButtons(totalPages) {
@@ -1379,16 +1480,31 @@ document.addEventListener("DOMContentLoaded", () => {
     const q = queries.find(item => item.id === id);
     if (!q) return;
     currentViewingQueryId = id;
+    const isOem = isOemQuery(q);
+
+    if (queryModalTypeBadge) {
+      if (isOem) {
+        queryModalTypeBadge.textContent = "⚙️ OEM Project Inquire";
+        queryModalTypeBadge.style.background = "#fdf4ff";
+        queryModalTypeBadge.style.color = "#a21caf";
+        queryModalTypeBadge.style.borderColor = "#f0abfc";
+      } else {
+        queryModalTypeBadge.textContent = "📧 Contact Us Form";
+        queryModalTypeBadge.style.background = "#e0f2fe";
+        queryModalTypeBadge.style.color = "#0369a1";
+        queryModalTypeBadge.style.borderColor = "#bae6fd";
+      }
+    }
 
     queryModalName.textContent = q.name;
     queryModalOrg.textContent = q.organization ? `🏢 ${q.organization}` : "Individual Clinical Buyer";
     queryModalEmail.textContent = q.email;
-    queryModalEmail.href = `mailto:${q.email}?subject=Response to AI-DISPO Procurement Inquiry (Ref #${q.id})&body=Dear ${encodeURIComponent(q.name)},%0D%0A%0D%0AThank you for reaching out to Goel Allied Industries regarding AI-DISPO products.`;
+    queryModalEmail.href = `mailto:${q.email}?subject=Response to AI-DISPO ${isOem ? 'OEM Project' : 'Procurement'} Inquiry (Ref #${q.id})&body=Dear ${encodeURIComponent(q.name)},%0D%0A%0D%0AThank you for reaching out to Goel Allied Industries regarding AI-DISPO products.`;
     
     queryModalPhone.textContent = q.phone;
     queryModalPhone.href = `tel:${q.phone}`;
 
-    queryModalProduct.textContent = q.product || "Syringe";
+    queryModalProduct.textContent = q.product || (isOem ? "Custom OEM Configuration" : "Syringe");
     queryModalVolume.textContent = q.volume || "Standard MOQ";
 
     if (q.sku) {
@@ -1417,7 +1533,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     if (queryModalMailtoBtn) {
-      queryModalMailtoBtn.href = `mailto:${q.email}?subject=Follow-up: AI-DISPO Procurement Inquiry&body=Dear ${encodeURIComponent(q.name)},%0D%0A%0D%0AThank you for your interest in AI-DISPO ${encodeURIComponent(q.product || 'medical devices')}.`;
+      queryModalMailtoBtn.href = `mailto:${q.email}?subject=Follow-up: AI-DISPO ${isOem ? 'OEM Project Inquire' : 'Procurement Inquiry'}&body=Dear ${encodeURIComponent(q.name)},%0D%0A%0D%0AThank you for your interest in AI-DISPO ${encodeURIComponent(q.product || 'manufacturing solutions')}.`;
     }
 
     queryDetailsModal.style.display = "flex";

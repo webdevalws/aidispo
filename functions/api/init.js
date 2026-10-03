@@ -80,7 +80,7 @@ export async function onRequest(context) {
       )
     `).run();
 
-    // 5. Queries table (Contact Us Procurement Inquiries)
+    // 5. Queries table (Contact Us & OEM Project Procurement Inquiries)
     await env.DB.prepare(`
       CREATE TABLE IF NOT EXISTS queries (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -92,6 +92,7 @@ export async function onRequest(context) {
         volume TEXT DEFAULT 'Clinical Sample Batch Evaluation',
         sku TEXT,
         message TEXT,
+        query_type TEXT DEFAULT 'Contact Us',
         status TEXT DEFAULT 'New',
         created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
         updated_at DATETIME DEFAULT CURRENT_TIMESTAMP

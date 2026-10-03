@@ -93,6 +93,9 @@ export async function onRequestPost(context) {
     const sku = sanitizePlainText(data.sku, 100);
     const message = sanitizePlainText(data.message, 5000);
 
+    const isOem = data.query_type === 'OEM Project' || data.type === 'OEM' || (data.sku && data.sku.toUpperCase().includes('OEM')) || (data.product && data.product.toUpperCase().includes('OEM'));
+    const queryType = isOem ? 'OEM Project' : (sanitizePlainText(data.query_type || 'Contact Us', 50));
+
     if (!name || !email || !phone) {
       return new Response(JSON.stringify({
         success: false,
@@ -107,17 +110,26 @@ export async function onRequestPost(context) {
       }), { status: 200, headers: corsHeaders });
     }
 
-    const stmt = env.DB.prepare(`
-      INSERT INTO queries (name, organization, email, phone, product, volume, sku, message, status, created_at, updated_at)
-      VALUES (?, ?, ?, ?, ?, ?, ?, ?, 'New', datetime('now'), datetime('now'))
-    `).bind(name, organization, email, phone, product, volume, sku, message);
-
-    const info = await stmt.run();
+    let info;
+    try {
+      const stmt = env.DB.prepare(`
+        INSERT INTO queries (name, organization, email, phone, product, volume, sku, message, query_type, status, created_at, updated_at)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 'New', datetime('now'), datetime('now'))
+      `).bind(name, organization, email, phone, product, volume, sku, message, queryType);
+      info = await stmt.run();
+    } catch (colErr) {
+      // Fallback if query_type column does not exist yet in legacy D1 SQLite schema
+      const stmt = env.DB.prepare(`
+        INSERT INTO queries (name, organization, email, phone, product, volume, sku, message, status, created_at, updated_at)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, 'New', datetime('now'), datetime('now'))
+      `).bind(name, organization, email, phone, product, volume, sku, message);
+      info = await stmt.run();
+    }
 
     return new Response(JSON.stringify({
       success: true,
       id: info.meta ? info.meta.last_row_id : null,
-      message: "Procurement inquiry received successfully! A representative will contact you shortly."
+      message: isOem ? "OEM project configuration inquiry received! Our technical team will review specifications and NDA requirements." : "Procurement inquiry received successfully! A representative will contact you shortly."
     }), { status: 201, headers: corsHeaders });
 
 

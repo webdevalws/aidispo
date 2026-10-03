@@ -110,7 +110,7 @@
 
         <div class="nav-section-title" style="margin-top: 14px;">Inquiries &amp; Leads</div>
         <ul class="sidebar-menu">
-          <!-- Query (Contact Us Inquiries) -->
+          <!-- Single Query Menu Item -->
           <li class="menu-item" id="menuItemQuery" onclick="if(window.switchView) window.switchView('queries')">
             <a href="javascript:void(0)" id="navQuery" onclick="if(window.switchView) window.switchView('queries')">
               <span class="menu-item-icon">
@@ -550,8 +550,8 @@
           <div class="content-card">
             <div class="view-header">
               <div>
-                <h1 class="view-title">Procurement Queries &amp; Inquiries</h1>
-                <p style="font-size: 13px; color: #64748b; margin: 4px 0 0 0;">All requests submitted via the Contact Us procurement page</p>
+                <h1 class="view-title" id="queryViewMainTitle">Procurement &amp; Project Inquiries</h1>
+                <p style="font-size: 13px; color: #64748b; margin: 4px 0 0 0;" id="queryViewSubtitle">All inquiries submitted via Contact Us and Interactive OEM Configurator</p>
               </div>
               <div style="display: flex; gap: 10px;">
                 <button type="button" class="btn-cancel" id="btnExportQueries" style="padding: 8px 14px; font-size: 13px; display: inline-flex; align-items: center; gap: 6px; cursor: pointer;">
@@ -563,6 +563,19 @@
                   <span>Export CSV</span>
                 </button>
               </div>
+            </div>
+
+            <!-- Inquiry Category Sub-Section Tabs -->
+            <div style="display: flex; gap: 8px; margin: 16px 0 16px 0; border-bottom: 2px solid #e2e8f0; padding-bottom: 10px; flex-wrap: wrap;">
+              <button type="button" id="tabQueryAll" class="job-badge" style="cursor: pointer; padding: 7px 16px; font-size: 13px; font-weight: 700; border-radius: 8px; border: 1.5px solid #013572; background: #013572; color: #FFFFFF;" onclick="window.filterQueryCategory('ALL')">
+                All Inquiries (<span id="countQueryAll">0</span>)
+              </button>
+              <button type="button" id="tabQueryContact" class="job-badge" style="cursor: pointer; padding: 7px 16px; font-size: 13px; font-weight: 700; border-radius: 8px; border: 1.5px solid #cbd5e1; background: #f8fafc; color: #475569;" onclick="window.filterQueryCategory('contact')">
+                📧 Contact Us Inquiries (<span id="countQueryContact">0</span>)
+              </button>
+              <button type="button" id="tabQueryOem" class="job-badge" style="cursor: pointer; padding: 7px 16px; font-size: 13px; font-weight: 700; border-radius: 8px; border: 1.5px solid #cbd5e1; background: #f8fafc; color: #475569;" onclick="window.filterQueryCategory('oem')">
+                ⚙️ OEM Project Inquiries (<span id="countQueryOem">0</span>)
+              </button>
             </div>
 
             <!-- Table Controls Row -->
@@ -595,7 +608,7 @@
 
               <div class="search-wrap">
                 <label for="searchQueryInput">Search:</label>
-                <input type="search" id="searchQueryInput" class="search-input" placeholder="Search name, org, email, phone, SKU...">
+                <input type="search" id="searchQueryInput" class="search-input" placeholder="Search name, org, email, phone, SKU, OEM...">
               </div>
             </div>
 
@@ -604,11 +617,12 @@
                 <thead>
                   <tr>
                     <th class="col-sno">S no.</th>
-                    <th>Client &amp; Organization</th>
+                    <th>Inquiry Type &amp; Client</th>
                     <th>Contact Details</th>
-                    <th>Product &amp; Volume</th>
-                    <th>SKU / Ref</th>
-                    <th>Received Date</th>
+                    <th>Product / OEM Scope</th>
+                    <th>Volume / Details</th>
+                    <th>SKU / Reference</th>
+                    <th>Date</th>
                     <th style="text-align: center;">Status</th>
                     <th class="col-action">Action</th>
                   </tr>
@@ -660,8 +674,11 @@
   <div class="apply-modal-overlay" id="queryDetailsModal" style="display: none;">
     <div class="apply-modal-card" style="max-width: 680px;">
       <button class="modal-close-btn" id="btnCloseQueryModal">&times;</button>
-      <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 4px;">
-        <span class="status-badge new" id="queryModalStatusBadge" style="font-size: 11px;">New</span>
+      <div style="display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 4px;">
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <span class="status-badge new" id="queryModalStatusBadge" style="font-size: 11px;">New</span>
+          <span class="job-badge" id="queryModalTypeBadge" style="font-size: 11px; background: #e0f2fe; color: #0369a1; border-color: #bae6fd;">Contact Form</span>
+        </div>
         <span style="font-size: 12px; color: #64748b;" id="queryModalDate"></span>
       </div>
       <h2 class="modal-title" id="queryModalName">Client Name</h2>

@@ -486,7 +486,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const offY = (1 - cardsProgress) * (mobile ? 30 : 50);
       const cardScale = 0.82 + cardsProgress * 0.18;
       splashCard2.style.opacity = cardsProgress;
-      splashCard2.style.transform = `translate(calc(-50% + ${offX}px), ${offY}px) scale(${cardScale})`;
+      splashCard2.style.transform = `translate(${offX}px, ${offY}px) scale(${cardScale})`;
       splashCard2.style.pointerEvents = cardsProgress >= 0.5 ? 'auto' : 'none';
     }
 
@@ -988,8 +988,11 @@ document.addEventListener('DOMContentLoaded', () => {
   // 17. SECTION 3: NEEDLE MACRO MICRO-DROPLET DISPENSE SIMULATOR
   // =========================================================================
   const dispenseDropletBtn = document.getElementById('dispenseDropletBtn');
+  const dispenseBtnText = document.getElementById('dispenseBtnText');
   const needleDroplet = document.getElementById('needleDroplet');
   const needleDropletSplash = document.getElementById('needleDropletSplash');
+  const needleTelemetryText = document.getElementById('needleTelemetryText');
+  const needleLiveDot = document.getElementById('needleLiveDot');
   let isDispensing = false;
 
   if (dispenseDropletBtn && needleDroplet) {
@@ -997,6 +1000,13 @@ document.addEventListener('DOMContentLoaded', () => {
       if (isDispensing) return;
       isDispensing = true;
       dispenseDropletBtn.style.pointerEvents = 'none';
+
+      if (dispenseBtnText) dispenseBtnText.textContent = 'DISPENSING BEAD...';
+      if (needleTelemetryText) needleTelemetryText.innerHTML = 'EXPULSION IN PROGRESS &bull; 0.005 mL BEAD';
+      if (needleLiveDot) {
+        needleLiveDot.style.background = '#00A8FF';
+        needleLiveDot.style.boxShadow = '0 0 10px #00A8FF';
+      }
 
       playClinicalClick('droplet');
 
@@ -1016,13 +1026,25 @@ document.addEventListener('DOMContentLoaded', () => {
           }
           playClinicalClick('click');
 
+          if (dispenseBtnText) dispenseBtnText.textContent = 'DISPENSED (< 0.005 mL)';
+          if (needleTelemetryText) needleTelemetryText.innerHTML = 'ZERO RESIDUAL CONE FLUID &bull; CERTIFIED';
+          if (needleLiveDot) {
+            needleLiveDot.style.background = '#10b981';
+            needleLiveDot.style.boxShadow = '0 0 8px #10b981';
+          }
+          if (typeof showToast === 'function') {
+            showToast('Micro-droplet dispensed from 12° tri-bevel tip (<0.005 mL residual loss).');
+          }
+
           setTimeout(() => {
             needleDroplet.className = 'needle-fluid-droplet';
+            if (dispenseBtnText) dispenseBtnText.textContent = 'TAP TO DISPENSE DROPLET';
+            if (needleTelemetryText) needleTelemetryText.innerHTML = 'CHAMBER PRIMED &bull; ZERO BUBBLE CAVITATION';
             isDispensing = false;
             dispenseDropletBtn.style.pointerEvents = 'auto';
-          }, 300);
+          }, 1400);
         }, 450);
-      }, 700);
+      }, 750);
     });
   }
 

@@ -313,11 +313,13 @@ select,
   margin-bottom: 6px;
 }
 
-.sim-title .highlight-cyan {
-  color: var(--logo-navy);
-  background: linear-gradient(135deg, var(--logo-navy) 0%, var(--accent-blue) 100%);
+.sim-title .highlight-cyan,
+.highlight-cyan {
+  color: #0077D4;
+  background: linear-gradient(135deg, #0077D4 0%, #00A8FF 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  display: inline;
 }
 
 .sim-subtitle {
@@ -2101,6 +2103,7 @@ select,
   color: #FFFFFF;
   text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
   margin-bottom: 16px;
+  text-wrap: balance;
 }
 
 .tagline-sub-statement {
@@ -2320,4 +2323,139 @@ select,
   font-weight: 900;
   font-size: 15px;
   flex-shrink: 0;
+}
+
+.export-dock-actions {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-top: 24px;
+  align-items: center;
+}
+
+.export-dock-actions .sim-enquire-btn,
+.export-dock-actions .btn-craft {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 14px 24px;
+  font-size: 13.5px;
+  border-radius: 8px;
+}
+
+@media (max-width: 600px) {
+  .export-dock-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .export-dock-actions .sim-enquire-btn,
+  .export-dock-actions .btn-craft {
+    width: 100%;
+  }
+}
+
+/* Objectives Grid (5 Cards in 1 Balanced Row) */
+.objectives-grid-5 {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 16px;
+  width: 100%;
+}
+
+@media (max-width: 1100px) {
+  .objectives-grid-5 {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+  }
+}
+
+@media (max-width: 768px) {
+  .objectives-grid-5 {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+}
+
+@media (max-width: 500px) {
+  .objectives-grid-5 {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+}
+
+/* Core Objective Cards Hover Micro-Interaction */
+.core-objective-card {
+  background: #FFFFFF !important;
+  border: 1.5px solid rgba(1, 53, 114, 0.14) !important;
+  border-radius: 12px;
+  padding: 20px 18px;
+  box-shadow: 0 4px 14px rgba(1, 53, 114, 0.04);
+  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.28s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.28s ease;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.core-objective-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3.5px;
+  background: linear-gradient(90deg, #00A8FF 0%, #013572 100%);
+  opacity: 0;
+  transition: opacity 0.28s ease;
+}
+
+.core-objective-card:hover {
+  transform: translateY(-6px);
+  border-color: #00A8FF !important;
+  box-shadow: 0 16px 32px rgba(1, 53, 114, 0.14), 0 2px 10px rgba(0, 168, 255, 0.15) !important;
+  background: #FFFFFF !important;
+}
+
+.core-objective-card:hover::before {
+  opacity: 1;
+}
+
+.core-objective-card .obj-num {
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--accent-blue, #00A8FF);
+  margin-bottom: 8px;
+  transition: color 0.25s ease, transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  display: inline-block;
+}
+
+.core-objective-card:hover .obj-num {
+  color: #008be0;
+  transform: scale(1.12) translateX(2px);
+}
+
+.core-objective-card .obj-title {
+  font-family: var(--font-headline, 'Plus Jakarta Sans', sans-serif);
+  font-size: 14.5px;
+  font-weight: 700;
+  color: var(--ink-black, #0F172A);
+  margin-bottom: 6px;
+  line-height: 1.3;
+  transition: color 0.25s ease;
+}
+
+.core-objective-card:hover .obj-title {
+  color: var(--logo-navy, #013572);
+}
+
+.core-objective-card p {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: 12.5px;
+  color: var(--ink-charcoal, #475569);
+  line-height: 1.55;
+  margin: 0;
+  flex-grow: 1;
 }

@@ -63,8 +63,8 @@
     const breakawayVal = root.querySelector('#sBreakawayVal');
     const enquireBtn = root.querySelector('#sEnquireBtn');
 
-    const SYRINGE_IMG_WITH_NEEDLE = 'assets/ChatGPT Image Sep 30, 2026, 06_20_51 PM.png';
-    const SYRINGE_IMG_WITHOUT_NEEDLE = 'assets/ChatGPT Image Sep 30, 2026, 06_38_35 PM.png';
+    const SYRINGE_IMG_WITH_NEEDLE = 'assets/syringe_with_needle_aligned.png?v=4';
+    const SYRINGE_IMG_WITHOUT_NEEDLE = 'assets/syringe_without_needle_aligned.png?v=4';
 
     // Preload both images for instantaneous zero-latency switching
     const preImg1 = new Image();
