@@ -103,6 +103,26 @@ export async function onRequestGet(context) {
   }
 }
 
+function sanitizePlainText(input, maxLength = 2000) {
+  if (typeof input !== 'string') return '';
+  return input
+    .trim()
+    .replace(/<[^>]*>/g, '')
+    .slice(0, maxLength);
+}
+
+function sanitizeRichHtml(html) {
+  if (typeof html !== 'string') return '';
+  return html
+    .replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '')
+    .replace(/<iframe\b[^<]*(?:(?!<\/iframe>)<[^<]*)*<\/iframe>/gi, '')
+    .replace(/<object\b[^<]*(?:(?!<\/object>)<[^<]*)*<\/object>/gi, '')
+    .replace(/<embed\b[^>]*>/gi, '')
+    .replace(/\son\w+\s*=\s*(['"][^'"]*['"]|[^\s>]+)/gi, '')
+    .replace(/href\s*=\s*['"]\s*javascript:[^'"]*['"]/gi, 'href="#"')
+    .replace(/src\s*=\s*['"]\s*javascript:[^'"]*['"]/gi, '');
+}
+
 // POST: Create a new blog post
 export async function onRequestPost(context) {
   const { request, env } = context;
@@ -116,14 +136,15 @@ export async function onRequestPost(context) {
 
   try {
     const data = await request.json();
-    const title = (data.title || "").trim();
-    const meta_title = (data.meta_title || title).trim();
-    const meta_description = (data.meta_description || "").trim();
-    let slug = (data.slug || "").trim();
-    const content = data.content || "";
-    const tags = (data.tags || "").trim();
-    const image_url = (data.image_url || "").trim();
-    const author = (data.author || "AI-DISPO Clinical Team").trim();
+    const title = sanitizePlainText(data.title, 250);
+    const meta_title = sanitizePlainText(data.meta_title || title, 250);
+    const meta_description = sanitizePlainText(data.meta_description, 500);
+    let slug = slugify(data.slug || title);
+    const badge_tag = sanitizePlainText(data.badge_tag || "IV CANNULA", 50);
+    const content = sanitizeRichHtml(data.content || "");
+    const tags = sanitizePlainText(data.tags, 500);
+    const image_url = sanitizePlainText(data.image_url, 1000);
+    const author = sanitizePlainText(data.author || "AI-DISPO Clinical Team", 120);
 
     if (!title || !content) {
       return new Response(JSON.stringify({
@@ -134,8 +155,6 @@ export async function onRequestPost(context) {
 
     if (!slug) {
       slug = slugify(title);
-    } else {
-      slug = slugify(slug);
     }
 
     if (!env || !env.DB) {
@@ -147,9 +166,9 @@ export async function onRequestPost(context) {
 
     // Insert blog
     const stmt = env.DB.prepare(`
-      INSERT INTO blogs (title, meta_title, meta_description, slug, content, tags, image_url, author, views, likes, created_at, updated_at)
-      VALUES (?, ?, ?, ?, ?, ?, ?, ?, 0, 0, datetime('now'), datetime('now'))
-    `).bind(title, meta_title, meta_description, slug, content, tags, image_url, author);
+      INSERT INTO blogs (title, meta_title, meta_description, slug, badge_tag, content, tags, image_url, author, views, likes, created_at, updated_at)
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 0, 0, datetime('now'), datetime('now'))
+    `).bind(title, meta_title, meta_description, slug, badge_tag, content, tags, image_url, author);
 
     const info = await stmt.run();
 
@@ -159,6 +178,7 @@ export async function onRequestPost(context) {
       message: "Blog post published successfully!",
       slug
     }), { status: 201, headers: corsHeaders });
+
 
   } catch (err) {
     return new Response(JSON.stringify({

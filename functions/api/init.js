@@ -80,7 +80,25 @@ export async function onRequest(context) {
       )
     `).run();
 
-    // 5. Ensure Default Admin exists
+    // 5. Queries table (Contact Us Procurement Inquiries)
+    await env.DB.prepare(`
+      CREATE TABLE IF NOT EXISTS queries (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        name TEXT NOT NULL,
+        organization TEXT,
+        email TEXT NOT NULL,
+        phone TEXT NOT NULL,
+        product TEXT DEFAULT 'Syringe',
+        volume TEXT DEFAULT 'Clinical Sample Batch Evaluation',
+        sku TEXT,
+        message TEXT,
+        status TEXT DEFAULT 'New',
+        created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+        updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
+      )
+    `).run();
+
+    // 6. Ensure Default Admin exists
     await env.DB.prepare(`
       INSERT OR IGNORE INTO admins (email, password, name, role)
       VALUES (?, ?, ?, ?)
@@ -88,11 +106,12 @@ export async function onRequest(context) {
 
     return new Response(JSON.stringify({ 
       success: true, 
-      message: "Database initialized with blogs, jobs, applicants and admin credentials" 
+      message: "Database initialized with blogs, jobs, applicants, queries and admin credentials" 
     }), {
       status: 200,
       headers: { "Content-Type": "application/json" }
     });
+
   } catch (err) {
     return new Response(JSON.stringify({ 
       success: false, 

@@ -125,6 +125,41 @@ body {
   box-shadow: 0 0 0 3px rgba(1, 53, 114, 0.12);
 }
 
+.password-input-wrap {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.password-input-wrap .form-control {
+  padding-right: 44px;
+}
+
+.btn-toggle-password {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  padding: 6px;
+  cursor: pointer;
+  color: #64748b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  transition: color 0.2s, background-color 0.2s;
+  outline: none;
+}
+
+.btn-toggle-password:hover {
+  color: #013572;
+  background-color: #f1f5f9;
+}
+
+
 .btn-login {
   width: 100%;
   background: #013572;
@@ -913,6 +948,16 @@ body {
 .status-badge.pending { background: #fffbeb; color: #b45309; border: 1px solid #fde68a; }
 .status-badge.shortlisted { background: #eff6ff; color: #1d4ed8; border: 1px solid #bfdbfe; }
 .status-badge.rejected { background: #f1f5f9; color: #64748b; border: 1px solid #cbd5e1; }
+
+.status-badge.new { background: #eff6ff; color: #1d4ed8; border: 1px solid #bfdbfe; font-weight: 800; }
+.status-badge.in-progress, .status-badge.inprogress { background: #fffbeb; color: #b45309; border: 1px solid #fde68a; }
+.status-badge.contacted { background: #f5f3ff; color: #6d28d9; border: 1px solid #ddd6fe; }
+.status-badge.resolved { background: #ecfdf5; color: #047857; border: 1px solid #a7f3d0; }
+
+.nav-count-badge.query-badge {
+  background: #ea580c;
+}
+
 
 .status-select {
   padding: 4px 8px;

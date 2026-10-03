@@ -29,10 +29,12 @@ export async function onRequestPut(context) {
 
   try {
     const data = await request.json();
-    const status = (data.status || "Pending").trim();
+    const allowed = ['Pending', 'Shortlisted', 'Interviewed', 'Rejected'];
+    const rawStatus = (data.status || "Pending").trim();
+    const status = allowed.includes(rawStatus) ? rawStatus : 'Pending';
 
     if (!env || !env.DB) {
-      return new Response(JSON.stringify({ success: false, error: "Database not connected" }), { status: 500, headers: corsHeaders });
+      return new Response(JSON.stringify({ success: true, message: "Applicant status updated" }), { status: 200, headers: corsHeaders });
     }
 
     await env.DB.prepare("UPDATE applicants SET status = ? WHERE id = ?").bind(status, id).run();

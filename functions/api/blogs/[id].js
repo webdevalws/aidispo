@@ -75,6 +75,29 @@ export async function onRequestGet(context) {
   }
 }
 
+function sanitizePlainText(input, maxLength = 2000) {
+  if (typeof input !== 'string') return '';
+  return input
+    .trim()
+    .replace(/<[^>]*>/g, '')
+    .slice(0, maxLength);
+}
+
+function sanitizeRichHtml(html) {
+  if (typeof html !== 'string') return '';
+  return html
+    .replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '')
+    .replace(/<iframe\b[^<]*(?:(?!<\/iframe>)<[^<]*)*<\/iframe>/gi, '')
+    .replace(/<object\b[^<]*(?:(?!<\/object>)<[^<]*)*<\/object>/gi, '')
+    .replace(/<embed\b[^>]*>/gi, '')
+    .replace(/<applet\b[^>]*>/gi, '')
+    .replace(/<meta\b[^>]*>/gi, '')
+    .replace(/<link\b[^>]*>/gi, '')
+    .replace(/\son\w+\s*=\s*(['"][^'"]*['"]|[^\s>]+)/gi, '')
+    .replace(/href\s*=\s*['"]\s*javascript:[^'"]*['"]/gi, 'href="#"')
+    .replace(/src\s*=\s*['"]\s*javascript:[^'"]*['"]/gi, '');
+}
+
 // PUT: Update an existing blog
 export async function onRequestPut(context) {
   const { request, params, env } = context;
@@ -89,13 +112,13 @@ export async function onRequestPut(context) {
 
   try {
     const data = await request.json();
-    const title = (data.title || "").trim();
-    const meta_title = (data.meta_title || title).trim();
-    const meta_description = (data.meta_description || "").trim();
-    let slug = (data.slug || "").trim();
-    const content = data.content || "";
-    const tags = (data.tags || "").trim();
-    const image_url = (data.image_url || "").trim();
+    const title = sanitizePlainText(data.title, 250);
+    const meta_title = sanitizePlainText(data.meta_title || title, 250);
+    const meta_description = sanitizePlainText(data.meta_description, 500);
+    let slug = sanitizePlainText(data.slug || title, 150);
+    const content = sanitizeRichHtml(data.content || "");
+    const tags = sanitizePlainText(data.tags, 500);
+    const image_url = sanitizePlainText(data.image_url, 1000);
 
     if (!title || !content) {
       return new Response(JSON.stringify({

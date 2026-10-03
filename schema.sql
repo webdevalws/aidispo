@@ -63,8 +63,27 @@ CREATE TABLE IF NOT EXISTS applicants (
     applied_at DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
+-- Queries / Contact Us Inquiries Table
+CREATE TABLE IF NOT EXISTS queries (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL,
+    organization TEXT,
+    email TEXT NOT NULL,
+    phone TEXT NOT NULL,
+    product TEXT DEFAULT 'Syringe',
+    volume TEXT DEFAULT 'Clinical Sample Batch Evaluation',
+    sku TEXT,
+    message TEXT,
+    status TEXT DEFAULT 'New',
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
 -- Indexes for performance
 CREATE INDEX IF NOT EXISTS idx_blogs_slug ON blogs(slug);
 CREATE INDEX IF NOT EXISTS idx_blogs_created_at ON blogs(created_at DESC);
 CREATE INDEX IF NOT EXISTS idx_jobs_status ON jobs(status);
 CREATE INDEX IF NOT EXISTS idx_applicants_job_id ON applicants(job_id);
+CREATE INDEX IF NOT EXISTS idx_queries_status ON queries(status);
+CREATE INDEX IF NOT EXISTS idx_queries_created_at ON queries(created_at DESC);
+

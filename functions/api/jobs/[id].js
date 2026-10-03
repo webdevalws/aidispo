@@ -38,6 +38,29 @@ export async function onRequestGet(context) {
   }
 }
 
+function sanitizePlainText(input, maxLength = 2000) {
+  if (typeof input !== 'string') return '';
+  return input
+    .trim()
+    .replace(/<[^>]*>/g, '')
+    .slice(0, maxLength);
+}
+
+function sanitizeRichHtml(html) {
+  if (typeof html !== 'string') return '';
+  return html
+    .replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '')
+    .replace(/<iframe\b[^<]*(?:(?!<\/iframe>)<[^<]*)*<\/iframe>/gi, '')
+    .replace(/<object\b[^<]*(?:(?!<\/object>)<[^<]*)*<\/object>/gi, '')
+    .replace(/<embed\b[^>]*>/gi, '')
+    .replace(/<applet\b[^>]*>/gi, '')
+    .replace(/<meta\b[^>]*>/gi, '')
+    .replace(/<link\b[^>]*>/gi, '')
+    .replace(/\son\w+\s*=\s*(['"][^'"]*['"]|[^\s>]+)/gi, '')
+    .replace(/href\s*=\s*['"]\s*javascript:[^'"]*['"]/gi, 'href="#"')
+    .replace(/src\s*=\s*['"]\s*javascript:[^'"]*['"]/gi, '');
+}
+
 // PUT: Update job
 export async function onRequestPut(context) {
   const { request, params, env } = context;
@@ -49,15 +72,15 @@ export async function onRequestPut(context) {
 
   try {
     const data = await request.json();
-    const title = (data.title || "").trim();
-    const department = (data.department || "Clinical Engineering").trim();
-    const location = (data.location || "Facility HQ, India").trim();
-    const job_type = (data.job_type || "Full-Time").trim();
-    const experience = (data.experience || "2-5 Years").trim();
-    const salary = (data.salary || "").trim();
-    const description = data.description || "";
-    const requirements = (data.requirements || "").trim();
-    const status = (data.status || "Active").trim();
+    const title = sanitizePlainText(data.title, 200);
+    const department = sanitizePlainText(data.department || "Clinical Engineering", 100);
+    const location = sanitizePlainText(data.location || "Facility HQ, India", 150);
+    const job_type = sanitizePlainText(data.job_type || "Full-Time", 80);
+    const experience = sanitizePlainText(data.experience || "2-5 Years", 80);
+    const salary = sanitizePlainText(data.salary, 100);
+    const description = sanitizeRichHtml(data.description || "");
+    const requirements = sanitizePlainText(data.requirements, 2000);
+    const status = sanitizePlainText(data.status || "Active", 50);
 
     if (!title || !description) {
       return new Response(JSON.stringify({ success: false, error: "Title and description are required." }), { status: 400, headers: corsHeaders });

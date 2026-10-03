@@ -57,6 +57,38 @@ export async function onRequestGet(context) {
   }
 }
 
+function sanitizePlainText(input, maxLength = 2000) {
+  if (typeof input !== 'string') return '';
+  return input
+    .trim()
+    .replace(/<[^>]*>/g, '') // Strip HTML tags
+    .slice(0, maxLength);
+}
+
+function sanitizeEmail(email) {
+  if (typeof email !== 'string') return '';
+  const cleaned = email.trim().toLowerCase().slice(0, 150);
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(cleaned) ? cleaned : '';
+}
+
+function sanitizePhone(phone) {
+  if (typeof phone !== 'string') return '';
+  return phone.trim().replace(/[^0-9+() -]/g, '').slice(0, 30);
+}
+
+function sanitizeSafeUrl(url) {
+  if (typeof url !== 'string') return '';
+  const trimmed = url.trim();
+  if (/^https?:\/\/[^\s<>"']+$/i.test(trimmed)) {
+    return trimmed.slice(0, 500);
+  }
+  if (/^data:(image\/[a-z]+|application\/pdf);base64,[A-Za-z0-9+/=]+$/i.test(trimmed)) {
+    return trimmed;
+  }
+  return '';
+}
+
 // POST: Candidate submits job application (Public)
 export async function onRequestPost(context) {
   const { request, env } = context;
@@ -64,18 +96,18 @@ export async function onRequestPost(context) {
   try {
     const data = await request.json();
     const job_id = data.job_id ? parseInt(data.job_id, 10) : null;
-    const job_title = (data.job_title || "General Application").trim();
-    const full_name = (data.full_name || "").trim();
-    const email = (data.email || "").trim();
-    const phone = (data.phone || "").trim();
-    const experience = (data.experience || "Not Specified").trim();
-    const resume_url = (data.resume_url || "").trim();
-    const cover_letter = (data.cover_letter || "").trim();
+    const job_title = sanitizePlainText(data.job_title || "General Application", 120);
+    const full_name = sanitizePlainText(data.full_name, 120);
+    const email = sanitizeEmail(data.email);
+    const phone = sanitizePhone(data.phone);
+    const experience = sanitizePlainText(data.experience || "Not Specified", 80);
+    const resume_url = sanitizeSafeUrl(data.resume_url);
+    const cover_letter = sanitizePlainText(data.cover_letter, 5000);
 
     if (!full_name || !email || !phone) {
       return new Response(JSON.stringify({
         success: false,
-        error: "Full Name, Email, and Phone number are required."
+        error: "Valid Full Name, Work Email, and Phone number are required."
       }), { status: 400, headers: corsHeaders });
     }
 
@@ -98,6 +130,7 @@ export async function onRequestPost(context) {
       id: info.meta ? info.meta.last_row_id : null,
       message: "Application submitted successfully! Our HR team will review your profile."
     }), { status: 201, headers: corsHeaders });
+
 
   } catch (err) {
     return new Response(JSON.stringify({ success: false, error: err.message }), { status: 500, headers: corsHeaders });

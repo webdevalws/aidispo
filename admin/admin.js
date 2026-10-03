@@ -26,6 +26,15 @@ document.addEventListener("DOMContentLoaded", () => {
   let applicantJobFilter = "ALL";
   let searchApplicantQuery = "";
 
+  // Queries State (Contact Us Procurement Inquiries)
+  let queries = [];
+  let currentViewingQueryId = null;
+  let queryStatusFilter = "ALL";
+  let queryProductFilter = "ALL";
+  let searchQueryVal = "";
+  let queryCurrentPage = 1;
+  let queryEntriesPerPage = 10;
+
   // DOM Elements - Login & Global
   const loginOverlay = document.getElementById("loginOverlay");
   const loginForm = document.getElementById("loginForm");
@@ -44,14 +53,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Nav Items
   const menuItemBlog = document.getElementById("menuItemBlog");
+  const menuItemQuery = document.getElementById("menuItemQuery");
   const menuItemJobs = document.getElementById("menuItemJobs");
   const menuItemPostJob = document.getElementById("menuItemPostJob");
   const menuItemApplicants = document.getElementById("menuItemApplicants");
   const navBlog = document.getElementById("navBlog");
+  const navQuery = document.getElementById("navQuery");
   const navJobs = document.getElementById("navJobs");
   const navPostJob = document.getElementById("navPostJob");
   const navApplicants = document.getElementById("navApplicants");
   const applicantsCountBadge = document.getElementById("applicantsCountBadge");
+  const queryCountBadge = document.getElementById("queryCountBadge");
 
   // Views
   const viewBlogList = document.getElementById("viewBlogList");
@@ -59,6 +71,33 @@ document.addEventListener("DOMContentLoaded", () => {
   const viewJobList = document.getElementById("viewJobList");
   const viewPostJob = document.getElementById("viewPostJob");
   const viewApplicants = document.getElementById("viewApplicants");
+  const viewQueries = document.getElementById("viewQueries");
+
+  // Query Elements
+  const queryStatusFilterEl = document.getElementById("queryStatusFilter");
+  const queryProductFilterEl = document.getElementById("queryProductFilter");
+  const searchQueryInputEl = document.getElementById("searchQueryInput");
+  const btnExportQueries = document.getElementById("btnExportQueries");
+  const queryTableBody = document.getElementById("queryTableBody");
+  const queryPaginationInfo = document.getElementById("queryPaginationInfo");
+  const queryPaginationButtons = document.getElementById("queryPaginationButtons");
+  const queryDetailsModal = document.getElementById("queryDetailsModal");
+  const btnCloseQueryModal = document.getElementById("btnCloseQueryModal");
+  const btnCloseQueryModalBtn = document.getElementById("btnCloseQueryModalBtn");
+  const queryModalName = document.getElementById("queryModalName");
+  const queryModalOrg = document.getElementById("queryModalOrg");
+  const queryModalEmail = document.getElementById("queryModalEmail");
+  const queryModalPhone = document.getElementById("queryModalPhone");
+  const queryModalProduct = document.getElementById("queryModalProduct");
+  const queryModalVolume = document.getElementById("queryModalVolume");
+  const queryModalSku = document.getElementById("queryModalSku");
+  const queryModalSkuRow = document.getElementById("queryModalSkuRow");
+  const queryModalMessage = document.getElementById("queryModalMessage");
+  const queryModalStatusBadge = document.getElementById("queryModalStatusBadge");
+  const queryModalDate = document.getElementById("queryModalDate");
+  const queryModalStatusSelect = document.getElementById("queryModalStatusSelect");
+  const queryModalMailtoBtn = document.getElementById("queryModalMailtoBtn");
+
 
   // Blog Elements
   const btnAddNewBlog = document.getElementById("btnAddNewBlog");
@@ -196,13 +235,45 @@ document.addEventListener("DOMContentLoaded", () => {
     showLogin();
   }
 
+  const btnTogglePassword = document.getElementById("btnTogglePassword");
+
   function showLogin() {
     loginOverlay.style.display = "flex";
     adminLayout.style.display = "none";
     if (adminEmailInput) adminEmailInput.value = "";
-    if (adminPassInput) adminPassInput.value = "";
+    if (adminPassInput) {
+      adminPassInput.value = "";
+      adminPassInput.setAttribute("type", "password");
+    }
+    if (btnTogglePassword) {
+      const eyeShow = btnTogglePassword.querySelector(".eye-show");
+      const eyeHide = btnTogglePassword.querySelector(".eye-hide");
+      if (eyeShow) eyeShow.style.display = "block";
+      if (eyeHide) eyeHide.style.display = "none";
+      btnTogglePassword.setAttribute("title", "Show password");
+    }
     if (loginAlert) loginAlert.style.display = "none";
   }
+
+  // Toggle Password Visibility (Eye icon)
+  if (btnTogglePassword && adminPassInput) {
+    btnTogglePassword.addEventListener("click", () => {
+      const isPassword = adminPassInput.getAttribute("type") === "password";
+      adminPassInput.setAttribute("type", isPassword ? "text" : "password");
+
+      const eyeShow = btnTogglePassword.querySelector(".eye-show");
+      const eyeHide = btnTogglePassword.querySelector(".eye-hide");
+
+      if (eyeShow && eyeHide) {
+        eyeShow.style.display = isPassword ? "none" : "block";
+        eyeHide.style.display = isPassword ? "block" : "none";
+      }
+
+      btnTogglePassword.setAttribute("aria-label", isPassword ? "Hide password" : "Show password");
+      btnTogglePassword.setAttribute("title", isPassword ? "Hide password" : "Show password");
+    });
+  }
+
 
   function showDashboard() {
     loginOverlay.style.display = "none";
@@ -213,6 +284,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     initCKEditors();
     loadBlogs();
+    loadQueries();
     loadJobs();
     loadApplicants();
   }
@@ -309,40 +381,55 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Switch Active View
   function switchView(viewName) {
-    [viewBlogList, viewPostBlog, viewJobList, viewPostJob, viewApplicants].forEach(v => {
+    [viewBlogList, viewPostBlog, viewJobList, viewPostJob, viewApplicants, viewQueries].forEach(v => {
       if (v) v.classList.remove("active");
     });
-    [menuItemBlog, menuItemJobs, menuItemPostJob, menuItemApplicants].forEach(m => {
+    [menuItemBlog, menuItemQuery, menuItemJobs, menuItemPostJob, menuItemApplicants].forEach(m => {
       if (m) m.classList.remove("active");
     });
 
     if (viewName === "blog-list") {
-      viewBlogList.classList.add("active");
-      menuItemBlog.classList.add("active");
+      if (viewBlogList) viewBlogList.classList.add("active");
+      if (menuItemBlog) menuItemBlog.classList.add("active");
+      renderBlogTable();
     } else if (viewName === "blog-post") {
-      viewPostBlog.classList.add("active");
-      menuItemBlog.classList.add("active");
+      if (viewPostBlog) viewPostBlog.classList.add("active");
+      if (menuItemBlog) menuItemBlog.classList.add("active");
+    } else if (viewName === "queries") {
+      if (viewQueries) viewQueries.classList.add("active");
+      if (menuItemQuery) menuItemQuery.classList.add("active");
+      renderQueryTable();
     } else if (viewName === "job-list") {
-      viewJobList.classList.add("active");
-      menuItemJobs.classList.add("active");
+      if (viewJobList) viewJobList.classList.add("active");
+      if (menuItemJobs) menuItemJobs.classList.add("active");
+      renderJobTable();
     } else if (viewName === "job-post") {
-      viewPostJob.classList.add("active");
-      menuItemPostJob.classList.add("active");
+      if (viewPostJob) viewPostJob.classList.add("active");
+      if (menuItemPostJob) menuItemPostJob.classList.add("active");
     } else if (viewName === "applicants") {
-      viewApplicants.classList.add("active");
-      menuItemApplicants.classList.add("active");
+      if (viewApplicants) viewApplicants.classList.add("active");
+      if (menuItemApplicants) menuItemApplicants.classList.add("active");
+      renderApplicantTable();
     }
 
     if (window.innerWidth <= 900) {
-      adminSidebar.classList.remove("open");
-      sidebarBackdrop.classList.remove("active");
+      if (adminSidebar) adminSidebar.classList.remove("open");
+      if (sidebarBackdrop) sidebarBackdrop.classList.remove("active");
     }
   }
+  window.switchView = switchView;
 
   // Nav menu listeners
-  navBlog.addEventListener("click", (e) => { e.preventDefault(); switchView("blog-list"); });
-  navJobs.addEventListener("click", (e) => { e.preventDefault(); switchView("job-list"); });
-  navPostJob.addEventListener("click", (e) => { 
+  if (navBlog) navBlog.addEventListener("click", (e) => { e.preventDefault(); switchView("blog-list"); });
+  if (menuItemBlog) menuItemBlog.addEventListener("click", (e) => { if (e.target.tagName !== 'A') switchView("blog-list"); });
+
+  if (navQuery) navQuery.addEventListener("click", (e) => { e.preventDefault(); switchView("queries"); });
+  if (menuItemQuery) menuItemQuery.addEventListener("click", (e) => { if (e.target.tagName !== 'A') switchView("queries"); });
+
+  if (navJobs) navJobs.addEventListener("click", (e) => { e.preventDefault(); switchView("job-list"); });
+  if (menuItemJobs) menuItemJobs.addEventListener("click", (e) => { if (e.target.tagName !== 'A') switchView("job-list"); });
+
+  if (navPostJob) navPostJob.addEventListener("click", (e) => { 
     e.preventDefault(); 
     resetJobForm(); 
     jobFormTitle.textContent = "Post Job"; 
@@ -350,7 +437,20 @@ document.addEventListener("DOMContentLoaded", () => {
     currentEditingJobId = null; 
     switchView("job-post"); 
   });
-  navApplicants.addEventListener("click", (e) => { e.preventDefault(); switchView("applicants"); });
+  if (menuItemPostJob) menuItemPostJob.addEventListener("click", (e) => { 
+    if (e.target.tagName !== 'A') {
+      resetJobForm(); 
+      jobFormTitle.textContent = "Post Job"; 
+      btnSubmitJob.textContent = "Publish Job"; 
+      currentEditingJobId = null; 
+      switchView("job-post"); 
+    }
+  });
+
+  if (navApplicants) navApplicants.addEventListener("click", (e) => { e.preventDefault(); switchView("applicants"); });
+  if (menuItemApplicants) menuItemApplicants.addEventListener("click", (e) => { if (e.target.tagName !== 'A') switchView("applicants"); });
+
+
 
   btnAddNewBlog.addEventListener("click", () => {
     resetBlogForm();
@@ -574,14 +674,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
   blogForm.addEventListener("submit", async (e) => {
     e.preventDefault();
-    const title = blogTitle.value.trim();
-    const meta_title = blogMetaTitle.value.trim() || title;
-    const meta_description = blogMetaDesc.value.trim();
-    let slug = blogSlug.value.trim() || title.toLowerCase().replace(/[^a-z0-9 -]/g, "").replace(/\s+/g, "-");
-    const badge_tag = blogCategoryBadge.value.trim().toUpperCase() || "IV CANNULA";
-    const tags = blogTags.value.trim() || badge_tag;
-    const image_url = blogImageUrl.value.trim() || "../assets/prod_syringe.jpg";
-    const content = blogEditorInstance ? blogEditorInstance.getData() : "";
+    const title = sanitizePlainText(blogTitle.value, 250);
+    const meta_title = sanitizePlainText(blogMetaTitle.value || title, 250);
+    const meta_description = sanitizePlainText(blogMetaDesc.value, 500);
+    let slug = sanitizePlainText(blogSlug.value, 150) || title.toLowerCase().replace(/[^a-z0-9 -]/g, "").replace(/\s+/g, "-");
+    const badge_tag = sanitizePlainText(blogCategoryBadge.value.toUpperCase() || "IV CANNULA", 50);
+    const tags = sanitizePlainText(blogTags.value || badge_tag, 500);
+    const rawImg = blogImageUrl.value.trim() || "../assets/prod_syringe.jpg";
+    const image_url = sanitizeSafeUrl(rawImg) || "../assets/prod_syringe.jpg";
+    const rawContent = blogEditorInstance ? blogEditorInstance.getData() : "";
+    const content = sanitizeRichHtml(rawContent);
 
     if (!title || !content) {
       showToast("Title and Content are required", "error");
@@ -709,29 +811,31 @@ document.addEventListener("DOMContentLoaded", () => {
 
     jobTableBody.innerHTML = filtered.map((job, idx) => {
       const count = applicants.filter(a => String(a.job_id) === String(job.id)).length;
-      const statusClass = (job.status || "Active").toLowerCase();
+      const rawStatus = job.status || "Active";
+      const statusClass = escapeHtml(rawStatus.toLowerCase().replace(/\s+/g, ''));
+      const safeId = Number(job.id) || 0;
       return `
         <tr>
           <td class="col-sno">${idx + 1}</td>
           <td style="font-weight: 600;">
             <a href="../careers.html" target="_blank" style="color: inherit; text-decoration: none;">${escapeHtml(job.title)}</a>
           </td>
-          <td><span class="job-badge">${job.department}</span></td>
-          <td style="color: #64748b; font-size: 12.5px;">${job.location || 'HQ, India'}</td>
-          <td><span class="job-badge type">${job.job_type || 'Full-Time'}</span></td>
+          <td><span class="job-badge">${escapeHtml(job.department || 'General')}</span></td>
+          <td style="color: #64748b; font-size: 12.5px;">${escapeHtml(job.location || 'HQ, India')}</td>
+          <td><span class="job-badge type">${escapeHtml(job.job_type || 'Full-Time')}</span></td>
           <td style="text-align: center;">
-            <button class="filter-pill" style="padding: 3px 10px; font-size: 11px;" onclick="window.filterApplicantsByJob(${job.id})">
+            <button class="filter-pill" style="padding: 3px 10px; font-size: 11px;" onclick="window.filterApplicantsByJob(${safeId})">
               👥 ${count} Applicants
             </button>
           </td>
           <td style="text-align: center;">
-            <span class="status-badge ${statusClass}">${job.status || 'Active'}</span>
+            <span class="status-badge ${statusClass}">${escapeHtml(rawStatus)}</span>
           </td>
           <td class="col-action">
-            <button class="action-btn edit" title="Edit Job" onclick="window.editJob(${job.id})">
+            <button class="action-btn edit" title="Edit Job" onclick="window.editJob(${safeId})">
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
             </button>
-            <button class="action-btn delete" title="Delete Job" onclick="window.deleteJob(${job.id})">
+            <button class="action-btn delete" title="Delete Job" onclick="window.deleteJob(${safeId})">
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
             </button>
           </td>
@@ -789,14 +893,15 @@ document.addEventListener("DOMContentLoaded", () => {
   jobForm.addEventListener("submit", async (e) => {
     e.preventDefault();
 
-    const title = jobTitle.value.trim();
-    const department = jobDepartment.value;
-    const location = jobLocation.value.trim() || "Facility HQ, India";
-    const job_type = jobType.value;
-    const experience = jobExperience.value.trim() || "2-5 Years";
-    const status = jobStatus.value;
-    const requirements = jobRequirements.value.trim();
-    const description = jobEditorInstance ? jobEditorInstance.getData() : "";
+    const title = sanitizePlainText(jobTitle.value, 200);
+    const department = sanitizePlainText(jobDepartment.value, 100);
+    const location = sanitizePlainText(jobLocation.value || "Facility HQ, India", 150);
+    const job_type = sanitizePlainText(jobType.value || "Full-Time", 80);
+    const experience = sanitizePlainText(jobExperience.value || "2-5 Years", 80);
+    const status = sanitizePlainText(jobStatus.value || "Active", 50);
+    const requirements = sanitizePlainText(jobRequirements.value, 2000);
+    const rawDesc = jobEditorInstance ? jobEditorInstance.getData() : "";
+    const description = sanitizeRichHtml(rawDesc);
 
     if (!title || !description) {
       showToast("Job title and description are required", "error");
@@ -930,24 +1035,26 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     applicantTableBody.innerHTML = filtered.map((app, idx) => {
-      const date = app.applied_at ? app.applied_at.substring(0, 10) : "2026-10-02";
+      const date = app.applied_at ? escapeHtml(app.applied_at.substring(0, 10)) : "2026-10-02";
+      const safeEmail = encodeURIComponent(app.email || "");
+      const safePhone = encodeURIComponent(app.phone || "");
       return `
         <tr>
           <td class="col-sno">${idx + 1}</td>
           <td style="font-weight: 700; color: #013572;">
-            <a href="javascript:void(0)" onclick="window.viewApplicantDetails(${app.id})" style="color: inherit; text-decoration: underline;">
+            <a href="javascript:void(0)" onclick="window.viewApplicantDetails(${Number(app.id)})" style="color: inherit; text-decoration: underline;">
               ${escapeHtml(app.full_name)}
             </a>
           </td>
           <td><span class="job-badge">${escapeHtml(app.job_title || 'General')}</span></td>
           <td style="font-size: 12.5px;">
-            <div>📧 <a href="mailto:${app.email}" style="color: #2563eb;">${escapeHtml(app.email)}</a></div>
+            <div>📧 <a href="mailto:${safeEmail}" style="color: #2563eb;">${escapeHtml(app.email)}</a></div>
             <div style="color: #64748b;">📞 ${escapeHtml(app.phone || 'N/A')}</div>
           </td>
           <td style="font-size: 12.5px; color: #475569;">${escapeHtml(app.experience || 'N/A')}</td>
           <td style="font-family: var(--font-mono); font-size: 12px; color: #64748b;">${date}</td>
           <td style="text-align: center;">
-            <select class="status-select" onchange="window.updateApplicantStatus(${app.id}, this.value)">
+            <select class="status-select" onchange="window.updateApplicantStatus(${Number(app.id)}, this.value)">
               <option value="Pending" ${app.status === 'Pending' ? 'selected' : ''}>⏳ Pending</option>
               <option value="Shortlisted" ${app.status === 'Shortlisted' ? 'selected' : ''}>⭐ Shortlisted</option>
               <option value="Interviewed" ${app.status === 'Interviewed' ? 'selected' : ''}>🗣️ Interviewed</option>
@@ -955,10 +1062,10 @@ document.addEventListener("DOMContentLoaded", () => {
             </select>
           </td>
           <td class="col-action">
-            <button class="action-btn edit" title="View Candidate Application" onclick="window.viewApplicantDetails(${app.id})">
+            <button class="action-btn edit" title="View Candidate Application" onclick="window.viewApplicantDetails(${Number(app.id)})">
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
             </button>
-            <button class="action-btn delete" title="Delete Applicant" onclick="window.deleteApplicant(${app.id})">
+            <button class="action-btn delete" title="Delete Applicant" onclick="window.deleteApplicant(${Number(app.id)})">
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
             </button>
           </td>
@@ -996,13 +1103,18 @@ document.addEventListener("DOMContentLoaded", () => {
     const app = applicants.find(a => a.id === id);
     if (!app) return;
 
-    appModalName.textContent = app.full_name;
+    appModalName.textContent = app.full_name || "Applicant";
     appModalJob.textContent = `Position Applied: ${app.job_title || 'General'}`;
-    appModalEmail.innerHTML = `<a href="mailto:${app.email}" style="color: #2563eb;">${app.email}</a>`;
-    appModalPhone.innerHTML = `<a href="tel:${app.phone}" style="color: #2563eb;">${app.phone}</a>`;
+    
+    appModalEmail.textContent = app.email || "";
+    appModalEmail.href = `mailto:${encodeURIComponent(app.email || '')}`;
+    
+    appModalPhone.textContent = app.phone || "";
+    appModalPhone.href = `tel:${encodeURIComponent(app.phone || '')}`;
+    
     appModalExp.textContent = app.experience || "Not specified";
     
-    if (app.resume_url) {
+    if (app.resume_url && /^https?:\/\//i.test(app.resume_url)) {
       appModalResumeRow.style.display = "block";
       appModalResumeLink.href = app.resume_url;
     } else {
@@ -1012,6 +1124,7 @@ document.addEventListener("DOMContentLoaded", () => {
     appModalBio.textContent = app.cover_letter || "No additional bio or cover notes provided.";
     applicantDetailsModal.style.display = "flex";
   };
+
 
   window.deleteApplicant = async (id) => {
     if (!confirm("Are you sure you want to remove this applicant?")) return;
@@ -1043,7 +1156,380 @@ document.addEventListener("DOMContentLoaded", () => {
   applicantJobFilterEl.addEventListener("change", (e) => { applicantJobFilter = e.target.value; renderApplicantTable(); });
   searchApplicantInput.addEventListener("input", (e) => { searchApplicantQuery = e.target.value; renderApplicantTable(); });
 
-  // ==================== 6. UTILITY FUNCTIONS ====================
+  // ==================== 6. QUERIES (CONTACT US INQUIRIES) MANAGEMENT ====================
+  const defaultSampleQueries = [
+    {
+      id: 101,
+      name: "Dr. Rajeshwar Sharma",
+      organization: "Apollo Specialty Hospitals Network",
+      email: "procurement@apollohospitals.org",
+      phone: "+91 98210 44521",
+      product: "Syringe",
+      volume: "50k-200k",
+      sku: "AD-5ML-LL-N21G-15-STERILE",
+      message: "Requesting comprehensive batch quote for 100,000 units of 5mL Luer Lock Syringes with 21G needles for quarterly ICU and Emergency supplies. Please provide delivery timeline to Chennai Central Medical Store.",
+      status: "New",
+      created_at: "2026-10-02T14:30:00.000Z"
+    },
+    {
+      id: 102,
+      name: "Marcus Vance",
+      organization: "MedGlobal Distribution FZCO (Dubai)",
+      email: "m.vance@medglobal.ae",
+      phone: "+971 50 892 1144",
+      product: "IV-Cannula",
+      volume: "Container-Load",
+      sku: "CAN-20G-PTFE-WINGED",
+      message: "Looking for FCL export quotation of 20G and 22G Winged with Port IV Cannulas with CE marking for GCC territory distribution.",
+      status: "In Progress",
+      created_at: "2026-10-01T09:15:00.000Z"
+    },
+    {
+      id: 103,
+      name: "Pooja Deshmukh",
+      organization: "Sahyadri Diagnostics & Research Center",
+      email: "pooja.d@sahyadridiag.com",
+      phone: "+91 94231 77650",
+      product: "Needle",
+      volume: "Evaluation-Samples",
+      sku: "NDL-23G-1INCH-BEVEL",
+      message: "Please dispatch sample pack of 23G & 24G hypodermic needles for our lab phlebotomy trial.",
+      status: "Contacted",
+      created_at: "2026-09-29T11:40:00.000Z"
+    }
+  ];
+
+  async function loadQueries() {
+    try {
+      let apiQueries = [];
+      if (authToken) {
+        try {
+          const res = await fetch("/api/queries", {
+            headers: { "Authorization": `Bearer ${authToken}` }
+          });
+          if (res.ok) {
+            const data = await res.json();
+            if (data.success && data.queries) {
+              apiQueries = data.queries;
+            }
+          }
+        } catch (netErr) {}
+      }
+
+      const storedLocal = localStorage.getItem("aidispo_queries");
+      if (apiQueries.length > 0) {
+        queries = apiQueries;
+        saveLocalQueries();
+      } else if (storedLocal) {
+        queries = JSON.parse(storedLocal);
+      } else {
+        queries = defaultSampleQueries;
+        saveLocalQueries();
+      }
+
+      renderQueryTable();
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
+  function saveLocalQueries() {
+    localStorage.setItem("aidispo_queries", JSON.stringify(queries));
+    updateQueryBadge();
+  }
+
+  function updateQueryBadge() {
+    if (!queryCountBadge) return;
+    const newCount = queries.filter(q => q.status === "New" || !q.status).length;
+    queryCountBadge.textContent = newCount;
+    queryCountBadge.title = `${newCount} unread / new procurement queries`;
+  }
+
+  function renderQueryTable() {
+    let filtered = queries.filter(q => {
+      const matchStatus = (queryStatusFilter === "ALL") || (q.status === queryStatusFilter);
+      const matchProduct = (queryProductFilter === "ALL") || (q.product && q.product.toLowerCase() === queryProductFilter.toLowerCase());
+      const search = searchQueryVal.toLowerCase();
+      const matchSearch = !searchQueryVal || 
+        (q.name && q.name.toLowerCase().includes(search)) ||
+        (q.organization && q.organization.toLowerCase().includes(search)) ||
+        (q.email && q.email.toLowerCase().includes(search)) ||
+        (q.phone && q.phone.toLowerCase().includes(search)) ||
+        (q.sku && q.sku.toLowerCase().includes(search)) ||
+        (q.message && q.message.toLowerCase().includes(search));
+      return matchStatus && matchProduct && matchSearch;
+    });
+
+    // Pagination
+    const totalEntries = filtered.length;
+    const totalPages = Math.ceil(totalEntries / queryEntriesPerPage) || 1;
+    if (queryCurrentPage > totalPages) queryCurrentPage = totalPages;
+    const startIdx = (queryCurrentPage - 1) * queryEntriesPerPage;
+    const paginated = filtered.slice(startIdx, startIdx + queryEntriesPerPage);
+
+    if (queryPaginationInfo) {
+      if (totalEntries === 0) {
+        queryPaginationInfo.textContent = "Showing 0 entries";
+      } else {
+        const endIdx = Math.min(startIdx + queryEntriesPerPage, totalEntries);
+        queryPaginationInfo.textContent = `Showing ${startIdx + 1} to ${endIdx} of ${totalEntries} queries`;
+      }
+    }
+
+    renderQueryPaginationButtons(totalPages);
+
+    if (paginated.length === 0) {
+      queryTableBody.innerHTML = `<tr><td colspan="8" style="text-align: center; padding: 40px; color: #94a3b8;">No procurement queries found matching criteria.</td></tr>`;
+      return;
+    }
+
+    queryTableBody.innerHTML = paginated.map((q, idx) => {
+      const sNo = startIdx + idx + 1;
+      const dateStr = q.created_at ? new Date(q.created_at).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" }) : "Recent";
+      const safeEmail = encodeURIComponent(q.email || "");
+      const safePhone = encodeURIComponent(q.phone || "");
+
+      return `
+        <tr>
+          <td class="col-sno">${sNo}</td>
+          <td>
+            <div style="font-weight: 700; color: #013572;">
+              <a href="javascript:void(0)" onclick="window.viewQueryDetails(${Number(q.id)})" style="color: inherit; text-decoration: underline;">
+                ${escapeHtml(q.name)}
+              </a>
+            </div>
+            ${q.organization ? `<div style="font-size: 12px; color: #64748b; margin-top: 2px;">🏢 ${escapeHtml(q.organization)}</div>` : ''}
+          </td>
+          <td style="font-size: 12.5px;">
+            <div>📧 <a href="mailto:${safeEmail}" style="color: #2563eb; font-weight: 500;">${escapeHtml(q.email)}</a></div>
+            <div style="color: #475569; margin-top: 2px;">📞 <a href="tel:${safePhone}" style="color: inherit; text-decoration: none;">${escapeHtml(q.phone)}</a></div>
+          </td>
+          <td style="font-size: 12.5px;">
+            <div><span class="job-badge" style="background: #e0f2fe; color: #0369a1; border-color: #bae6fd;">${escapeHtml(q.product || 'Syringe')}</span></div>
+            <div style="font-size: 11px; color: #64748b; margin-top: 3px;">📦 ${escapeHtml(q.volume || 'Standard MOQ')}</div>
+          </td>
+          <td>
+            ${q.sku ? `<code style="font-size: 11px; font-weight: 700; background: #f1f5f9; padding: 2px 6px; border-radius: 4px; color: #0f172a;">${escapeHtml(q.sku)}</code>` : '<span style="color: #94a3b8; font-size: 12px;">—</span>'}
+          </td>
+          <td style="font-family: var(--font-mono); font-size: 12px; color: #64748b; white-space: nowrap;">${escapeHtml(dateStr)}</td>
+          <td style="text-align: center;">
+            <select class="status-select" onchange="window.updateQueryStatus(${Number(q.id)}, this.value)" style="font-weight: 600;">
+              <option value="New" ${q.status === 'New' || !q.status ? 'selected' : ''}>🔵 New</option>
+              <option value="In Progress" ${q.status === 'In Progress' ? 'selected' : ''}>🟡 In Progress</option>
+              <option value="Contacted" ${q.status === 'Contacted' ? 'selected' : ''}>🟣 Contacted</option>
+              <option value="Resolved" ${q.status === 'Resolved' ? 'selected' : ''}>🟢 Resolved</option>
+            </select>
+          </td>
+          <td class="col-action">
+            <button class="action-btn edit" title="View Full Query Details" onclick="window.viewQueryDetails(${Number(q.id)})">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+            </button>
+            <button class="action-btn delete" title="Delete Query" onclick="window.deleteQuery(${Number(q.id)})">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+            </button>
+          </td>
+        </tr>
+      `;
+    }).join("");
+
+  }
+
+  function renderQueryPaginationButtons(totalPages) {
+    if (!queryPaginationButtons) return;
+    queryPaginationButtons.innerHTML = "";
+    if (totalPages <= 1) return;
+
+    const prevBtn = document.createElement("button");
+    prevBtn.className = "page-btn";
+    prevBtn.innerHTML = "‹";
+    prevBtn.disabled = queryCurrentPage === 1;
+    prevBtn.addEventListener("click", () => {
+      if (queryCurrentPage > 1) {
+        queryCurrentPage--;
+        renderQueryTable();
+      }
+    });
+    queryPaginationButtons.appendChild(prevBtn);
+
+    for (let p = 1; p <= totalPages; p++) {
+      const pageBtn = document.createElement("button");
+      pageBtn.className = `page-btn ${p === queryCurrentPage ? "active" : ""}`;
+      pageBtn.textContent = p;
+      pageBtn.addEventListener("click", () => {
+        queryCurrentPage = p;
+        renderQueryTable();
+      });
+      queryPaginationButtons.appendChild(pageBtn);
+    }
+
+    const nextBtn = document.createElement("button");
+    nextBtn.className = "page-btn";
+    nextBtn.innerHTML = "›";
+    nextBtn.disabled = queryCurrentPage === totalPages;
+    nextBtn.addEventListener("click", () => {
+      if (queryCurrentPage < totalPages) {
+        queryCurrentPage++;
+        renderQueryTable();
+      }
+    });
+    queryPaginationButtons.appendChild(nextBtn);
+  }
+
+  window.viewQueryDetails = (id) => {
+    const q = queries.find(item => item.id === id);
+    if (!q) return;
+    currentViewingQueryId = id;
+
+    queryModalName.textContent = q.name;
+    queryModalOrg.textContent = q.organization ? `🏢 ${q.organization}` : "Individual Clinical Buyer";
+    queryModalEmail.textContent = q.email;
+    queryModalEmail.href = `mailto:${q.email}?subject=Response to AI-DISPO Procurement Inquiry (Ref #${q.id})&body=Dear ${encodeURIComponent(q.name)},%0D%0A%0D%0AThank you for reaching out to Goel Allied Industries regarding AI-DISPO products.`;
+    
+    queryModalPhone.textContent = q.phone;
+    queryModalPhone.href = `tel:${q.phone}`;
+
+    queryModalProduct.textContent = q.product || "Syringe";
+    queryModalVolume.textContent = q.volume || "Standard MOQ";
+
+    if (q.sku) {
+      queryModalSkuRow.style.display = "block";
+      queryModalSku.textContent = q.sku;
+    } else {
+      queryModalSkuRow.style.display = "none";
+    }
+
+    queryModalMessage.textContent = q.message || "No specific requirement message provided.";
+
+    const statusVal = q.status || "New";
+    queryModalStatusBadge.className = `status-badge ${statusVal.toLowerCase().replace(/\s+/g, "")}`;
+    queryModalStatusBadge.textContent = statusVal;
+
+    const dateStr = q.created_at ? new Date(q.created_at).toLocaleString("en-US", { dateStyle: "medium", timeStyle: "short" }) : "Recent";
+    queryModalDate.textContent = `Received: ${dateStr}`;
+
+    if (queryModalStatusSelect) {
+      queryModalStatusSelect.value = statusVal;
+      queryModalStatusSelect.onchange = (e) => {
+        window.updateQueryStatus(q.id, e.target.value);
+        queryModalStatusBadge.className = `status-badge ${e.target.value.toLowerCase().replace(/\s+/g, "")}`;
+        queryModalStatusBadge.textContent = e.target.value;
+      };
+    }
+
+    if (queryModalMailtoBtn) {
+      queryModalMailtoBtn.href = `mailto:${q.email}?subject=Follow-up: AI-DISPO Procurement Inquiry&body=Dear ${encodeURIComponent(q.name)},%0D%0A%0D%0AThank you for your interest in AI-DISPO ${encodeURIComponent(q.product || 'medical devices')}.`;
+    }
+
+    queryDetailsModal.style.display = "flex";
+  };
+
+  window.updateQueryStatus = async (id, newStatus) => {
+    const q = queries.find(item => item.id === id);
+    if (q) {
+      q.status = newStatus;
+      saveLocalQueries();
+      if (authToken) {
+        try {
+          await fetch(`/api/queries/${id}`, {
+            method: "PUT",
+            headers: { "Content-Type": "application/json", "Authorization": `Bearer ${authToken}` },
+            body: JSON.stringify({ status: newStatus })
+          });
+        } catch (e) {}
+      }
+      showToast(`Query status updated to "${newStatus}"`, "info");
+      renderQueryTable();
+    }
+  };
+
+  window.deleteQuery = async (id) => {
+    if (!confirm("Are you sure you want to delete this procurement query?")) return;
+    if (authToken) {
+      try {
+        await fetch(`/api/queries/${id}`, { method: "DELETE", headers: { "Authorization": `Bearer ${authToken}` } });
+      } catch (e) {}
+    }
+    queries = queries.filter(q => q.id !== id);
+    saveLocalQueries();
+    showToast("Query deleted successfully.", "success");
+    renderQueryTable();
+  };
+
+  if (btnCloseQueryModal) {
+    btnCloseQueryModal.addEventListener("click", () => {
+      queryDetailsModal.style.display = "none";
+    });
+  }
+  if (btnCloseQueryModalBtn) {
+    btnCloseQueryModalBtn.addEventListener("click", () => {
+      queryDetailsModal.style.display = "none";
+    });
+  }
+  if (queryDetailsModal) {
+    queryDetailsModal.addEventListener("click", (e) => {
+      if (e.target === queryDetailsModal) {
+        queryDetailsModal.style.display = "none";
+      }
+    });
+  }
+
+  if (queryStatusFilterEl) {
+    queryStatusFilterEl.addEventListener("change", (e) => {
+      queryStatusFilter = e.target.value;
+      queryCurrentPage = 1;
+      renderQueryTable();
+    });
+  }
+
+  if (queryProductFilterEl) {
+    queryProductFilterEl.addEventListener("change", (e) => {
+      queryProductFilter = e.target.value;
+      queryCurrentPage = 1;
+      renderQueryTable();
+    });
+  }
+
+  if (searchQueryInputEl) {
+    searchQueryInputEl.addEventListener("input", (e) => {
+      searchQueryVal = e.target.value;
+      queryCurrentPage = 1;
+      renderQueryTable();
+    });
+  }
+
+  if (btnExportQueries) {
+    btnExportQueries.addEventListener("click", () => {
+      if (queries.length === 0) {
+        showToast("No queries to export.", "info");
+        return;
+      }
+      const headers = ["ID", "Name", "Organization", "Email", "Phone", "Product", "Volume", "SKU", "Message", "Status", "Received Date"];
+      const rows = queries.map(q => [
+        q.id,
+        `"${(q.name || '').replace(/"/g, '""')}"`,
+        `"${(q.organization || '').replace(/"/g, '""')}"`,
+        `"${(q.email || '').replace(/"/g, '""')}"`,
+        `"${(q.phone || '').replace(/"/g, '""')}"`,
+        `"${(q.product || '').replace(/"/g, '""')}"`,
+        `"${(q.volume || '').replace(/"/g, '""')}"`,
+        `"${(q.sku || '').replace(/"/g, '""')}"`,
+        `"${(q.message || '').replace(/"/g, '""')}"`,
+        `"${(q.status || 'New').replace(/"/g, '""')}"`,
+        `"${q.created_at || ''}"`
+      ]);
+      const csvContent = "data:text/csv;charset=utf-8," + [headers.join(","), ...rows.map(r => r.join(","))].join("\n");
+      const encodedUri = encodeURI(csvContent);
+      const link = document.createElement("a");
+      link.setAttribute("href", encodedUri);
+      link.setAttribute("download", `aidispo_procurement_queries_${new Date().toISOString().substring(0, 10)}.csv`);
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      showToast("Exported queries CSV successfully!", "success");
+    });
+  }
+
+  // ==================== 7. UTILITY FUNCTIONS ====================
   function showToast(message, type = "info") {
     const toast = document.createElement("div");
     toast.className = `toast ${type}`;
@@ -1057,9 +1543,51 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function escapeHtml(str) {
-    if (!str) return "";
-    return String(str).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
+    if (str === null || str === undefined) return "";
+    return String(str)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;")
+      .replace(/`/g, "&#96;");
+  }
+
+  function sanitizePlainText(input, maxLength = 2000) {
+    if (typeof input !== 'string') return '';
+    return input
+      .trim()
+      .replace(/<[^>]*>/g, '')
+      .slice(0, maxLength);
+  }
+
+  function sanitizeRichHtml(html) {
+    if (typeof html !== 'string') return '';
+    return html
+      .replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '')
+      .replace(/<iframe\b[^<]*(?:(?!<\/iframe>)<[^<]*)*<\/iframe>/gi, '')
+      .replace(/<object\b[^<]*(?:(?!<\/object>)<[^<]*)*<\/object>/gi, '')
+      .replace(/<embed\b[^>]*>/gi, '')
+      .replace(/<applet\b[^>]*>/gi, '')
+      .replace(/<meta\b[^>]*>/gi, '')
+      .replace(/<link\b[^>]*>/gi, '')
+      .replace(/\son\w+\s*=\s*(['"][^'"]*['"]|[^\s>]+)/gi, '')
+      .replace(/href\s*=\s*['"]\s*javascript:[^'"]*['"]/gi, 'href="#"')
+      .replace(/src\s*=\s*['"]\s*javascript:[^'"]*['"]/gi, '');
+  }
+
+  function sanitizeSafeUrl(url) {
+    if (!url) return "";
+    const trimmed = String(url).trim();
+    if (/^https?:\/\/[^\s<>"']+$/i.test(trimmed)) {
+      return trimmed.slice(0, 500);
+    }
+    if (/^(\.\.\/|\.\/|assets\/)[a-zA-Z0-9_\-\.\/]+$/i.test(trimmed)) {
+      return trimmed;
+    }
+    return "";
   }
 
   checkAuth();
 });
+

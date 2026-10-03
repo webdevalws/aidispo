@@ -606,9 +606,10 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
       drawerHeading.textContent = 'DIRECT CLINICAL PROCUREMENT';
       if (productName) {
+        const safeName = String(productName).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
         cartItemsList.innerHTML = `
           <div style="background: var(--bg-cream-light); border: var(--border-thin); padding: 12px; border-left: 3px solid var(--accent-red); font-size: 13px;">
-            <strong>SELECTED:</strong> ${productName}
+            <strong>SELECTED:</strong> ${safeName}
           </div>
         `;
       } else {
