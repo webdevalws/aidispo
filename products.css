@@ -3,11 +3,21 @@
    Theme: Precision Medical Clean (Navy #013572, Cyan #00A8FF, White #FFFFFF)
    ========================================================================== */
 
-html, body {
+html,
+body {
   cursor: url('assets/syringe_pointer_36.png') 1 1, auto;
 }
 
-button, a, input, select, .customizer-opt-btn, .cannula-card, .iv-set-card, .spec-pill, .gauge-selector-pill, .interactive-btn {
+button,
+a,
+input,
+select,
+.customizer-opt-btn,
+.cannula-card,
+.iv-set-card,
+.spec-pill,
+.gauge-selector-pill,
+.interactive-btn {
   cursor: url('assets/syringe_pointer_44.png') 1 1, pointer !important;
 }
 
@@ -17,7 +27,7 @@ button, a, input, select, .customizer-opt-btn, .cannula-card, .iv-set-card, .spe
 .prod-page-hero {
   padding: 130px 24px 70px;
   background: radial-gradient(circle at 85% 25%, rgba(0, 168, 255, 0.12) 0%, rgba(244, 248, 251, 0) 60%),
-              linear-gradient(180deg, #FFFFFF 0%, #F1F6FA 100%);
+    linear-gradient(180deg, #FFFFFF 0%, #F1F6FA 100%);
   border-bottom: 1.5px solid rgba(1, 53, 114, 0.12);
   position: relative;
   overflow: hidden;
@@ -27,7 +37,7 @@ button, a, input, select, .customizer-opt-btn, .cannula-card, .iv-set-card, .spe
   content: "";
   position: absolute;
   inset: 0;
-  background-image: 
+  background-image:
     linear-gradient(to right, rgba(1, 53, 114, 0.035) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(1, 53, 114, 0.035) 1px, transparent 1px);
   background-size: 36px 36px;
@@ -205,9 +215,20 @@ button, a, input, select, .customizer-opt-btn, .cannula-card, .iv-set-card, .spe
 }
 
 @keyframes pulseGreen {
-  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
-  70% { transform: scale(1.1); box-shadow: 0 0 0 7px rgba(16, 185, 129, 0); }
-  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+  }
+
+  70% {
+    transform: scale(1.1);
+    box-shadow: 0 0 0 7px rgba(16, 185, 129, 0);
+  }
+
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+  }
 }
 
 .sim-capacity-grid .sim-btn-cap {
@@ -715,7 +736,8 @@ button, a, input, select, .customizer-opt-btn, .cannula-card, .iv-set-card, .spe
 }
 
 .sim-real-main-img.cannula-rotate-img {
-  transition: transform 0.6s cubic-bezier(0.34, 1.35, 0.64, 1), opacity 0.25s ease, filter 0.3s ease;
+  max-height: 190px;
+  transition: opacity 0.18s ease, transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), filter 0.3s ease;
   transform-origin: 50% 50%;
   will-change: transform, opacity;
 }
@@ -1092,7 +1114,7 @@ button, a, input, select, .customizer-opt-btn, .cannula-card, .iv-set-card, .spe
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  border: 1px solid rgba(0,0,0,0.15);
+  border: 1px solid rgba(0, 0, 0, 0.15);
 }
 
 .sim-gauge-text {
@@ -1233,10 +1255,12 @@ button, a, input, select, .customizer-opt-btn, .cannula-card, .iv-set-card, .spe
     transform: translateY(0) scale(1);
     opacity: 0.95;
   }
+
   85% {
     transform: translateY(92px) scale(1);
     opacity: 0.95;
   }
+
   100% {
     transform: translateY(96px) scale(1.6);
     opacity: 0;
@@ -1382,7 +1406,8 @@ button, a, input, select, .customizer-opt-btn, .cannula-card, .iv-set-card, .spe
   font-size: 13px;
 }
 
-.prod-data-table th, .prod-data-table td {
+.prod-data-table th,
+.prod-data-table td {
   padding: 14px 16px;
   text-align: left;
   border-bottom: 1px solid rgba(1, 53, 114, 0.1);
@@ -2162,6 +2187,7 @@ button, a, input, select, .customizer-opt-btn, .cannula-card, .iv-set-card, .spe
   from {
     transform: translateX(0);
   }
+
   to {
     transform: translateX(-50%);
   }
@@ -2171,6 +2197,7 @@ button, a, input, select, .customizer-opt-btn, .cannula-card, .iv-set-card, .spe
   from {
     transform: translateX(-50%);
   }
+
   to {
     transform: translateX(0);
   }
@@ -2294,4 +2321,3 @@ button, a, input, select, .customizer-opt-btn, .cannula-card, .iv-set-card, .spe
   font-size: 15px;
   flex-shrink: 0;
 }
-

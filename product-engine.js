@@ -290,13 +290,13 @@
     if (!root) return;
 
     const gauges = {
-      '14G': { color: '#FF7800', img: 'assets/cannula_14g.png', deg: -15, flow: 385, extDia: '2.1 mm', length: '45 mm', use: 'Rapid trauma resuscitation, major emergency surgery, high-viscosity fluid infusion.' },
-      '16G': { color: '#808080', img: 'assets/cannula_16g.png', deg: -10, flow: 210, extDia: '1.7 mm', length: '45 mm', use: 'Major trauma, surgical intervention, rapid whole blood transfusion.' },
-      '18G': { color: '#10B981', img: 'assets/cannula_18g.png', deg: -5, flow: 105, extDia: '1.3 mm', length: '45 mm', use: 'Blood administration, surgical fluid management, viscous parenteral medication.' },
-      '20G': { color: '#EC4899', img: 'assets/cannula_20g.png', deg: 0, flow: 61, extDia: '1.1 mm', length: '32 mm', use: 'General adult IV infusion, routine intravenous antibiotics, crystalloids.' },
-      '22G': { color: '#0284C7', img: 'assets/cannula_22g.png', deg: 5, flow: 36, extDia: '0.9 mm', length: '25 mm', use: 'Standard adult infusions, pediatric chemotherapy, fragile or sclerosed veins.' },
-      '24G': { color: '#EAB308', img: 'assets/cannula_24g.png', deg: 10, flow: 22, extDia: '0.7 mm', length: '19 mm', use: 'Pediatrics, neonatology, geriatrics with delicate friable veins.' },
-      '26G': { color: '#8B5CF6', img: 'assets/cannula_26g.png', deg: 15, flow: 10, extDia: '0.6 mm', length: '19 mm', use: 'Micro-vascular neonate access, extremely fragile geriatric vascular lines.' }
+      '14G': { color: '#FF7800', img: 'assets/cannula_14g.png?v=4', flow: 385, extDia: '2.1 mm', length: '45 mm', use: 'Rapid trauma resuscitation, major emergency surgery, high-viscosity fluid infusion.' },
+      '16G': { color: '#808080', img: 'assets/cannula_16g.png?v=4', flow: 210, extDia: '1.7 mm', length: '45 mm', use: 'Major trauma, surgical intervention, rapid whole blood transfusion.' },
+      '18G': { color: '#10B981', img: 'assets/cannula_18g.png?v=4', flow: 105, extDia: '1.3 mm', length: '45 mm', use: 'Blood administration, surgical fluid management, viscous parenteral medication.' },
+      '20G': { color: '#EC4899', img: 'assets/cannula_20g.png?v=4', flow: 61, extDia: '1.1 mm', length: '32 mm', use: 'General adult IV infusion, routine intravenous antibiotics, crystalloids.' },
+      '22G': { color: '#0284C7', img: 'assets/cannula_22g.png?v=4', flow: 36, extDia: '0.9 mm', length: '25 mm', use: 'Standard adult infusions, pediatric chemotherapy, fragile or sclerosed veins.' },
+      '24G': { color: '#EAB308', img: 'assets/cannula_24g.png?v=4', flow: 22, extDia: '0.7 mm', length: '19 mm', use: 'Pediatrics, neonatology, geriatrics with delicate friable veins.' },
+      '26G': { color: '#8B5CF6', img: 'assets/cannula_26g.png?v=4', flow: 10, extDia: '0.6 mm', length: '19 mm', use: 'Micro-vascular neonate access, extremely fragile geriatric vascular lines.' }
     };
 
     // Preload cannula images for instant zero-lag switching
@@ -323,17 +323,18 @@
     function updateCannula() {
       const data = gauges[activeGauge] || gauges['20G'];
 
-      // Update real photo & apply smooth dynamic clockwise rotation per gauge
+      // Update real photo with smooth subtle crossfade
       if (cannulaImgElem) {
-        cannulaImgElem.style.opacity = '0.7';
-        cannulaImgElem.style.transform = `rotate(${data.deg}deg) scale(1.02)`;
-        
+        cannulaImgElem.style.opacity = '0.75';
+        cannulaImgElem.style.transform = 'scale(0.99)';
+
         setTimeout(() => {
           if (data.img && !cannulaImgElem.src.endsWith(data.img)) {
             cannulaImgElem.src = data.img;
           }
           cannulaImgElem.style.opacity = '1';
-        }, 70);
+          cannulaImgElem.style.transform = 'scale(1)';
+        }, 50);
       }
 
       if (flowValElem) flowValElem.textContent = `${data.flow} ml / min`;
