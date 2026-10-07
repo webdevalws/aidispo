@@ -4,21 +4,30 @@
    ========================================================================== */
 
 html,
-body {
-  cursor: url('assets/syringe_pointer_36.png') 1 1, auto;
+body,
+*,
+*::before,
+*::after {
+  cursor: url('assets/custom_syringe_cursor.png') 4 4, auto !important;
 }
 
-button,
 a,
+button,
 input,
 select,
-.customizer-opt-btn,
-.cannula-card,
-.iv-set-card,
-.spec-pill,
-.gauge-selector-pill,
-.interactive-btn {
-  cursor: url('assets/syringe_pointer_44.png') 1 1, pointer !important;
+textarea,
+label,
+summary,
+option,
+details,
+[role="button"],
+[tabindex],
+.clickable,
+:hover,
+:active,
+:focus,
+::selection {
+  cursor: url('assets/custom_syringe_cursor.png') 4 4, pointer !important;
 }
 
 /* ==========================================================================
@@ -484,9 +493,9 @@ select,
 /* Main Interactive Split Card */
 .sim-interactive-frame {
   background: #FFFFFF;
-  border: 2px solid #013572;
-  border-radius: 12px;
-  box-shadow: 6px 6px 0px #0A1C30;
+  border: none;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(1, 53, 114, 0.05);
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -509,7 +518,7 @@ select,
 /* Left Canvas Panel (Visualizer) */
 .sim-visual-panel {
   background: #F4F8FB;
-  border-right: 2px solid rgba(1, 53, 114, 0.15);
+  border-right: 1px solid rgba(1, 53, 114, 0.08);
   padding: 18px 22px;
   display: flex;
   flex-direction: column;
@@ -520,7 +529,7 @@ select,
 @media (max-width: 991px) {
   .sim-visual-panel {
     border-right: none;
-    border-bottom: 2px solid rgba(1, 53, 114, 0.15);
+    border-bottom: 1px solid rgba(1, 53, 114, 0.08);
   }
 }
 
@@ -1184,7 +1193,7 @@ select,
 /* Bottom Action Bar */
 .sim-bottom-bar {
   background: #F4F8FB;
-  border-top: 2px solid rgba(1, 53, 114, 0.15);
+  border-top: 1px solid rgba(1, 53, 114, 0.08);
   padding: 10px 22px;
   display: flex;
   justify-content: space-between;
@@ -1460,8 +1469,9 @@ select,
   }
 
   .sim-interactive-frame {
-    border-radius: 8px;
-    box-shadow: 4px 4px 0px #0A1C30;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(1, 53, 114, 0.05);
+    border: none;
   }
 
   .prod-hero-img-wrap {
@@ -1794,39 +1804,45 @@ select,
 
 .journey-milestone-pos {
   position: absolute;
-  width: 205px;
+  width: 175px;
   pointer-events: auto;
   transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* 5 Exact Coordinates for the Wave Crests and Troughs */
+/* 6 Exact Coordinates for the Wave Crests and Troughs */
 .pos-peak-1 {
-  left: 10%;
+  left: 8.33%;
   top: 0;
   transform: translateX(-50%);
 }
 
 .pos-trough-2 {
-  left: 30%;
+  left: 25.0%;
   bottom: 0;
   transform: translateX(-50%);
 }
 
 .pos-peak-3 {
-  left: 50%;
+  left: 41.67%;
   top: 0;
   transform: translateX(-50%);
 }
 
 .pos-trough-4 {
-  left: 70%;
+  left: 58.33%;
   bottom: 0;
   transform: translateX(-50%);
 }
 
 .pos-peak-5 {
-  left: 90%;
+  left: 75.0%;
   top: 0;
+  transform: translateX(-50%);
+}
+
+.pos-trough-6 {
+  left: 91.67%;
+  bottom: 0;
   transform: translateX(-50%);
 }
 
@@ -1899,7 +1915,7 @@ select,
     width: 100%;
     max-width: 500px;
     margin: 0 auto;
-    height: 880px;
+    height: 1040px;
   }
 
   .journey-mobile-svg {
@@ -1907,7 +1923,7 @@ select,
     top: 0;
     left: 0;
     width: 76px;
-    height: 880px;
+    height: 1040px;
     pointer-events: none;
     z-index: 2;
   }
@@ -1917,7 +1933,7 @@ select,
     top: 0;
     left: 78px;
     right: 0;
-    height: 880px;
+    height: 1040px;
     pointer-events: auto;
   }
 

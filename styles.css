@@ -108,57 +108,35 @@ body {
 }
 
 /* ==========================================================================
-   CUSTOM INJECTION SYRINGE CURSOR (from assets/new curs.png)
+   CUSTOM INJECTION SYRINGE CURSOR (from assets/new curs1.png)
+   High visibility 64x64 px syringe cursor persistent across all elements & states
    ========================================================================== */
 html,
-body {
-  cursor: url('assets/syringe_pointer_36.png') 1 1, auto;
+body,
+*,
+*::before,
+*::after {
+  cursor: url('assets/custom_syringe_cursor.png') 4 4, auto !important;
 }
 
-/* Interactive & Clickable Elements: Injection Syringe Pointer */
+/* Interactive & Clickable Elements, Selection, Hover & Active States */
 a,
 button,
-[role="button"],
-input[type="submit"],
-input[type="button"],
-input[type="reset"],
-input[type="checkbox"],
-input[type="radio"],
-input[type="range"],
+input,
 select,
-summary,
+textarea,
 label,
+summary,
+option,
+details,
+[role="button"],
+[tabindex],
 .clickable,
-.spec-read-more-btn,
-.gauge-pill,
-.btn-craft,
-.open-drawer-trigger,
-.hero-chip,
-.product-card,
-.tab-btn,
-.nav-dropdown-item,
-.dropdown-item,
-.customizer-opt-btn,
-.customizer-slider,
-.cannula-card,
-.iv-set-card,
-.needle-hotspot,
-.assembly-dot,
-.impact-target-board,
-.format-card,
-.footer-links a,
-.btn-nav-action {
-  cursor: url('assets/syringe_pointer_44.png') 1 1, pointer !important;
-}
-
-/* Form text fields retain native text-selection I-beam */
-input[type="text"],
-input[type="email"],
-input[type="tel"],
-input[type="number"],
-input[type="search"],
-textarea {
-  cursor: text !important;
+:hover,
+:active,
+:focus,
+::selection {
+  cursor: url('assets/custom_syringe_cursor.png') 4 4, pointer !important;
 }
 
 /* Hide legacy reticle element if present in DOM */

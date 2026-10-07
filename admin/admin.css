@@ -22,6 +22,33 @@
   --font-mono: 'JetBrains Mono', monospace;
 }
 
+html,
+body,
+*,
+*::before,
+*::after {
+  cursor: url('../assets/custom_syringe_cursor.png') 4 4, auto !important;
+}
+
+a,
+button,
+input,
+select,
+textarea,
+label,
+summary,
+option,
+details,
+[role="button"],
+[tabindex],
+.clickable,
+:hover,
+:active,
+:focus,
+::selection {
+  cursor: url('../assets/custom_syringe_cursor.png') 4 4, pointer !important;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;

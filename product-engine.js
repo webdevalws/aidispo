@@ -63,8 +63,8 @@
     const breakawayVal = root.querySelector('#sBreakawayVal');
     const enquireBtn = root.querySelector('#sEnquireBtn');
 
-    const SYRINGE_IMG_WITH_NEEDLE = 'assets/syringe_with_needle_aligned.png?v=4';
-    const SYRINGE_IMG_WITHOUT_NEEDLE = 'assets/syringe_without_needle_aligned.png?v=4';
+    const SYRINGE_IMG_WITH_NEEDLE = 'assets/syringe_with_needle_aligned.png?v=natural_black_gasket_green_plunger_v6';
+    const SYRINGE_IMG_WITHOUT_NEEDLE = 'assets/syringe_without_needle_aligned.png?v=natural_black_gasket_green_plunger_v6';
 
     // Preload both images for instantaneous zero-latency switching
     const preImg1 = new Image();
