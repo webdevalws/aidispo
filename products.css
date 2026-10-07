@@ -712,11 +712,22 @@ details,
   flex: 1;
   min-height: 180px;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   position: relative;
   padding: 10px 4px;
   width: 100%;
+}
+
+.sim-stage-top-bar {
+  width: 100%;
+  max-width: 480px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 6px;
+  z-index: 2;
 }
 
 .sim-real-img-container {
@@ -1027,9 +1038,7 @@ details,
 }
 
 .sim-pack-overlay-badge {
-  position: absolute;
-  top: 10px;
-  left: 12px;
+  position: static;
   display: inline-flex;
   align-items: center;
   gap: 5px;
@@ -1043,7 +1052,7 @@ details,
   letter-spacing: 0.05em;
   color: var(--logo-navy);
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-  z-index: 5;
+  z-index: 2;
 }
 
 .sim-pack-overlay-dot {
