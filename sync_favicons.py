@@ -4,14 +4,14 @@ import re
 workspace = 'd:\\3d\\new2'
 
 # Tag for standard pages:
-favicon_tags = '''  <link rel="icon" type="image/png" href="assets/ChatGPT Image Sep 28, 2026, 04_42_50 PM.png">
-  <link rel="shortcut icon" type="image/png" href="assets/ChatGPT Image Sep 28, 2026, 04_42_50 PM.png">
-  <link rel="apple-touch-icon" href="assets/ChatGPT Image Sep 28, 2026, 04_42_50 PM.png">'''
+favicon_tags = '''  <link rel="icon" type="image/png" href="assets/brand-logo.png">
+  <link rel="shortcut icon" type="image/png" href="assets/brand-logo.png">
+  <link rel="apple-touch-icon" href="assets/brand-logo.png">'''
 
 # Tag for admin pages:
-admin_favicon_tags = '''  <link rel="icon" type="image/png" href="../assets/ChatGPT Image Sep 28, 2026, 04_42_50 PM.png">
-  <link rel="shortcut icon" type="image/png" href="../assets/ChatGPT Image Sep 28, 2026, 04_42_50 PM.png">
-  <link rel="apple-touch-icon" href="../assets/ChatGPT Image Sep 28, 2026, 04_42_50 PM.png">'''
+admin_favicon_tags = '''  <link rel="icon" type="image/png" href="../assets/brand-logo.png">
+  <link rel="shortcut icon" type="image/png" href="../assets/brand-logo.png">
+  <link rel="apple-touch-icon" href="../assets/brand-logo.png">'''
 
 html_files = [os.path.join(workspace, f) for f in os.listdir(workspace) if f.endswith('.html')]
 admin_index = os.path.join(workspace, 'admin', 'index.html')

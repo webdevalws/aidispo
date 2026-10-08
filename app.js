@@ -1027,19 +1027,19 @@ document.addEventListener('DOMContentLoaded', () => {
           playClinicalClick('click');
 
           if (dispenseBtnText) dispenseBtnText.textContent = 'DISPENSED (< 0.005 mL)';
-          if (needleTelemetryText) needleTelemetryText.innerHTML = 'ZERO RESIDUAL CONE FLUID &bull; CERTIFIED';
+          if (needleTelemetryText) needleTelemetryText.innerHTML = 'Micro-Dose Dispensed &bull; Minimal Dead Space';
           if (needleLiveDot) {
-            needleLiveDot.style.background = '#10b981';
-            needleLiveDot.style.boxShadow = '0 0 8px #10b981';
+            needleLiveDot.style.background = '#059669';
+            needleLiveDot.style.boxShadow = 'none';
           }
           if (typeof showToast === 'function') {
-            showToast('Micro-droplet dispensed from 12° tri-bevel tip (<0.005 mL residual loss).');
+            showToast('Micro-droplet dispensed with < 0.005 mL residual volume.');
           }
 
           setTimeout(() => {
             needleDroplet.className = 'needle-fluid-droplet';
             if (dispenseBtnText) dispenseBtnText.textContent = 'TAP TO DISPENSE DROPLET';
-            if (needleTelemetryText) needleTelemetryText.innerHTML = 'CHAMBER PRIMED &bull; ZERO BUBBLE CAVITATION';
+            if (needleTelemetryText) needleTelemetryText.innerHTML = 'Siliconized Barrel &bull; Air-Tight Plunger Seal';
             isDispensing = false;
             dispenseDropletBtn.style.pointerEvents = 'auto';
           }, 1400);

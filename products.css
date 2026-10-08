@@ -216,28 +216,9 @@ details,
 .sim-engine-pulse-dot {
   width: 8px;
   height: 8px;
-  background: #10B981;
+  background: #059669;
   border-radius: 50%;
   display: inline-block;
-  box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
-  animation: pulseGreen 1.8s infinite;
-}
-
-@keyframes pulseGreen {
-  0% {
-    transform: scale(0.95);
-    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
-  }
-
-  70% {
-    transform: scale(1.1);
-    box-shadow: 0 0 0 7px rgba(16, 185, 129, 0);
-  }
-
-  100% {
-    transform: scale(0.95);
-    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
-  }
 }
 
 .sim-capacity-grid .sim-btn-cap {
@@ -1757,7 +1738,7 @@ details,
 .journey-stage-wrapper {
   position: relative;
   margin-top: 24px;
-  height: 380px;
+  height: 420px;
   max-width: 1240px;
   margin-left: auto;
   margin-right: auto;
@@ -1818,41 +1799,55 @@ details,
   transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* 6 Exact Coordinates for the Wave Crests and Troughs */
+/* 6 Exact Coordinates for the Wave Crests (y=155) and Troughs (y=265) in 420px Stage */
+.pos-peak-1,
+.pos-peak-3,
+.pos-peak-5 {
+  top: 36.9%;
+  transform: translate(-50%, -100%) translateY(-20px);
+}
+
+.pos-peak-1:hover,
+.pos-peak-3:hover,
+.pos-peak-5:hover {
+  transform: translate(-50%, -100%) translateY(-24px);
+}
+
+.pos-trough-2,
+.pos-trough-4,
+.pos-trough-6 {
+  top: 63.1%;
+  transform: translate(-50%, 0) translateY(20px);
+}
+
+.pos-trough-2:hover,
+.pos-trough-4:hover,
+.pos-trough-6:hover {
+  transform: translate(-50%, 0) translateY(24px);
+}
+
 .pos-peak-1 {
-  left: 8.33%;
-  top: 0;
-  transform: translateX(-50%);
+  left: 8.333%;
 }
 
 .pos-trough-2 {
   left: 25.0%;
-  bottom: 0;
-  transform: translateX(-50%);
 }
 
 .pos-peak-3 {
-  left: 41.67%;
-  top: 0;
-  transform: translateX(-50%);
+  left: 41.667%;
 }
 
 .pos-trough-4 {
-  left: 58.33%;
-  bottom: 0;
-  transform: translateX(-50%);
+  left: 58.333%;
 }
 
 .pos-peak-5 {
   left: 75.0%;
-  top: 0;
-  transform: translateX(-50%);
 }
 
 .pos-trough-6 {
-  left: 91.67%;
-  bottom: 0;
-  transform: translateX(-50%);
+  left: 91.667%;
 }
 
 .journey-card {
@@ -1867,9 +1862,8 @@ details,
 }
 
 .journey-milestone-pos:hover .journey-card {
-  transform: translateY(-3px);
   border-color: var(--accent-blue);
-  box-shadow: 0 10px 24px rgba(0, 168, 255, 0.2);
+  box-shadow: 0 10px 24px rgba(1, 53, 114, 0.12);
 }
 
 .journey-year-pill {

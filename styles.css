@@ -43,25 +43,25 @@
   --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-mono: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 
-  --shadow-subtle: 0 8px 24px rgba(1, 53, 114, 0.06);
-  --shadow-floating: 0 20px 50px rgba(1, 53, 114, 0.12), 0 6px 18px rgba(0, 168, 255, 0.1);
-  --shadow-hard: 0 10px 28px rgba(1, 53, 114, 0.1), 0 2px 8px rgba(0, 168, 255, 0.06);
-  --shadow-hard-accent: 0 12px 32px rgba(0, 168, 255, 0.22);
+  --shadow-subtle: 0 4px 16px rgba(1, 53, 114, 0.05);
+  --shadow-floating: 0 16px 40px rgba(1, 53, 114, 0.08), 0 4px 12px rgba(1, 53, 114, 0.04);
+  --shadow-hard: 0 8px 24px rgba(1, 53, 114, 0.08), 0 2px 6px rgba(1, 53, 114, 0.04);
+  --shadow-hard-accent: 0 10px 28px rgba(1, 53, 114, 0.12);
 }
 
 /* Mobile Adjustments */
 @media (max-width: 768px) {
   :root {
     --border-frame-width: 0px;
-    --shadow-hard: 0 6px 20px rgba(1, 53, 114, 0.1);
-    --shadow-hard-accent: 0 8px 24px rgba(0, 168, 255, 0.18);
+    --shadow-hard: 0 6px 20px rgba(1, 53, 114, 0.08);
+    --shadow-hard-accent: 0 8px 24px rgba(1, 53, 114, 0.1);
   }
 }
 
 @media (max-width: 480px) {
   :root {
     --border-frame-width: 0px;
-    --shadow-hard: 0 4px 14px rgba(1, 53, 114, 0.08);
+    --shadow-hard: 0 4px 14px rgba(1, 53, 114, 0.06);
   }
 }
 
@@ -97,14 +97,9 @@ body {
   padding: 0;
 }
 
-/* Texture Grain Overlay */
+/* Texture Grain Overlay - Disabled for clean clinical look */
 .grain-overlay {
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 990;
-  opacity: 0.04;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  display: none !important;
 }
 
 /* ==========================================================================
@@ -533,25 +528,9 @@ details,
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: #10b981;
-  box-shadow: 0 0 6px #10b981;
+  background: #059669;
   margin-right: 5px;
   vertical-align: middle;
-  animation: pulseLiveDot 2s infinite ease-in-out;
-}
-
-@keyframes pulseLiveDot {
-
-  0%,
-  100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-
-  50% {
-    opacity: 0.5;
-    transform: scale(0.85);
-  }
 }
 
 /* ==========================================================================
@@ -873,43 +852,20 @@ details,
 }
 
 .hero-massive-text .line-1 {
-  color: #121314;
-  opacity: 0.95;
-  transform: skewX(-2deg);
+  color: var(--logo-navy);
+  opacity: 0.85;
+  letter-spacing: -0.02em;
 }
 
 .hero-massive-text .line-2 {
-  color: var(--accent-red);
-  opacity: 0.92;
-  transform: skewX(1deg);
-  letter-spacing: 0.02em;
+  color: var(--logo-cyan);
+  opacity: 0.90;
+  letter-spacing: 0.01em;
 }
 
-/* Hero Organic Ink Splash Behind Syringe & Callouts */
+/* Hero Organic Ink Splash Behind Syringe - Disabled for clean look */
 .hero-ink-splash {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 90vw;
-  max-width: 650px;
-  height: auto;
-  z-index: 11;
-  opacity: 0;
-  pointer-events: none;
-  filter: drop-shadow(0 8px 20px rgba(0, 168, 255, 0.25)) blur(1px);
-  transition: opacity 0.2s ease, transform 0.2s ease;
-}
-
-@media (max-width: 860px) {
-  .hero-ink-splash {
-    top: 42%;
-    width: 88vw;
-    max-width: 380px;
-    opacity: 0;
-    z-index: 11;
-    filter: drop-shadow(0 10px 28px rgba(0, 168, 255, 0.35)) blur(3px);
-  }
+  display: none !important;
 }
 
 /* Hero Interactive Syringe Stage — AT MAXIMUM TOP INDEX ON TOP OF EVERYTHING */
@@ -934,37 +890,11 @@ details,
   }
 }
 
-/* Floating Clinical Particle Dust Field */
-.hero-dust-field {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  z-index: 4;
-}
-
+/* Floating Clinical Particle Dust Field & Laser Targets - Disabled for clean corporate look */
+.hero-dust-field,
+.hero-laser-target,
 .dust-particle {
-  position: absolute;
-  border-radius: 50%;
-  background: var(--accent-blue);
-  pointer-events: none;
-  opacity: 0.18;
-  animation: floatDust 6s infinite ease-in-out alternate;
-}
-
-@keyframes floatDust {
-  0% {
-    transform: translateY(0) scale(0.8);
-    opacity: 0.12;
-  }
-
-  50% {
-    opacity: 0.28;
-  }
-
-  100% {
-    transform: translateY(-35px) scale(1.2);
-    opacity: 0.1;
-  }
+  display: none !important;
 }
 
 .hero-product-img-wrapper {
@@ -1193,20 +1123,20 @@ details,
 }
 
 .clinical-spec-col .col-lbl {
-  font-family: var(--font-mono);
-  font-size: 8px;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: #0088cc;
-  font-weight: 700;
-  margin-top: 2px;
+  font-family: var(--font-body);
+  font-size: 11px;
+  text-transform: none;
+  letter-spacing: -0.01em;
+  color: var(--ink-muted);
+  font-weight: 500;
+  margin-top: 1px;
   white-space: nowrap;
 }
 
 .clinical-spec-sep {
   width: 1px;
   height: 26px;
-  background: rgba(1, 53, 114, 0.14);
+  background: rgba(1, 53, 114, 0.12);
 }
 
 .clinical-cta-btn {
@@ -1214,26 +1144,26 @@ details,
   align-items: center;
   gap: 8px;
   padding: 10px 18px;
-  background: linear-gradient(135deg, #013572 0%, #03244d 100%);
+  background: var(--logo-navy);
   color: #FFFFFF;
-  border: 1px solid rgba(0, 168, 255, 0.4);
-  border-radius: 10px;
+  border: 1px solid var(--logo-navy);
+  border-radius: 8px;
   font-family: var(--font-headline);
   font-size: 12px;
-  font-weight: 800;
-  letter-spacing: 0.04em;
+  font-weight: 700;
+  letter-spacing: 0.02em;
   text-decoration: none;
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.2s ease;
   white-space: nowrap;
-  box-shadow: 0 4px 14px rgba(1, 53, 114, 0.25);
+  box-shadow: 0 2px 8px rgba(1, 53, 114, 0.15);
 }
 
 .clinical-cta-btn:hover {
-  background: linear-gradient(135deg, #008be0 0%, #013572 100%);
+  background: var(--logo-navy-hover);
   color: #FFFFFF;
-  border-color: #60D4FC;
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(0, 168, 255, 0.35);
+  border-color: var(--logo-navy-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(1, 53, 114, 0.2);
 }
 
 .clinical-cta-btn .btn-arrow {
@@ -1323,26 +1253,26 @@ details,
    TICKER / MARQUEE RIBBON
    ========================================================================== */
 .ticker-ribbon {
-  background: linear-gradient(90deg, #051424 0%, #09213D 50%, #051424 100%);
-  color: #E2E8F0;
-  border-top: 1px solid rgba(0, 168, 255, 0.35);
-  border-bottom: 1px solid rgba(0, 168, 255, 0.35);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 4px 20px rgba(1, 53, 114, 0.18);
-  padding: 12px 0;
+  background: var(--logo-navy);
+  color: #FFFFFF;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 4px 16px rgba(1, 53, 114, 0.12);
+  padding: 10px 0;
   overflow: hidden;
   white-space: nowrap;
   display: flex;
   position: relative;
   z-index: 50;
   width: 100%;
-  mask-image: linear-gradient(to right, transparent 0%, black 3%, black 97%, transparent 100%);
-  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 3%, black 97%, transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0%, black 4%, black 96%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 4%, black 96%, transparent 100%);
 }
 
 .ticker-track {
   display: flex;
   align-items: center;
-  gap: 32px;
+  gap: 36px;
   animation: tickerScroll 52s linear infinite;
 }
 
@@ -1353,33 +1283,33 @@ details,
 
 .ticker-item {
   font-family: var(--font-body, 'Inter', sans-serif);
-  font-size: 13.5px;
+  font-size: 13px;
   font-weight: 500;
-  letter-spacing: 0.02em;
-  color: #F1F5F9;
+  letter-spacing: 0.01em;
+  color: #F8FAFC;
   display: inline-flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
   text-transform: none;
 }
 
 .ticker-tag {
-  font-family: var(--font-body);
+  font-family: var(--font-headline);
   font-size: 10px;
   font-weight: 700;
-  color: #FFFFFF;
-  background: rgba(0, 168, 255, 0.18);
-  border: 1px solid rgba(56, 189, 248, 0.45);
-  padding: 2px 7px;
+  color: #60D4FC;
+  background: rgba(255, 255, 255, 0.08);
+  padding: 3px 8px;
   border-radius: 4px;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.04em;
+  border: none;
+  text-transform: uppercase;
 }
 
 .ticker-item .dot {
-  color: #00A8FF;
-  font-size: 8px;
-  margin-left: 8px;
-  opacity: 0.7;
+  color: rgba(255, 255, 255, 0.35);
+  font-size: 10px;
+  margin-left: 12px;
 }
 
 @keyframes tickerScroll {
@@ -2308,44 +2238,34 @@ details,
   padding: 8px 18px;
   background: #FFFFFF;
   color: var(--logo-navy);
-  border: 1.5px solid #00A8FF;
+  border: 1.5px solid var(--logo-navy);
   border-radius: 999px;
-  box-shadow: 0 4px 18px rgba(0, 168, 255, 0.2), 0 0 0 2px rgba(0, 168, 255, 0.12);
+  box-shadow: 0 2px 8px rgba(1, 53, 114, 0.08);
   cursor: pointer;
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.2s ease;
   position: relative;
   overflow: hidden;
-  animation: dropletBtnPulse 2.4s ease-in-out infinite;
-}
-
-@keyframes dropletBtnPulse {
-  0%, 100% {
-    box-shadow: 0 4px 18px rgba(0, 168, 255, 0.2), 0 0 0 2px rgba(0, 168, 255, 0.12);
-  }
-  50% {
-    box-shadow: 0 6px 22px rgba(0, 168, 255, 0.38), 0 0 0 4px rgba(0, 168, 255, 0.25);
-  }
 }
 
 .droplet-icon-box {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #00A8FF;
-  transition: transform 0.25s ease, color 0.25s ease;
+  color: #008be0;
+  transition: transform 0.2s ease, color 0.2s ease;
 }
 
 .droplet-dispense-btn:hover .droplet-icon-box {
-  transform: translateY(2px) scale(1.15);
+  transform: translateY(1px) scale(1.1);
   color: #ffffff;
 }
 
 .droplet-vol-pill {
   font-size: 9.5px;
-  background: rgba(0, 168, 255, 0.12);
+  background: rgba(1, 53, 114, 0.08);
   color: var(--logo-navy);
   padding: 2px 7px;
   border-radius: 999px;
@@ -2359,11 +2279,11 @@ details,
 }
 
 .droplet-dispense-btn:hover {
-  background: linear-gradient(135deg, #013572 0%, #008be0 100%);
+  background: var(--logo-navy);
   color: #FFFFFF !important;
-  border-color: #60D4FC;
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(0, 168, 255, 0.45), 0 0 0 4px rgba(0, 168, 255, 0.25);
+  border-color: var(--logo-navy);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(1, 53, 114, 0.16);
 }
 
 .droplet-dispense-btn:active {
@@ -2379,8 +2299,8 @@ details,
   font-weight: 600;
   letter-spacing: 0.06em;
   color: var(--logo-navy);
-  background: rgba(1, 53, 114, 0.06);
-  border: 1px solid rgba(1, 53, 114, 0.16);
+  background: rgba(1, 53, 114, 0.05);
+  border: 1px solid rgba(1, 53, 114, 0.14);
   border-radius: 999px;
   padding: 6px 14px;
 }
@@ -2389,23 +2309,7 @@ details,
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: #10b981;
-  box-shadow: 0 0 6px #10b981;
-  animation: pulseLiveDot 1.5s infinite;
-}
-
-@keyframes pulseLiveDot {
-
-  0%,
-  100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-
-  50% {
-    opacity: 0.4;
-    transform: scale(0.85);
-  }
+  background: #059669;
 }
 
 .statement-text-side {
@@ -5627,14 +5531,7 @@ details,
 }
 
 .assembly-tech-grid {
-  position: absolute;
-  inset: 0;
-  background-image:
-    linear-gradient(rgba(1, 53, 114, 0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(1, 53, 114, 0.04) 1px, transparent 1px);
-  background-size: 36px 36px;
-  mask-image: radial-gradient(circle at 50% 50%, black 45%, transparent 85%);
-  -webkit-mask-image: radial-gradient(circle at 50% 50%, black 45%, transparent 85%);
+  display: none !important;
 }
 
 /* Top HUD Bar */
@@ -5789,13 +5686,13 @@ details,
   position: absolute;
   width: 36px;
   height: 36px;
-  border: 2px solid var(--accent-blue);
+  border: 1.5px solid var(--logo-navy);
   border-radius: 50%;
   pointer-events: none;
   z-index: 20;
   opacity: 0;
   transform: translate(-50%, -50%) scale(0.2);
-  box-shadow: 0 0 16px rgba(0, 168, 255, 0.85);
+  box-shadow: none;
 }
 
 .joint-pulse-ring.pulse {
@@ -6409,21 +6306,35 @@ details,
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 12px;
+  gap: 20px;
   flex-wrap: wrap;
   font-family: var(--font-body);
-  font-size: 12px;
+  font-size: 12.5px;
   color: #CBD5E1;
 }
 
-.cta-assurance-row .cta-dot {
-  color: #00A8FF;
-  font-size: 14px;
+.cta-assurance-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  white-space: nowrap;
+}
+
+.cta-assurance-item .cta-dot {
+  color: #60D4FC;
+  font-size: 12px;
+  line-height: 1;
 }
 
 @media (max-width: 680px) {
   .home-cta-glass-card {
     padding: 32px 20px;
+  }
+
+  .cta-assurance-row {
+    flex-direction: column;
+    gap: 8px;
+    align-items: center;
   }
 }
 
