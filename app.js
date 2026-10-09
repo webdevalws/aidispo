@@ -310,10 +310,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Mousemove Parallax Tilt on Hero Syringe
   if (heroVisualStage) {
-    heroVisualStage.style.pointerEvents = 'auto';
-    heroVisualStage.addEventListener('mousemove', (e) => {
+    heroVisualStage.style.pointerEvents = 'none';
+  }
+  if (heroStickyContainer) {
+    heroStickyContainer.addEventListener('mousemove', (e) => {
       if (isMobile()) return;
-      const rect = heroVisualStage.getBoundingClientRect();
+      const rect = heroStickyContainer.getBoundingClientRect();
       const x = e.clientX - rect.left;
       const y = e.clientY - rect.top;
       const centerX = rect.width / 2;
@@ -327,7 +329,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-    heroVisualStage.addEventListener('mouseleave', () => {
+    heroStickyContainer.addEventListener('mouseleave', () => {
       mouseTiltX = 0;
       mouseTiltY = 0;
       requestAnimationFrame(updateHeroScroll);
@@ -462,8 +464,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // 1. Center Horizontal Syringe Scales Down into background
-    const startScale = mobile ? 1.30 : 1.50;
-    const endScale = mobile ? 0.90 : 1.0;
+    const startScale = mobile ? 1.0 : 1.40;
+    const endScale = mobile ? 0.82 : 0.95;
     const currentScale = startScale - animProgress * (startScale - endScale);
     featureCenterSyringeWrap.style.transform = `scale(${currentScale})`;
 
