@@ -84,7 +84,8 @@
     const match = document.cookie.match(/(?:^|;\s*)googtrans=([^;]+)/);
     if (!match) return 'en';
     const parts = decodeURIComponent(match[1]).split('/');
-    return parts[parts.length - 1] || 'en';
+    const code = parts[parts.length - 1];
+    return (code && code !== 'undefined' && code !== 'null') ? code : 'en';
   }
 
   // Set translation cookie and trigger translation
@@ -92,7 +93,6 @@
     const current = getLanguageCookie();
     if (current === langCode) return;
 
-    // Set cookie for current domain and root path
     const host = window.location.hostname;
     const isIpOrLocal = host === 'localhost' || /^(\d{1,3}\.){3}\d{1,3}$/.test(host);
 
@@ -103,24 +103,22 @@
         document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; domain=." + host.replace(/^www\./, '') + "; path=/;";
       }
       document.cookie = "googtrans=/en/en; path=/;";
+      localStorage.removeItem('aidispo_selected_lang');
     } else {
       document.cookie = "googtrans=/en/" + langCode + "; path=/;";
       if (!isIpOrLocal) {
         document.cookie = "googtrans=/en/" + langCode + "; domain=" + host + "; path=/;";
         document.cookie = "googtrans=/en/" + langCode + "; domain=." + host.replace(/^www\./, '') + "; path=/;";
       }
+      localStorage.setItem('aidispo_selected_lang', langCode);
     }
 
-    localStorage.setItem('aidispo_selected_lang', langCode);
-
-    // If google translate select element is available, trigger it directly
     const combo = document.querySelector('.goog-te-combo');
     if (combo) {
       combo.value = langCode;
       combo.dispatchEvent(new Event('change'));
       updateAllLanguageWidgets(langCode);
     } else {
-      // Reload to apply Google Translate translation from cookie
       window.location.reload();
     }
   }
@@ -136,6 +134,8 @@
     });
     document.querySelectorAll('.lang-btn-current-code').forEach(el => {
       el.textContent = displayCode;
+      el.classList.add('notranslate');
+      el.setAttribute('translate', 'no');
     });
 
     // Update active highlight in dropdowns
@@ -152,7 +152,7 @@
   // Generate Dropdown Menu HTML
   function renderDropdownMenuHtml() {
     return LANGUAGES.map(l => `
-      <button type="button" class="lang-option-item" data-lang="${l.code}" role="menuitem">
+      <button type="button" class="lang-option-item notranslate" translate="no" data-lang="${l.code}" role="menuitem">
         <span class="lang-option-flag">${l.flag}</span>
         <span class="lang-option-name">${l.name}</span>
       </button>
@@ -165,14 +165,24 @@
     if (!document.getElementById('google_translate_element')) {
       const gtDiv = document.createElement('div');
       gtDiv.id = 'google_translate_element';
+      gtDiv.className = 'notranslate';
+      gtDiv.setAttribute('translate', 'no');
       gtDiv.style.display = 'none';
       document.body.appendChild(gtDiv);
     }
+
+    // Mark all switcher wraps as notranslate
+    document.querySelectorAll('.lang-switcher-wrap').forEach(wrap => {
+      wrap.classList.add('notranslate');
+      wrap.setAttribute('translate', 'no');
+    });
 
     // 2. Render dropdown items into all .lang-dropdown-inner elements
     const dropdownInners = document.querySelectorAll('.lang-dropdown-inner');
     const menuHtml = renderDropdownMenuHtml();
     dropdownInners.forEach(container => {
+      container.classList.add('notranslate');
+      container.setAttribute('translate', 'no');
       container.innerHTML = menuHtml;
     });
 
@@ -216,11 +226,10 @@
       }
     });
 
-    // 7. Sync initial active state
+    // 7. Sync initial active state (Default is English 'en')
     let activeCode = getLanguageCookie();
-    const saved = localStorage.getItem('aidispo_selected_lang');
-    if (saved && (!activeCode || activeCode === 'en') && saved !== 'en') {
-      activeCode = saved;
+    if (!activeCode || activeCode === 'undefined' || activeCode === 'null') {
+      activeCode = 'en';
     }
     updateAllLanguageWidgets(activeCode);
   }
@@ -258,14 +267,32 @@
     document.head.appendChild(script);
   }
 
+  // Dynamic observer to suppress Google Translate spinner badges
+  function observeAndCleanGoogleElements() {
+    const cleanup = () => {
+      document.querySelectorAll('[class*="VIpgJd"], .goog-te-spinner-pos, .goog-te-spinner, .goog-te-gadget-icon, body > .skiptranslate, iframe.skiptranslate').forEach(el => {
+        el.style.setProperty('display', 'none', 'important');
+        el.style.setProperty('visibility', 'hidden', 'important');
+        el.style.setProperty('opacity', '0', 'important');
+        el.style.setProperty('pointer-events', 'none', 'important');
+      });
+    };
+
+    cleanup();
+    const observer = new MutationObserver(cleanup);
+    observer.observe(document.body, { childList: true, subtree: true });
+  }
+
   // Initialize on DOM Ready
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => {
       initLanguageSwitcher();
       loadGoogleTranslateScript();
+      observeAndCleanGoogleElements();
     });
   } else {
     initLanguageSwitcher();
     loadGoogleTranslateScript();
+    observeAndCleanGoogleElements();
   }
 })();

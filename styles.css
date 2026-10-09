@@ -1132,45 +1132,55 @@ details,
   padding: 10px 14px 10px 18px;
   box-shadow: 0 12px 32px rgba(1, 53, 114, 0.08), 0 2px 8px rgba(0, 168, 255, 0.06);
   flex-shrink: 0;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .clinical-card-specs {
   display: flex;
   align-items: center;
   gap: 16px;
+  flex: 1 1 auto;
+  min-width: 0;
 }
 
 .clinical-spec-col {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  min-width: 0;
+  flex: 1 1 0;
 }
 
 .clinical-spec-col .col-val {
   font-family: var(--font-headline);
-  font-size: 14px;
+  font-size: 13.5px;
   font-weight: 800;
   color: var(--logo-navy);
-  line-height: 1.1;
+  line-height: 1.2;
   letter-spacing: -0.01em;
-  white-space: nowrap;
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
 
 .clinical-spec-col .col-lbl {
   font-family: var(--font-body);
-  font-size: 11px;
+  font-size: 10.5px;
   text-transform: none;
   letter-spacing: -0.01em;
   color: var(--ink-muted);
   font-weight: 500;
-  margin-top: 1px;
-  white-space: nowrap;
+  margin-top: 2px;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  line-height: 1.25;
 }
 
 .clinical-spec-sep {
   width: 1px;
   height: 26px;
   background: rgba(1, 53, 114, 0.12);
+  flex-shrink: 0;
 }
 
 .clinical-cta-btn {
@@ -1194,6 +1204,7 @@ details,
   white-space: nowrap;
   box-shadow: 0 4px 14px rgba(1, 53, 114, 0.2);
   cursor: pointer;
+  flex-shrink: 0;
 }
 
 .clinical-cta-btn .btn-icon {
@@ -1232,34 +1243,46 @@ details,
     flex-direction: column;
     align-items: stretch;
     gap: 10px;
-    padding: 14px 16px;
+    padding: 12px 14px;
     background: #FFFFFF;
     border: 1.5px solid rgba(1, 53, 114, 0.14);
     border-radius: 16px;
     box-shadow: 0 10px 30px rgba(1, 53, 114, 0.08);
+    max-width: 100%;
+    box-sizing: border-box;
   }
 
   .hero-info-minimal {
     max-width: 100%;
+    box-sizing: border-box;
   }
 
   .hero-cert-badge {
-    font-size: 8.5px;
-    padding: 3px 9px;
+    font-size: 8px;
+    padding: 3px 8px;
     margin-bottom: 4px;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
+    display: inline-block;
+    max-width: 100%;
   }
 
   .hero-subheadline {
-    font-size: 16.5px;
+    font-size: 15.5px;
     margin-bottom: 2px;
     line-height: 1.2;
+    word-break: break-word;
+    overflow-wrap: break-word;
   }
 
   .hero-subcopy {
-    font-size: 11.5px;
-    line-height: 1.4;
+    font-size: 11px;
+    line-height: 1.35;
     max-width: 100%;
     margin-bottom: 2px;
+    word-break: break-word;
+    overflow-wrap: break-word;
   }
 
   .hero-clinical-card {
@@ -1272,32 +1295,54 @@ details,
     border-radius: 12px;
     box-shadow: none;
     width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
   }
 
   .clinical-card-specs {
     width: 100%;
+    display: flex;
+    align-items: flex-start;
     justify-content: space-between;
-    gap: 8px;
+    gap: 6px;
+    box-sizing: border-box;
+  }
+
+  .clinical-spec-col {
+    flex: 1 1 0;
+    min-width: 0;
   }
 
   .clinical-spec-col .col-val {
-    font-size: 12px;
+    font-size: 10.5px;
+    line-height: 1.2;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
   }
 
   .clinical-spec-col .col-lbl {
     font-size: 7.5px;
+    line-height: 1.2;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
   }
 
   .clinical-spec-sep {
-    height: 20px;
+    height: 24px;
+    margin-top: 2px;
+    flex-shrink: 0;
   }
 
   .clinical-cta-btn {
     width: 100%;
     justify-content: center;
     padding: 8px 14px;
-    font-size: 11.5px;
+    font-size: 11px;
     border-radius: 8px;
+    box-sizing: border-box;
   }
 }
 
@@ -6704,19 +6749,43 @@ details,
 }
 
 /* ==========================================================================
-   GOOGLE TRANSLATE SEAMLESS RESET OVERRIDES
+   GOOGLE TRANSLATE SEAMLESS RESET & COMPLETE BRANDING/SPINNER SUPPRESSION
    ========================================================================== */
 .goog-te-banner-frame,
 .goog-te-banner-frame.skiptranslate,
 iframe.goog-te-banner-frame,
 #goog-gt-tt,
+#goog-gt-vt,
 .goog-te-balloon-frame,
 .goog-tooltip,
-.goog-tooltip:hover {
+.goog-tooltip:hover,
+.goog-te-spinner,
+.goog-te-spinner-pos,
+.goog-te-spinner-animation,
+.goog-te-gadget-icon,
+.goog-logo-link,
+.goog-te-gadget,
+[class*="VIpgJd"],
+[id*="goog-gt-"],
+.VIpgJd-ZVi9od-ORHb-OEVmcd,
+.VIpgJd-ZVi9od-aZ2wEe-wOHMyf,
+.VIpgJd-ZVi9od-l4eHX-hSRGPd,
+.VIpgJd-yAWNEb-VIpgJd-fmcmS-sn54Q,
+iframe.skiptranslate,
+.skiptranslate iframe,
+div.skiptranslate:not(.lang-switcher-wrap):not(.lang-dropdown) {
   display: none !important;
   visibility: hidden !important;
   opacity: 0 !important;
   pointer-events: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  max-width: 0 !important;
+  max-height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  z-index: -9999 !important;
 }
 
 body {
@@ -6724,12 +6793,15 @@ body {
   position: static !important;
 }
 
-.skiptranslate:not(.lang-switcher-wrap):not(.lang-switcher-wrap *) {
+body > .skiptranslate {
   display: none !important;
 }
 
 #google_translate_element {
   display: none !important;
+  visibility: hidden !important;
+  width: 0 !important;
+  height: 0 !important;
 }
 
 font[style] {

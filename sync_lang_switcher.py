@@ -71,6 +71,11 @@ def process_html_file(filepath):
         elif '</body>' in content:
             content = content.replace('</body>', SCRIPT_TAG + '</body>')
 
+    # 4. Ensure brand-logo has notranslate translate="no"
+    content = re.sub(r'class="brand-logo-wrap(?!\s+notranslate)"', r'class="brand-logo-wrap notranslate" translate="no"', content)
+    content = re.sub(r'class="brand-logo(?!\s+notranslate)"', r'class="brand-logo notranslate" translate="no"', content)
+    content = re.sub(r'class="lang-btn-current-code(?!\s+notranslate)"', r'class="lang-btn-current-code notranslate" translate="no"', content)
+
     if content != original:
         with open(filepath, 'w', encoding='utf-8') as f:
             f.write(content)
