@@ -1265,8 +1265,6 @@ details,
   position: relative;
   z-index: 50;
   width: 100%;
-  mask-image: linear-gradient(to right, transparent 0%, black 4%, black 96%, transparent 100%);
-  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 4%, black 96%, transparent 100%);
 }
 
 .ticker-track {

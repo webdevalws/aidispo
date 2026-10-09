@@ -2182,8 +2182,6 @@ details,
   user-select: none;
   position: relative;
   padding: 10px 0;
-  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
-  -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
 }
 
 .marquee-track-content {
