@@ -792,7 +792,6 @@
         <div class="specs-top-showcase">
           <div class="specs-showcase-info">
             <div class="specs-badge-pill">
-              <span class="tag-live-dot"></span>
               MANUFACTURING STANDARDS • ISO 7886-1 • WHO-GMP • CE • CDSCO
             </div>
             <h2 class="specs-matrix-title">
@@ -930,12 +929,10 @@
           <!-- Left: Free-Floating Macro Needle Visual with Laser Inspection Hotspots -->
           <div class="needle-macro-stage" id="needleMacroStage">
             <div class="needle-hotspot tip" id="needleTipHotspot">
-              <span class="needle-pulse-ring"></span>
               <span>θ=12° TRI-BEVEL GROUND</span>
             </div>
 
             <div class="needle-hotspot hub" id="needleHubHotspot">
-              <span class="needle-pulse-ring"></span>
               <span>PRECISION 27G / 25G HUB</span>
             </div>
 
@@ -959,7 +956,6 @@
                 <span class="droplet-vol-pill">0.005 mL</span>
               </button>
               <div class="needle-telemetry-badge" id="needleTelemetryBadge">
-                <span class="needle-live-dot" id="needleLiveDot"></span>
                 <span id="needleTelemetryText">Siliconized Barrel &bull; Air-Tight Plunger Seal</span>
               </div>
             </div>
@@ -968,7 +964,6 @@
           <!-- Right: Bold Statement Copy -->
           <div class="statement-text-side">
             <div class="statement-badge-pill">
-              <span class="tag-live-dot"></span>
               SURGICAL GRADE • 304 STAINLESS STEEL
             </div>
             <h2 class="statement-huge-title">
@@ -1350,7 +1345,6 @@
       <div class="home-cta-banner-container reveal-on-scroll">
         <div class="home-cta-glass-card">
           <div class="cta-badge-pill">
-            <span class="tag-live-dot" style="background: #00A8FF;"></span>
             DIRECT FACTORY PROCUREMENT &amp; HOSPITAL SAMPLE PROGRAM
           </div>
           <h2 class="cta-banner-title">
@@ -1567,7 +1561,6 @@
     <div class="video-modal-dialog">
       <div class="video-modal-header">
         <div class="video-modal-title-wrap">
-          <span class="video-modal-pulse-dot"></span>
           <span class="video-modal-tag">AI-DISPO® • Clinical Manufacturing Showcase</span>
         </div>
         <button type="button" class="video-modal-close" id="videoModalClose" aria-label="Close video popup">
@@ -1655,32 +1648,7 @@
       gap: 10px;
     }
 
-    .video-modal-pulse-dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: #10B981;
-      box-shadow: 0 0 10px #10B981;
-      animation: pulseGreen 1.8s infinite;
-    }
-
-    @keyframes pulseGreen {
-      0% {
-        transform: scale(0.9);
-        opacity: 0.8;
-      }
-
-      50% {
-        transform: scale(1.25);
-        opacity: 1;
-        box-shadow: 0 0 14px #10B981;
-      }
-
-      100% {
-        transform: scale(0.9);
-        opacity: 0.8;
-      }
-    }
+    .video-modal-pulse-dot { display: none !important; }
 
     .video-modal-tag {
       font-family: var(--font-body);

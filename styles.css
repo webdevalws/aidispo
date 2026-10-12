@@ -553,15 +553,7 @@ details,
   box-shadow: 0 4px 12px rgba(0, 168, 255, 0.22);
 }
 
-.tag-live-dot {
-  display: inline-block;
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: #059669;
-  margin-right: 5px;
-  vertical-align: middle;
-}
+.tag-live-dot { display: none !important; }
 
 /* ==========================================================================
    SECTION 1: HERO SCROLL-DRIVEN STICKY TRACK
@@ -2179,14 +2171,7 @@ details,
   }
 }
 
-.needle-pulse-ring {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: #00A8FF;
-  box-shadow: 0 0 8px #00A8FF;
-  animation: pulseLaser 1.8s infinite;
-}
+.needle-pulse-ring { display: none !important; }
 
 @keyframes pulseLaser {
   0% {
@@ -2400,12 +2385,7 @@ details,
   padding: 6px 14px;
 }
 
-.needle-live-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: #059669;
-}
+.needle-live-dot { display: none !important; }
 
 .statement-text-side {
   display: flex;
@@ -3934,19 +3914,9 @@ details,
   backdrop-filter: blur(6px);
 }
 
-.hud-status-dot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: #EAB308;
-  box-shadow: 0 0 6px #EAB308;
-  transition: all 0.3s ease;
-}
+.hud-status-dot { display: none !important; }
 
-.target-hud-badge.locked .hud-status-dot {
-  background: #10B981;
-  box-shadow: 0 0 8px #10B981;
-}
+.target-hud-badge.locked .hud-status-dot { display: none !important; }
 
 .hud-status-text {
   font-family: var(--font-mono);

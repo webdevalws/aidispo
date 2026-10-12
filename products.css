@@ -213,13 +213,7 @@ details,
   margin-top: 2px;
 }
 
-.sim-engine-pulse-dot {
-  width: 8px;
-  height: 8px;
-  background: #059669;
-  border-radius: 50%;
-  display: inline-block;
-}
+.sim-engine-pulse-dot { display: none !important; }
 
 .sim-capacity-grid .sim-btn-cap {
   display: flex;
@@ -537,13 +531,7 @@ details,
   box-shadow: 1.5px 1.5px 0px rgba(1, 53, 114, 0.1);
 }
 
-.sim-chip-dot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: var(--accent-blue);
-  box-shadow: 0 0 5px rgba(0, 168, 255, 0.6);
-}
+.sim-chip-dot { display: none !important; }
 
 /* Product Description Box (Replaces Plunger Stroke Slider) */
 .sim-desc-box {
@@ -1036,13 +1024,7 @@ details,
   z-index: 2;
 }
 
-.sim-pack-overlay-dot {
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: #00A8FF;
-  box-shadow: 0 0 5px rgba(0, 168, 255, 0.8);
-}
+.sim-pack-overlay-dot { display: none !important; }
 
 .sim-opt-name {
   font-family: var(--font-headline);
