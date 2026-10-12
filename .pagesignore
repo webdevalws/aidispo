@@ -1,5 +1,7 @@
-*.py
+﻿*.py
 .vercel
 .git
 .gitignore
 .vercelignore
+.wrangler
+__pycache__
