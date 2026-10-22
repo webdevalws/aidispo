@@ -352,22 +352,11 @@
 
         <!-- Header -->
         <div class="sim-header">
-          <div class="sim-badge-row">
-            <span class="sim-pill-tag feature">
-              50+ OEM/OBM MEDICAL CONFIGURATIONS
-            </span>
-            <div class="sim-sku-card">
-              <div class="sim-sku-label">GENERATED SPEC SKU</div>
-              <div class="sim-sku-val" id="sEngineSku">AD-5ML-LL-N21G-15-STERILE</div>
-              <div class="sim-sku-sub">Medical Grade PP • Class 100k Cleanroom</div>
-            </div>
-          </div>
           <h2 class="sim-title">
-            Interactive Syringe <span class="highlight-cyan">Customizer &amp; Engine</span>
+            Interactive Syringe <span class="highlight-cyan">Customizer</span>
           </h2>
           <p class="sim-subtitle">
-            Engineer your clinical syringe specifications in real-time. Dynamically generates technical ISO SKU,
-            packaging batch data, and RFQ documentation.
+            Configure clinical syringe specifications in real-time.
           </p>
         </div>
 
@@ -377,31 +366,13 @@
 
             <!-- Left: Visualizer Canvas -->
             <div class="sim-visual-panel">
-              <div>
-                <div class="sim-visual-top-chips">
-                  <span class="sim-chip" id="sChipCap">CAPACITY: 5.0 mL</span>
-                  <span class="sim-chip" id="sChipNozzle">NOZZLE: LUER LOCK</span>
-                  <span class="sim-chip" id="sChipNeedle">
-                    NEEDLE: 21G × 1.5"
-                  </span>
-                  <span class="sim-chip" id="sChipPack">PACK: BLISTER PACK</span>
-                </div>
-
-                <!-- Clinical Product Description (2 Lines) -->
-                <div class="sim-desc-box" id="sProductDescBox">
-                  <div class="sim-desc-badge">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                      stroke-width="2.2">
-                      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-                    </svg>
-                    <span>CLINICAL PRODUCT SPECIFICATION</span>
-                  </div>
-                  <p class="sim-desc-text" id="sProductDescText">
-                    Precision 5.0 mL 3-piece clinical syringe engineered with zero dead-space barrel geometry. Features
-                    medical-grade silicone lubrication ensuring smooth breakaway force and leak-proof ISO 7886-1
-                    delivery.
-                  </p>
-                </div>
+              <div class="sim-visual-top-chips">
+                <span class="sim-chip" id="sChipCap">CAPACITY: 5.0 mL</span>
+                <span class="sim-chip" id="sChipNozzle">NOZZLE: LUER LOCK</span>
+                <span class="sim-chip" id="sChipNeedle">
+                  NEEDLE: 21G × 1.5"
+                </span>
+                <span class="sim-chip" id="sChipPack">PACK: BLISTER PACK</span>
               </div>
 
               <!-- Real Precision Syringe Showcase -->
@@ -443,33 +414,15 @@
                     <span class="sim-step-num">1</span>
                     SELECT SYRINGE CAPACITY
                   </span>
-                  <span class="sim-ctrl-subtitle">Medical PP Barrel</span>
+                  <span class="sim-ctrl-subtitle">Medical Grade PP</span>
                 </div>
                 <div class="sim-capacity-grid">
-                  <button type="button" class="sim-btn-cap" data-cap="1ML">
-                    <span>1ML</span>
-                    <span class="cap-sub">0.01 mL sub</span>
-                  </button>
-                  <button type="button" class="sim-btn-cap" data-cap="2ML">
-                    <span>2ML</span>
-                    <span class="cap-sub">0.10 mL sub</span>
-                  </button>
-                  <button type="button" class="sim-btn-cap active" data-cap="5ML">
-                    <span>5ML</span>
-                    <span class="cap-sub">0.20 mL sub</span>
-                  </button>
-                  <button type="button" class="sim-btn-cap" data-cap="10ML">
-                    <span>10ML</span>
-                    <span class="cap-sub">0.50 mL sub</span>
-                  </button>
-                  <button type="button" class="sim-btn-cap" data-cap="20ML">
-                    <span>20ML</span>
-                    <span class="cap-sub">1.00 mL sub</span>
-                  </button>
-                  <button type="button" class="sim-btn-cap" data-cap="50ML">
-                    <span>50ML</span>
-                    <span class="cap-sub">1.00 mL sub</span>
-                  </button>
+                  <button type="button" class="sim-btn-cap" data-cap="1ML">1 mL</button>
+                  <button type="button" class="sim-btn-cap" data-cap="2ML">2 mL</button>
+                  <button type="button" class="sim-btn-cap active" data-cap="5ML">5 mL</button>
+                  <button type="button" class="sim-btn-cap" data-cap="10ML">10 mL</button>
+                  <button type="button" class="sim-btn-cap" data-cap="20ML">20 mL</button>
+                  <button type="button" class="sim-btn-cap" data-cap="50ML">50 mL</button>
                 </div>
               </div>
 
@@ -481,19 +434,13 @@
                 </span>
                 <div class="sim-options-grid sim-options-grid-3">
                   <div class="sim-opt-card sim-nozzle-opt active" data-nozzle="LL">
-                    <div class="sim-opt-name">Luer Lock (Threaded Safety)</div>
-                    <div class="sim-opt-desc">Threaded collar against high backpressure (Syringe pumps &amp; viscous
-                      drugs)</div>
+                    <div class="sim-opt-name">Luer Lock</div>
                   </div>
                   <div class="sim-opt-card sim-nozzle-opt" data-nozzle="LS">
-                    <div class="sim-opt-name">Luer Slip (Conical Push-fit)</div>
-                    <div class="sim-opt-desc">Standard concentric/eccentric slip nozzle for rapid routine clinical use
-                    </div>
+                    <div class="sim-opt-name">Luer Slip</div>
                   </div>
                   <div class="sim-opt-card sim-nozzle-opt" data-nozzle="AD">
-                    <div class="sim-opt-name">Auto Disable (AD Safety)</div>
-                    <div class="sim-opt-desc">Single-use passive internal lock preventing reuse in immunization &amp;
-                      vaccines</div>
+                    <div class="sim-opt-name">Auto Disable</div>
                   </div>
                 </div>
               </div>
@@ -506,10 +453,10 @@
                 </span>
                 <div class="sim-options-grid">
                   <div class="sim-opt-card sim-needle-config active" data-needle="with">
-                    <div class="sim-opt-name">With Needle (Mounted / Side-pack)</div>
+                    <div class="sim-opt-name">With Needle</div>
                   </div>
                   <div class="sim-opt-card sim-needle-config" data-needle="without">
-                    <div class="sim-opt-name">Without Needle (Syringe Only)</div>
+                    <div class="sim-opt-name">Without Needle</div>
                   </div>
                 </div>
               </div>
@@ -518,7 +465,7 @@
               <div class="sim-ctrl-group" id="sGaugeSelectBox">
                 <span class="sim-ctrl-title">
                   <span class="sim-step-num">4</span>
-                  ISO 6009 NEEDLE GAUGE &amp; HUB COLOR
+                  ISO 6009 NEEDLE GAUGE &amp; COLOR
                 </span>
                 <div class="sim-gauge-row">
                   <div class="sim-gauge-pill" data-gauge="16G">
@@ -556,20 +503,17 @@
                 </div>
 
                 <!-- Needle Length -->
-                <div style="margin-top: 12px;">
-                  <span class="sim-ctrl-subtitle" style="display: block; margin-bottom: 8px;">NEEDLE LENGTH</span>
+                <div style="margin-top: 10px;">
+                  <span class="sim-ctrl-subtitle" style="display: block; margin-bottom: 6px;">NEEDLE LENGTH</span>
                   <div class="sim-length-grid">
                     <div class="sim-length-pill" data-len="1.0&quot;">
                       <div class="sim-length-name">1.0" (25mm)</div>
-                      <div class="sim-length-desc">Standard Subcutaneous / IM</div>
                     </div>
                     <div class="sim-length-pill" data-len="1.25&quot;">
                       <div class="sim-length-name">1.25" (32mm)</div>
-                      <div class="sim-length-desc">Deep Intramuscular</div>
                     </div>
                     <div class="sim-length-pill active" data-len="1.50&quot;">
                       <div class="sim-length-name">1.50" (38mm)</div>
-                      <div class="sim-length-desc">Adult Gluteal / Deep Aspiration</div>
                     </div>
                   </div>
                 </div>
@@ -583,22 +527,16 @@
                 </span>
                 <div class="sim-options-grid">
                   <div class="sim-opt-card sim-pack-opt active" data-pack="BLISTER">
-                    <div
-                      style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2px;">
-                      <div class="sim-opt-name">Blister Pack (Individual Thermoformed)</div>
-                      <span class="sim-pack-tag">CLINICAL PREFERRED</span>
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                      <div class="sim-opt-name">Blister Pack</div>
+                      <span class="sim-pack-tag">CLINICAL</span>
                     </div>
-                    <div class="sim-opt-desc">Medical grade paper (60 GSM) &amp; peelable transparent film. 100% ETO
-                      sterile barrier, ideal for surgical &amp; ICU procedures.</div>
                   </div>
                   <div class="sim-opt-card sim-pack-opt" data-pack="RIBBON">
-                    <div
-                      style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2px;">
-                      <div class="sim-opt-name">Ribbon Pack (Tear-Strip Poly-pack)</div>
-                      <span class="sim-pack-tag secondary">HIGH-VOLUME ECONOMY</span>
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                      <div class="sim-opt-name">Ribbon Pack</div>
+                      <span class="sim-pack-tag secondary">HIGH-VOLUME</span>
                     </div>
-                    <div class="sim-opt-desc">Flexible laminated poly-strip pack for rapid high-volume hospital
-                      distribution and quick single-hand tear opening.</div>
                   </div>
                 </div>
               </div>

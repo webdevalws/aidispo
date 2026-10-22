@@ -1044,7 +1044,7 @@ details,
   position: relative;
   z-index: 100005 !important;
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   justify-content: space-between;
   gap: 24px;
   width: 100%;
@@ -1060,7 +1060,7 @@ details,
 }
 
 .hero-info-minimal {
-  max-width: 480px;
+  max-width: 580px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -1091,7 +1091,7 @@ details,
   line-height: 1.2;
   letter-spacing: -0.02em;
   color: var(--ink-black);
-  margin-bottom: 4px;
+  margin-bottom: 0;
 }
 
 .highlight-cyan,
@@ -1181,20 +1181,20 @@ details,
   pointer-events: auto !important;
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 10px 18px;
+  gap: 10px;
+  padding: 12px 24px;
   background: var(--logo-navy);
   color: #FFFFFF !important;
   border: 1px solid var(--logo-navy);
-  border-radius: 8px;
+  border-radius: 10px;
   font-family: var(--font-headline);
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 700;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.03em;
   text-decoration: none;
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   white-space: nowrap;
-  box-shadow: 0 4px 14px rgba(1, 53, 114, 0.2);
+  box-shadow: 0 4px 16px rgba(1, 53, 114, 0.25);
   cursor: pointer;
   flex-shrink: 0;
 }
@@ -1234,8 +1234,8 @@ details,
   .hero-bottom-bar {
     flex-direction: column;
     align-items: stretch;
-    gap: 10px;
-    padding: 12px 14px;
+    gap: 12px;
+    padding: 14px 16px;
     background: #FFFFFF;
     border: 1.5px solid rgba(1, 53, 114, 0.14);
     border-radius: 16px;
@@ -1250,8 +1250,8 @@ details,
   }
 
   .hero-cert-badge {
-    font-size: 8px;
-    padding: 3px 8px;
+    font-size: 9px;
+    padding: 3px 10px;
     margin-bottom: 4px;
     word-break: break-word;
     overflow-wrap: break-word;
@@ -1261,78 +1261,18 @@ details,
   }
 
   .hero-subheadline {
-    font-size: 15.5px;
-    margin-bottom: 2px;
-    line-height: 1.2;
+    font-size: 16px;
+    margin-bottom: 0;
+    line-height: 1.25;
     word-break: break-word;
     overflow-wrap: break-word;
-  }
-
-  .hero-subcopy {
-    font-size: 11px;
-    line-height: 1.35;
-    max-width: 100%;
-    margin-bottom: 2px;
-    word-break: break-word;
-    overflow-wrap: break-word;
-  }
-
-  .hero-clinical-card {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 10px;
-    padding: 10px 12px;
-    background: rgba(244, 248, 251, 0.92);
-    border: 1px solid rgba(1, 53, 114, 0.12);
-    border-radius: 12px;
-    box-shadow: none;
-    width: 100%;
-    max-width: 100%;
-    box-sizing: border-box;
-    overflow: hidden;
-  }
-
-  .clinical-card-specs {
-    width: 100%;
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 6px;
-    box-sizing: border-box;
-  }
-
-  .clinical-spec-col {
-    flex: 1 1 0;
-    min-width: 0;
-  }
-
-  .clinical-spec-col .col-val {
-    font-size: 10.5px;
-    line-height: 1.2;
-    word-break: break-word;
-    overflow-wrap: break-word;
-    white-space: normal;
-  }
-
-  .clinical-spec-col .col-lbl {
-    font-size: 7.5px;
-    line-height: 1.2;
-    word-break: break-word;
-    overflow-wrap: break-word;
-    white-space: normal;
-  }
-
-  .clinical-spec-sep {
-    height: 24px;
-    margin-top: 2px;
-    flex-shrink: 0;
   }
 
   .clinical-cta-btn {
     width: 100%;
     justify-content: center;
-    padding: 8px 14px;
-    font-size: 11px;
+    padding: 11px 16px;
+    font-size: 12px;
     border-radius: 8px;
     box-sizing: border-box;
   }
@@ -1693,10 +1633,11 @@ details,
   -webkit-backdrop-filter: blur(16px);
   border: 1.5px solid rgba(1, 53, 114, 0.14);
   border-radius: 16px;
-  padding: 24px 22px 20px;
+  padding: 22px 20px 20px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  gap: 14px;
   box-shadow: 0 10px 30px rgba(1, 53, 114, 0.06);
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   position: relative;
@@ -1719,7 +1660,7 @@ details,
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 12px;
+  margin-bottom: 8px;
 }
 
 .bento-num {
@@ -1748,35 +1689,28 @@ details,
   line-height: 1.05;
   color: var(--logo-navy);
   letter-spacing: -0.02em;
-  margin-bottom: 6px;
+  margin-bottom: 4px;
 }
 
 .bento-title {
   font-family: var(--font-headline);
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 700;
   color: var(--ink-black);
-  margin-bottom: 8px;
-}
-
-.bento-text {
-  font-size: 13px;
-  color: var(--ink-muted);
-  line-height: 1.5;
-  margin-bottom: 18px;
-  flex-grow: 1;
+  margin-bottom: 0;
 }
 
 .bento-specs-pill {
   font-family: var(--font-mono);
-  font-size: 9.5px;
+  font-size: 10px;
   font-weight: 700;
   color: var(--logo-navy);
-  background: rgba(1, 53, 114, 0.06);
-  border: 1px dashed rgba(1, 53, 114, 0.2);
+  background: rgba(1, 53, 114, 0.05);
+  border: 1px solid rgba(1, 53, 114, 0.16);
   border-radius: 6px;
-  padding: 6px 10px;
+  padding: 8px 10px;
   text-align: center;
+  margin-top: 4px;
 }
 
 /* Bottom Action Bar */

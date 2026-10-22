@@ -360,11 +360,14 @@ details,
   background: #FFFFFF;
   border: 1.5px solid rgba(1, 53, 114, 0.2);
   border-radius: 8px;
-  padding: 18px 20px;
+  padding: 16px 20px;
   cursor: pointer;
   transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
   position: relative;
   text-align: left;
+  display: flex;
+  align-items: center;
+  min-height: 52px;
 }
 
 .sim-tab-card:hover {
@@ -382,7 +385,8 @@ details,
 .sim-tab-card.active::after {
   content: '✓';
   position: absolute;
-  top: 14px;
+  top: 50%;
+  transform: translateY(-50%);
   right: 16px;
   font-size: 14px;
   font-weight: 900;
@@ -893,10 +897,10 @@ details,
 .sim-btn-cap {
   background: #FFFFFF;
   border: 1.5px solid rgba(1, 53, 114, 0.2);
-  border-radius: 5px;
-  padding: 6px 2px;
+  border-radius: 6px;
+  padding: 8px 4px;
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: 11.5px;
   font-weight: 700;
   color: var(--ink-black);
   cursor: pointer;
@@ -944,12 +948,15 @@ details,
   background: #FFFFFF;
   border: 1.5px solid rgba(1, 53, 114, 0.2);
   border-radius: 6px;
-  padding: 7px 10px;
+  padding: 8px 12px;
   cursor: pointer;
   transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
   text-align: left;
   position: relative;
   user-select: none;
+  min-height: 34px;
+  display: flex;
+  align-items: center;
 }
 
 .sim-opt-card * {
@@ -970,8 +977,9 @@ details,
 .sim-opt-card.active::after {
   content: '✓';
   position: absolute;
-  top: 7px;
-  right: 9px;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 10px;
   font-size: 11px;
   font-weight: 900;
   color: var(--logo-navy);
@@ -979,15 +987,16 @@ details,
 
 .sim-pack-opt {
   padding-left: 32px !important;
-  padding-top: 6px !important;
-  padding-bottom: 6px !important;
+  padding-top: 8px !important;
+  padding-bottom: 8px !important;
 }
 
 .sim-pack-opt::before {
   content: '';
   position: absolute;
-  top: 9px;
-  left: 9px;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 10px;
   width: 13px;
   height: 13px;
   border-radius: 50%;
@@ -1123,8 +1132,8 @@ details,
 .sim-length-pill {
   background: #FFFFFF;
   border: 1.5px solid rgba(1, 53, 114, 0.2);
-  border-radius: 5px;
-  padding: 5px 6px;
+  border-radius: 6px;
+  padding: 7px 6px;
   cursor: pointer;
   text-align: center;
   transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
@@ -1143,7 +1152,7 @@ details,
 
 .sim-length-name {
   font-family: var(--font-mono);
-  font-size: 10.5px;
+  font-size: 11px;
   font-weight: 700;
   color: var(--ink-black);
 }
