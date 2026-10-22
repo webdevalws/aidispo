@@ -5675,10 +5675,22 @@ details,
   height: 100%;
   object-fit: contain;
   pointer-events: none;
-  will-change: transform, opacity;
-  transition: transform 0.08s linear, opacity 0.08s linear;
-  filter: drop-shadow(0 6px 16px rgba(1, 53, 114, 0.22));
+  will-change: transform;
+  transition: filter 0.25s ease, opacity 0.2s ease;
+  filter: drop-shadow(0 4px 14px rgba(1, 53, 114, 0.10));
 }
+
+.assembly-part.active-part {
+  filter: drop-shadow(0 0 16px rgba(0, 113, 227, 0.45)) drop-shadow(0 4px 14px rgba(1, 53, 114, 0.15));
+}
+
+/* Precise Optical Layering for Medical Deconstruction */
+#sPart0 { z-index: 6; } /* Hypodermic Needle */
+#sPart3 { z-index: 3; } /* Rubber Stopper (Inside Barrel) */
+#sPart4 { z-index: 3; } /* Cruciform Plunger Rod (Inside Barrel) */
+#sPart1 { z-index: 5; } /* Transparent Glass Barrel, Walls & Flange */
+#sPart2 { z-index: 7; } /* Precision Graduations & Numbers (Crisp in front) */
+#sPart5 { z-index: 8; } /* Ergonomic Thumbpad (Outside at rear) */
 
 /* Joint Pulse Ring Attachment Effect */
 .joint-pulse-ring {
@@ -5791,16 +5803,16 @@ details,
   opacity: 1;
 }
 
-/* Side Description Card (Light Mode) */
+/* Side Description Card (Light Mode - Large Readable Typography) */
 .assembly-info-card {
   background: #FFFFFF;
-  border: var(--border-bold);
-  border-radius: 12px;
-  padding: 24px;
-  box-shadow: var(--shadow-hard);
+  border: 1px solid rgba(1, 53, 114, 0.12);
+  border-radius: 16px;
+  padding: 26px 28px;
+  box-shadow: 0 16px 36px -8px rgba(1, 53, 114, 0.12), 0 4px 12px rgba(0, 0, 0, 0.04);
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 14px;
   z-index: 25;
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
@@ -5812,53 +5824,54 @@ details,
 }
 
 .info-part-tag {
-  font-family: var(--font-mono);
-  font-size: 10.5px;
+  font-family: var(--font-mono, monospace);
+  font-size: 11px;
   font-weight: 700;
-  color: var(--accent-red);
+  color: var(--accent-blue);
   letter-spacing: 0.12em;
   text-transform: uppercase;
 }
 
 .info-status-pill {
-  font-family: var(--font-mono);
-  font-size: 9px;
+  font-family: var(--font-mono, monospace);
+  font-size: 9.5px;
   font-weight: 700;
-  color: var(--accent-red);
-  background: var(--accent-red-light);
-  border: 1px solid var(--accent-red);
-  padding: 2px 8px;
-  border-radius: 4px;
+  color: var(--accent-blue);
+  background: rgba(0, 113, 227, 0.08);
+  border: 1px solid rgba(0, 113, 227, 0.25);
+  padding: 3px 10px;
+  border-radius: 20px;
+  letter-spacing: 0.06em;
 }
 
 .info-part-title {
-  font-family: var(--font-headline);
-  font-size: 20px;
+  font-family: var(--font-headline, sans-serif);
+  font-size: 23px;
   font-weight: 800;
-  color: var(--ink-black);
-  letter-spacing: -0.01em;
+  color: #0F172A;
+  letter-spacing: -0.015em;
   line-height: 1.25;
 }
 
 .info-part-desc {
-  font-size: 13.5px;
-  color: var(--ink-charcoal);
-  line-height: 1.55;
+  font-size: 15px;
+  color: #475569;
+  line-height: 1.6;
 }
 
 .info-part-spec {
-  background: var(--bg-cream);
-  border: var(--border-thin);
-  border-radius: 8px;
-  padding: 10px 12px;
+  background: #F8FAFC;
+  border: 1px solid rgba(1, 53, 114, 0.08);
+  border-radius: 10px;
+  padding: 10px 14px;
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 3px;
 }
 
 .spec-label {
-  font-family: var(--font-mono);
-  font-size: 9px;
+  font-family: var(--font-mono, monospace);
+  font-size: 9.5px;
   font-weight: 700;
   color: var(--accent-blue);
   letter-spacing: 0.08em;
@@ -5866,10 +5879,10 @@ details,
 }
 
 .spec-val {
-  font-family: var(--font-mono);
-  font-size: 11px;
+  font-family: var(--font-mono, monospace);
+  font-size: 12.5px;
   font-weight: 600;
-  color: var(--ink-black);
+  color: #0F172A;
 }
 
 .assembly-scroll-guide {
@@ -5877,9 +5890,9 @@ details,
   align-items: center;
   gap: 8px;
   font-family: var(--font-body, 'Inter', sans-serif);
-  font-size: 11.5px;
+  font-size: 12px;
   font-weight: 500;
-  color: var(--ink-muted);
+  color: #64748B;
   text-transform: none;
   letter-spacing: 0.01em;
   padding-top: 8px;
@@ -6030,8 +6043,11 @@ details,
   }
 
   .device-assembly-frame {
-    max-height: 32vh;
+    width: 82%;
+    max-width: 380px;
+    max-height: 28vh;
     margin: 0 auto;
+    overflow: visible;
   }
 
   .assembly-info-card {

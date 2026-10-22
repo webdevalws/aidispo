@@ -1121,17 +1121,13 @@ document.addEventListener('DOMContentLoaded', () => {
   function initAssemblyScrollEngine() {
     // Preload image assets
     const preloadList = [
-      'assets/syringe/01-needle-tip.png',
-      'assets/syringe/02-needle-shaft.png',
-      'assets/syringe/03-needle-hub.png',
-      'assets/syringe/04-luer-nozzle.png',
-      'assets/syringe/05-barrel.png',
-      'assets/syringe/06-graduation-marks.png',
-      'assets/syringe/07-rubber-stopper.png',
-      'assets/syringe/08-plunger-rod.png',
-      'assets/syringe/09-flange.png',
-      'assets/syringe/10-thumb-pad.png',
-      'assets/syringe/full-syringe.png',
+      'assets/syringe/part-01-needle.png?v=clean_20261022_v4',
+      'assets/syringe/part-02-barrel.png?v=clean_20261022_v4',
+      'assets/syringe/part-03-graduations.png?v=clean_20261022_v4',
+      'assets/syringe/part-04-gasket.png?v=clean_20261022_v4',
+      'assets/syringe/part-05-plunger.png?v=clean_20261022_v4',
+      'assets/syringe/part-06-thumbpad.png?v=clean_20261022_v4',
+      'assets/syringe/full-syringe.png?v=clean_20261022_v4',
       'assets/cannula/01-introducer-needle.png',
       'assets/cannula/02-catheter-tube.png',
       'assets/cannula/03-catheter-hub.png',
@@ -1147,77 +1143,49 @@ document.addEventListener('DOMContentLoaded', () => {
       img.src = src;
     });
 
-    // Syringe Assembly Metadata (Calibrated for Green Plunger Syringe)
+    // Syringe Exploded Deconstruction Metadata (6 Core Components - Assembled to Separated Portions)
     const syringePartsData = [
       {
-        name: 'Needle Bevel Tip',
-        desc: 'Laser-honed tri-bevel point minimizing tissue trauma and penetration force.',
-        spec: '25G Lancet Bevel • ISO 7864',
-        dx: -280, dy: -30, rot: -12, scale: 0.8,
-        anchorX: 9.2, anchorY: 50.0
+        name: 'Hypodermic Needle Assembly',
+        desc: 'Laser-honed tri-bevel cannula crafted from 304 medical stainless steel with an electro-polished lumen for smooth, painless penetration.',
+        spec: '304 Medical Stainless • 25G Lancet Bevel',
+        explodeX: -95, explodeY: 0,
+        anchorX: 18.7, anchorY: 50.0
       },
       {
-        name: 'Stainless Needle Shaft',
-        desc: 'Medical-grade 304 stainless steel cannula with electro-polished siliconized lumen.',
-        spec: 'Wall Thickness: 0.08mm • Ultra-Smooth Polish',
-        dx: -200, dy: 60, rot: 8, scale: 0.9,
-        anchorX: 16.3, anchorY: 49.9
+        name: 'Transparent Medical Barrel',
+        desc: 'High-optical-clarity polypropylene cylinder engineered with precision luer nozzle and dual ergonomic finger flanges for complete volume inspection.',
+        spec: 'USP Class VI Polypropylene • Integrated Luer Cone',
+        explodeX: -20, explodeY: 0,
+        anchorX: 53.8, anchorY: 50.0
       },
       {
-        name: 'Needle Hub',
-        desc: 'Translucent polypropylene hub color-coded for instant clinical gauge recognition.',
-        spec: '6% Luer Taper • Medical-Grade PP',
-        dx: -50, dy: -180, rot: -15, scale: 1.1,
-        anchorX: 25.6, anchorY: 49.8
+        name: 'Precision Graduation Scale',
+        desc: 'Indelible high-contrast metric markings calibrated to ISO 7886-1 providing instant bubble detection and verified micro-dosing accuracy.',
+        spec: 'ISO 7886-1 Metric Scale • Solvent-Resistant Ink',
+        explodeX: -20, explodeY: 0,
+        anchorX: 54.1, anchorY: 50.0
       },
       {
-        name: 'Luer Lock Nozzle',
-        desc: 'Engineered concentric male Luer lock nozzle ensuring leak-tight zero dead-space dock.',
-        spec: 'Pressure Rating: 4.5 bar • Zero Residual Volume',
-        dx: 40, dy: -140, rot: 10, scale: 1.0,
-        anchorX: 31.5, anchorY: 50.4
+        name: 'Elastomeric Piston Gasket',
+        desc: 'Latex-free double-contact elastomeric stopper providing a hermetic barrel seal with frictionless, smooth aspiration glide.',
+        spec: 'Latex-Free Synthetic Elastomer • Dual-Ring Hermetic Seal',
+        explodeX: 40, explodeY: 0,
+        anchorX: 52.0, anchorY: 50.0
       },
       {
-        name: 'Graduated Barrel',
-        desc: 'High-clarity biocompatible polypropylene cylinder for complete bubble inspection.',
-        spec: 'USP Class VI Plastic • High Optical Transparency',
-        dx: 0, dy: 220, rot: 4, scale: 0.9,
-        anchorX: 54.3, anchorY: 50.1
-      },
-      {
-        name: 'Graduation Scale',
-        desc: 'Indelible high-contrast calibrated print providing ±0.005 mL clinical dosing accuracy.',
-        spec: 'ISO 7886-1 Metric Scale • Smudge-Proof Ink',
-        dx: 0, dy: -60, rot: 0, scale: 1.08,
-        anchorX: 54.1, anchorY: 46.5
-      },
-      {
-        name: 'Rubber Stopper',
-        desc: 'Latex-free double-contact elastomeric piston sealing the barrel with zero friction glide.',
-        spec: 'Latex-Free Synthetic Polyisoprene • Silicone Lubricated',
-        dx: 180, dy: -40, rot: -8, scale: 0.9,
-        anchorX: 51.6, anchorY: 50.1
-      },
-      {
-        name: 'Green Plunger Rod',
-        desc: 'High-visibility green cruciform reinforced plunger shaft designed to resist deflection under high injection forces.',
-        spec: 'High-Rigidity Polymer • Precision Green Plunger',
-        dx: 320, dy: 30, rot: 6, scale: 0.95,
+        name: 'Cruciform Plunger Rod',
+        desc: 'High-visibility green plunger shaft with reinforced cruciform geometry engineered to eliminate lateral deflection under injection force.',
+        spec: 'Cruciform Beam Geometry • Deflection-Free Drive',
+        explodeX: 95, explodeY: 0,
         anchorX: 72.1, anchorY: 50.1
       },
       {
-        name: 'Finger Flange',
-        desc: 'Ergonomic widened grip wings giving clinicians maximum tactile stability during aspiration.',
-        spec: 'Dual-Sided Anti-Slip Ribbing • High-Load Wings',
-        dx: 60, dy: -180, rot: -12, scale: 1.1,
-        anchorX: 76.3, anchorY: 49.9
-      },
-      {
-        name: 'Thumb Press Pad',
-        desc: 'Concentric textured contact pad ensuring positive thumb engagement during single-handed dosing.',
-        spec: 'Anti-Slip Concentric Ridge • Direct Force Vector',
-        dx: 260, dy: -30, rot: 15, scale: 1.0,
-        anchorX: 91.5, anchorY: 49.5
+        name: 'Ergonomic Thumb Press Pad',
+        desc: 'Concentric textured contact surface providing maximum tactile control and positive single-handed administration.',
+        spec: 'Anti-Slip Concentric Ribs • Positive Actuation Grip',
+        explodeX: 150, explodeY: 0,
+        anchorX: 91.5, anchorY: 49.6
       }
     ];
 
@@ -1363,6 +1331,149 @@ document.addEventListener('DOMContentLoaded', () => {
       const progress = Math.min(Math.max(-rect.top / scrollDistance, 0), 1);
       const totalParts = partsData.length;
 
+      const isExplodedMode = partsData.length > 0 && partsData[0].explodeX !== undefined;
+
+      if (isExplodedMode) {
+        // =====================================================================
+        // EXPLODED DECONSTRUCTION MODE (Assembled -> Pulled Apart Portions)
+        // =====================================================================
+        const explodeStart = 0.05;
+        const explodeEnd = 0.82;
+        let activeIndex = 0;
+        let ease = 0;
+
+        if (progress < explodeStart) {
+          // Assembled reference state (complete syringe sitting in center stage)
+          ease = 0;
+          activeIndex = 0;
+        } else if (progress <= explodeEnd) {
+          // Smooth collinear axial deconstruction
+          const normP = (progress - explodeStart) / (explodeEnd - explodeStart);
+          ease = 1 - Math.pow(1 - normP, 3);
+          activeIndex = Math.min(Math.floor(normP * totalParts), totalParts - 1);
+        } else {
+          // Re-docking into fully assembled active demonstration
+          const reDockT = (progress - explodeEnd) / (1 - explodeEnd);
+          ease = Math.pow(1 - reDockT, 3);
+          activeIndex = totalParts - 1;
+        }
+
+        // Responsive scaling factor for exploded mode across all viewport ratios
+        const fWidth = deviceFrame ? deviceFrame.offsetWidth : 850;
+        const isMob = window.innerWidth <= 768;
+        const responsiveScale = isMob
+          ? Math.min(Math.max((window.innerWidth - 50) / 1000, 0.22), 0.36)
+          : Math.min(Math.max(fWidth / 900, 0.45), 1.0);
+
+        // Animate each component layer along its mechanical axis
+        for (let i = 0; i < totalParts; i++) {
+          const partElem = document.getElementById(partPrefix + i);
+          if (!partElem) continue;
+          const pData = partsData[i];
+          const curX = ease * pData.explodeX * responsiveScale;
+          const curY = ease * (pData.explodeY || 0) * responsiveScale;
+
+          partElem.style.transform = `translate3d(${curX}px, ${curY}px, 0)`;
+          partElem.style.opacity = '1';
+          partElem.classList.toggle('active-part', i === activeIndex && progress >= explodeStart && progress <= explodeEnd);
+        }
+
+        // Check pulse on portion change
+        if (progress >= explodeStart && progress <= explodeEnd) {
+          if (activeIndex !== sLastAttached) {
+            sLastAttached = activeIndex;
+            const curAnchorX = ((partsData[activeIndex].anchorX / 100) * fWidth) + (ease * partsData[activeIndex].explodeX * responsiveScale);
+            const pctX = (curAnchorX / fWidth) * 100;
+            triggerPulse(pulseElem, pctX, partsData[activeIndex].anchorY);
+          }
+        }
+
+        // Update Info Card
+        const activeData = partsData[activeIndex];
+        if (activeData) {
+          if (titleElem) {
+            titleElem.textContent = (progress < explodeStart) ? 'Fully Assembled Syringe' : activeData.name;
+          }
+          if (descElem) {
+            descElem.textContent = (progress < explodeStart) ?
+              'Complete single-use medical disposable featuring zero dead-space geometry and flawless glide dynamics. Scroll down to deconstruct components.' :
+              activeData.desc;
+          }
+          if (specElem) {
+            specElem.textContent = (progress < explodeStart) ? 'ISO 7886-1 • USP Class VI Medical Standard' : activeData.spec;
+          }
+          if (tagElem) {
+            const numStr = String(activeIndex + 1).padStart(2, '0');
+            const totalStr = String(totalParts).padStart(2, '0');
+            tagElem.textContent = (progress < explodeStart) ? 'COMPLETE DEVICE' : `PORTION ${numStr} OF ${totalStr}`;
+          }
+          if (badgeElem) {
+            badgeElem.textContent = (progress < explodeStart) ? 'Assembled' : `Portion ${activeIndex + 1} / ${totalParts}`;
+          }
+          if (progressElem) {
+            const pct = Math.min(Math.max(progress * 100, 100 / totalParts), 100);
+            progressElem.style.width = pct + '%';
+          }
+          if (statusElem) {
+            if (progress < explodeStart) {
+              statusElem.textContent = 'ASSEMBLED';
+            } else if (progress > explodeEnd) {
+              statusElem.textContent = 'ASSEMBLED ✓';
+            } else {
+              statusElem.textContent = 'EXPLODED VIEW';
+            }
+          }
+
+          // Update Dots
+          dots.forEach((dot, idx) => {
+            dot.classList.toggle('active', idx === activeIndex);
+          });
+
+          // SVG Leader Line to moving anchor
+          const leaderSvg = deviceFrame ? deviceFrame.querySelector('.assembly-leader-svg') : null;
+          if (leaderSvg) {
+            leaderSvg.style.opacity = (progress >= explodeStart && progress <= explodeEnd && window.innerWidth > 990) ? '1' : '0';
+          }
+
+          if (deviceFrame && lineElem && anchorElem && targetElem && window.innerWidth > 990) {
+            const fWidth = deviceFrame.offsetWidth;
+            const fHeight = deviceFrame.offsetHeight;
+            const curAnchorX = ((activeData.anchorX / 100) * fWidth) + (ease * activeData.explodeX * responsiveScale);
+            const curAnchorY = (activeData.anchorY / 100) * fHeight;
+            const tx = fWidth + 30;
+            const ty = fHeight * 0.45;
+
+            lineElem.setAttribute('x1', curAnchorX);
+            lineElem.setAttribute('y1', curAnchorY);
+            lineElem.setAttribute('x2', tx);
+            lineElem.setAttribute('y2', ty);
+
+            anchorElem.setAttribute('cx', curAnchorX);
+            anchorElem.setAttribute('cy', curAnchorY);
+            targetElem.setAttribute('cx', tx);
+            targetElem.setAttribute('cy', ty);
+          }
+        }
+
+        // Completion bonus (fluid push/pull) past explodeEnd
+        if (progress >= 0.84) {
+          if (bonusBanner) bonusBanner.classList.add('active');
+          const bonusT = (progress - 0.84) / 0.16;
+          if (sCompleteImg) {
+            const cycle = Math.sin(bonusT * Math.PI * 2);
+            sCompleteImg.style.transform = `translateX(${cycle * 42}px)`;
+          }
+          if (sDroplet) {
+            sDroplet.classList.toggle('visible', bonusT > 0.35 && bonusT < 0.85);
+          }
+        } else {
+          if (bonusBanner) bonusBanner.classList.remove('active');
+          if (sCompleteImg) sCompleteImg.style.transform = '';
+          if (sDroplet) sDroplet.classList.remove('visible');
+        }
+        return;
+      }
+
       // Map progress across assembly window [0.03 .. 0.86]
       const assemblyStart = 0.03;
       const assemblyEnd = 0.86;
@@ -1381,9 +1492,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const pStart = i / totalParts;
         const pEnd = (i + 0.82) / totalParts;
 
+        const cScale = Math.min(Math.max(window.innerWidth / 900, 0.40), 1.0);
+
         if (normalizedP <= pStart) {
           // Unattached / outside
-          partElem.style.transform = `translate3d(${pData.dx}px, ${pData.dy}px, 0) rotate(${pData.rot}deg) scale(${pData.scale})`;
+          partElem.style.transform = `translate3d(${pData.dx * cScale}px, ${pData.dy * cScale}px, 0) rotate(${pData.rot}deg) scale(${pData.scale})`;
           partElem.style.opacity = '0';
         } else if (normalizedP >= pEnd) {
           // Attached & locked in final position
@@ -1393,8 +1506,8 @@ document.addEventListener('DOMContentLoaded', () => {
           // Currently flying in
           const localT = (normalizedP - pStart) / (pEnd - pStart);
           const ease = 1 - Math.pow(1 - localT, 3); // cubic ease-out
-          const curDx = (1 - ease) * pData.dx;
-          const curDy = (1 - ease) * pData.dy;
+          const curDx = (1 - ease) * pData.dx * cScale;
+          const curDy = (1 - ease) * pData.dy * cScale;
           const curRot = (1 - ease) * pData.rot;
           const curScale = pData.scale + ease * (1 - pData.scale);
           const curOpacity = Math.min(localT * 1.6, 1);

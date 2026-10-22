@@ -530,23 +530,23 @@
         <!-- Top HUD Bar: Section Title, Progress, and Counter -->
         <div class="assembly-top-hud">
           <div class="assembly-hud-title-wrap">
-            <span class="assembly-eyebrow-tag">ENGINEERING BREAKDOWN • 10-PART COMPONENT ASSEMBLY</span>
+            <span class="assembly-eyebrow-tag">ENGINEERING BREAKDOWN • 6-CORE EXPLODED ARCHITECTURE</span>
             <h2 class="assembly-section-title">Syringe Anatomy</h2>
           </div>
           <div class="assembly-hud-progress-wrap">
-            <div class="assembly-counter-badge" id="syringeCounterBadge">Part 1 / 10</div>
+            <div class="assembly-counter-badge" id="syringeCounterBadge">Step 1 / 6</div>
             <div class="assembly-progress-track">
-              <div class="assembly-progress-bar" id="syringeProgressBar" style="width: 10%;"></div>
+              <div class="assembly-progress-bar" id="syringeProgressBar" style="width: 16.6%;"></div>
             </div>
           </div>
         </div>
 
         <!-- Central Assembly Workspace -->
         <div class="assembly-stage-workspace">
-          <!-- Device Assembly Canvas with 10 Parts Layers -->
+          <!-- Device Assembly Canvas with 6 Parts Layers -->
           <div class="device-assembly-frame" id="syringeDeviceFrame">
-            <!-- Blueprint Target Ghost Silhouette -->
-            <div class="assembly-ghost-silhouette" aria-hidden="true">
+            <!-- Blueprint Target Ghost Silhouette (Hidden in exploded mode because real syringe is present) -->
+            <div class="assembly-ghost-silhouette" aria-hidden="true" style="display: none;">
               <img src="assets/syringe/full-syringe.png?v=black_gasket_green_plunger" alt="" class="ghost-img">
             </div>
 
@@ -563,28 +563,20 @@
               <circle class="leader-target" id="syringeLeaderTarget" cx="0" cy="0" r="5" />
             </svg>
 
-            <!-- 10 Individual Syringe Parts Layers (Identical coordinate plane) -->
+            <!-- 6 Consolidated Core Syringe Components (Exploded Architecture) -->
             <div class="assembly-parts-container" id="syringePartsContainer">
-              <img src="assets/syringe/01-needle-tip.png" alt="Needle Bevel Tip" class="assembly-part" data-part="0"
+              <img src="assets/syringe/part-01-needle.png?v=clean_20261022_v4" alt="Hypodermic Needle Assembly" class="assembly-part" data-part="0"
                 id="sPart0">
-              <img src="assets/syringe/02-needle-shaft.png" alt="Needle Shaft" class="assembly-part" data-part="1"
+              <img src="assets/syringe/part-02-barrel.png?v=clean_20261022_v4" alt="Transparent Medical Barrel" class="assembly-part" data-part="1"
                 id="sPart1">
-              <img src="assets/syringe/03-needle-hub.png" alt="Needle Hub" class="assembly-part" data-part="2"
-                id="sPart2">
-              <img src="assets/syringe/04-luer-nozzle.png" alt="Luer Nozzle" class="assembly-part" data-part="3"
+              <img src="assets/syringe/part-03-graduations.png?v=clean_20261022_v4" alt="Precision Graduation Scale" class="assembly-part"
+                data-part="2" id="sPart2">
+              <img src="assets/syringe/part-04-gasket.png?v=clean_20261022_v4" alt="Elastomeric Piston Gasket" class="assembly-part" data-part="3"
                 id="sPart3">
-              <img src="assets/syringe/05-barrel.png" alt="Transparent Barrel" class="assembly-part" data-part="4"
+              <img src="assets/syringe/part-05-plunger.png?v=clean_20261022_v4" alt="Cruciform Plunger Rod" class="assembly-part" data-part="4"
                 id="sPart4">
-              <img src="assets/syringe/06-graduation-marks.png" alt="Graduation Marks" class="assembly-part"
-                data-part="5" id="sPart5">
-              <img src="assets/syringe/07-rubber-stopper.png" alt="Rubber Stopper" class="assembly-part" data-part="6"
-                id="sPart6">
-              <img src="assets/syringe/08-plunger-rod.png" alt="Plunger Rod" class="assembly-part" data-part="7"
-                id="sPart7">
-              <img src="assets/syringe/09-flange.png" alt="Finger Flange" class="assembly-part" data-part="8"
-                id="sPart8">
-              <img src="assets/syringe/10-thumb-pad.png" alt="Thumb Pad" class="assembly-part" data-part="9"
-                id="sPart9">
+              <img src="assets/syringe/part-06-thumbpad.png?v=clean_20261022_v4" alt="Ergonomic Thumb Press Pad" class="assembly-part" data-part="5"
+                id="sPart5">
             </div>
 
             <!-- Fully Assembled Syringe Layer for completion bonus (plunger push/pull) -->
@@ -598,21 +590,21 @@
           <!-- Dynamic Side Information Card -->
           <div class="assembly-info-card" id="syringeInfoCard">
             <div class="info-card-header">
-              <span class="info-part-tag" id="syringePartTag">PART 01 OF 10</span>
-              <span class="info-status-pill" id="syringeStatusPill">ATTACHING...</span>
+              <span class="info-part-tag" id="syringePartTag">PORTION 01 OF 06</span>
+              <span class="info-status-pill" id="syringeStatusPill">EXPLODED VIEW</span>
             </div>
-            <h3 class="info-part-title" id="syringePartTitle">Needle Bevel Tip</h3>
+            <h3 class="info-part-title" id="syringePartTitle">Hypodermic Needle Assembly</h3>
             <p class="info-part-desc" id="syringePartDesc">
-              Laser-honed tri-bevel point minimizing tissue trauma and penetration force.
+              Laser-honed tri-bevel cannula crafted from 304 medical stainless steel with an electro-polished lumen for smooth, painless penetration.
             </p>
             <div class="info-part-spec">
-              <span class="spec-label">ENGINEERING SPEC</span>
-              <span class="spec-val" id="syringePartSpec">25G Lancet Bevel • ISO 7864</span>
+              <span class="spec-label">PRECISION SPECIFICATION</span>
+              <span class="spec-val" id="syringePartSpec">304 Medical Stainless • 25G Lancet Bevel</span>
             </div>
             <!-- Interactive Action Hint -->
             <div class="assembly-scroll-guide">
-              <span class="guide-icon">⟱</span>
-              <span class="guide-text" id="syringeGuideText">Scroll down to assemble next component</span>
+              <span class="guide-icon">↓</span>
+              <span class="guide-text" id="syringeGuideText">Scroll down to inspect next exploded portion</span>
             </div>
           </div>
         </div>
@@ -626,10 +618,6 @@
             <span class="assembly-dot" data-index="3"></span>
             <span class="assembly-dot" data-index="4"></span>
             <span class="assembly-dot" data-index="5"></span>
-            <span class="assembly-dot" data-index="6"></span>
-            <span class="assembly-dot" data-index="7"></span>
-            <span class="assembly-dot" data-index="8"></span>
-            <span class="assembly-dot" data-index="9"></span>
           </div>
           <div class="assembly-bonus-banner" id="syringeBonusBanner">
             <span class="bonus-badge">✓ SYRINGE ASSEMBLED</span>
