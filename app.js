@@ -1358,20 +1358,32 @@ document.addEventListener('DOMContentLoaded', () => {
           activeIndex = totalParts - 1;
         }
 
-        // Responsive scaling factor for exploded mode across all viewport ratios
+        // Precise rendered image geometry inside deviceFrame (accounting for object-fit: contain)
         const fWidth = deviceFrame ? deviceFrame.offsetWidth : 850;
-        const isMob = window.innerWidth <= 768;
-        const responsiveScale = isMob
-          ? Math.min(Math.max((window.innerWidth - 50) / 1000, 0.22), 0.36)
-          : Math.min(Math.max(fWidth / 900, 0.45), 1.0);
+        const fHeight = deviceFrame ? deviceFrame.offsetHeight : 500;
+        const containerRatio = fWidth / (fHeight || 1);
+        const imageRatio = 1376 / 768;
+        let rWidth, rHeight, offX, offY;
+        if (containerRatio > imageRatio) {
+          rHeight = fHeight;
+          rWidth = fHeight * imageRatio;
+          offX = (fWidth - rWidth) / 2;
+          offY = 0;
+        } else {
+          rWidth = fWidth;
+          rHeight = fWidth / imageRatio;
+          offX = 0;
+          offY = (fHeight - rHeight) / 2;
+        }
+        const renderScale = rWidth / 1376;
 
         // Animate each component layer along its mechanical axis
         for (let i = 0; i < totalParts; i++) {
           const partElem = document.getElementById(partPrefix + i);
           if (!partElem) continue;
           const pData = partsData[i];
-          const curX = ease * pData.explodeX * responsiveScale;
-          const curY = ease * (pData.explodeY || 0) * responsiveScale;
+          const curX = ease * pData.explodeX * renderScale;
+          const curY = ease * (pData.explodeY || 0) * renderScale;
 
           partElem.style.transform = `translate3d(${curX}px, ${curY}px, 0)`;
           partElem.style.opacity = '1';
@@ -1382,9 +1394,11 @@ document.addEventListener('DOMContentLoaded', () => {
         if (progress >= explodeStart && progress <= explodeEnd) {
           if (activeIndex !== sLastAttached) {
             sLastAttached = activeIndex;
-            const curAnchorX = ((partsData[activeIndex].anchorX / 100) * fWidth) + (ease * partsData[activeIndex].explodeX * responsiveScale);
+            const curAnchorX = offX + ((partsData[activeIndex].anchorX / 100) * rWidth) + (ease * partsData[activeIndex].explodeX * renderScale);
+            const curAnchorY = offY + ((partsData[activeIndex].anchorY / 100) * rHeight) + (ease * (partsData[activeIndex].explodeY || 0) * renderScale);
             const pctX = (curAnchorX / fWidth) * 100;
-            triggerPulse(pulseElem, pctX, partsData[activeIndex].anchorY);
+            const pctY = (curAnchorY / fHeight) * 100;
+            triggerPulse(pulseElem, pctX, pctY);
           }
         }
 
@@ -1436,12 +1450,18 @@ document.addEventListener('DOMContentLoaded', () => {
           }
 
           if (deviceFrame && lineElem && anchorElem && targetElem && window.innerWidth > 990) {
-            const fWidth = deviceFrame.offsetWidth;
-            const fHeight = deviceFrame.offsetHeight;
-            const curAnchorX = ((activeData.anchorX / 100) * fWidth) + (ease * activeData.explodeX * responsiveScale);
-            const curAnchorY = (activeData.anchorY / 100) * fHeight;
-            const tx = fWidth + 30;
-            const ty = fHeight * 0.45;
+            const curAnchorX = offX + ((activeData.anchorX / 100) * rWidth) + (ease * activeData.explodeX * renderScale);
+            const curAnchorY = offY + ((activeData.anchorY / 100) * rHeight) + (ease * (activeData.explodeY || 0) * renderScale);
+
+            const cardElem = titleElem ? titleElem.closest('.assembly-info-card') : null;
+            let tx = fWidth + 30;
+            let ty = fHeight * 0.45;
+            if (cardElem && deviceFrame) {
+              const frameRect = deviceFrame.getBoundingClientRect();
+              const cardRect = cardElem.getBoundingClientRect();
+              tx = (cardRect.left - frameRect.left) - 8;
+              ty = (cardRect.top - frameRect.top) + 36;
+            }
 
             lineElem.setAttribute('x1', curAnchorX);
             lineElem.setAttribute('y1', curAnchorY);
