@@ -29,7 +29,7 @@
     <div class="nav-left">
       <a href="index.html#heroTrack" class="brand-logo-wrap notranslate" translate="no">
         <img src="assets/brand-logo.png" alt="GAI AI-DISPO Logo" class="brand-logo-img">
-        <span class="brand-logo notranslate" translate="no">AI-DISPO<span class="accent-dot">.</span></span>
+        <span class="brand-logo notranslate" translate="no">AI-DISPO<span class="accent-dot"></span></span>
       </a>
     </div>
 
@@ -148,7 +148,7 @@
     <div class="mobile-nav-header">
       <div class="brand-logo-wrap notranslate" translate="no">
         <img src="assets/brand-logo.png" alt="GAI AI-DISPO Logo" class="brand-logo-img">
-        <span class="brand-logo notranslate" translate="no">AI-DISPO<span class="accent-dot">.</span></span>
+        <span class="brand-logo notranslate" translate="no">AI-DISPO<span class="accent-dot"></span></span>
       </div>
       <button class="mobile-nav-close" id="mobileNavClose" aria-label="Close Navigation Menu">&times;</button>
     </div>
@@ -710,21 +710,21 @@
         </div>
 
         <!-- Vision & Mission 2-Card Row -->
-        <div class="sim-tabs-grid" style="gap: 24px; margin-bottom: 32px;">
+        <div class="sim-tabs-grid" style="gap: 24px; margin-bottom: 32px; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));">
           <!-- Vision Card (Exact from cata.txt) -->
-          <div class="sim-tab-card" style="border-top: 4px solid var(--accent-blue); padding: 28px;">
-            <span class="sim-pill-tag feature" style="margin-bottom: 12px;">OUR VISION</span>
-            <h3 class="sim-tab-title" style="font-size: 18px; margin-bottom: 12px;">Global Healthcare Leadership</h3>
-            <p style="font-size: 15px; color: var(--ink-charcoal); line-height: 1.65; font-weight: 500;">
+          <div class="vision-mission-card vision">
+            <span class="sim-pill-tag feature vm-tag">OUR VISION</span>
+            <h3 class="vm-title">Global Healthcare Leadership</h3>
+            <p class="vm-quote">
               "To be a global leader in healthcare industry, delivering world-class medical solutions with a commitment to safety, reliability, quality, and trust."
             </p>
           </div>
 
           <!-- Mission Card (Exact from cata.txt) -->
-          <div class="sim-tab-card" style="border-top: 4px solid var(--logo-navy); padding: 28px;">
-            <span class="sim-pill-tag dark" style="margin-bottom: 12px;">OUR MISSION</span>
-            <h3 class="sim-tab-title" style="font-size: 18px; margin-bottom: 12px;">Precision &amp; Clinical Excellence</h3>
-            <p style="font-size: 15px; color: var(--ink-charcoal); line-height: 1.65; font-weight: 500;">
+          <div class="vision-mission-card mission">
+            <span class="sim-pill-tag dark vm-tag">OUR MISSION</span>
+            <h3 class="vm-title">Precision &amp; Clinical Excellence</h3>
+            <p class="vm-quote">
               "To consistently provide reliable and precise high-quality disposable medical devices that meet the evolving needs of healthcare professionals worldwide, ensuring excellence at every step."
             </p>
           </div>

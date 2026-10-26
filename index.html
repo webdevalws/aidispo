@@ -241,7 +241,7 @@
     <div class="mobile-nav-header">
       <div class="brand-logo-wrap notranslate" translate="no">
         <img src="assets/brand-logo.png" alt="GAI AI-DISPO Logo" class="brand-logo-img">
-        <span class="brand-logo notranslate" translate="no">AI-DISPO<span class="accent-dot">.</span></span>
+        <span class="brand-logo notranslate" translate="no">AI-DISPO<span class="accent-dot"></span></span>
       </div>
       <button class="mobile-nav-close" id="mobileNavClose" aria-label="Close Navigation Menu">&times;</button>
     </div>
@@ -641,26 +641,21 @@
         <!-- Top HUD Bar: Section Title, Progress, and Counter -->
         <div class="assembly-top-hud">
           <div class="assembly-hud-title-wrap">
-            <span class="assembly-eyebrow-tag">DEVICE SPEC 02 • 20G PORTED IV CANNULA</span>
+            <span class="assembly-eyebrow-tag">DEVICE SPEC 02 • 20G PORTED IV CANNULA • EXPLODED ARCHITECTURE</span>
             <h2 class="assembly-section-title">IV Cannula Anatomy</h2>
           </div>
           <div class="assembly-hud-progress-wrap">
-            <div class="assembly-counter-badge" id="cannulaCounterBadge">Part 1 / 8</div>
+            <div class="assembly-counter-badge" id="cannulaCounterBadge">Assembled</div>
             <div class="assembly-progress-track">
-              <div class="assembly-progress-bar" id="cannulaProgressBar" style="width: 12.5%;"></div>
+              <div class="assembly-progress-bar" id="cannulaProgressBar" style="width: 4%;"></div>
             </div>
           </div>
         </div>
 
         <!-- Central Assembly Workspace -->
         <div class="assembly-stage-workspace">
-          <!-- Device Assembly Canvas with 8 Parts Layers -->
+          <!-- Device Assembly Canvas: 5 complete parts placed in one world layer -->
           <div class="device-assembly-frame" id="cannulaDeviceFrame">
-            <!-- Blueprint Target Ghost Silhouette -->
-            <div class="assembly-ghost-silhouette" aria-hidden="true">
-              <img src="assets/cannula/full-cannula.png" alt="" class="ghost-img">
-            </div>
-
             <!-- Ground Drop Shadow -->
             <div class="device-drop-shadow" aria-hidden="true"></div>
 
@@ -674,51 +669,34 @@
               <circle class="leader-target" id="cannulaLeaderTarget" cx="0" cy="0" r="5" />
             </svg>
 
-            <!-- 8 Individual Cannula Parts Layers (Identical coordinate plane) -->
-            <div class="assembly-parts-container" id="cannulaPartsContainer">
-              <img src="assets/cannula/01-introducer-needle.png" alt="Introducer Needle" class="assembly-part"
-                data-part="0" id="cPart0">
-              <img src="assets/cannula/02-catheter-tube.png" alt="Catheter Tube" class="assembly-part" data-part="1"
-                id="cPart1">
-              <img src="assets/cannula/03-catheter-hub.png" alt="Catheter Hub" class="assembly-part" data-part="2"
-                id="cPart2">
-              <img src="assets/cannula/04-stabilising-wings.png" alt="Stabilising Wings" class="assembly-part"
-                data-part="3" id="cPart3">
-              <img src="assets/cannula/05-injection-port.png" alt="Injection Port with Pink Cap" class="assembly-part"
-                data-part="4" id="cPart4">
-              <img src="assets/cannula/06-port-cover-flap.png" alt="Port Cover Flap" class="assembly-part" data-part="5"
-                id="cPart5">
-              <img src="assets/cannula/07-flashback-chamber.png" alt="Flashback Chamber" class="assembly-part"
-                data-part="6" id="cPart6">
-              <img src="assets/cannula/08-luer-cap.png" alt="Vented Luer Cap" class="assembly-part" data-part="7"
-                id="cPart7">
-            </div>
-
-            <!-- Fully Assembled Cannula Layer -->
-            <div class="assembly-complete-layer" id="cannulaCompleteLayer" aria-hidden="true">
-              <img src="assets/cannula/full-cannula.png" alt="Fully Assembled IV Cannula" class="assembled-full-img"
-                id="cannulaCompleteImg">
+            <!-- Parts are positioned and moved by app.js (back to front) -->
+            <div class="cannula-world" id="cannulaWorld">
+              <img src="assets/cannula/v2/needle.png?v=v2_20261026" alt="Introducer Needle" class="cannula-part" id="cvNeedle">
+              <img src="assets/cannula/v2/luer-cap.png?v=v2_20261026" alt="Vented Luer Cap" class="cannula-part" id="cvLuer">
+              <img src="assets/cannula/v2/flashback.png?v=v2_20261026" alt="Flashback Chamber" class="cannula-part" id="cvFlashback">
+              <img src="assets/cannula/v2/catheter-hub.png?v=v2_20261026" alt="PTFE Catheter, Hub and Stabilising Wings" class="cannula-part" id="cvHub">
+              <img src="assets/cannula/v2/port-cap.png?v=v2_20261026" alt="Injection Port Cap and Cover Flap" class="cannula-part" id="cvPort">
             </div>
           </div>
 
           <!-- Dynamic Side Information Card -->
           <div class="assembly-info-card" id="cannulaInfoCard">
             <div class="info-card-header">
-              <span class="info-part-tag" id="cannulaPartTag">PART 01 OF 08</span>
-              <span class="info-status-pill" id="cannulaStatusPill">ATTACHING...</span>
+              <span class="info-part-tag" id="cannulaPartTag">COMPLETE DEVICE</span>
+              <span class="info-status-pill" id="cannulaStatusPill">ASSEMBLED</span>
             </div>
-            <h3 class="info-part-title" id="cannulaPartTitle">Introducer Trocar Needle</h3>
+            <h3 class="info-part-title" id="cannulaPartTitle">Fully Assembled IV Cannula</h3>
             <p class="info-part-desc" id="cannulaPartDesc">
-              Siliconized 304 stainless steel needle ground with back-cut bevel geometry for painless venipuncture.
+              Complete 20G ported and winged IV catheter, ready for venipuncture. Scroll down to deconstruct components.
             </p>
             <div class="info-part-spec">
-              <span class="spec-label">ENGINEERING SPEC</span>
-              <span class="spec-val" id="cannulaPartSpec">Back-Cut Lancet Bevel • Siliconized 304 SS</span>
+              <span class="spec-label">PRECISION SPECIFICATION</span>
+              <span class="spec-val" id="cannulaPartSpec">ISO 10555-5 • Color-Coded 20G Pink</span>
             </div>
             <!-- Interactive Action Hint -->
             <div class="assembly-scroll-guide">
-              <span class="guide-icon">⟱</span>
-              <span class="guide-text" id="cannulaGuideText">Scroll down to assemble next component</span>
+              <span class="guide-icon">↓</span>
+              <span class="guide-text" id="cannulaGuideText">Scroll down to deconstruct the cannula</span>
             </div>
           </div>
         </div>
@@ -732,8 +710,6 @@
             <span class="assembly-dot" data-index="3"></span>
             <span class="assembly-dot" data-index="4"></span>
             <span class="assembly-dot" data-index="5"></span>
-            <span class="assembly-dot" data-index="6"></span>
-            <span class="assembly-dot" data-index="7"></span>
           </div>
           <div class="assembly-bonus-banner" id="cannulaBonusBanner">
             <span class="bonus-badge" style="background: #10B981;">✓ CATHETER ASSEMBLED</span>

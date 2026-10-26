@@ -2467,3 +2467,58 @@ details,
   margin: 0;
   flex-grow: 1;
 }
+
+/* Vision & Mission Dedicated Cards */
+.vision-mission-card {
+  background: #FFFFFF;
+  border: 1.5px solid rgba(1, 53, 114, 0.16);
+  border-radius: 12px;
+  padding: 32px 28px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  box-shadow: 0 4px 18px rgba(1, 53, 114, 0.05);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  position: relative;
+  text-align: left;
+  cursor: default;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.vision-mission-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px rgba(1, 53, 114, 0.1);
+}
+
+.vision-mission-card.vision {
+  border-top: 4px solid var(--accent-blue, #00A8FF);
+}
+
+.vision-mission-card.mission {
+  border-top: 4px solid var(--logo-navy, #013572);
+}
+
+.vision-mission-card .vm-tag {
+  margin-bottom: 14px;
+}
+
+.vision-mission-card .vm-title {
+  font-family: var(--font-headline, 'Plus Jakarta Sans', sans-serif);
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--logo-navy, #013572);
+  margin: 0 0 12px 0;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+}
+
+.vision-mission-card .vm-quote {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: 15px;
+  color: var(--ink-charcoal, #334155);
+  line-height: 1.65;
+  font-weight: 500;
+  margin: 0;
+}
